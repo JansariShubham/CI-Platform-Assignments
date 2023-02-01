@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/innerpage-responsive.css">
+</head>
+
+<body>
+    <!-- <nav class="navbar d-flex"> -->
+    <nav class="mainNav">
+        <div class="leftDiv">
+            <img class="menubar" id="menu" src="./images/menu-bar.svg" alt="Menubar">
+            <img class="logoImage" src="./images/logo.svg" alt="Company">
+        </div>
+        <div class="rightDiv">
+            <div class="searchBar">
+                <img class="searchIcon" src="./images/search-icon.svg" alt="Search">
+                <p class="searchText m-0">Search</p>
+            </div>
+            <div class="cornerRight">
+                <img class="notification" src="./images/notification-icon.svg" alt="#">
+                <img class="profile" src="./images/profile.png" alt="#">
+                <p class="userName m-0">John Doe</p>
+                <img class="arrow" src="./images/downward-arrow.svg" alt="#">
+            </div>
+        </div>
+    </nav>
+    <!-- </nav> -->
+
+    <div>
+
+        <div class="mainDiv d-flex">
+            <div class=sidebarDiv>
+                <div class="sideIcons"><img class=sidebarImg src="./images/dashboard-active.svg" alt="#">Dashboard
+                </div>
+                <div class="sideIcons1"><img class=sidebarImg src="./images/graph-default.svg" alt="#">Analysis</div>
+                <div class="sideIcons"><img class=sidebarImg src="./images/inbox-default.svg" alt="#">Inbox</div>
+                <div class="sideIcons"><img class=sidebarImg src="./images/clock-default.svg" alt="#">History</div>
+                <div class="sideIcons"><img class=sidebarImg src="./images/user-default.svg" alt="#">Users</div>
+                <div class="sideIcons"><img class=sidebarImg src="./images/maintenance-default.svg" alt="#">Maintenance
+                </div>
+                <div class="sideIcons"><img class=sidebarImg src="./images/setting-default.svg" alt="#">Setting</div>
+            </div>
+
+
+
+            <div class="container">
+                <div class="form-head">
+                    <h3>Analysis</h3>
+                </div>
+                <div class="container content">
+                    <h5 class="one-col">One Column</h5>
+                    <div class="row">
+                        <div class="col">
+
+                            <input type="text" class="form-control" placeholder="Name">
+                            <br>
+                            <select class="sel col-12">
+                                <option selected>DropDown</option>
+                            </select>
+                            <br><br>
+                            <textarea class="form-control" id="txtarea" placeholder="Multiple line"></textarea>
+
+                        </div>
+
+                    </div>
+                    <br><br>
+                    <h5>Two Column</h5>
+                    <div class="d-flex">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control ">
+                            <span>John Doe</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="d-flex">
+                        <div class="col">
+                            <input type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="col">
+                            <select class="col" id="dropdwn">
+                                <option selected>DropDown</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <br>
+
+                    <h5>Three Column</h5>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control">
+                            <span>Focus</span>
+                        </div>
+                        <div class="col">
+                            <input type="password" class="form-control">
+                            <span>Password</span>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" disabled>
+                            <span>Disabled</span>
+                        </div>
+                    </div>
+                    <br>
+                    <h5>Four Column</h5>
+                    <div class="row" id="four-col">
+                        <div class="col-12 col-md-3">
+                            <input type="text" class="form-control">
+                            <span>Designation</span>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <input type="text" class="form-control">
+                            <span>Name</span>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <input type="text" class="form-control">
+                            <span>Username</span>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <select class="col" id="dropdwn">
+                                <option selected>Select</option>
+                            </select>
+                        </div>
+
+                        <p class="col-3 text-danger">Enter Valid Data</p>
+                        <p class="col-9">Enter your full name as per ID</p>
+                    </div>
+
+                    <br><br>
+                    <h5>Other Design Elements</h5>
+                    <br>
+                    <p class="font-weight-bold">File Upload</p>
+                    <div class="fiUp">
+                        <button class="file-upload ">
+                            <img src="./images/cloud-upload-icon.svg" alt="File Upload">
+                            Upload
+                        </button>
+                        <p class="col-1 text-nowrap mt-2">No Item Selected</p>
+                    </div>
+                    <br>
+
+                    <h6>Radio Button</h6>
+                    <br>
+                    <input type="radio" id="radio1" class="" name="option">
+                    <label class="opt1" for="radio1">Option 1</label>
+                    <!-- <span>Option 1</span> -->
+
+                    <input type="radio" id="radio2" class="" name="option" checked>
+                    <label for="radio2">Option 2</label>
+                    <br><br>
+
+                    <h6>CheckBox</h6>
+                    <br>
+                    <input type="checkbox" id="chk1" class="">
+                    <label class="opt1" for="chk1">Option 1</label>
+                    <!-- <span>Option 1</span> -->
+
+                    <input type="checkbox" id="chk2" class="" checked>
+                    <label for="chk2">Option 2</label>
+                    <br><br>
+
+                    <h6>SnackBar</h6>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <div id="danger" class="border border-danger d-flex align-items-center">
+                                <img class="mx-2" src="./images/error-icon.svg" alt="">
+                                <p class="mt-3">This is an danger Message</p>
+
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div id="information" class="border border-primary d-flex align-items-center">
+                                <img class="mx-2" src="./images/info-icon.svg" alt="">
+                                <p class="mt-3">This is an information Message!</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <div id="warning" class="border-warning d-flex align-items-center">
+                                <img class="mx-2" src="./images/warning-icon.svg" alt="">
+                                <p class="mt-3">This is an warning Message!</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div id="success" class="border border-success d-flex align-items-center">
+                                <img class="mx-2" src="./images/success-icon.svg" alt="">
+                                <p class="mt-3">This is an success Message!</p>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <br><br>
+
+                    <h6>Call to action</h6>
+                    <br>
+
+                    <button class="primary-btn">Primary</button>
+                    <button class="secondary-btn">Secondary</button>
+                    <br><br>
+
+                    <h6>Tabs</h6>
+                    <br>
+                    <div class="tab-div">
+                        <p class="tabs mx-2">Tab 1</p>
+                        <p class="tabs mx-2">Tab 2</p>
+                        <p class="tabs mx-2">Tab 3</p>
+                    </div>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic, deserunt dolor deleniti
+                        perferendis a
+                        nam assumenda odio ducimus adipisci unde voluptate dolorum at eius porro numquam beatae
+                        atque?
+                        Eveniet, rerum?
+                        Animi unde nihil reiciendis maxime, harum, debitis libero, optio vero deleniti temporibus
+                        quisquam
+                        repudiandae placeat laborum eaque ipsam esse aliquam suscipit similique magni! Reprehenderit
+                        eius
+                        nisi perspiciatis ipsa ex error.</p>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        const menuBar = document.querySelector("#menu");
+        const sideBar = document.querySelector(".sidebarDiv");
+
+        menuBar.addEventListener("click", () => {
+            sideBar.classList.toggle("hide-aside");
+        });
+    </script>
+</body>
+
+</html>

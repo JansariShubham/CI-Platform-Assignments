@@ -1,0 +1,201 @@
+/* for Tablets */
+@media only screen and (max-width:768px) {
+    .main {
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+        /* background-color: black; */
+        /* flex-direction: row; */
+        /* background-color: black; */
+    }
+
+    .left {
+        display: flex !important;
+
+        justify-content: center !important;
+
+    }
+
+    .right {
+        padding-left: 7rem;
+        padding-top: 2rem;
+        margin: 0 1rem;
+    }
+
+    .hero-image {
+        height: 50%;
+        width: 40%;
+    }
+
+    /* .left {
+        width: 100%;
+    } */
+
+
+
+    #logo1 {
+        /* height: 100%; */
+        /* width: fit-content; */
+        height: 80%;
+        width: 50%;
+    }
+
+    .desc {
+        /* width: fit-content; */
+        font-size: 17px;
+
+        height: 50%;
+        width: 50%;
+    }
+
+    .login-msg {
+        font-size: 15px;
+        height: 50%;
+        width: 50%;
+    }
+
+    .right input {
+        height: 30px;
+        width: 50%;
+
+    }
+
+    input::placeholder {
+        font-size: 15px;
+    }
+
+    .login-btn-div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /* max-width: 100%; */
+    }
+
+    .login-button {
+        height: 30px;
+        width: 20%;
+        font-size: 15px;
+    }
+
+    .fp {
+        margin-left: 0%;
+        font-size: 0.9rem;
+
+    }
+
+
+    .con {
+        font-size: 0.9rem;
+        height: 50%;
+        width: 50%;
+    }
+
+    .register {
+        height: 50%;
+        width: 50%;
+        font-size: 0.9rem;
+
+    }
+
+}
+
+/* for mobiles */
+
+@media only screen and (max-width:480px) {
+    .main {
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+        /* background-color: black; */
+        /* flex-direction: row; */
+        /* background-color: black; */
+    }
+
+    .left {
+        display: flex !important;
+
+        justify-content: center !important;
+
+    }
+
+    .right {
+        margin: 0 1rem;
+        padding-left: 5rem;
+    }
+
+    .hero-image {
+        height: 30%;
+        width: 40%;
+    }
+
+    /* .left {
+        width: 100%;
+    } */
+
+
+
+    #logo1 {
+        /* height: 100%; */
+        /* width: fit-content; */
+        height: 60%;
+        width: 60%;
+    }
+
+    .desc {
+        /* width: fit-content; */
+        font-size: 12px;
+
+        height: 50%;
+        width: 50%;
+    }
+
+    .login-msg {
+        font-size: 10px;
+        height: 50%;
+        width: 50%;
+    }
+
+    .right input {
+        height: 100%;
+        width: 70%;
+    }
+
+    input::placeholder {
+        font-size: 10px;
+    }
+
+    .login-btn-div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 100%;
+    }
+
+    .login-button {
+        height: 70%;
+        width: 20%;
+        font-size: 10px;
+    }
+
+    .fp {
+        font-size: 60%;
+
+    }
+
+
+    .con {
+        font-size: 60%;
+        height: 50%;
+        width: 50%;
+    }
+
+    .register {
+        height: 50%;
+        width: 50%;
+        font-size: 60%;
+
+    }
+
+}

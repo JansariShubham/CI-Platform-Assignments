@@ -1,0 +1,180 @@
+/* for tablets */
+@media only screen and (max-width:990px) {
+    .row3 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .row2 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px;
+    }
+
+    .sidebarDiv {
+        /* display: none; */
+        position: absolute;
+        z-index: 100;
+    }
+
+    .mainDiv {
+        position: absolute;
+        z-index: -1;
+    }
+
+    .head2 {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+/* for mobiles */
+@media only screen and (max-width:480px) {
+    .mainNav {
+        display: flex;
+        width: 100vw;
+        justify-content: space-between;
+        margin: 0;
+    }
+
+    .leftDiv {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        /* width: 30%; */
+    }
+
+    .menubar {
+        /* padding: 0; */
+    }
+
+    .logoImage {
+        padding-left: 1rem;
+    }
+
+    .searchBar {
+        display: none;
+    }
+
+    .notification {
+        display: none;
+    }
+
+    .rightDiv {
+        /* padding-left: 2rem; */
+        /* justify-content: flex-end; */
+        /* align-self: flex-end;
+        position: absolute;
+        right: 0; */
+
+    }
+
+    .sidebarDiv {
+        /* display: none; */
+        position: absolute;
+        z-index: 100;
+    }
+
+    .mainDiv {
+        position: absolute;
+        z-index: -1;
+    }
+
+    .row1 {
+        width: 50%;
+    }
+
+    .row2 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .graphText h1 {
+        font-size: medium;
+        padding-left: 10px;
+    }
+
+    .graphText {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+
+    }
+
+    .row3 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .head1 {
+        height: 50%;
+        width: 80%;
+    }
+
+    .col1 img {
+        height: 50%;
+        width: 100%;
+    }
+
+    .head2 {
+        margin-top: 15px;
+        height: 50%;
+        width: 80%;
+        padding: 0;
+    }
+
+    .col2 img {
+        height: 50%;
+        width: 70%;
+    }
+
+    .contentDiv {
+        margin: 2rem;
+    }
+
+    .images {
+        width: 80%;
+    }
+
+    .mainDiv {
+
+        min-width: 100vw;
+    }
+
+    .cornerRight {
+        position: absolute;
+        right: 0;
+    }
+
+    .table-custom {
+        overflow-x: auto;
+    }
+
+    /* .tabular-data {
+        position: absolute;
+        left: 0;
+    } */
+
+    img {
+        max-width: 100%;
+    }
+
+    .table-heading {
+        padding-bottom: 10px;
+    }
+
+    .table>thead>tr>th {
+        font-size: 15px;
+    }
+
+    .tr1 {
+        font-size: medium;
+    }
+
+
+    .head2 ul {
+        margin-left: 20px;
+    }
+}
