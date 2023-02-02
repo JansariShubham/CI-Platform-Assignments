@@ -1,9 +1,31 @@
 /* for desktop */
-@media only screen and (min-width:821px) {
-    .login-input {
-        width: 401px !important;
-        height: 56px;
+@media(min-width:821px) {
+    .hero-image {
+        width: 70vw;
     }
+
+    .right-div {
+        width: 30vw;
+    }
+
+    .privacy-text {
+        bottom: 10px !important;
+    }
+
+    .login-input {
+        font-size: 14px;
+        width: 20vw;
+    }
+
+    #login-btn {
+        font-size: 12px;
+    }
+
+    .login-label {
+        font-size: 14px;
+    }
+
+
 }
 
 /* for tablets */
@@ -37,6 +59,8 @@
     .bottom-div span {
         font-size: 18px !important;
     }
+
+
 }
 
 /* for mobile */

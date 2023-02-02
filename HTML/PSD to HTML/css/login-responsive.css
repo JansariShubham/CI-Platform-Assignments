@@ -22,6 +22,23 @@
         height: 80vh;
     }
 
+    .login-input {
+        width: 60vw;
+    }
+
+    .login-label {
+        font-size: 20px;
+    }
+
+    .login-input {
+        font-size: 20px;
+    }
+
+    .bottom-div span {
+        font-size: 18px !important;
+    }
+
+
 }
 
 /* for mobile */
