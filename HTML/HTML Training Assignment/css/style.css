@@ -22,6 +22,8 @@
     font-size: 40px;
     width: 500px;
     height: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 a {
@@ -38,8 +40,8 @@ body {
     border-radius: 50%;
     top: 72px;
     left: 166px;
-    width: 576px;
-    height: 576px;
+    width: 40vw;
+    height: 70vh;
     /* UI Properties */
     background: transparent url('img/Ellipse 2.png') 0% 0% no-repeat padding-box;
     box-shadow: 0px 4px 31px #0000000A;
@@ -48,7 +50,7 @@ body {
 }
 
 .right {
-    margin: 10rem;
+    margin: 2rem;
 }
 
 .login-button {
@@ -66,6 +68,8 @@ body {
     width: 300px;
     height: 33px;
     color: #3E3E3E;
+    /* padding-top: 10px; */
+    margin-bottom: 20px;
 }
 
 input {
