@@ -1,0 +1,63 @@
+/* for desktop */
+@media only screen and (min-width:821px) {
+    .login-input {
+        width: 401px !important;
+        height: 56px;
+    }
+}
+
+/* for tablets */
+@media only screen and (min-width:481px) and (max-width:820px) {
+    /* .login-content {
+        flex-direction: column;
+    } */
+
+    .privacy-text {
+        padding-top: 5%;
+        position: relative !important;
+        bottom: 20px !important;
+    }
+
+    .hero-image {
+        height: 80vh;
+    }
+
+    .login-input {
+        width: 60vw;
+    }
+
+    .login-label {
+        font-size: 20px;
+    }
+
+    .login-input {
+        font-size: 20px;
+    }
+
+    .bottom-div span {
+        font-size: 18px !important;
+    }
+
+
+}
+
+/* for mobile */
+@media only screen and (max-width:480px) {
+    /* .login-content {
+        flex-direction: column;
+    } */
+
+    .privacy-text {
+        padding-top: 5%;
+        position: relative !important;
+        bottom: 2px !important;
+    }
+
+    .hero-image {
+        height: 80vh;
+    }
+
+    .image-content h1 {
+        font-size: larger;
+    }
+}
