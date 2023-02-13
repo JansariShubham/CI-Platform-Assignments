@@ -1,0 +1,85 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<section class="d-flex flex-column flex-md-column flex-lg-row login-content">
+
+    <div class="d-flex justify-content-end flex-column hero-image ">
+
+        <div class="image-content p-5">
+            <h1 class="text-light-custom">Sed ut perspiciatis unde omnis iste natus voluptatem.</h1>
+            <p class="d-none d-md-block">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam rerum,
+                accusantium debitis nihil
+                provident explicabo hic! Iure deleniti suscipit id blanditiis accusamus quasi, deserunt praesentium
+                architecto voluptates, tempore magni. Nostrum.
+            </p>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column p-5 justify-content-center right-div">
+        <form class="d-flex flex-column mx-auto justify-content-center">
+            <label for="f-name" class="form-label mb-0 login-label text-light-custom">First Name</label>
+            <input type="text" id="f-name" class="form-control login-input text-light-custom" value="evan">
+
+            <label for="l-name" class="mt-3 mb-0 form-label text-secondary login-label text-light-custom">
+                Last
+                Name
+            </label>
+            <input type="text" id="l-name" class="form-control login-input text-light-custom" value="donohue">
+
+            <label for="phone" class="mt-3 mb-0 form-label text-secondary login-label text-light-custom">
+                Phone
+                Number
+            </label>
+            <input type="number" id="phone" class="form-control login-input text-light-custom" value="8923454615">
+
+            <label for="email" class="mt-3 mb-0 form-label text-secondary login-label text-light-custom">
+                Email
+                Address
+            </label>
+            <input type="email" id="email" class="form-control login-input text-light-custom"
+                   value="evan.donohue@gmail.com">
+
+            <label for="psw"
+                   class="mt-3 mb-0 form-label text-secondary login-label text-light-custom">Password</label>
+            <input type="password" id="psw" class="form-control login-input text-light-custom" value="**********">
+
+            <label for="con-psw" class="mt-3 mb-0 form-label text-secondary login-label text-light-custom">
+                Confirm
+                Password
+            </label>
+            <input type="password" id="con-psw" class="form-control login-input text-light-custom"
+                   value="**********">
+
+            <button class="btn mt-4 text-light-custom" id="login-btn">Register</button>
+        </form>
+
+        <div class="d-flex flex-column align-items-center bottom-div ">
+            <a asp-controller="Home" asp-action="ForgotPassword">
+                <span class="mt-3 login-span text-light-custom">
+                    Lost
+                    your
+                    password?
+                </span>
+            </a>
+
+            <span class="mt-3 login-span text-light-custom">
+                Already registerd? 
+                <a asp-controller="Home" asp-action="Index">
+                    Login now
+                </a>
+            </span>
+            <span class="login-span text-light-custom privacy-text position-fixed">
+                Priavcy
+                Policy
+            </span>
+        </div>
+    </div>
+
+
+
+</section>
+

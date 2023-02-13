@@ -9,8 +9,16 @@
       "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
     },
     {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\css\\fg-responsive.css",
+      "PackagePath": "staticwebassets\\css\\fg-responsive.css"
+    },
+    {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\css\\login-responsive.css",
       "PackagePath": "staticwebassets\\css\\login-responsive.css"
+    },
+    {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\css\\registration-responsive.css",
+      "PackagePath": "staticwebassets\\css\\registration-responsive.css"
     },
     {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\css\\site.css",

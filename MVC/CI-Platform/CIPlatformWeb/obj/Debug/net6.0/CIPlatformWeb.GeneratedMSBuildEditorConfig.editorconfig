@@ -16,12 +16,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Views/Home/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Views/Home/Registration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3RyYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Views/Home/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXNldFBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Views/Shared/Error.cshtml]
