@@ -37,7 +37,7 @@
     .privacy-text {
         padding-top: 5%;
         position: relative !important;
-        bottom: 20 !important;
+        bottom: 20px !important;
     }
 
     .hero-image {
@@ -72,7 +72,7 @@
     .privacy-text {
         padding-top: 5%;
         position: relative !important;
-        bottom: 2 !important;
+        bottom: 2px !important;
     }
 
     .hero-image {
