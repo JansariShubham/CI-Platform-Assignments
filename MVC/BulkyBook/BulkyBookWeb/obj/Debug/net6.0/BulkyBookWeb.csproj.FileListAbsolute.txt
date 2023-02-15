@@ -85,3 +85,7 @@ D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBookWeb\obj\Debug\net6.0\refint\Bu
 D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBookWeb\obj\Debug\net6.0\BulkyBookWeb.pdb
 D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBookWeb\obj\Debug\net6.0\BulkyBookWeb.genruntimeconfig.cache
 D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBookWeb\obj\Debug\net6.0\ref\BulkyBookWeb.dll
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\BulkyBook.DataAccess.dll
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\BulkyBook.Models.dll
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\BulkyBook.DataAccess.pdb
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\BulkyBook.Models.pdb

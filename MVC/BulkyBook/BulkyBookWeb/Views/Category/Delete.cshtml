@@ -1,0 +1,15 @@
+﻿@model Category
+<h1>Delete Category</h1>
+
+<div>
+    <form method="post" >
+        <label class="form-label" asp-for="CategoryName">Name</label>
+        <input class="form-control" asp-for="CategoryName" disabled/>
+
+        <label class="form-label" asp-for="DisplayOrder">Display Order</label>
+        <input class="form-control" asp-for="DisplayOrder" disabled/>
+
+        <button class="btn btn-primary mt-3" >Delete</button>
+
+    </form>
+</div>

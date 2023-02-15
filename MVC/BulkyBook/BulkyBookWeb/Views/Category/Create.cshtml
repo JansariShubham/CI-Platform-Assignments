@@ -1,14 +1,15 @@
-﻿<h1>Create Category</h1>
+﻿@model Category
+<h1>Create Category</h1>
 
 <div>
-    <form>
-        <label class="form-label">Name</label>
-        <input class="form-control" />
+    <form method="post">
+        <label class="form-label" asp-for="CategoryName">Name</label>
+        <input class="form-control" asp-for="CategoryName" />
 
-        <label class="form-label">Display Order</label>
-        <input class="form-control" />
+        <label class="form-label" asp-for="DisplayOrder">Display Order</label>
+        <input class="form-control" asp-for="DisplayOrder" />
 
-        <button class="btn btn-primary mt-3">Create</button>
+        <button class="btn btn-primary mt-3" >Create</button>
         
     </form>
 </div>

@@ -1,0 +1,12 @@
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBook.Utilities\bin\Debug\net6.0\BulkyBook.Utilities.deps.json
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBook.Utilities\bin\Debug\net6.0\BulkyBook.Utilities.dll
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBook.Utilities\bin\Debug\net6.0\BulkyBook.Utilities.pdb
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBook.Utilities\obj\Debug\net6.0\BulkyBook.Utilities.csproj.AssemblyReference.cache
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBook.Utilities\obj\Debug\net6.0\BulkyBook.Utilities.GeneratedMSBuildEditorConfig.editorconfig
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBook.Utilities\obj\Debug\net6.0\BulkyBook.Utilities.AssemblyInfoInputs.cache
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBook.Utilities\obj\Debug\net6.0\BulkyBook.Utilities.AssemblyInfo.cs
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBook.Utilities\obj\Debug\net6.0\BulkyBook.Utilities.csproj.CoreCompileInputs.cache
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBook.Utilities\obj\Debug\net6.0\BulkyBook.Utilities.dll
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBook.Utilities\obj\Debug\net6.0\refint\BulkyBook.Utilities.dll
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBook.Utilities\obj\Debug\net6.0\BulkyBook.Utilities.pdb
+D:\CI-Platform Assignments\MVC\BulkyBook\BulkyBook.Utilities\obj\Debug\net6.0\ref\BulkyBook.Utilities.dll
