@@ -1,0 +1,5 @@
+D:\CI-Platform Assignments\MVC\BulkyBook\BullyBook.Controllers\obj\Debug\net6.0\BullyBook.Controllers.csproj.AssemblyReference.cache
+D:\CI-Platform Assignments\MVC\BulkyBook\BullyBook.Controllers\obj\Debug\net6.0\BullyBook.Controllers.GeneratedMSBuildEditorConfig.editorconfig
+D:\CI-Platform Assignments\MVC\BulkyBook\BullyBook.Controllers\obj\Debug\net6.0\BullyBook.Controllers.AssemblyInfoInputs.cache
+D:\CI-Platform Assignments\MVC\BulkyBook\BullyBook.Controllers\obj\Debug\net6.0\BullyBook.Controllers.AssemblyInfo.cs
+D:\CI-Platform Assignments\MVC\BulkyBook\BullyBook.Controllers\obj\Debug\net6.0\BullyBook.Controllers.csproj.CoreCompileInputs.cache

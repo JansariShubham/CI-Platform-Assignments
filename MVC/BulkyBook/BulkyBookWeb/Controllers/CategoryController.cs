@@ -3,7 +3,7 @@ using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace BulkyBook.Controllers
+namespace BulkyBookWeb.Controllers
 {
     public class CategoryController : Controller
     {
@@ -21,25 +21,26 @@ namespace BulkyBook.Controllers
         //Get
         public IActionResult Create()
         {
-            return View();  
+            return View();
         }
 
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            _db.Categories.Add(obj);    
+            _db.Categories.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
         //Get
         public IActionResult Edit(int? id)
         {
-            if(id == null && id == 0) {
+            if (id == null && id == 0)
+            {
                 return NotFound();
             }
 
             var categoryFromDb = _db.Categories.Find(id);
-            if(categoryFromDb == null)
+            if (categoryFromDb == null)
             {
                 return NotFound();
             }
