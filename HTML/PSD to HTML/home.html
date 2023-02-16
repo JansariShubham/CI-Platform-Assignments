@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <div class="d-flex justify-content-between container mt-3 first-div">
+        <div class="dropdown left-div">
+            <a href="#" class="text-decoration-none mx-5">Stories</a>
+            <button class="dropdown-toggle policy-btn" data-bs-toggle="dropdown" aria-expanded="false" type="button"
+                id="dropdownMenuButton1">Policy
+                <img class="m-1" src="images/drop-down.png" alt="#">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+
+        </div>
+        <div class="dropdown right-div">
+            <img class="rounded-circle user-img" src="images/user-img.png" alt="#">
+            <button class="dropdown-toggle policy-btn profile-btn" data-bs-toggle="dropdown" aria-expanded="false"
+                type="button" id="dropdownMenuButton1">Evan Donohue
+                <img class="m-1" src="images/drop-down.png" alt="#">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="d-flex row second-div mt-4">
+        <div class="col-lg-4 p-3 search-div">
+            <img src="./images/search.png" alt="#">
+            <input type="text" class="search-bar" placeholder="Search mission...">
+        </div>
+
+        <!-- <div class="col d-lg-none">
+            <img src="./images/filter.png" alt="#">
+        </div> -->
+
+        <div class="col p-3">
+            <select class="form-select select-group">
+                <option value="1" selected>Country</option>
+            </select>
+        </div>
+        <div class="col p-3  ">
+            <select class="form-select select-group">
+                <option value="1" selected>City</option>
+            </select>
+        </div>
+        <div class="col p-3 ">
+            <select class="form-select select-group">
+                <option value="1" selected>Theme</option>
+            </select>
+        </div>
+        <div class="col p-3 ">
+            <select class="form-select select-group">
+                <option value="1" selected>Skills</option>
+            </select>
+        </div>
+    </div>
+
+    </div>
+    </div>
+
+
+    <script src="./js/bootstrap.bundle.js"></script>
+
+</body>
+
+</html>

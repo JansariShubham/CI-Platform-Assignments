@@ -1,0 +1,81 @@
+.user-img {
+    height: 40px;
+    width: 40px;
+}
+
+.left-div a {
+    color: #333333;
+}
+
+.left-div button {
+    color: #333333;
+}
+
+.right-div button {
+    color: #333333;
+}
+
+.left-div {
+    margin-left: 6rem;
+}
+
+.policy-btn {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.profile-btn {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.search-div {
+    margin-left: 7rem;
+}
+
+.search-div input {
+    color: #757575;
+}
+
+.search-bar {
+    border: none;
+}
+
+.second-div {
+    width: 100vw !important;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+.select-group {
+    border: none !important;
+}
+
+.second-div div {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.select-group option {
+    color: #757575;
+}
+
+@media(min-width:481px) and (max-width:992px) {
+    .search-div {
+        margin: 0;
+    }
+
+    .left-div {
+        margin: 0;
+    }
+
+    .second-div div {
+        border: none;
+    }
+
+}
