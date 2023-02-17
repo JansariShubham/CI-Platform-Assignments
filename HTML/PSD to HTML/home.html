@@ -14,9 +14,13 @@
 <body>
     <div class="d-flex justify-content-between container mt-3 first-div">
         <div class="dropdown left-div">
-            <a href="#" class="text-decoration-none mx-5">Stories</a>
-            <button class="dropdown-toggle policy-btn" data-bs-toggle="dropdown" aria-expanded="false" type="button"
-                id="dropdownMenuButton1">Policy
+            <button class="header-toggle border-0">
+                <img class="h-50 d-sm-none" src="./images/list.png" alt="#">
+            </button>
+            <img class="logo h-50" src="./images/logo.png" alt="#">
+            <a href="#" class="text-decoration-none mx-5 d-none d-md-inline d-lg-inline">Stories</a>
+            <button class="dropdown-toggle policy-btn d-none d-md-inline d-lg-inline" data-bs-toggle="dropdown"
+                aria-expanded="false" type="button" id="dropdownMenuButton1">Policy
                 <img class="m-1" src="images/drop-down.png" alt="#">
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -27,6 +31,9 @@
 
         </div>
         <div class="dropdown right-div">
+            <button class="header-serach border-0">
+                <img class="d-md-none search-logo" for="search-bar" src="./images/search.png" alt="#">
+            </button>
             <img class="rounded-circle user-img" src="images/user-img.png" alt="#">
             <button class="dropdown-toggle policy-btn profile-btn d-none d-sm-inline" data-bs-toggle="dropdown"
                 aria-expanded="false" type="button" id="dropdownMenuButton1">Evan Donohue
@@ -42,42 +49,62 @@
     </div>
 
     <div class="d-flex row second-div mt-4">
-        <div class="col-lg-4 p-3 search-div">
-            <img src="./images/search.png" alt="#">
-            <input type="text" class="search-bar" placeholder="Search mission...">
+
+        <div class="col-10 col-md-11 col-lg-4 p-3 search-div">
+            <img class="d-none d-md-inline d-lg-inline" src="./images/search.png" alt="#">
+            <input type="text" id="search-bar" class="search-bar" placeholder="Search mission...">
         </div>
 
-        <!-- <div class="col d-lg-none">
-            <img src="./images/filter.png" alt="#">
-        </div> -->
 
-        <div class="col p-3">
+        <button class="col-1 d-lg-none justify-content-end filter-btn border-0">
+            <img src="./images/filter.png" alt="#">
+        </button>
+
+        <!-- <div class="d-flex side-bar col-7 m-0"> -->
+
+        <div class="col p-3 d-none d-lg-inline">
             <select class="form-select select-group">
                 <option value="1" selected>Country</option>
             </select>
         </div>
-        <div class="col p-3  ">
+        <div class="col p-3 d-none d-lg-inline">
             <select class="form-select select-group">
                 <option value="1" selected>City</option>
             </select>
         </div>
-        <div class="col p-3 ">
+        <div class="col p-3 d-none d-lg-inline">
             <select class="form-select select-group">
                 <option value="1" selected>Theme</option>
             </select>
         </div>
-        <div class="col p-3 ">
+        <div class="col p-3 d-none d-lg-inline">
             <select class="form-select select-group">
                 <option value="1" selected>Skills</option>
             </select>
         </div>
-    </div>
-
-    </div>
-    </div>
+        <!-- </div> -->
 
 
-    <script src="./js/bootstrap.bundle.js"></script>
+    </div>
+
+
+
+    <script src="./js/bootstrap.bundle.js">
+
+
+    </script>
+    <script>
+
+        const filterBtn = document.querySelector(".filter-btn");
+        const sideBar = document.querySelector(".side-bar");
+
+        filterBtn.addEventListener("click", () => {
+            sideBar.classList.toggle("hide-aside");
+            console.log("click");
+        });
+        console.log(filterBtn);
+        console.log(sideBar);
+    </script>
 
 </body>
 

@@ -1,3 +1,11 @@
+img {
+    max-width: 100%;
+}
+
+/* body {
+    border: 1px solid black;
+} */
+
 .user-img {
     height: 40px;
     width: 40px;
@@ -37,6 +45,7 @@
 
 .search-div {
     margin-left: 7rem;
+    border: 0 !important;
 }
 
 .search-div input {
@@ -50,7 +59,7 @@
 .second-div {
     width: 100vw !important;
     border: 1px solid rgba(0, 0, 0, 0.1);
-
+    margin: 0 !important;
 }
 
 .select-group {
@@ -65,6 +74,80 @@
     color: #757575;
 }
 
+.clear-btn {
+    background-color: white;
+    font-size: 13px;
+}
+
+.third-div ul li {
+    list-style: none;
+    border: 1px solid #E8E8E8;
+    border-radius: 14px;
+    padding: 0.5rem;
+    font-size: 13px;
+}
+
+.cancle-img {
+    height: 7.98px;
+    width: 8px;
+}
+
+.forth-div div {
+    font-size: 24px;
+}
+
+.forth-div div p {
+    font-size: 28px;
+    color: #414141;
+    font-weight: 600;
+}
+
+.grid-btn {
+    background-color: white;
+    border: 0;
+}
+
+.list-btn {
+    background-color: white;
+    border: 0;
+}
+
+.select-btn {
+    width: 171px;
+    /* height: 38px; */
+    border: 1px solid #D9D9D9;
+    border-radius: 3px;
+}
+
+.hide-aside {
+    display: none !important;
+}
+
+.apply-btn {
+    background: #FFFFFF;
+    border: 2px solid #F88634 !important;
+    border-radius: 24px !important;
+    color: #F88634 !important;
+
+}
+
+.mission-desc {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+}
+
+.theme-name {
+    color: #414141;
+    background-color: #FFFFFF;
+    border-radius: 18px;
+
+}
+
+/* media quary */
 @media(min-width:481px) and (max-width:992px) {
     .search-div {
         margin: 0;
@@ -75,7 +158,69 @@
     }
 
     .second-div div {
-        border: none;
+        border-right: none;
     }
 
+    .filter-btn img {
+        background-color: white;
+        padding: 0 !important;
+    }
+
+    .filter-btn {
+        background-color: white;
+        cursor: pointer;
+    }
+
+
+
+
+}
+
+@media(max-width:480px) {
+    .search-div {
+        margin: 0;
+    }
+
+    .second-div {
+
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        border-right: none;
+    }
+
+    .left-div {
+        margin-left: 1rem;
+    }
+
+    .second-div div {
+        border-right: none;
+    }
+
+    .logo {
+        margin-left: 1rem;
+    }
+
+    .search-logo {
+        padding-right: 1rem;
+    }
+
+    .filter-btn {
+        background-color: white;
+        cursor: pointer;
+    }
+
+    .filter-btn img {
+        background-color: white;
+        padding: 0 !important;
+    }
+
+    .header-serach {
+        background-color: white;
+        cursor: pointer;
+    }
+
+    .header-toggle {
+        background-color: white;
+        cursor: pointer;
+    }
 }
