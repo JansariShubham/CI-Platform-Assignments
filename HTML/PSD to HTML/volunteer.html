@@ -161,17 +161,17 @@
 
         </div>
         <!-- second section -->
-        <div class="d-flex">
+        <div class="row">
             <!-- left div  -->
-            <div>
-                <div class="d-flex gap-3">
+            <div class="col-8">
+                <div class="d-flex gap-3 border-bottom py-3">
                     <div>Mission</div>
                     <div>Organization</div>
                     <div>Comments</div>
 
                 </div>
-                <div>
-                    <p>Introduction</p>
+                <div class="pt-3">
+                    <p class="intro fs-3">Introduction</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore
                         et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
@@ -190,7 +190,7 @@
 
                 </div>
                 <div>
-                    <p>Challenge</p>
+                    <p class="fs-3">Challenge</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore
                         et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
@@ -208,18 +208,18 @@
 
                 </div>
                 <div>
-                    <p>Documemts</p>
+                    <p class="fs-3">Documemts</p>
                     <div class="d-flex gap-3">
-                        <div class="border rounded-pill d-flex gap-2 py-3  px-4 align-items-center">
+                        <div class="border rounded-pill d-flex gap-2 px-4 align-items-center">
                             <img src="./images/pdf.png" alt="   ">
                             lorem-ipsum.pdf
                         </div>
-                        <div class="border rounded-pill d-flex gap-2 py-3 px-4 align-items-center">
+                        <div class="border rounded-pill d-flex gap-2 px-4 align-items-center">
                             <img src="./images/doc.png" alt="">
                             at_vero_eos_accusamus.doc
                         </div>
 
-                        <div class="border rounded-pill d-flex gap-2 py-3 px-4 align-items-center">
+                        <div class="border rounded-pill d-flex gap-2 px-4 align-items-center">
                             <img src="./images/xlsx.png" alt="">
                             important_doc.xls
                         </div>
@@ -229,13 +229,55 @@
                 </div>
 
             </div>
-            <!-- right div  -->
-            <div>
-                Information
-            </div>
-            <div></div>
-        </div>
 
+            <!-- right div  -->
+            <div class="col-4 d-flex flex-column gap-5">
+                <!-- right first div  -->
+                <div class=" border p-2">
+                    <p class="border-bottom py-3"> Information</p>
+                    <div class="d-flex border-bottom gap-1">
+                        <p>Skills</p>
+                        <ul class="d-flex skills-ul">
+                            <li class="ms-1">Cool,</li>
+                            <li class="ms-1">Easy going,</li>
+                            <li class="ms-1">Math,</li>
+                            <li class="ms-1">Computer</li>
+                        </ul>
+                    </div>
+                    <div class="d-flex border-bottom gap-5 mt-2">
+                        <p>Days</p>
+                        <p>Weekend only</p>
+                    </div>
+                    <div class="d-flex gap-4 mt-2">
+                        <p>Rating</p>
+                        <div>
+                            <img src="./images/selected-star.png" alt="">
+                            <img src="./images/selected-star.png" alt="">
+                            <img src="./images/selected-star.png" alt="">
+                            <img src="./images/selected-star.png" alt="">
+                            <img src="./images/selected-star.png" alt="">
+                            <span class="ms-2">(by 125 volunteers)</span>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- right second div  -->
+                <div class="border ">
+                    <p class="">Recent Volunteers</p>
+                    <div class="">
+                        <img class="rounded-pill" src="./images/volunteer1.png" alt="">
+                        <p>Andrew Johnson</p>
+                        <img class="rounded-pill" src="./images/volunteer1.png" alt="">
+                        <p>Andrew Johnson</p>
+                        <img class="rounded-pill" src="./images/volunteer1.png" alt="">
+                        <p>Andrew Johnson</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
     </section>
 
 

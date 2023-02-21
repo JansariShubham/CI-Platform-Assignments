@@ -251,6 +251,9 @@ img {
     font-size: 38px;
 }
 
+.skills-ul {
+    list-style: none !important;
+}
 
 /* media quary */
 @media(min-width:481px) and (max-width:992px) {
@@ -379,6 +382,8 @@ img {
         right: 1rem;
 
     }
+
+
 
     .user-div {
         top: 10rem;
