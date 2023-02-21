@@ -239,6 +239,14 @@ img {
     width: 100%;
 }
 
+.page-link {
+    color: #757575 !important;
+}
+
+.page-link:hover {
+    background-color: orange !important;
+}
+
 
 /* media quary */
 @media(min-width:481px) and (max-width:992px) {
