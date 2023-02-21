@@ -247,6 +247,10 @@ img {
     background-color: orange !important;
 }
 
+.title-heading {
+    font-size: 38px;
+}
+
 
 /* media quary */
 @media(min-width:481px) and (max-width:992px) {

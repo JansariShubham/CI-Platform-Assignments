@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Not Found</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/home.css">
+</head>
+
+<body>
+    <div class="d-flex justify-content-between container mt-3 first-div">
+        <div class="dropdown left-div">
+            <button class="header-toggle d-md-none border-0">
+                <img class="h-50" src="./images/list.png" alt="#">
+            </button>
+            <img class="logo h-50" src="./images/logo.png" alt="#">
+            <a href="#" class="text-decoration-none mx-5 d-none d-md-inline d-lg-inline">Stories</a>
+            <button class="dropdown-toggle policy-btn d-none d-md-inline d-lg-inline" data-bs-toggle="dropdown"
+                aria-expanded="false" type="button" id="dropdownMenuButton1">Policy
+                <img class="m-1" src="images/drop-down.png" alt="#">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+
+        </div>
+        <div class="dropdown right-div">
+            <button class="header-serach d-md-none border-0">
+                <img class="search-logo" for="search-bar" src="./images/search.png" alt="#">
+            </button>
+            <img class="rounded-circle user-img" src="images/user-img.png" alt="#">
+            <button class="dropdown-toggle policy-btn profile-btn d-none d-sm-inline" data-bs-toggle="dropdown"
+                aria-expanded="false" type="button" id="dropdownMenuButton1">Evan Donohue
+                <img class="m-1" src="images/drop-down.png" alt="#">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+        </div>
+
+    </div>
+    <section class="d-flex second-div mt-4 w-100">
+        <div class="container">
+            <div class="d-flex row p-0">
+                <div class="col-10 col-md-11 col-lg-6">
+                    <div class="p-3 search-div">
+                        <img class="d-none d-md-inline d-lg-inline" src="./images/search.png" alt="#">
+                        <input type="text" id="search-bar" class="search-bar" placeholder="Search mission...">
+                    </div>
+                </div>
+                <!-- filter button -->
+                <button class="col d-lg-none filter-btn border-0">
+                    <img src="./images/filter.png" alt="#">
+                </button>
+                <!-- filter menu -->
+                <div class="col-6 m-0">
+                    <div class="row d-lg-flex " id="filter-menu">
+                        <div class="col-lg-3 p-3">
+                            <select class="form-select select-group">
+                                <option value="1" selected>Country</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 p-3">
+                            <select class="form-select select-group">
+                                <option value="1" selected>City</option>
+                            </select>
+                        </div>
+                        <div class=" col-lg-3 p-3">
+                            <select class="form-select select-group">
+                                <option value="1" selected>Theme</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 p-3">
+                            <select class="form-select select-group">
+                                <option value="1" selected>Skills</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <section class="container">
+        <div class="mt-3 d-flex justify-content-center fw-bold fs-5">
+            No Mission Found!
+        </div>
+    </section>
+
+
+
+
+</body>
+
+</html>
