@@ -50,10 +50,53 @@
 
 
     <section class="container mt-3 border-top p-5">
-        <div class="d-flex gap-5 ">
+        <div class="d-flex flex-md-column flex-lg-row gap-5 ">
             <div>
-                <img src="./images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png" alt="">
+                <img class="poster-img mb-1" src="./images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png"
+                    alt="">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active d-flex gap-1 ">
+                            <img src="./images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png"
+                                class="w-25 h-50" alt="...">
+                            <img src="./images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png"
+                                class=" w-25 h-50" alt="...">
+                            <img src="./images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png"
+                                class="w-25 h-50" alt="...">
+                            <img src="./images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png"
+                                class="w-25 h-50" alt="...">
+
+
+                        </div>
+                        <!-- <div class="carousel-item d-flex gap-1">
+                            <img src="./images/Education-Supplies-for-Every--Pair-of-Shoes-Sold.png" class="h-50 w-25"
+                                alt="...">
+                            <img src="./images/Education-Supplies-for-Every--Pair-of-Shoes-Sold.png" class="h-50 w-25"
+                                alt="...">
+                            <img src="./images/Education-Supplies-for-Every--Pair-of-Shoes-Sold.png" class="h-50 w-25"
+                                alt="...">
+                            <img src="./images/Education-Supplies-for-Every--Pair-of-Shoes-Sold.png" class="h-50 w-25"
+                                alt="...">
+                        </div>
+
+                        <div class="carousel-item"></div> -->
+
+
+
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
+
             <div>
                 <div class="title-heading">CSR initiative stands for Coffee & Farmer Equity</div>
                 <p class="descr mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -86,20 +129,23 @@
                     </div>
                 </div>
 
-                <div class="d-flex m-3 justify-content-between">
-                    <button class="border rounded-pill py-2 px-5  bg-white">
+
+
+                <div class="d-flex gap-2 m-3 justify-content-md-center">
+                    <button class="border rounded-pill  bg-white py-1">
                         <img src="./images/heart1.png" alt="">
-                        <span>Add to Favourite</span>
+                        <span class="font-size">Add to Favourite</span>
 
                     </button>
-                    <button class="border rounded-pill py-2 px-3 bg-white">
+                    <button class="border rounded-pill bg-white  py-1">
                         <img src="./images/add1.png" alt="">
-                        <span>Recommend to a Co-Worker</span>
+                        <span class="font-size">Recommend to a Co-Worker</span>
 
                     </button>
 
 
                 </div>
+
 
                 <div class="d-flex justify-content-center m-3">
                     <img src="./images/star-empty.png" alt="">
@@ -109,135 +155,203 @@
                     <img src="./images/star-empty.png" alt="">
                 </div>
 
-                <div class="row gap-3">
-                    <div class="border col d-flex flex-column justify-content-between">
-                        <div>
-                            <img class="p-2" src="./images/pin1.png" alt="">
+                <div class="row gap-3 ">
+                    <div class="border col d-flex flex-column justify-content-between p-0">
+                        <div class="ps-1">
+                            <img class="pt-2" src="./images/pin1.png" alt="">
                         </div>
-                        <div class="ps-2">
-                            City
+                        <div class="ps-1 info-div">
+                            <span> City </span>
                             <p class="fw-bold">London</p>
                         </div>
                     </div>
-                    <div class="border col d-flex flex-column justify-content-between">
-                        <div>
-                            <img class="p-2" src="./images/web.png" alt="">
+                    <div class="border col d-flex flex-column justify-content-between p-0">
+                        <div class="ps-1">
+                            <img class="pt-2" src="./images/web.png" alt="">
                         </div>
-                        <div class="ps-2">
-                            Theme
+                        <div class="ps-1 info-div">
+                            <span>Theme</span>
                             <p class="fw-bold">Environment</p>
                         </div>
                     </div>
-                    <div class="border col d-flex flex-column justify-content-between">
-                        <div>
-                            <img class="p-2" src="./images/calender.png" alt="">
+                    <div class="border col d-flex flex-column justify-content-between p-0">
+                        <div class="ps-1">
+                            <img class="pt-2" src="./images/calender.png" alt="">
                         </div>
-                        <div class="ps-2">
-                            Date
+                        <div class="ps-1 info-div">
+                            <span>Date</span>
                             <p class="fw-bold">Ongoing Opportunity</p>
                         </div>
                     </div>
-                    <div class="border col d-flex flex-column justify-content-between align-items-start">
-                        <div>
-                            <img class="p-2" src="./images/organization.png" alt="">
+                    <div class="border col d-flex flex-column justify-content-between align-items-start p-0">
+                        <div class="ps-1">
+                            <img class="pt-2" src="./images/organization.png" alt="">
                         </div>
-                        <div class="ps-2">
-                            Organization
-                            <p class="fw-bold">CSE Network</p>
+                        <div class="ps-1 info-div">
+                            <span> Organization</span>
+                            <p class="fw-bold ">CSE Network</p>
                         </div>
                     </div>
                 </div>
+
+
+
 
                 <div class="d-flex justify-content-center">
                     <a href="#" class="btn apply-btn mt-3 mb-3 px-5 ">Apply Now <img src="./images/right-arrow.png"
                             alt="#"></a>
                 </div>
 
-
-
-
-
             </div>
 
+
+
+
+
         </div>
+
         <!-- second section -->
         <div class="row">
             <!-- left div  -->
-            <div class="col-8">
+            <div class="col-7 mt-3">
                 <div class="d-flex gap-3 border-bottom py-3">
-                    <div>Mission</div>
-                    <div>Organization</div>
-                    <div>Comments</div>
+                    <button class="btn mission-btn">Mission</button>
+                    <button class="btn org-btn">Organization</button>
+                    <button class="btn comment-btn">Comments</button>
 
                 </div>
-                <div class="pt-3">
-                    <p class="intro fs-3">Introduction</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                        ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim
-                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis
-                        aute
-                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-                        id
-                        est laborum.</p>
+                <!-- mission  -->
+                <div class="mission-div">
+                    <div class="pt-3 ">
+                        <h3 class="intro fs-3">Introduction</h3>
+                        <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam quos
+                            delectus voluptatum
+                            aperiam
+                            eligendi eos officiis reiciendis deleniti, labore aspernatur odio? Amet distinctio quae
+                            eligendi, explicabo cupiditate impedit architecto labore?</p>
+                        <p class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro,
+                            voluptate
+                            enim. Consequatur
+                            temporibus excepturi sapiente rem consectetur incidunt culpa eos voluptatibus exercitationem
+                            nihil! Magnam dolorum sit itaque officia veniam eius!</p>
+                        <p class="text-secondary">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam nisi
+                            voluptatem quas
+                            dolorum
+                            maiores alias numquam atque, at earum hic aliquid, voluptates minus sint nihil nostrum quo
+                            dolor
+                            officiis iure.</p>
 
-                </div>
-                <div>
-                    <p class="fs-3">Challenge</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                        ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim
-                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Excepteur
-                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                        laborum.
-                    </p>
+                    </div>
+                    <div>
+                        <h3 class="fs-3">Challenge</h3>
+                        <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
+                            dolores
+                            facilis architecto
+                            possimus illum! Officia eius quidem facere nihil nisi mollitia dolore soluta neque harum.
+                            Fuga
+                            neque eos ab nemo?
+                        </p>
+                        <p class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
+                            dicta
+                            modi accusantium est
+                            ipsa dolorum nisi sequi corporis ratione id. Adipisci quisquam, quis tenetur possimus ex
+                            harum
+                            natus doloribus quod?</p>
 
-                </div>
-                <div>
-                    <p class="fs-3">Documemts</p>
-                    <div class="d-flex gap-3">
-                        <div class="border rounded-pill d-flex gap-2 px-4 align-items-center">
-                            <img src="./images/pdf.png" alt="   ">
-                            lorem-ipsum.pdf
-                        </div>
-                        <div class="border rounded-pill d-flex gap-2 px-4 align-items-center">
-                            <img src="./images/doc.png" alt="">
-                            at_vero_eos_accusamus.doc
-                        </div>
+                    </div>
+                    <div>
+                        <h3 class="fs-3">Documemts</h3>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <div class="border rounded-pill d-flex gap-2 px-4 py-2 align-items-center">
+                                <img src="./images/pdf.png" alt="   ">
+                                lorem-ipsum.pdf
+                            </div>
+                            <div class="border rounded-pill d-flex gap-2 px-4 py-2 align-items-center">
+                                <img src="./images/doc.png" alt="">
+                                at_vero_eos_accusamus.doc
+                            </div>
 
-                        <div class="border rounded-pill d-flex gap-2 px-4 align-items-center">
-                            <img src="./images/xlsx.png" alt="">
-                            important_doc.xls
+                            <div class="border rounded-pill d-flex gap-2 px-4 py-2 align-items-center">
+                                <img src="./images/xlsx.png" alt="">
+                                important_doc.xls
+                            </div>
+
                         </div>
 
                     </div>
+                </div>
+                <!-- organization  -->
+                <div class="d-none org-div mt-3">
+                    <p class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quod
+                        molestiae cumque ut, sequi
+                        dolorum repellat. Labore tempore, necessitatibus explicabo atque corrupti voluptates nam ea
+                        facere cum repellat sequi sed?</p>
+                </div>
+                <!-- Comments  -->
+                <div class="d-none comment-div">
+                    <textarea name="" id="" cols=" 10" rows="4"
+                        class="form-control text-secondary">Enter your comments...</textarea>
 
+                    <div class="d-flex">
+                        <a href="#" class="btn apply-btn mt-3 mb-3 px-4 ">Post Comment <img
+                                src="./images/right-arrow.png" alt="#"></a>
+                    </div>
+
+                    <div class="bg-light container p-3">
+                        <div class="d-flex gap-3 bg-white">
+                            <div>
+                                <img class="rounded-pill" src="./images/volunteer3.png" alt="">
+                            </div>
+                            <div>
+                                <h3>Margaret walsh</h3>
+                                <span>Monday, Oct 21, 2019</span>
+                                <p>This is helpful mission</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3 bg-white mt-3">
+                            <div>
+                                <img class="rounded-pill" src="./images/volunteer3.png" alt="">
+                            </div>
+                            <div>
+                                <h3>Margaret walsh</h3>
+                                <span>Monday, Oct 21, 2019</span>
+                                <p>This is helpful mission</p>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3 bg-white mt-3">
+                            <div>
+                                <img class="rounded-pill" src="./images/volunteer3.png" alt="">
+                            </div>
+                            <div>
+                                <h3>Margaret walsh</h3>
+                                <span>Monday, Oct 21, 2019</span>
+                                <p>This is helpful mission</p>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3 bg-white mt-3">
+                            <div>
+                                <img class="rounded-pill" src="./images/volunteer3.png" alt="">
+                            </div>
+                            <div>
+                                <h3>Margaret walsh</h3>
+                                <span>Monday, Oct 21, 2019</span>
+                                <p>This is helpful mission</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
 
             <!-- right div  -->
-            <div class="col-4 d-flex flex-column gap-5">
+            <div class="col-5 d-flex flex-column gap-5 mt-5">
                 <!-- right first div  -->
                 <div class=" border p-2">
                     <p class="border-bottom py-3"> Information</p>
-                    <div class="d-flex border-bottom gap-1">
+                    <div class="d-flex border-bottom flex-wrap gap-1 ">
                         <p>Skills</p>
-                        <ul class="d-flex skills-ul">
+                        <ul class="d-flex skills-ul flex-wrap skill-ul">
                             <li class="ms-1">Cool,</li>
                             <li class="ms-1">Easy going,</li>
                             <li class="ms-1">Math,</li>
@@ -263,14 +377,62 @@
                 </div>
                 <!-- right second div  -->
                 <div class="border ">
-                    <p class="">Recent Volunteers</p>
-                    <div class="">
-                        <img class="rounded-pill" src="./images/volunteer1.png" alt="">
-                        <p>Andrew Johnson</p>
-                        <img class="rounded-pill" src="./images/volunteer1.png" alt="">
-                        <p>Andrew Johnson</p>
-                        <img class="rounded-pill" src="./images/volunteer1.png" alt="">
-                        <p>Andrew Johnson</p>
+                    <p class="ps-2 py-3 border-bottom">Recent Volunteers</p>
+                    <div class="d-flex justify-content-around border-bottom p-3 flex-wrap volunteer-div">
+                        <div class="text-center">
+                            <img class="rounded-pill" src="./images/volunteer1.png" alt="">
+                            <p class="volunteer-name">Andrew Johnson</p>
+                        </div>
+                        <div class="text-center">
+                            <img class="rounded-pill" src="./images/volunteer1.png" alt="">
+                            <p class="volunteer-name">Andrew Johnson</p>
+                        </div>
+
+                        <div class="text-center">
+                            <img class="rounded-pill" src="./images/volunteer1.png" alt="">
+                            <p class="volunteer-name">Andrew Johnson</p>
+                        </div>
+
+                        <div class="text-center">
+                            <img class="rounded-pill" src="./images/volunteer1.png" alt="">
+                            <p class="volunteer-name">Andrew Johnson</p>
+                        </div>
+
+                        <div class="text-center">
+                            <img class="rounded-pill" src="./images/volunteer1.png" alt="">
+                            <p class="volunteer-name">Andrew Johnson</p>
+                        </div>
+
+                        <div class="text-center">
+                            <img class="rounded-pill" src="./images/volunteer1.png" alt="">
+                            <p class="volunteer-name">Andrew Johnson</p>
+                        </div>
+
+                        <div class="text-center">
+                            <img class="rounded-pill" src="./images/volunteer1.png" alt="">
+                            <p class="volunteer-name">Andrew Johnson</p>
+                        </div>
+
+                        <div class="text-center">
+                            <img class="rounded-pill" src="./images/volunteer1.png" alt="">
+                            <p class="volunteer-name">Andrew Johnson</p>
+                        </div>
+
+                        <div class="text-center">
+                            <img class="rounded-pill" src="./images/volunteer1.png" alt="">
+                            <p class="volunteer-name">Andrew Johnson</p>
+                        </div>
+
+
+                    </div>
+                    <div class="d-flex justify-content-around border-top">
+                        <a class="border-end bg-white p-3 ">
+                            <img src="./images/left.png" alt="">
+                        </a>
+                        <p class="pt-3">1 - 9 of 25 Recent Volunteers</p>
+                        <a class=" border-start bg-white p-3">
+                            <img src="./images/right-arrow1.png" alt="">
+                        </a>
                     </div>
 
                 </div>
@@ -278,9 +440,269 @@
             </div>
 
         </div>
+        <!-- third section  -->
+        <div class="mt-5 border-top p-3">
+            <h4 class="text-center">Related Missions</h4>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 grid-view mt-3">
+                <div class="col">
+                    <div class="card">
+                        <img src="./images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
+                            class="card-img-top position-relative" alt="...">
+                        <div class=" position-absolute country-div rounded-pill p-2">
+                            <img class="" src="./images/pin1.png" alt="#">
+                            <span>Toronto</span>
+                        </div>
+                        <a href="#" class="position-absolute favourate rounded-pill p-1">
+                            <img class="" src="./images/heart.png" alt="#">
+                        </a>
+                        <a href="#" class="position-absolute user-div rounded-pill p-2">
+                            <img class="" src="./images/user.png" alt="#">
+                        </a>
+                        <span
+                            class="theme-name align-text-top py-2 px-4 mx-auto position-relative translate-middle-y">Environment</span>
+                        <div class="card-body p-0">
+                            <h5 class="card-title mission-title px-3">Grow Trees - on the path to environment
+                                sustainability
+                            </h5>
+                            <p class="card-text mission-desc px-3">Lorem ipsum dolor, sit amet consectetur adipisicing
+                                elit.
+                                Iusto,
+                                ipsa.
+                                Sint
+                                similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
+                                iste
+                                nobis
+                                voluptatibus! Ipsa molestiae in maxime similique id!</p>
+                            <div class="d-flex justify-content-between px-3">
+                                <div class="org-name">Tree Canada</div>
+                                <div>
+                                    <img src="./images/selected-star.png" alt="">
+                                    <img src="./images/selected-star.png" alt="">
+                                    <img src="./images/selected-star.png" alt="">
+                                    <img src="./images/star.png" alt="">
+                                    <img src="./images/star.png" alt="">
+                                </div>
+                            </div>
+                            <div>
+                                <div
+                                    class="border start-end-date rounded-pill mx-auto p-2 -translate-middle-y bg-white">
+                                    From
+                                    10/01/2019 until
+                                    25/02/2019</div>
+                                <div class="d-flex justify-content-around  border-top pt-4 pb-2 border-bottom">
+                                    <div class="d-flex align-items-center">
+                                        <img class='h-50' src="./images/Seats-left.png" alt="#">
+                                        <div class="ms-2">
+                                            <p class="m-0 p-0 fw-bold">10</p>
+                                            <span class="m-0 p-0 seats-left">Seats left</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img class="h-50" src="./images/deadline.png" alt="#">
+                                        <div class="ms-2">
+                                            <p class="m-0 p-0 fw-bold">09/01/2019</p>
+                                            <span class="m-0 p-0 deadline"> Deadline</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn apply-btn mt-3 mb-3 ">Apply <img src="./images/right-arrow.png"
+                                        alt="#"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <img src="./images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
+                            class="card-img-top position-relative" alt="...">
+                        <div class="position-absolute country-div rounded-pill p-2">
+                            <img class="" src="./images/pin1.png" alt="#">
+                            <span>Toronto</span>
+                        </div>
+                        <a href="" class="position-absolute favourate rounded-pill p-1">
+                            <img class="" src="./images/heart.png" alt="#">
+                        </a>
+                        <a href="" class="position-absolute user-div rounded-pill p-2">
+                            <img class="" src="./images/user.png" alt="#">
+                        </a>
+                        <span
+                            class="theme-name align-text-top py-2 px-4 mx-auto position-relative translate-middle-y">Environment</span>
+                        <div class="card-body p-0">
+                            <h5 class="card-title mission-title px-3">Grow Trees - on the path to environment
+                                sustainability
+                            </h5>
+                            <p class="card-text mission-desc px-3">Lorem ipsum dolor, sit amet consectetur adipisicing
+                                elit.
+                                Iusto,
+                                ipsa.
+                                Sint
+                                similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
+                                iste
+                                nobis
+                                voluptatibus! Ipsa molestiae in maxime similique id!</p>
+                            <div class="d-flex justify-content-between px-3">
+                                <div class="org-name">Tree Canada</div>
+                                <div>
+                                    <img src="./images/selected-star.png" alt="">
+                                    <img src="./images/selected-star.png" alt="">
+                                    <img src="./images/selected-star.png" alt="">
+                                    <img src="./images/star.png" alt="">
+                                    <img src="./images/star.png" alt="">
+                                </div>
+                            </div>
+                            <div>
+                                <div
+                                    class="border start-end-date rounded-pill mx-auto p-2 -translate-middle-y bg-white">
+                                    From
+                                    Plant 10,000 Trees</div>
+                                <div class="d-flex justify-content-around  border-top pt-4 pb-2 border-bottom">
+                                    <div class="d-flex align-items-center">
+                                        <img class='h-50' src="./images/Seats-left.png" alt="#">
+                                        <div class="ms-2">
+                                            <p class="m-0 p-0 fw-bold">10</p>
+                                            <span class="m-0 p-0 seats-left">Seats left</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img class="h-50" src="./images/achieved.png" alt="#">
+
+                                        <div class="ms-2">
+                                            <div class="progress">
+                                                <div class="progress-bar w-75" role="progressbar" aria-valuenow="50"
+                                                    aria-valuemin="0" aria-valuemax="100">
+
+                                                </div>
+                                            </div>
+
+                                            <span class="m-0 p-0">8000 achieved</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn apply-btn mt-3 mb-3 ">Apply <img src="./images/right-arrow.png"
+                                        alt="#"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <img src="./images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
+                            class="card-img-top position-relative" alt="...">
+                        <div class="position-absolute country-div rounded-pill p-2">
+                            <img class="" src="./images/pin1.png" alt="#">
+                            <span>Toronto</span>
+                        </div>
+                        <a href="" class="position-absolute favourate rounded-pill p-1">
+                            <img class="" src="./images/heart.png" alt="#">
+                        </a>
+                        <a href="" class="position-absolute user-div rounded-pill p-2">
+                            <img class="" src="./images/user.png" alt="#">
+                        </a>
+                        <span
+                            class="theme-name align-text-top py-2 px-4 mx-auto position-relative translate-middle-y">Environment</span>
+                        <div class="card-body p-0">
+                            <h5 class="card-title mission-title px-3">Grow Trees - on the path to environment
+                                sustainability
+                            </h5>
+                            <p class="card-text mission-desc px-3">Lorem ipsum dolor, sit amet consectetur adipisicing
+                                elit.
+                                Iusto,
+                                ipsa.
+                                Sint
+                                similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
+                                iste
+                                nobis
+                                voluptatibus! Ipsa molestiae in maxime similique id!</p>
+                            <div class="d-flex justify-content-between px-3">
+                                <div class="org-name">Tree Canada</div>
+                                <div>
+                                    <img src="./images/selected-star.png" alt="">
+                                    <img src="./images/selected-star.png" alt="">
+                                    <img src="./images/selected-star.png" alt="">
+                                    <img src="./images/star.png" alt="">
+                                    <img src="./images/star.png" alt="">
+                                </div>
+                            </div>
+                            <div>
+                                <div
+                                    class="border start-end-date rounded-pill mx-auto p-2 -translate-middle-y bg-white">
+                                    From
+                                    Plant 10,000 Trees</div>
+                                <div class="d-flex justify-content-around  border-top pt-4 pb-2 border-bottom">
+                                    <div class="d-flex align-items-center">
+                                        <img class='h-50' src="./images/Seats-left.png" alt="#">
+                                        <div class="ms-2">
+                                            <p class="m-0 p-0 fw-bold">10</p>
+                                            <span class="m-0 p-0 seats-left">Seats left</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img class="h-50" src="./images/achieved.png" alt="#">
+
+                                        <div class="ms-2">
+                                            <div class="progress">
+                                                <div class="progress-bar w-75" role="progressbar" aria-valuenow="50"
+                                                    aria-valuemin="0" aria-valuemax="100">
+
+                                                </div>
+                                            </div>
+
+                                            <span class="m-0 p-0">8000 achieved</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn apply-btn mt-3 mb-3 ">Apply <img src="./images/right-arrow.png"
+                                        alt="#"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+    <script src="./js/bootstrap.min.js"></script>
+    <script>
+        const missionBtn = document.querySelector(".mission-btn");
+        const orgBtn = document.querySelector(".org-btn");
+        const commentBtn = document.querySelector(".comment-btn");
 
 
+        const missionDiv = document.querySelector(".mission-div");
+        const orgDiv = document.querySelector(".org-div");
+        const commentDiv = document.querySelector(".comment-div");
+
+        missionBtn.addEventListener("click", () => {
+            orgDiv.classList.add("d-none");
+            commentDiv.classList.add("d-none");
+            missionDiv.classList.remove("d-none");
+        });
+
+
+        orgBtn.addEventListener("click", () => {
+            missionDiv.classList.add("d-none");
+            commentDiv.classList.add("d-none");
+            orgDiv.classList.remove("d-none");
+        });
+
+
+        commentBtn.addEventListener("click", () => {
+            missionDiv.classList.add("d-none");
+            orgDiv.classList.add("d-none");
+            commentDiv.classList.remove("d-none");
+        });
+
+
+    </script>
 
 </body>
 

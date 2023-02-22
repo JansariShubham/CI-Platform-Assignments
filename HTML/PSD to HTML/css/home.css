@@ -6,6 +6,7 @@ img {
     border: 1px solid black;
 } */
 
+
 .user-img {
     height: 40px;
     width: 40px;
@@ -254,6 +255,36 @@ img {
 .skills-ul {
     list-style: none !important;
 }
+
+.volunteer-div img {
+    width: 70px;
+    height: 70px;
+}
+
+.volunteer-name {
+    font-size: 13px;
+}
+
+.poster-img {
+    height: 70%
+}
+
+.font-size {
+    font-size: 12px;
+}
+
+.info-div span {
+    font-size: 13px;
+}
+
+.info-div p {
+    font-size: 15px
+}
+
+.skill-ul {
+    display: inline !important;
+}
+
 
 /* media quary */
 @media(min-width:481px) and (max-width:992px) {
