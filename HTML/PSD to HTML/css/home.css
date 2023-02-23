@@ -5,6 +5,18 @@ img {
 /* body {
     border: 1px solid black;
 } */
+.search-img {
+    height: 1rem;
+}
+
+/* .z-index {
+    z-index: 9999;
+} */
+
+/* .minus-z-index {
+    z-index: -9999;
+    position: relative;
+} */
 
 
 .user-img {
@@ -150,6 +162,7 @@ img {
 .start-end-date {
     color: #414141;
     width: max-content;
+    font-size: 14px;
     /* margin: -1rem; */
 }
 
@@ -186,6 +199,15 @@ img {
     color: #FFFFFF;
 }
 
+.country-div-volunteer {
+    right: 1rem;
+    top: 0.5rem;
+    background: #000000;
+    border-radius: 18px;
+    opacity: 0.5;
+    color: #FFFFFF;
+}
+
 .favourate {
     top: 4.5rem;
     right: 1rem;
@@ -195,7 +217,25 @@ img {
     opacity: 0.5;
 }
 
+.favourate-volunteer {
+    top: 4.5rem;
+    right: 1rem;
+    color: #FFFFFF;
+    background: #000000;
+    border-radius: 18px;
+    opacity: 0.5;
+}
+
 .user-div {
+    top: 8rem;
+    right: 1rem;
+    color: #FFFFFF;
+    background: #000000;
+    border-radius: 18px;
+    opacity: 0.5;
+}
+
+.user-div-volunteer {
     top: 8rem;
     right: 1rem;
     color: #FFFFFF;
@@ -270,7 +310,7 @@ img {
 }
 
 .font-size {
-    font-size: 12px;
+    font-size: 12px !important;
 }
 
 .info-div span {
@@ -281,9 +321,34 @@ img {
     font-size: 15px
 }
 
-.skill-ul {
-    display: inline !important;
+
+.active-tab {
+    color: #414141 !important;
+    border-bottom: 2px solid black !important;
 }
+
+.mission-div {
+    height: 36rem;
+}
+
+.main-img {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/Grow-Trees-On-the-path-to-environment-sustainability-login.png);
+    height: 50vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.vol-img {
+    height: 2.5rem;
+}
+
+.select-group {
+    font-size: 11px !important;
+}
+
+
 
 
 /* media quary */
@@ -316,7 +381,19 @@ img {
 
     }
 
+    .favourate-volunteer {
+        top: 6rem;
+        right: 1rem;
+
+    }
+
     .user-div {
+        top: 9rem;
+        right: 1rem;
+
+    }
+
+    .user-div-volunteer {
         top: 9rem;
         right: 1rem;
 
@@ -349,12 +426,27 @@ img {
         opacity: 0.5;
     }
 
+    .favourate-volunteer {
+        top: 4rem;
+    }
+
+    .user-div-volunteer {
+        top: 7rem;
+    }
+
 }
 
 @media(max-width:480px) {
     .search-div {
         margin: 0;
     }
+
+    .skills-ul {
+        display: inline !important;
+    }
+
+
+
 
     .second-div {
 
@@ -408,6 +500,11 @@ img {
         top: 0.5rem;
     }
 
+    .country-div-volunteer {
+        right: 1rem;
+        top: 0.5rem;
+    }
+
     .favourate {
         top: 6rem;
         right: 1rem;
@@ -420,6 +517,16 @@ img {
         top: 10rem;
         right: 1rem;
 
+    }
+
+    .country-div-volunteer {}
+
+    .favourate-volunteer {
+        top: 3.5rem;
+    }
+
+    .user-div-volunteer {
+        top: 6rem;
     }
 }
 
