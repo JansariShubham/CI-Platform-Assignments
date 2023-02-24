@@ -280,6 +280,32 @@ img {
     width: 100%;
 }
 
+/* //effect on card hover  */
+/* .story-card:before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 0%;
+    width: 100%;
+
+    transition: height 0.5s ease-out;
+
+
+
+} */
+
+#view-details-btn {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+
+}
+
+.sl-card:hover #view-details-btn {
+    display: flex !important;
+}
+
+
+
+
 .page-link {
     color: #757575 !important;
 }
