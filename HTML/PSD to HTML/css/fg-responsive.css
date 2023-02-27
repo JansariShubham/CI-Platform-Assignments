@@ -19,7 +19,7 @@
     }
 
     .hero-image {
-        height: 80vh;
+        height: 50vh !important;
     }
 
     .login-input {
@@ -52,7 +52,7 @@
     }
 
     .hero-image {
-        height: 80vh;
+        height: 50vh !important;
     }
 
     .image-content h1 {

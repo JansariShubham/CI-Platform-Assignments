@@ -4,9 +4,9 @@
         width: 70vw;
     }
 
-    .right-div {
-       /* width: 30vw;*/
-    }
+    /*.right-div {
+        width: 30vw;
+    }*/
 
     .privacy-text {
         bottom: 10px !important;
@@ -41,7 +41,7 @@
     }
 
     .hero-image {
-        height: 80vh;
+        height: 50vh !important;
     }
 
     .login-input {
@@ -76,7 +76,7 @@
     }
 
     .hero-image {
-        height: 80vh;
+        height: 50vh !important;
     }
 
     .image-content h1 {

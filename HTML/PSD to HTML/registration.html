@@ -13,19 +13,64 @@
 
 <body>
     <section class="d-flex flex-column flex-md-column flex-lg-row login-content">
-
-        <div class="d-flex justify-content-end flex-column hero-image ">
-
-            <div class="image-content p-5">
-                <h1 class="text-light-custom">Sed ut perspiciatis unde omnis iste natus voluptatem.</h1>
-                <p class="d-none d-md-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam rerum,
-                    accusantium debitis nihil
-                    provident explicabo hic! Iure deleniti suscipit id blanditiis accusamus quasi, deserunt praesentium
-                    architecto voluptates, tempore magni. Nostrum.</p>
+        <div id="carouselExampleCaptions" class="carousel slide d-flex justify-content-center flex-column hero-image"
+            data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
             </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./images/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
+                        class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="text-light-custom">First slide label</h5>
+                        <p class="d-none d-md-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+                            rerum,
+                            accusantium debitis nihil
+                            provident explicabo hic! Iure deleniti suscipit id blanditiis accusamus quasi, deserunt
+                            praesentium
+                            architecto voluptates, tempore magni. Nostrum.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
+                        class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="text-light-custom">Second slide label</h5>
+                        <p class="d-none d-md-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
+                            explicabo autem ducimus quis repellendus perspiciatis iusto quia adipisci magnam vitae.
+                            Adipisci numquam corporis autem repellat et eaque ipsum maiores tempore.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
+                        class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="text-light-custom">Third slide label</h5>
+                        <p class="d-none d-md-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+                            quia placeat animi commodi quisquam quod soluta, dolores culpa odio dignissimos, corrupti
+                            eum praesentium officia molestiae perferendis libero ipsa accusamus eveniet?</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
 
-        <div class="d-flex flex-column p-5 justify-content-center right-div">
+        <div class="d-flex flex-column p-3 p-sm-5 justify-content-center right-div">
             <form class="d-flex flex-column mx-auto justify-content-center">
                 <label for="f-name" class="form-label mb-0 login-label text-light-custom">First Name</label>
                 <input type="text" id="f-name" class="form-control login-input text-light-custom" value="evan">
@@ -70,6 +115,8 @@
 
 
     </section>
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
 
 </body>
 
