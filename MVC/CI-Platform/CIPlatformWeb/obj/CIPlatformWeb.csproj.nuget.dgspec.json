@@ -100,7 +100,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.entities\\CIPlatform.entities.csproj": {
+                "projectPath": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.entities\\CIPlatform.entities.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

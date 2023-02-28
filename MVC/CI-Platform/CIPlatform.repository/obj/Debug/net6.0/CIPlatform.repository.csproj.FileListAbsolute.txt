@@ -12,3 +12,6 @@ D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.0\CIPlatform.repository.pdb
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.0\CIPlatform.repository.genruntimeconfig.cache
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.0\ref\CIPlatform.repository.dll
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\bin\Debug\net6.0\CIPlatform.entities.dll
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\bin\Debug\net6.0\CIPlatform.entities.pdb
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.0\CIPlatform.repository.csproj.CopyComplete

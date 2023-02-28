@@ -2,7 +2,7 @@
 @media only screen and (min-width:821px) {
     .login-input {
         width: 401px !important;
-        height: 56px;
+        /* height: 56px;*/
     }
 }
 

@@ -711,6 +711,7 @@
       },
       "CIPlatform.repository/1.0.0": {
         "dependencies": {
+          "CIPlatform.entities": "1.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.3"
         },
         "runtime": {

@@ -1,4 +1,4 @@
-﻿namespace CIPlatform.entities
+﻿namespace DataAccess
 {
     public class Class1
     {
