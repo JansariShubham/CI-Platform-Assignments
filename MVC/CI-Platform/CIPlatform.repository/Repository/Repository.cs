@@ -1,14 +1,8 @@
-﻿using CIPlatform.repository.Data;
+﻿using CIPlatform.entities.DataModels;
 using CIPlatform.repository.IRepository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-
+/*using CIPlatform.repository.Data;*/
 namespace CIPlatform.repository.Repository
 {
     public class Repository<T> : IRepository<T> where T : class

@@ -11,6 +11,8 @@ public partial class Banner
 
     public string? TextDesc { get; set; }
 
+    public string? TextTitle { get; set; }
+
     public int SortOrder { get; set; }
 
     public DateTimeOffset CreatedAt { get; set; }
@@ -18,6 +20,4 @@ public partial class Banner
     public DateTimeOffset? UpdatedAt { get; set; }
 
     public DateTimeOffset? DeletedAt { get; set; }
-
-    public string? TextTitle { get; set; }
 }

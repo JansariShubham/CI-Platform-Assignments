@@ -1,5 +1,4 @@
-﻿using CIPlatform.entities.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace CIPlatform.entities.DataModels;
@@ -16,7 +15,7 @@ public partial class User
 
     public string Password { get; set; } = null!;
 
-    public int PhoneNumber { get; set; }
+    public string? PhoneNumber { get; set; }
 
     public byte[]? Avatar { get; set; }
 
@@ -24,7 +23,7 @@ public partial class User
 
     public string? EmployeeId { get; set; }
 
-    public string? Department { get; set; }
+    public string? Departmemt { get; set; }
 
     public short? CityId { get; set; }
 
@@ -36,9 +35,9 @@ public partial class User
 
     public string? Title { get; set; }
 
-    public byte Status { get; set; } = default!;
+    public byte Status { get; set; }
 
-    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.Now;
+    public DateTimeOffset CreatedAt { get; set; }
 
     public DateTimeOffset? UpdatedAt { get; set; }
 
@@ -57,9 +56,4 @@ public partial class User
     public virtual ICollection<MissionInvite> MissionInviteFromUsers { get; } = new List<MissionInvite>();
 
     public virtual ICollection<MissionInvite> MissionInviteToUsers { get; } = new List<MissionInvite>();
-
-    /*public static implicit operator User(UserViewModel v)
-    {
-        throw new NotImplementedException();
-    }*/
 }

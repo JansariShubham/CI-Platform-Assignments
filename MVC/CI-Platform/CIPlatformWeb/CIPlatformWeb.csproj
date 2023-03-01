@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Home\Forgot.cshtml" />
-    <Content Remove="Views\Home\Index1.cshtml" />
+    <Content Remove="Areas\Users\Views\Home\Forgot.cshtml" />
+    <Content Remove="Areas\Users\Views\Home\Index1.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,11 +21,16 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.12" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CIPlatform.entities\CIPlatform.entities.csproj" />
     <ProjectReference Include="..\CIPlatform.repository\CIPlatform.repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Controllers\" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-using CIPlatform.repository.Data;
+
+using CIPlatform.entities.DataModels;
 using CIPlatform.repository.IRepository;
 using CIPlatform.repository.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -9,8 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
 builder.Services.AddDbContext<AppDbContext>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,9 +29,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Login}/{id?}");
+    pattern: "{area=Users}/{controller=Home}/{action=Login}/{id?}");
 
 app.Run();

@@ -10,6 +10,6 @@ namespace CIPlatform.repository.IRepository
     public interface IUserRepository: IRepository<User> 
     {
         void Update(User user);
-        void save(User user);
+        
     }
 }

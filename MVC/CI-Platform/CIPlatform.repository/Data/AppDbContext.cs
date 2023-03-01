@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using CIPlatform.entities.DataModels;
 using Microsoft.EntityFrameworkCore;
 
-namespace CIPlatform.repository.Data;
+namespace CIPlatform.entities.DataModels;
 
 public partial class AppDbContext : DbContext
 {
@@ -52,13 +51,15 @@ public partial class AppDbContext : DbContext
     {
         modelBuilder.Entity<Admin>(entity =>
         {
-            entity.HasKey(e => e.AdminId).HasName("PK__admin__43AA41416CD891D4");
+            entity.HasKey(e => e.AdminId).HasName("PK__admin__43AA4141594470ED");
 
             entity.ToTable("admin");
 
-            entity.HasIndex(e => e.Email, "UQ__admin__AB6E6164940663B4").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__admin__AB6E61648BA87E21").IsUnique();
 
-            entity.Property(e => e.AdminId).HasColumnName("admin_id");
+            entity.Property(e => e.AdminId)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("admin_id");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
             entity.Property(e => e.Email)
@@ -82,13 +83,11 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<Banner>(entity =>
         {
-            entity.HasKey(e => e.BannerId).HasName("PK__banner__10373C342E5BF682");
+            entity.HasKey(e => e.BannerId).HasName("PK__banner__10373C34219D3140");
 
             entity.ToTable("banner");
 
-            entity.Property(e => e.BannerId)
-                .ValueGeneratedNever()
-                .HasColumnName("banner_id");
+            entity.Property(e => e.BannerId).HasColumnName("banner_id");
             entity.Property(e => e.BannerImage).HasColumnName("banner_image");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
@@ -105,13 +104,11 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<City>(entity =>
         {
-            entity.HasKey(e => e.CityId).HasName("PK__city__031491A821C290C2");
+            entity.HasKey(e => e.CityId).HasName("PK__city__031491A883903124");
 
             entity.ToTable("city");
 
-            entity.Property(e => e.CityId)
-                .ValueGeneratedNever()
-                .HasColumnName("city_id");
+            entity.Property(e => e.CityId).HasColumnName("city_id");
             entity.Property(e => e.CountryId).HasColumnName("country_id");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
@@ -123,18 +120,16 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.Country).WithMany(p => p.Cities)
                 .HasForeignKey(d => d.CountryId)
-                .HasConstraintName("FK__city__country_id__4316F928");
+                .HasConstraintName("FK__city__country_id__17036CC0");
         });
 
         modelBuilder.Entity<CmsPage>(entity =>
         {
-            entity.HasKey(e => e.CmsPageId).HasName("PK__cms_page__B46D5B52A627859E");
+            entity.HasKey(e => e.CmsPageId).HasName("PK__cms_page__B46D5B5298A80A36");
 
             entity.ToTable("cms_page");
 
-            entity.Property(e => e.CmsPageId)
-                .ValueGeneratedNever()
-                .HasColumnName("cms_page_id");
+            entity.Property(e => e.CmsPageId).HasColumnName("cms_page_id");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
             entity.Property(e => e.Description)
@@ -157,13 +152,11 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<Comment>(entity =>
         {
-            entity.HasKey(e => e.CommentId).HasName("PK__comment__E79576874051D806");
+            entity.HasKey(e => e.CommentId).HasName("PK__comment__E79576875191BFD9");
 
             entity.ToTable("comment");
 
-            entity.Property(e => e.CommentId)
-                .ValueGeneratedNever()
-                .HasColumnName("comment_id");
+            entity.Property(e => e.CommentId).HasColumnName("comment_id");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
             entity.Property(e => e.MissionId).HasColumnName("mission_id");
@@ -172,20 +165,22 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.Mission).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.MissionId)
-                .HasConstraintName("FK__comment__mission__5441852A");
+                .HasConstraintName("FK__comment__mission__2DE6D218");
 
             entity.HasOne(d => d.User).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__comment__user_id__534D60F1");
+                .HasConstraintName("FK__comment__user_id__2CF2ADDF");
         });
 
         modelBuilder.Entity<Country>(entity =>
         {
-            entity.HasKey(e => e.CountryId).HasName("PK__country__7E8CD0556E07F9C8");
+            entity.HasKey(e => e.CountryId).HasName("PK__country__7E8CD055DA2C63A3");
 
             entity.ToTable("country");
 
-            entity.Property(e => e.CountryId).HasColumnName("country_id");
+            entity.Property(e => e.CountryId)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("country_id");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
             entity.Property(e => e.Iso)
@@ -201,13 +196,11 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<FavouriteMission>(entity =>
         {
-            entity.HasKey(e => e.FavouriteMissionId).HasName("PK__favourit__94E4D8CAA650F1D8");
+            entity.HasKey(e => e.FavouriteMissionId).HasName("PK__favourit__94E4D8CA52FD2DF2");
 
             entity.ToTable("favourite_mission");
 
-            entity.Property(e => e.FavouriteMissionId)
-                .ValueGeneratedNever()
-                .HasColumnName("favourite_mission_id");
+            entity.Property(e => e.FavouriteMissionId).HasColumnName("favourite_mission_id");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
             entity.Property(e => e.MissionId).HasColumnName("mission_id");
@@ -216,16 +209,16 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.Mission).WithMany(p => p.FavouriteMissions)
                 .HasForeignKey(d => d.MissionId)
-                .HasConstraintName("FK__favourite__missi__5BE2A6F2");
+                .HasConstraintName("FK__favourite__missi__32AB8735");
 
             entity.HasOne(d => d.User).WithMany(p => p.FavouriteMissions)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__favourite__user___5AEE82B9");
+                .HasConstraintName("FK__favourite__user___31B762FC");
         });
 
         modelBuilder.Entity<GoalMission>(entity =>
         {
-            entity.HasKey(e => e.GoalMissionId).HasName("PK__goal_mis__358E02C72CD68FCF");
+            entity.HasKey(e => e.GoalMissionId).HasName("PK__goal_mis__358E02C75424F6B0");
 
             entity.ToTable("goal_mission");
 
@@ -244,18 +237,16 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.Mission).WithMany(p => p.GoalMissions)
                 .HasForeignKey(d => d.MissionId)
-                .HasConstraintName("FK__goal_miss__missi__5EBF139D");
+                .HasConstraintName("FK__goal_miss__missi__3587F3E0");
         });
 
         modelBuilder.Entity<Mission>(entity =>
         {
-            entity.HasKey(e => e.MissionId).HasName("PK__mission__B5419AB27DCD62FE");
+            entity.HasKey(e => e.MissionId).HasName("PK__mission__B5419AB220B692BD");
 
             entity.ToTable("mission");
 
-            entity.Property(e => e.MissionId)
-                .ValueGeneratedNever()
-                .HasColumnName("mission_id");
+            entity.Property(e => e.MissionId).HasColumnName("mission_id");
             entity.Property(e => e.Availability).HasColumnName("availability");
             entity.Property(e => e.CityId).HasColumnName("city_id");
             entity.Property(e => e.CountryId).HasColumnName("country_id");
@@ -291,26 +282,24 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.City).WithMany(p => p.Missions)
                 .HasForeignKey(d => d.CityId)
-                .HasConstraintName("FK__mission__city_id__4F7CD00D");
+                .HasConstraintName("FK__mission__city_id__1AD3FDA4");
 
             entity.HasOne(d => d.Country).WithMany(p => p.Missions)
                 .HasForeignKey(d => d.CountryId)
-                .HasConstraintName("FK__mission__country__5070F446");
+                .HasConstraintName("FK__mission__country__1BC821DD");
 
             entity.HasOne(d => d.Theme).WithMany(p => p.Missions)
                 .HasForeignKey(d => d.ThemeId)
-                .HasConstraintName("FK__mission__theme_i__4E88ABD4");
+                .HasConstraintName("FK__mission__theme_i__19DFD96B");
         });
 
         modelBuilder.Entity<MissionApplication>(entity =>
         {
-            entity.HasKey(e => e.MissionApplicationId).HasName("PK__mission___DF92838A75D0CFAF");
+            entity.HasKey(e => e.MissionApplicationId).HasName("PK__mission___DF92838A6BA7BE42");
 
             entity.ToTable("mission_application");
 
-            entity.Property(e => e.MissionApplicationId)
-                .ValueGeneratedNever()
-                .HasColumnName("mission_application_id");
+            entity.Property(e => e.MissionApplicationId).HasColumnName("mission_application_id");
             entity.Property(e => e.AppliedAt).HasColumnName("applied_at");
             entity.Property(e => e.ApprovalStatus).HasColumnName("approval_status");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
@@ -321,22 +310,20 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.Mission).WithMany(p => p.MissionApplications)
                 .HasForeignKey(d => d.MissionId)
-                .HasConstraintName("FK__mission_a__missi__628FA481");
+                .HasConstraintName("FK__mission_a__missi__395884C4");
 
             entity.HasOne(d => d.User).WithMany(p => p.MissionApplications)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__mission_a__user___619B8048");
+                .HasConstraintName("FK__mission_a__user___3864608B");
         });
 
         modelBuilder.Entity<MissionDocument>(entity =>
         {
-            entity.HasKey(e => e.MissionDocumentId).HasName("PK__mission___E80E0CC8FDA0B784");
+            entity.HasKey(e => e.MissionDocumentId).HasName("PK__mission___E80E0CC84AD71B5C");
 
             entity.ToTable("mission_document");
 
-            entity.Property(e => e.MissionDocumentId)
-                .ValueGeneratedNever()
-                .HasColumnName("mission_document_id");
+            entity.Property(e => e.MissionDocumentId).HasColumnName("mission_document_id");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
             entity.Property(e => e.DocumentName)
@@ -356,18 +343,16 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.Mission).WithMany(p => p.MissionDocuments)
                 .HasForeignKey(d => d.MissionId)
-                .HasConstraintName("FK__mission_d__missi__656C112C");
+                .HasConstraintName("FK__mission_d__missi__22751F6C");
         });
 
         modelBuilder.Entity<MissionInvite>(entity =>
         {
-            entity.HasKey(e => e.MissionInviteId).HasName("PK__mission___A97ED158A719DF7B");
+            entity.HasKey(e => e.MissionInviteId).HasName("PK__mission___A97ED15881E5632C");
 
             entity.ToTable("mission_invite");
 
-            entity.Property(e => e.MissionInviteId)
-                .ValueGeneratedNever()
-                .HasColumnName("mission_invite_id");
+            entity.Property(e => e.MissionInviteId).HasColumnName("mission_invite_id");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
             entity.Property(e => e.FromUserId).HasColumnName("from_user_id");
@@ -377,31 +362,27 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.FromUser).WithMany(p => p.MissionInviteFromUsers)
                 .HasForeignKey(d => d.FromUserId)
-                .HasConstraintName("FK__mission_i__from___693CA210");
+                .HasConstraintName("FK__mission_i__from___3E1D39E1");
 
             entity.HasOne(d => d.Mission).WithMany(p => p.MissionInvites)
                 .HasForeignKey(d => d.MissionId)
-                .HasConstraintName("FK__mission_i__missi__68487DD7");
+                .HasConstraintName("FK__mission_i__missi__3D2915A8");
 
             entity.HasOne(d => d.ToUser).WithMany(p => p.MissionInviteToUsers)
                 .HasForeignKey(d => d.ToUserId)
-                .HasConstraintName("FK__mission_i__to_us__6A30C649");
+                .HasConstraintName("FK__mission_i__to_us__3F115E1A");
         });
 
         modelBuilder.Entity<MissionTheme>(entity =>
         {
-            entity.HasKey(e => e.MissionThemeId).HasName("PK__mission___4925C5AC41AA5B8D");
+            entity.HasKey(e => e.MissionThemeId).HasName("PK__mission___4925C5AC7705D16A");
 
             entity.ToTable("mission_theme");
 
-            entity.Property(e => e.MissionThemeId)
-                .ValueGeneratedNever()
-                .HasColumnName("mission_theme_id");
+            entity.Property(e => e.MissionThemeId).HasColumnName("mission_theme_id");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
-            entity.Property(e => e.Status)
-                .HasDefaultValueSql("(N'1')")
-                .HasColumnName("status");
+            entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.Title)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -411,24 +392,22 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__users__B9BE370FA69BCE60");
+            entity.HasKey(e => e.UserId).HasName("PK__users__B9BE370F9BDFE267");
 
             entity.ToTable("users");
 
-            entity.HasIndex(e => e.Email, "UQ__users__AB6E61642C48AFF5").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__users__AB6E6164BB82FF8A").IsUnique();
 
-            entity.Property(e => e.UserId)
-                .ValueGeneratedNever()
-                .HasColumnName("user_id");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
             entity.Property(e => e.Avatar).HasColumnName("avatar");
             entity.Property(e => e.CityId).HasColumnName("city_id");
             entity.Property(e => e.CountryId).HasColumnName("country_id");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
-            entity.Property(e => e.Department)
+            entity.Property(e => e.Departmemt)
                 .HasMaxLength(16)
                 .IsUnicode(false)
-                .HasColumnName("department");
+                .HasColumnName("departmemt");
             entity.Property(e => e.Email)
                 .HasMaxLength(128)
                 .IsUnicode(false)
@@ -453,13 +432,14 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("password");
-            entity.Property(e => e.PhoneNumber).HasColumnName("phone_number");
+            entity.Property(e => e.PhoneNumber)
+                .HasMaxLength(128)
+                .IsUnicode(false)
+                .HasColumnName("phone_number");
             entity.Property(e => e.ProfileText)
                 .HasColumnType("text")
                 .HasColumnName("profile_text");
-            entity.Property(e => e.Status)
-                .HasDefaultValueSql("(N'1')")
-                .HasColumnName("status");
+            entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.Title)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -471,11 +451,11 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.City).WithMany(p => p.Users)
                 .HasForeignKey(d => d.CityId)
-                .HasConstraintName("FK__users__city_id__48CFD27E");
+                .HasConstraintName("FK__users__city_id__29221CFB");
 
             entity.HasOne(d => d.Country).WithMany(p => p.Users)
                 .HasForeignKey(d => d.CountryId)
-                .HasConstraintName("FK__users__country_i__49C3F6B7");
+                .HasConstraintName("FK__users__country_i__2A164134");
         });
 
         OnModelCreatingPartial(modelBuilder);
