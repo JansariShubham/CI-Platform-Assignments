@@ -41,6 +41,8 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<MissionTheme> MissionThemes { get; set; }
 
+    public virtual DbSet<PasswordReset> PasswordResets { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -388,6 +390,23 @@ public partial class AppDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("title");
             entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
+        });
+
+        modelBuilder.Entity<PasswordReset>(entity =>
+        {
+            entity.HasKey(e => e.Email).HasName("PK__password__AB6E61659B27891C");
+
+            entity.ToTable("password_reset");
+
+            entity.Property(e => e.Email)
+                .HasMaxLength(191)
+                .IsUnicode(false)
+                .HasColumnName("email");
+            entity.Property(e => e.CreatedAt).HasColumnName("created_at");
+            entity.Property(e => e.Token)
+                .HasMaxLength(191)
+                .IsUnicode(false)
+                .HasColumnName("token");
         });
 
         modelBuilder.Entity<User>(entity =>

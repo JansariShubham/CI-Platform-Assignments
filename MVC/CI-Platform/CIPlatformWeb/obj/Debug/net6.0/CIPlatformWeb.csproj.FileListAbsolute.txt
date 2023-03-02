@@ -291,3 +291,9 @@ D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\runtim
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\MailKit.dll
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\MimeKit.dll
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\CIPlatform.utilities.dll
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\CIPlatform.utilities.pdb
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\CIPlatformWeb.MvcApplicationPartsAssemblyInfo.cs

@@ -24,4 +24,9 @@
     <ProjectReference Include="..\CIPlatformWeb\CIPlatformWeb.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="IServices\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

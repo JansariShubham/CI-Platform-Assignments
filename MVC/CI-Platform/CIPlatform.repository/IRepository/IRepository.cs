@@ -15,6 +15,8 @@ namespace CIPlatform.repository.IRepository
         
         void Delete(T item);
         void RemoveRange(IEnumerable<T> items);
+
+        
     }
     
 }

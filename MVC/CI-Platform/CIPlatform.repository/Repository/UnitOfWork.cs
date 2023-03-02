@@ -12,12 +12,15 @@ namespace CIPlatform.repository.Repository
     {
         public IUserRepository UserRepository { get; private set; }
 
+        public  IPasswordResetRepo PasswordResetRepo { get; private set; }  
+
         private AppDbContext _appDbContext;
 
         public UnitOfWork(AppDbContext appDbContext) 
         {
             _appDbContext = appDbContext;
             UserRepository = new UserRepository(_appDbContext);
+            PasswordResetRepo = new PasswordResetRepo(_appDbContext);
         }
 
         public void Save()

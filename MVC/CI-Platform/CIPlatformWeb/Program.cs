@@ -2,6 +2,7 @@
 using CIPlatform.entities.DataModels;
 using CIPlatform.repository.IRepository;
 using CIPlatform.repository.Repository;
+using CIPlatform.utilities;
 using Microsoft.EntityFrameworkCore;
 /*using CIPlatform.DataAccess.Data;*/
 
@@ -13,6 +14,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<EmailSender>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

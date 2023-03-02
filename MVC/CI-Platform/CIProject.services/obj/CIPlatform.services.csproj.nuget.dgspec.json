@@ -154,6 +154,75 @@
         }
       }
     },
+    "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.utilities\\CIPlatform.utilities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.utilities\\CIPlatform.utilities.csproj",
+        "projectName": "CIPlatform.utilities",
+        "projectPath": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.utilities\\CIPlatform.utilities.csproj",
+        "packagesPath": "C:\\Users\\SHUBHAM\\.nuget\\packages\\",
+        "outputPath": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.utilities\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\SHUBHAM\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.5.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[3.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\CIPlatformWeb.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -183,6 +252,9 @@
               },
               "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.repository\\CIPlatform.repository.csproj": {
                 "projectPath": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.repository\\CIPlatform.repository.csproj"
+              },
+              "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.utilities\\CIPlatform.utilities.csproj": {
+                "projectPath": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.utilities\\CIPlatform.utilities.csproj"
               }
             }
           }

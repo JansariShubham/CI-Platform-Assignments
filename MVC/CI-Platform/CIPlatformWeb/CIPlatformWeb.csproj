@@ -27,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CIPlatform.entities\CIPlatform.entities.csproj" />
     <ProjectReference Include="..\CIPlatform.repository\CIPlatform.repository.csproj" />
+    <ProjectReference Include="..\CIPlatform.utilities\CIPlatform.utilities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿using CIPlatform.entities.DataModels;
+﻿using Azure.Core;
+using CIPlatform.entities.DataModels;
 using CIPlatform.entities.ViewModels;
 using CIPlatform.repository.IRepository;
 using CIPlatform.repository.Repository;
@@ -6,6 +7,9 @@ using CIPlatformWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Diagnostics;
+using CIPlatform.utilities;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace CIPlatformWeb.Areas.Users.Controllers
 {
@@ -15,9 +19,12 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         private readonly IUnitOfWork _IUnitOfWork;
 
-        public HomeController(IUnitOfWork IUnitOfWork)
+        private readonly EmailSender _EmailSender;
+
+        public HomeController(IUnitOfWork IUnitOfWork, EmailSender emailSender)
         {
             _IUnitOfWork = IUnitOfWork;
+            _EmailSender = emailSender;
         }
 
         /*public HomeController(ILogger<HomeController> logger)
@@ -69,18 +76,67 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         [HttpPost]
         public IActionResult ForgotPassword(ForgotPasswordViewModel model)
         {
+            var Email = _IUnitOfWork.UserRepository.GetFirstOrDefault(m=> m.Email==model.Email);
             if (ModelState.IsValid)
             {
+                if (Email != null)
+                {
+                    String token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+                    String email = model.Email;
+                    var linkHref =  Url.Action("ResetPassword", "Home", new {_email = email, _token = token }, "https");
+                    String subject = "Reset Password Link";
+                    String htmlMessage = $@"
+                            <h2>Welcome Back,</h2>
+                            Click below button to reset account's password!<br>
+                            <a href='{linkHref}'><button>Reset Your Password</button></a>  
+                          ";
+                    
 
+                    _EmailSender.SendEmail(email, subject, htmlMessage);
 
+                    PasswordReset obj = new PasswordReset();    
+                    obj.Email = email;
+                    obj.Token= token;
+                    _IUnitOfWork.PasswordResetRepo.Add(obj);
+                    _IUnitOfWork.Save();
+                    
+                    TempData["MailSuccess"] = "Reset Password link is Sent to your mail id please check";
+                }
+                else
+                {
+                    ModelState.AddModelError("Email", "Please Enter Registerd Email");
+                    
+                }
             }
             return View();
         }
-        public IActionResult ResetPassword()
+        public IActionResult ResetPassword(String _email, String _token)
         {
+            ResetPasswordViewModel vm = new ResetPasswordViewModel()
+            { 
+                Email = _email,
+                Token = _token
+            };
+            return View(vm);
+        }
+        [HttpPost]
+        public IActionResult ResetPassword(ResetPasswordViewModel model)
+        {
+            var UserObj = _IUnitOfWork.UserRepository.GetFirstOrDefault(m => m.Email == model.Email);
+            
+            if(UserObj != null)
+            {
+
+                _IUnitOfWork.UserRepository.UpadateUserPassword(model.Email,model.Password);
+
+
+            }
+            
+
+
+
             return View();
         }
-
         public IActionResult PlatformLandingPage()
         {
             return View();

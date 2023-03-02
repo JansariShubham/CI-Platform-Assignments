@@ -9,7 +9,7 @@ namespace CIPlatform.repository.IRepository
     public interface IUnitOfWork
     {
         IUserRepository UserRepository { get; }
-
+        IPasswordResetRepo PasswordResetRepo { get; }
         void Save();
     }
 }

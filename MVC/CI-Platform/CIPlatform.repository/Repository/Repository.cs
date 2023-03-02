@@ -30,6 +30,8 @@ namespace CIPlatform.repository.Repository
             return query.ToList();
         }
 
+        
+
         public T GetFirstOrDefault(Expression<Func<T, bool>> filter)
         {
             IQueryable<T> query = dbSet;    
