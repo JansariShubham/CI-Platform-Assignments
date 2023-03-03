@@ -68,23 +68,23 @@
 
     <div class="d-flex flex-column p-3 p-sm-5 justify-content-center right-div">
         <form class="d-flex flex-column mx-auto justify-content-center" asp-action="Registration" method="post">
-            <label asp-for="FirstName" class="form-label mb-0 login-label text-light-custom">First Name</label>
+            <label asp-for="FirstName" class="form-label mb-0 login-label text-light-custom text-secondary">First Name</label>
             <input type="text" asp-for="FirstName" id="FirstName" class="form-control login-input text-light-custom" >
-            <span asp-validation-for="FirstName" class="text-danger"></span>
+            <span asp-validation-for="FirstName" class="text-danger error-span"></span>
 
             <label for="LastName" asp-for="LastName" class="mt-2 mb-0 form-label text-secondary login-label text-light-custom">
                 Last
                 Name
             </label>
             <input type="text" asp-for="LastName" id="LastName" class="form-control login-input text-light-custom">
-            <span asp-validation-for="LastName" class="text-danger"></span>
+            <span asp-validation-for="LastName" class="text-danger error-span"></span>
 
             <label for="phone" asp-for="PhoneNumber" class="mt-2 mb-0 form-label text-secondary login-label text-light-custom">
                 Phone
                 Number
             </label>
-            <input type="number" asp-for="PhoneNumber" id="phone" class="form-control login-input text-light-custom">
-            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            <input type="text" asp-for="PhoneNumber" id="phone" class="form-control login-input text-light-custom">
+            <span asp-validation-for="PhoneNumber" class="text-danger error-span"></span>
             
             <label for="email" asp-for="Email" class="mt-2 mb-0 form-label text-secondary login-label text-light-custom">
                 Email
@@ -92,21 +92,21 @@
             </label>
             <input type="email" asp-for="Email" id="email" class="form-control login-input text-light-custom"
                   >
-            <span asp-validation-for="Email" class="text-danger"></span>
+            <span asp-validation-for="Email" class="text-danger error-span"></span>
             
             <label for="psw" asp-for="Password"
                    class="mt-1 mb-0 form-label text-secondary login-label text-light-custom">Password</label>
             <input type="password" id="psw" asp-for="Password" class="form-control login-input text-light-custom">
-            <span asp-validation-for="Password" class="text-danger"></span>
+            <span asp-validation-for="Password" class="text-danger error-span"></span>
 
             <label asp-for="ConfirmPasword"  class="mt-2 mb-0 form-label text-secondary login-label text-light-custom">
                 Confirm
                 Password
             </label>
             <input type="password" asp-for="ConfirmPasword" id="con-psw" class="form-control login-input text-light-custom">
-            <span asp-validation-for="ConfirmPasword" class="text-danger"></span>
+            <span asp-validation-for="ConfirmPasword" class="text-danger error-span"></span>
 
-            <button type="submit" class="btn mt-2 text-light-custom" id="login-btn">Register</button>
+            <button type="submit" class="btn mt-2 text-light-custom login-input" id="login-btn">Register</button>
         </form>
 
         <div class="d-flex flex-column mt-2 align-items-center bottom-div ">

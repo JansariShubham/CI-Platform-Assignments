@@ -10,6 +10,8 @@ using System.Diagnostics;
 using CIPlatform.utilities;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
+using System.Linq.Expressions;
 
 namespace CIPlatformWeb.Areas.Users.Controllers
 {
@@ -40,15 +42,16 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         public IActionResult Login(UserLoginViewModel model)
         {
 
-            
-            var UserMail = _IUnitOfWork.UserRepository.GetFirstOrDefault(m => m.Email == model.Email);
-            var UserPassword = _IUnitOfWork.UserRepository.GetFirstOrDefault(m => m.Password == model.Password);
-            
+            var result = _IUnitOfWork.UserRepository.GetLoginCredentials(model);
+
+
             if (ModelState.IsValid)
             {
-                if (UserMail != null && UserPassword != null)
+                if ( result != null)
                 {
-                    HttpContext.Session.SetString("email", UserMail.ToString());
+                    HttpContext.Session.SetString("email", model.Email.ToString());
+                    HttpContext.Session.SetString("firstName", result.FirstName.ToString());
+
                     return View("PlatFormLandingPage");
                 }
 
@@ -122,18 +125,20 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         [HttpPost]
         public IActionResult ResetPassword(ResetPasswordViewModel model)
         {
-            var UserObj = _IUnitOfWork.UserRepository.GetFirstOrDefault(m => m.Email == model.Email);
-            
-            if(UserObj != null)
+            var UserObj = _IUnitOfWork.PasswordResetRepo.GetFirstOrDefault(m => m.Email == model.Email);
+
+
+            if (UserObj != null)
             {
+                var result = _IUnitOfWork.UserRepository.UpadateUserPassword(model.Email, model.Password);
+                if (result != 0 && UserObj != null)
+                {
+                    _IUnitOfWork.PasswordResetRepo.Delete(UserObj);
+                    _IUnitOfWork.Save();
 
-                _IUnitOfWork.UserRepository.UpadateUserPassword(model.Email,model.Password);
-
-
+                }
+                return View("Login");
             }
-            
-
-
 
             return View();
         }
@@ -171,6 +176,13 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
 
             return RedirectToAction("ResetPassword");
+
+        }
+        [Route("Logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login");
 
         }
 

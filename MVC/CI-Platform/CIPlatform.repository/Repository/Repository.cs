@@ -21,7 +21,7 @@ namespace CIPlatform.repository.Repository
 
         public void Delete(T item)
         {
-            throw new NotImplementedException();
+            dbSet.Remove(item);
         }
 
         public IEnumerable<T> GetAll()

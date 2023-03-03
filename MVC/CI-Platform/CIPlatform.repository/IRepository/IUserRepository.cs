@@ -1,4 +1,5 @@
 ﻿using CIPlatform.entities.DataModels;
+using CIPlatform.entities.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace CIPlatform.repository.IRepository
     public interface IUserRepository: IRepository<User> 
     {
         void Update(User user);
-        public void UpadateUserPassword(String email, String password);
+        public int UpadateUserPassword(String email, String password);
+        public User GetLoginCredentials(UserLoginViewModel model);
     }
 }
