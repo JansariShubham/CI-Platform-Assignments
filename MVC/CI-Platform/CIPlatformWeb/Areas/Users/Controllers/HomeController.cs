@@ -120,6 +120,14 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 Email = _email,
                 Token = _token
             };
+
+            var ResetPasswordObj = _IUnitOfWork.PasswordResetRepo.GetFirstOrDefault(obj => obj.Token == _token);
+            if(ResetPasswordObj == null)
+            {
+                TempData["ResetPasswordError"] = "Your Reset Password Link Expired!";
+                return View("ForgotPassword");
+
+            }
             return View(vm);
         }
         [HttpPost]
