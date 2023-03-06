@@ -9,5 +9,5 @@ public partial class PasswordReset
 
     public string Token { get; set; } = null!;
 
-    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.Now;
+    public DateTimeOffset CreatedAt { get; set; }
 }

@@ -1,97 +1,15 @@
-﻿@*
+﻿@using CIPlatform.entities.DataModels;
+
+@model List<Mission>
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
     var UserName = Context.Session.GetString("firstName");  
 }
 
-
-<section>
-    <div class="d-flex justify-content-between container my-3 first-div">
-        <div class="dropdown left-div">
-            <button class="header-toggle d-md-none border-0">
-                <img class="h-50" src="~/images/list.png" alt="#">
-            </button>
-            <img class="logo h-50" src="~/images/logo.png" alt="#">
-            <a href="#" class="text-decoration-none mx-5 d-none d-md-inline d-lg-inline">Stories</a>
-            <button class="dropdown-toggle policy-btn d-none d-md-inline d-lg-inline" data-bs-toggle="dropdown"
-                    aria-expanded="false" type="button" id="dropdownMenuButton1">
-                Policy
-                <img class="m-1" src="~/images/drop-down.png" alt="#">
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-
-        </div>
-        <div class="dropdown right-div">
-            <button class="header-serach d-md-none border-0">
-                <img class="search-logo" id="search-btn" src="~/images/search.png" alt="#">
-            </button>
-            <img class="rounded-circle user-img" src="~/images/user1.png" alt="#">
-            <button class="dropdown-toggle policy-btn profile-btn d-none d-sm-inline" data-bs-toggle="dropdown"
-                    aria-expanded="false" type="button" id="dropdownMenuButton1">
-              <span> @UserName</span>
-               
-                <img class="m-1" src="~/images/drop-down.png" alt="#">
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home">Logout</a></li>
-            </ul>
-            @*<div class="d-inline">
-                <a class="btn btn-danger rounded" >Logout</a>
-            </div>*@
-        </div>
-
-    </div>
-
-    <!-- second section -->
-    <section class="d-flex second-div mt-4">
-        <div class="container">
-            <div class="d-flex row p-0">
-                <div class="col-10 col-md-11 col-lg-6">
-                    <div class="p-3 search-div d-flex gap-3">
-                        <img class="d-none d-md-inline d-lg-inline search-img mt-1" src="~/images/search.png"
-                             alt="#">
-                        <input type="text" id="search-bar" class="search-bar form-control border-0 p-0"
-                               placeholder="Search mission...">
-                    </div>
-                </div>
-                <!-- filter button -->
-                <button class="col d-lg-none filter-btn border-0">
-                    <img src="~/images/filter.png" alt="#">
-                </button>
-                <!-- filter menu -->
-                <div class="col-6 m-0">
-                    <div class="row d-lg-flex " id="filter-menu">
-                        <div class="col-lg-3 p-3">
-                            <select class="form-select select-group">
-                                <option value="1" selected>Country</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-3 p-3">
-                            <select class="form-select select-group">
-                                <option value="1" selected>City</option>
-                            </select>
-                        </div>
-                        <div class=" col-lg-3 p-3">
-                            <select class="form-select select-group">
-                                <option value="1" selected>Theme</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-3 p-3">
-                            <select class="form-select select-group">
-                                <option value="1" selected>Skills</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </section>
+<partial name="_Navbar" />
 
     <!-- third section  -->
     <section class="d-none d-md-inline">
@@ -165,6 +83,7 @@
                 <div class="card">
                     <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
                          class="card-img-top position-relative" alt="...">
+                         <span class="position-absolute mission-status py-2 px-3 rounded-end-pill mt-2">Applied</span>
                     <div class=" position-absolute country-div rounded-pill p-2">
                         <img class="" src="~/images/pin1.png" alt="#">
                         <span>Toronto</span>

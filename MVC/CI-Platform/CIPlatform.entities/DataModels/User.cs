@@ -37,7 +37,7 @@ public partial class User
 
     public byte Status { get; set; }
 
-    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.Now;
+    public DateTimeOffset CreatedAt { get; set; }
 
     public DateTimeOffset? UpdatedAt { get; set; }
 
@@ -56,4 +56,6 @@ public partial class User
     public virtual ICollection<MissionInvite> MissionInviteFromUsers { get; } = new List<MissionInvite>();
 
     public virtual ICollection<MissionInvite> MissionInviteToUsers { get; } = new List<MissionInvite>();
+
+    public virtual ICollection<MissionRating> MissionRatings { get; } = new List<MissionRating>();
 }

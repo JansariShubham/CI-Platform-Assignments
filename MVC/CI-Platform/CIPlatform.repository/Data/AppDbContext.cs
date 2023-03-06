@@ -39,9 +39,17 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<MissionInvite> MissionInvites { get; set; }
 
+    public virtual DbSet<MissionMedium> MissionMedia { get; set; }
+
+    public virtual DbSet<MissionRating> MissionRatings { get; set; }
+
+    public virtual DbSet<MissionSkill> MissionSkills { get; set; }
+
     public virtual DbSet<MissionTheme> MissionThemes { get; set; }
 
     public virtual DbSet<PasswordReset> PasswordResets { get; set; }
+
+    public virtual DbSet<Skill> Skills { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
@@ -375,6 +383,87 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK__mission_i__to_us__3F115E1A");
         });
 
+        modelBuilder.Entity<MissionMedium>(entity =>
+        {
+            entity.HasKey(e => e.MissionMediaId).HasName("PK__mission___848A78E8D562D41A");
+
+            entity.ToTable("mission_media");
+
+            entity.Property(e => e.MissionMediaId).HasColumnName("mission_media_id");
+            entity.Property(e => e.CreatedAt).HasColumnName("created_at");
+            entity.Property(e => e.DefaultMedia)
+                .HasDefaultValueSql("((0))")
+                .HasColumnName("default_media");
+            entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
+            entity.Property(e => e.MediaName)
+                .HasMaxLength(64)
+                .IsUnicode(false)
+                .HasColumnName("media_name");
+            entity.Property(e => e.MediaPath)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("media_path");
+            entity.Property(e => e.MediaType)
+                .HasMaxLength(4)
+                .IsUnicode(false)
+                .HasColumnName("media_type");
+            entity.Property(e => e.MissionId).HasColumnName("mission_id");
+            entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
+
+            entity.HasOne(d => d.Mission).WithMany(p => p.MissionMedia)
+                .HasForeignKey(d => d.MissionId)
+                .HasConstraintName("FK__mission_m__missi__503BEA1C");
+        });
+
+        modelBuilder.Entity<MissionRating>(entity =>
+        {
+            entity.HasKey(e => e.MissionRatingId).HasName("PK__mission___320E51727F51E781");
+
+            entity.ToTable("mission_rating");
+
+            entity.Property(e => e.MissionRatingId).HasColumnName("mission_rating_id");
+            entity.Property(e => e.CreatedAt).HasColumnName("created_at");
+            entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
+            entity.Property(e => e.MissionId).HasColumnName("mission_id");
+            entity.Property(e => e.Rating).HasColumnName("rating");
+            entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.Mission).WithMany(p => p.MissionRatings)
+                .HasForeignKey(d => d.MissionId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__mission_r__missi__55009F39");
+
+            entity.HasOne(d => d.User).WithMany(p => p.MissionRatings)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__mission_r__user___540C7B00");
+        });
+
+        modelBuilder.Entity<MissionSkill>(entity =>
+        {
+            entity.HasKey(e => e.MissionSkillId).HasName("PK__mission___827120087046471B");
+
+            entity.ToTable("mission_skill");
+
+            entity.Property(e => e.MissionSkillId).HasColumnName("mission_skill_id");
+            entity.Property(e => e.CreatedAt).HasColumnName("created_at");
+            entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
+            entity.Property(e => e.MissionId).HasColumnName("mission_id");
+            entity.Property(e => e.SkillId).HasColumnName("skill_id");
+            entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
+
+            entity.HasOne(d => d.Mission).WithMany(p => p.MissionSkills)
+                .HasForeignKey(d => d.MissionId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__mission_s__missi__5F7E2DAC");
+
+            entity.HasOne(d => d.Skill).WithMany(p => p.MissionSkills)
+                .HasForeignKey(d => d.SkillId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__mission_s__skill__5E8A0973");
+        });
+
         modelBuilder.Entity<MissionTheme>(entity =>
         {
             entity.HasKey(e => e.MissionThemeId).HasName("PK__mission___4925C5AC7705D16A");
@@ -407,6 +496,25 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(191)
                 .IsUnicode(false)
                 .HasColumnName("token");
+        });
+
+        modelBuilder.Entity<Skill>(entity =>
+        {
+            entity.HasKey(e => e.SkillId).HasName("PK__skill__FBBA8379CB4CDE60");
+
+            entity.ToTable("skill");
+
+            entity.Property(e => e.SkillId).HasColumnName("skill_id");
+            entity.Property(e => e.CreatedAt).HasColumnName("created_at");
+            entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
+            entity.Property(e => e.SkillName)
+                .HasMaxLength(64)
+                .IsUnicode(false)
+                .HasColumnName("skill_name");
+            entity.Property(e => e.Status)
+                .HasDefaultValueSql("((1))")
+                .HasColumnName("status");
+            entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
         });
 
         modelBuilder.Entity<User>(entity =>

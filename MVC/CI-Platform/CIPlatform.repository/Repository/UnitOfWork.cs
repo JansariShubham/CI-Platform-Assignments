@@ -14,6 +14,16 @@ namespace CIPlatform.repository.Repository
 
         public  IPasswordResetRepo PasswordResetRepo { get; private set; }  
 
+        public IMissionRepository MissionRepository { get; private set; }
+
+        public ICityRepository CityRepository{ get; private set; }
+
+        public ICountryRepository CountryRepository { get; private set; }
+
+        public ISkillsRepository SkillsRepository { get; private set; }
+
+        public IMissionThemeRepository MissionThemeRepository { get; private set; }
+
         private AppDbContext _appDbContext;
 
         public UnitOfWork(AppDbContext appDbContext) 
@@ -21,7 +31,13 @@ namespace CIPlatform.repository.Repository
             _appDbContext = appDbContext;
             UserRepository = new UserRepository(_appDbContext);
             PasswordResetRepo = new PasswordResetRepo(_appDbContext);
+            MissionRepository = new MissionRepository(_appDbContext);
+            CityRepository = new CityRepository(_appDbContext);
+            CountryRepository = new CountryRepository(_appDbContext);
+            SkillsRepository = new SkillsRepository(_appDbContext);
+            MissionThemeRepository =  new MissionThemeRepository(_appDbContext);
         }
+
 
         public void Save()
         {

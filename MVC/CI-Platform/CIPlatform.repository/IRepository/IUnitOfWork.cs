@@ -10,6 +10,14 @@ namespace CIPlatform.repository.IRepository
     {
         IUserRepository UserRepository { get; }
         IPasswordResetRepo PasswordResetRepo { get; }
+
+        IMissionRepository MissionRepository { get; }
+
+        ICityRepository CityRepository { get; } 
+
+        ICountryRepository CountryRepository { get; }
+         ISkillsRepository SkillsRepository { get; }
+        IMissionThemeRepository MissionThemeRepository { get; }
         void Save();
     }
 }

@@ -152,6 +152,89 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         }
         public IActionResult PlatformLandingPage()
         {
+            try
+            {
+                var obj = _IUnitOfWork.MissionRepository.GetAll().ToList();
+                if(obj != null)
+                { 
+                     PlatformLandingViewModel MissionVM = new PlatformLandingViewModel();
+                    foreach (var item in obj)
+                    {
+                        MissionVM.City = item.City;
+                        MissionVM.Country = item.Country;
+                        MissionVM.CountryId = item.CountryId;
+                        MissionVM.MissionId = item.MissionId;
+                        MissionVM.CityId = item.CityId;
+                        MissionVM.Status = item.Status;
+                        MissionVM.StartDate = item.StartDate;
+                        MissionVM.EndDate = item.EndDate;
+                        MissionVM.MissionType = item.MissionType;
+                        MissionVM.OrgName = item.OrgName;
+                        MissionVM.ShortDesc = item.ShortDesc;
+                        MissionVM.Theme = item.Theme;
+                        MissionVM.ThemeId = item.ThemeId;
+                        MissionVM.Title = item.Title;
+                        
+                    }
+                }
+
+                var CityObj = _IUnitOfWork.CityRepository.GetAll().ToList();
+
+                CityViewModel CityVM = new();
+                if (CityObj != null)
+                {
+                    foreach(var city in CityObj)
+                    {
+                        CityVM.Name = city.Name;
+                    }
+                }
+
+                var CountryObj = _IUnitOfWork.CountryRepository.GetAll().ToList();
+                CountryViewModel CountryVM = new();
+                if(CountryObj != null)
+                {
+                    foreach(var country in CountryObj)
+                    {
+                        CountryVM.Name = country.Name;
+                    }
+                }
+
+                var SkillsObj = _IUnitOfWork.SkillsRepository.GetAll().ToList();
+                SkillsViewModel SkillsVM = new();
+                if (SkillsObj != null)
+                {
+                    foreach (var Skills in SkillsObj )
+                    {
+                        SkillsVM.SkillName = Skills.SkillName;
+                    }
+                }
+
+                var ThemeObj = _IUnitOfWork.MissionThemeRepository.GetAll().ToList();
+                List<ThemeViewModel> ThemeViewModelList = new List<ThemeViewModel>();
+                ThemeViewModel ThemeVM = new();
+
+
+                if (ThemeObj != null)
+                {
+                    foreach (var Theme in ThemeObj)
+                    {
+                        ThemeViewModelList.Add(ConvertToThemeVM(Theme));
+                    }
+                }
+                ThemeViewModel ConvertToThemeVM(MissionTheme Theme)
+                {
+                    ThemeVM.Title = Theme.Title;
+                    return ThemeVM;
+                }
+
+
+                /*List<Mission> MissionList = obj.ToList();*/
+
+            }
+            catch(Exception e)
+            {
+                e.GetBaseException();
+            }
             return View();
         }
 

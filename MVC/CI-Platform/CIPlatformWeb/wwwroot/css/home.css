@@ -12,6 +12,8 @@ img {
     height: 1rem;
 }
 
+
+
 /* .z-index {
     z-index: 9999;
 } */
@@ -20,7 +22,10 @@ img {
     z-index: -9999;
     position: relative;
 } */
-
+.mission-status {
+    background-color: green;
+    color: white;
+}
 
 .user-img {
     height: 40px;
@@ -462,6 +467,13 @@ img {
     .user-div-volunteer {
         top: 7rem;
     }
+    .filter-div {
+        z-index: 1;
+        top: 0;
+        left: 0;
+        position: absolute;
+        background-color: white;
+    }
 
 }
 
@@ -473,12 +485,19 @@ img {
     .skills-ul {
         display: inline !important;
     }
-
+    .filter-div
+    {
+        z-index: 1;
+        top:0;
+        left:0;
+       position:absolute;
+        background-color:white;
+        
+    }
 
 
 
     .second-div {
-
         border-top: 1px solid rgba(0, 0, 0, 0.1);
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         border-right: none;
