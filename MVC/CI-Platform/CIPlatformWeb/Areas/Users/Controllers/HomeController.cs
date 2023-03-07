@@ -12,6 +12,8 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
 using System.Linq.Expressions;
+using System.Diagnostics.Metrics;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CIPlatformWeb.Areas.Users.Controllers
 {
@@ -47,7 +49,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
             if (ModelState.IsValid)
             {
-                if ( result != null)
+                if (result != null)
                 {
                     HttpContext.Session.SetString("email", model.Email.ToString());
                     HttpContext.Session.SetString("firstName", result.FirstName.ToString());
@@ -63,7 +65,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 }
             }
             return View();
-            
+
 
         }
 
@@ -79,36 +81,36 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         [HttpPost]
         public IActionResult ForgotPassword(ForgotPasswordViewModel model)
         {
-            var Email = _IUnitOfWork.UserRepository.GetFirstOrDefault(m=> m.Email==model.Email);
+            var Email = _IUnitOfWork.UserRepository.GetFirstOrDefault(m => m.Email == model.Email);
             if (ModelState.IsValid)
             {
                 if (Email != null)
                 {
                     String token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
                     String email = model.Email;
-                    var linkHref =  Url.Action("ResetPassword", "Home", new {_email = email, _token = token }, "https");
+                    var linkHref = Url.Action("ResetPassword", "Home", new { _email = email, _token = token }, "https");
                     String subject = "Reset Password Link";
                     String htmlMessage = $@"
                             <h2>Welcome Back,</h2>
                             Click below button to reset account's password!<br>
                             <a href='{linkHref}'><button>Reset Your Password</button></a>  
                           ";
-                    
+
 
                     _EmailSender.SendEmail(email, subject, htmlMessage);
 
-                    PasswordReset obj = new PasswordReset();    
+                    PasswordReset obj = new PasswordReset();
                     obj.Email = email;
-                    obj.Token= token;
+                    obj.Token = token;
                     _IUnitOfWork.PasswordResetRepo.Add(obj);
                     _IUnitOfWork.Save();
-                    
+
                     TempData["MailSuccess"] = "Reset Password link is Sent to your mail id please check";
                 }
                 else
                 {
                     ModelState.AddModelError("Email", "Please Enter Registerd Email");
-                    
+
                 }
             }
             return View();
@@ -116,13 +118,13 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         public IActionResult ResetPassword(String _email, String _token)
         {
             ResetPasswordViewModel vm = new ResetPasswordViewModel()
-            { 
+            {
                 Email = _email,
                 Token = _token
             };
 
             var ResetPasswordObj = _IUnitOfWork.PasswordResetRepo.GetFirstOrDefault(obj => obj.Token == _token);
-            if(ResetPasswordObj == null)
+            if (ResetPasswordObj == null)
             {
                 TempData["ResetPasswordError"] = "Your Reset Password Link Expired!";
                 return View("ForgotPassword");
@@ -152,91 +154,198 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         }
         public IActionResult PlatformLandingPage()
         {
-            try
+            /*List<Mission> MissionList = obj.ToList();*/
+            var indexViewModel = new IndexViewModel()
             {
-                var obj = _IUnitOfWork.MissionRepository.GetAll().ToList();
-                if(obj != null)
-                { 
-                     PlatformLandingViewModel MissionVM = new PlatformLandingViewModel();
+                CountryList = this.getCountryList(),
+                CityList = this.getCityList(),
+                MissionList = this.getMissionList(),
+                SkillsList = this.getSkillList(),
+                ThemeList = this.getThemeList()
+
+
+            };
+            return View(indexViewModel);
+        }
+
+            public List<PlatformLandingViewModel> getMissionList()
+            {
+                var obj = _IUnitOfWork.MissionRepository.getAllMissions().ToList();
+                List<PlatformLandingViewModel> MissionVMList = new();
+           
+
+                if (obj != null)
+                {
                     foreach (var item in obj)
                     {
-                        MissionVM.City = item.City;
-                        MissionVM.Country = item.Country;
-                        MissionVM.CountryId = item.CountryId;
-                        MissionVM.MissionId = item.MissionId;
-                        MissionVM.CityId = item.CityId;
-                        MissionVM.Status = item.Status;
-                        MissionVM.StartDate = item.StartDate;
-                        MissionVM.EndDate = item.EndDate;
-                        MissionVM.MissionType = item.MissionType;
-                        MissionVM.OrgName = item.OrgName;
-                        MissionVM.ShortDesc = item.ShortDesc;
-                        MissionVM.Theme = item.Theme;
-                        MissionVM.ThemeId = item.ThemeId;
-                        MissionVM.Title = item.Title;
-                        
+                        MissionVMList.Add(CovertToMissionVM(item));
                     }
+                    return MissionVMList;
                 }
-
-                var CityObj = _IUnitOfWork.CityRepository.GetAll().ToList();
-
-                CityViewModel CityVM = new();
-                if (CityObj != null)
-                {
-                    foreach(var city in CityObj)
-                    {
-                        CityVM.Name = city.Name;
-                    }
-                }
-
-                var CountryObj = _IUnitOfWork.CountryRepository.GetAll().ToList();
-                CountryViewModel CountryVM = new();
-                if(CountryObj != null)
-                {
-                    foreach(var country in CountryObj)
-                    {
-                        CountryVM.Name = country.Name;
-                    }
-                }
-
-                var SkillsObj = _IUnitOfWork.SkillsRepository.GetAll().ToList();
-                SkillsViewModel SkillsVM = new();
-                if (SkillsObj != null)
-                {
-                    foreach (var Skills in SkillsObj )
-                    {
-                        SkillsVM.SkillName = Skills.SkillName;
-                    }
-                }
-
-                var ThemeObj = _IUnitOfWork.MissionThemeRepository.GetAll().ToList();
-                List<ThemeViewModel> ThemeViewModelList = new List<ThemeViewModel>();
-                ThemeViewModel ThemeVM = new();
+                return null;
+             }
 
 
-                if (ThemeObj != null)
-                {
-                    foreach (var Theme in ThemeObj)
-                    {
-                        ThemeViewModelList.Add(ConvertToThemeVM(Theme));
-                    }
-                }
-                ThemeViewModel ConvertToThemeVM(MissionTheme Theme)
-                {
-                    ThemeVM.Title = Theme.Title;
-                    return ThemeVM;
-                }
+        PlatformLandingViewModel CovertToMissionVM(Mission item)
+        {
+            PlatformLandingViewModel MissionVM = new();
+            MissionVM.City = item.City;
+            /*MissionVM.Country = item.Country;
+              MissionVM.CountryId = item.CountryId;*/
+            MissionVM.MissionId = item.MissionId;
+            MissionVM.CityId = item.CityId;
+            MissionVM.Status = item.Status;
+            MissionVM.StartDate = item.StartDate;
+            MissionVM.EndDate = item.EndDate;
+            MissionVM.MissionType = item.MissionType;
+            MissionVM.OrgName = item.OrgName;
+            MissionVM.ShortDesc = item.ShortDesc;
+            MissionVM.Theme = item.Theme;
+            MissionVM.ThemeId = item.ThemeId;
+            MissionVM.Title = item.Title;
+            MissionVM.ThumbnailURL = getUrl(item.MissionMedia);
+            MissionVM.StartDate = item.StartDate;
+            MissionVM.EndDate = item.EndDate;
+            MissionVM.GoalMissions = getGoalMission(item.GoalMissions);
 
-
-                /*List<Mission> MissionList = obj.ToList();*/
-
-            }
-            catch(Exception e)
-            {
-                e.GetBaseException();
-            }
-            return View();
+            return MissionVM;
         }
+
+        private GoalMission getGoalMission(ICollection<GoalMission> goalMissions)
+        {
+            GoalMission obj = new GoalMission();
+            foreach (var item in goalMissions)
+            {
+                
+                
+                    obj.GoalMissionId = item.GoalMissionId;
+                    obj.GoalValue = item.GoalValue;
+                    obj.GoalObjectiveText = item.GoalObjectiveText;
+                    obj.CreatedAt = item.CreatedAt;
+                    
+                
+
+            }
+            return obj;
+        }
+
+        private String getUrl(ICollection<MissionMedia> missionMedia)
+        {
+           var missionObj = missionMedia.FirstOrDefault(missionMedia => missionMedia.DefaultMedia == true);
+            var mediaName = missionObj.MediaName;
+            var mediaType = missionObj.MediaType;
+            var mediaPath = missionObj.MediaPath;
+
+            var url = mediaPath + mediaName + mediaType;
+            return url;
+        }
+
+        public List<CityViewModel> getCityList()
+        {
+
+            var CityObj = _IUnitOfWork.CityRepository.GetAll().ToList();
+            List<CityViewModel> CityVmList = new();
+           
+            if (CityObj != null)
+            {
+                foreach (var city in CityObj)
+                {
+                    CityVmList.Add(ConvertToCityVm(city));
+
+                }
+                return CityVmList;
+            }
+            return null;
+        }
+
+
+        CityViewModel ConvertToCityVm(City city)
+        {
+            CityViewModel CityVM = new();
+            CityVM.Name = city.Name;
+            CityVM.CityId = city.CityId;
+            return CityVM;
+        }
+        public List<CountryViewModel> getCountryList()
+        {
+
+            var CountryObj = _IUnitOfWork.CountryRepository.GetAll().ToList();
+            List<CountryViewModel> CountryVmList = new();
+            
+            if (CountryObj != null)
+            {
+                foreach (var country in CountryObj)
+                {
+                    CountryVmList.Add(ConvertToCountryVM(country));
+                }
+                return CountryVmList;
+            }
+            return null;
+        }
+
+        CountryViewModel ConvertToCountryVM(Country country)
+        {
+            CountryViewModel CountryVM = new();
+            CountryVM.Name = country.Name;
+            CountryVM.CountryId = country.CountryId;
+            return CountryVM;
+        }
+
+        public List<SkillsViewModel> getSkillList()
+        {
+            var SkillsObj = _IUnitOfWork.SkillsRepository.GetAll().ToList();
+            List<SkillsViewModel> SkillsVmList = new();
+            
+            if (SkillsObj != null)
+            {
+                foreach (var Skills in SkillsObj)
+                {
+                    SkillsVmList.Add(ConvertToSkillsVM(Skills));
+
+                }
+                return SkillsVmList;
+            }
+            return null;
+        }
+
+
+        SkillsViewModel ConvertToSkillsVM(Skill Skills)
+        {
+            SkillsViewModel SkillsVM = new();
+            SkillsVM.SkillName = Skills.SkillName;
+            SkillsVM.SkillId = Skills.SkillId;
+            return SkillsVM;
+        }
+
+        public List<ThemeViewModel> getThemeList()
+        {
+            var ThemeObj = _IUnitOfWork.MissionThemeRepository.GetAll().ToList();
+            List<ThemeViewModel> ThemeViewModelList = new List<ThemeViewModel>();
+            
+
+
+            if (ThemeObj != null)
+            {
+                foreach (var Theme in ThemeObj)
+                {
+                    ThemeViewModelList.Add(ConvertToThemeVM(Theme));
+                }
+                return ThemeViewModelList;
+            }
+            return null;
+
+        }
+
+
+        public ThemeViewModel ConvertToThemeVM(MissionTheme Theme)
+        {
+            ThemeViewModel ThemeVM = new();
+            ThemeVM.Title = Theme.Title;
+            ThemeVM.MissionThemeId = Theme.MissionThemeId;
+            return ThemeVM;
+        }
+
+
 
         public IActionResult Registration()
         {

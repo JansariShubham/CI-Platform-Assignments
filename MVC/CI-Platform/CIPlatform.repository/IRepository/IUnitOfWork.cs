@@ -13,6 +13,7 @@ namespace CIPlatform.repository.IRepository
 
         IMissionRepository MissionRepository { get; }
 
+
         ICityRepository CityRepository { get; } 
 
         ICountryRepository CountryRepository { get; }

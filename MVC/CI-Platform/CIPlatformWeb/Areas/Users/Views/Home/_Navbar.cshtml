@@ -1,6 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model CIPlatform.entities.ViewModels.IndexViewModel;
 @{
     var UserName = Context.Session.GetString("firstName");
 }
@@ -67,22 +65,40 @@
                 <div class="row d-lg-flex " id="filter-menu">
                     <div class="col-lg-3 p-3">
                         <select class="form-select select-group">
-                            <option value="1" selected>Country</option>
+                            <option value="1" selected disabled>Country</option>
+                             @foreach(var country in Model.CountryList)
+                            {
+                                <option>@country.Name</option>
+                            }
+
+
                         </select>
                     </div>
                     <div class="col-lg-3 p-3">
                         <select class="form-select select-group">
-                            <option value="1" selected>City</option>
+                            <option value="1" selected disabled>City</option>
+                            @foreach (var cities in Model.CityList)
+                            {
+                                <option>@cities.Name</option>
+                            }
                         </select>
                     </div>
                     <div class=" col-lg-3 p-3">
                         <select class="form-select select-group">
-                            <option value="1" selected>Theme</option>
+                            <option value="1" selected disabled>Theme</option>
+                            @foreach (var themes in Model.ThemeList)
+                            {
+                                <option>@themes.Title</option>
+                            }
                         </select>
                     </div>
                     <div class="col-lg-3 p-3">
                         <select class="form-select select-group">
-                            <option value="1" selected>Skills</option>
+                            <option value="1" selected disabled>Skills</option>
+                            @foreach (var skills in Model.SkillsList)
+                            {
+                                <option>@skills.SkillName</option>
+                            }
                         </select>
                     </div>
                 </div>

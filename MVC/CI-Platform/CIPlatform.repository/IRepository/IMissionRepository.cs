@@ -9,5 +9,6 @@ namespace CIPlatform.repository.IRepository
 {
     public interface IMissionRepository : IRepository<Mission>
     {
+        public List<Mission> getAllMissions();
     }
 }

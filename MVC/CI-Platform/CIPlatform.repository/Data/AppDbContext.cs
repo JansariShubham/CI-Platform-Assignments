@@ -39,7 +39,7 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<MissionInvite> MissionInvites { get; set; }
 
-    public virtual DbSet<MissionMedium> MissionMedia { get; set; }
+    public virtual DbSet<MissionMedia> MissionMedia { get; set; }
 
     public virtual DbSet<MissionRating> MissionRatings { get; set; }
 
@@ -383,7 +383,7 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK__mission_i__to_us__3F115E1A");
         });
 
-        modelBuilder.Entity<MissionMedium>(entity =>
+        modelBuilder.Entity<MissionMedia>(entity =>
         {
             entity.HasKey(e => e.MissionMediaId).HasName("PK__mission___848A78E8D562D41A");
 

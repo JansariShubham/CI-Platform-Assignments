@@ -34,13 +34,14 @@ namespace CIPlatform.entities.ViewModels
         public virtual City? City { get; set; }
 
         public virtual Country? Country { get; set; }
-/*
-        public virtual ICollection<FavouriteMission> FavouriteMissions { get; } = new List<FavouriteMission>();
 
-        public virtual ICollection<GoalMission> GoalMissions { get; } = new List<GoalMission>();
+        public virtual FavouriteMission FavouriteMissions { get; }
 
-        public virtual ICollection<MissionInvite> MissionInvites { get; } = new List<MissionInvite>();*/
+        public virtual GoalMission GoalMissions { get; set; }
 
+        public virtual MissionInvite MissionInvites { get; }
         public virtual MissionTheme? Theme { get; set; }
+
+        public virtual String?  ThumbnailURL { get; set; } 
     }
 }
