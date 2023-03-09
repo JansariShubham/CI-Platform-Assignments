@@ -64,22 +64,23 @@
             <div class="col-6 m-0  filter-div" >
                 <div class="row d-lg-flex " id="filter-menu">
                     <div class="col-lg-3 p-3">
-                        <select class="form-select select-group">
+                        <select id ="country-filter" class="form-select select-group">
                             <option value="1" selected disabled>Country</option>
                              @foreach(var country in Model.CountryList)
                             {
-                                <option>@country.Name</option>
+                                <option value="@country.Name">@country.Name</option>
                             }
 
 
                         </select>
                     </div>
-                    <div class="col-lg-3 p-3">
-                        <select class="form-select select-group">
+                    <div class="col-lg-3 p-3 city-div">
+                        <select id ="city-filter" class="form-select select-group">
+                           
                             <option value="1" selected disabled>City</option>
-                            @foreach (var cities in Model.CityList)
+                           @foreach (var cities in Model.CityList)
                             {
-                                <option>@cities.Name</option>
+                             @*<option value="CityName">@cities.Name</option>*@
                             }
                         </select>
                     </div>
@@ -105,3 +106,5 @@
             </div>
         </div>
 </section>
+
+

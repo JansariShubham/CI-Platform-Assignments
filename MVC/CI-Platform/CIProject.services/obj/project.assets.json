@@ -4156,7 +4156,8 @@
           "CIPlatform.repository": "1.0.0",
           "CIPlatform.utilities": "1.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.3",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.12"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.12",
+          "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
           "bin/placeholder/CIPlatformWeb.dll": {}

@@ -17,6 +17,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace CIPlatformWeb.Areas.Users.Controllers
 {
+    [Area("Users")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -54,7 +55,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                     HttpContext.Session.SetString("email", model.Email.ToString());
                     HttpContext.Session.SetString("firstName", result.FirstName.ToString());
 
-                    return View("PlatFormLandingPage");
+                    return RedirectToAction("PlatFormLandingPage");
                 }
 
                 else
@@ -168,22 +169,22 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             return View(indexViewModel);
         }
 
-            public List<PlatformLandingViewModel> getMissionList()
-            {
-                var obj = _IUnitOfWork.MissionRepository.getAllMissions().ToList();
-                List<PlatformLandingViewModel> MissionVMList = new();
-           
+        public List<PlatformLandingViewModel> getMissionList()
+        {
+            var obj = _IUnitOfWork.MissionRepository.getAllMissions().ToList();
+            List<PlatformLandingViewModel> MissionVMList = new();
 
-                if (obj != null)
+
+            if (obj != null)
+            {
+                foreach (var item in obj)
                 {
-                    foreach (var item in obj)
-                    {
-                        MissionVMList.Add(CovertToMissionVM(item));
-                    }
-                    return MissionVMList;
+                    MissionVMList.Add(CovertToMissionVM(item));
                 }
-                return null;
-             }
+                return MissionVMList;
+            }
+            return null;
+        }
 
 
         PlatformLandingViewModel CovertToMissionVM(Mission item)
@@ -216,14 +217,14 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             GoalMission obj = new GoalMission();
             foreach (var item in goalMissions)
             {
-                
-                
-                    obj.GoalMissionId = item.GoalMissionId;
-                    obj.GoalValue = item.GoalValue;
-                    obj.GoalObjectiveText = item.GoalObjectiveText;
-                    obj.CreatedAt = item.CreatedAt;
-                    
-                
+
+
+                obj.GoalMissionId = item.GoalMissionId;
+                obj.GoalValue = item.GoalValue;
+                obj.GoalObjectiveText = item.GoalObjectiveText;
+                obj.CreatedAt = item.CreatedAt;
+
+
 
             }
             return obj;
@@ -231,7 +232,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         private String getUrl(ICollection<MissionMedia> missionMedia)
         {
-           var missionObj = missionMedia.FirstOrDefault(missionMedia => missionMedia.DefaultMedia == true);
+            var missionObj = missionMedia.FirstOrDefault(missionMedia => missionMedia.DefaultMedia == true);
             var mediaName = missionObj.MediaName;
             var mediaType = missionObj.MediaType;
             var mediaPath = missionObj.MediaPath;
@@ -245,7 +246,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
             var CityObj = _IUnitOfWork.CityRepository.GetAll().ToList();
             List<CityViewModel> CityVmList = new();
-           
+
             if (CityObj != null)
             {
                 foreach (var city in CityObj)
@@ -271,7 +272,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
             var CountryObj = _IUnitOfWork.CountryRepository.GetAll().ToList();
             List<CountryViewModel> CountryVmList = new();
-            
+
             if (CountryObj != null)
             {
                 foreach (var country in CountryObj)
@@ -295,7 +296,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         {
             var SkillsObj = _IUnitOfWork.SkillsRepository.GetAll().ToList();
             List<SkillsViewModel> SkillsVmList = new();
-            
+
             if (SkillsObj != null)
             {
                 foreach (var Skills in SkillsObj)
@@ -321,7 +322,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         {
             var ThemeObj = _IUnitOfWork.MissionThemeRepository.GetAll().ToList();
             List<ThemeViewModel> ThemeViewModelList = new List<ThemeViewModel>();
-            
+
 
 
             if (ThemeObj != null)
@@ -354,12 +355,12 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         [HttpPost]
         public IActionResult Registration(UserViewModel model)
         {
-           var userEmail =_IUnitOfWork.UserRepository.GetFirstOrDefault(m => m.Email == model.Email);
-            if(userEmail != null)
+            var userEmail = _IUnitOfWork.UserRepository.GetFirstOrDefault(m => m.Email == model.Email);
+            if (userEmail != null)
             {
-                ModelState.AddModelError("Email","Email ID is Already Exist!");
+                ModelState.AddModelError("Email", "Email ID is Already Exist!");
                 return View(model);
-             }
+            }
 
             if (ModelState.IsValid)
             {
@@ -390,6 +391,15 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        [HttpGet]
+        /*[Route("/Users/Home/GetCitiesByCountry")]*/
+        public JsonResult GetCitiesByCountry(string country)
+        {
+            var CountryObj = _IUnitOfWork.CountryRepository.GetFirstOrDefault(countryName => countryName.Name== country);
+            var cityList = _IUnitOfWork.CityRepository.GetAll().Where(m => m.CountryId == CountryObj.CountryId).ToList();
+
+            return Json(cityList);
         }
     }
 }

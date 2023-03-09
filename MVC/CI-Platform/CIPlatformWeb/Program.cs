@@ -4,6 +4,7 @@ using CIPlatform.repository.IRepository;
 using CIPlatform.repository.Repository;
 using CIPlatform.utilities;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 /*using CIPlatform.DataAccess.Data;*/
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +16,11 @@ builder.Services.AddSession();
 builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<EmailSender>();
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
