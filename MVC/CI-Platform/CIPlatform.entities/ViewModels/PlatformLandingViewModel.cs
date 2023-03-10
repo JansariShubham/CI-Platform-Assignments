@@ -42,6 +42,8 @@ namespace CIPlatform.entities.ViewModels
         public virtual MissionInvite MissionInvites { get; }
         public virtual MissionTheme? Theme { get; set; }
 
-        public virtual String?  ThumbnailURL { get; set; } 
+        public virtual String?  ThumbnailURL { get; set; }
+
+        public virtual MissionSkill MissionSkills { get; set; } 
     }
 }

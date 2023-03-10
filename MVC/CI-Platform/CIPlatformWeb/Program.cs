@@ -40,6 +40,6 @@ app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{area=Users}/{controller=Home}/{action=Login}/{id?}");
+    pattern: "{area=Users}/{controller=Home}/{action=PlatformLandingPage}/{id?}");
 
 app.Run();

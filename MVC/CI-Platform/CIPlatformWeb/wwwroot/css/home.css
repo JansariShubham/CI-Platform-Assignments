@@ -11,7 +11,14 @@ img {
 .search-img {
     height: 1rem;
 }
+.city-span{
+    font-size: 12px;
+}
 
+/*.footer-div{
+    position:fixed;
+    bottom:0;
+}*/
 
 
 /* .z-index {
@@ -410,7 +417,7 @@ img {
     }
 
     .favourate {
-        top: 6rem;
+        top: 4rem;
         right: 1rem;
 
     }
@@ -422,7 +429,7 @@ img {
     }
 
     .user-div {
-        top: 9rem;
+        top: 7rem;
         right: 1rem;
 
     }
@@ -554,7 +561,7 @@ img {
     }
 
     .favourate {
-        top: 6rem;
+        top: 4rem;
         right: 1rem;
 
     }
@@ -562,7 +569,7 @@ img {
 
 
     .user-div {
-        top: 10rem;
+        top: 7.5rem;
         right: 1rem;
 
     }

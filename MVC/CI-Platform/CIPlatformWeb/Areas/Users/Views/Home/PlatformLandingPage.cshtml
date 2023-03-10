@@ -52,7 +52,7 @@
     <section class="mt-3">
         <div class="d-flex container forth-div justify-content-between flex-wrap">
             <div class="d-flex gap-1">
-                Explore<span>72 missions</span>
+                Explore<span>@Model.MissionList.Count missions</span>
             </div>
             <div class="d-flex">
 
@@ -92,10 +92,11 @@
                     {
                         <span class="position-absolute mission-status py-2 px-3 rounded-end-pill mt-2">Closed</span>
                     }
-
+                 <input type="hidden" class="skill-id" value="@missions.MissionSkills.SkillId" />
+                    <input type="hidden" class="country-name" value="@missions.Country.Name"/>
                     <div class=" position-absolute country-div rounded-pill p-2">
                         <img class="" src="~/images/pin1.png" alt="#">
-                        <span>@missions.City.Name</span>
+                        <span class="city-span">@missions.City.Name</span>
                     </div>
                     <a href="#" class="position-absolute favourate rounded-pill p-1">
                         <img class="" src="~/images/heart.png" alt="#">
@@ -303,7 +304,7 @@
                              class="card-img-top position-relative" alt="...">
                         <div class="position-absolute country-list-div rounded-pill p-2">
                             <img class="" src="~/images/pin1.png" alt="#">
-                            <span>@missions.City.Name</span>
+                            <span class="city-span">@missions.City.Name</span>
                         </div>
                         <a href="#" class="position-absolute favourate-list rounded-pill p-1">
                             <img class="" src="~/images/heart.png" alt="#">
@@ -498,58 +499,7 @@
 
 
 @section Scripts{
-    <script>
-
-        $(document).ready(function () {
-            $("#country-filter").change(function () {
-                var country = $(this).val();
-                $.ajax({
-                    url: "/Users/Home/GetCitiesByCountry",
-                    type: "GET",
-                    dataType: "json",
-                    data: { country: country },
-                    success: function (result) {
-
-                        var cityDropdown = $("#city-filter");
-                        cityDropdown.empty();
-                       
-                        $.each(result, function (i, city) {
-                            $("#city-filter").append($('<option></option>').val(city.name).html(city.name));
-                            //alert(city.name);
-                            });
-                    }
-                });
-            });
-        });
-    
-
-
-    
-
-        const inputValue = document.getElementById("search-bar");
-        inputValue.addEventListner("keyup", searchMission);
-        const searchMission = () => {
-
-            let inputValue = document.getElementById("search-bar").value.toLowerCase();
-            let missions = document.getElementsByCxlassName("grid-mission");
-            let missionCount = @Model.MissionList.Count();
-            alert("hiii");
-            console.log("hello method called!!!");
-
-            alert(missionCount);
-            let tempCount = 0;
-            for (var i = 0; i <= missions.length; i++) {
-                var missionTitle = missions[i].getElementsByClassName("card-title")[0];
-                if (missionTitle.innerHTML.toLocaleLowerCase().indexOf(inputValue) > -1) {
-                    missionTitle[i].style.display = "";
-                }
-                else {
-                    missionTitle[i].style.display = "none";
-                    tempCount++;
-                }
-            }
-        }
-
-        console.log(inputValue);
-    </script>
+   
 }
+
+<partial name="_Footer" />

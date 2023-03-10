@@ -21,6 +21,7 @@
         </ul>
 
     </div>
+    
     <div class="dropdown right-div">
         <button class="header-serach d-md-none border-0">
             <img class="search-logo" id="search-btn" src="~/images/search.png" alt="#">
@@ -37,9 +38,12 @@
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home">Logout</a></li>
         </ul>
-        @*<div class="d-inline">
-        <a class="btn btn-danger rounded" >Logout</a>
-        </div>*@
+        @if (UserName == null)
+        {
+            <div class="d-inline">
+                <a class="btn btn-outline-danger rounded" asp-action="Login" asp-controller="Home" >Login</a>
+            </div>
+        }
     </div>
 
 </div>
@@ -53,7 +57,7 @@
                     <img class="d-none d-md-inline d-lg-inline search-img mt-1" src="~/images/search.png"
                          alt="#">
                     <input type="text" id="search-bar" class="search-bar form-control border-0 p-0"
-                           placeholder="Search mission...">
+                           placeholder="Search mission..." onkeyup="searchMissions()">
                 </div>
             </div>
             <!-- filter button -->
@@ -64,18 +68,19 @@
             <div class="col-6 m-0  filter-div" >
                 <div class="row d-lg-flex " id="filter-menu">
                     <div class="col-lg-3 p-3">
-                        <select id ="country-filter" class="form-select select-group">
+                        <select id ="country-filter" class="form-select select-group" onchange="countryFilter()">
                             <option value="1" selected disabled>Country</option>
                              @foreach(var country in Model.CountryList)
                             {
                                 <option value="@country.Name">@country.Name</option>
+                               
                             }
 
 
                         </select>
                     </div>
                     <div class="col-lg-3 p-3 city-div">
-                        <select id ="city-filter" class="form-select select-group">
+                        <select id="city-filter" class="form-select select-group" onchange="cityFilter()">
                            
                             <option value="1" selected disabled>City</option>
                            @foreach (var cities in Model.CityList)
@@ -85,20 +90,20 @@
                         </select>
                     </div>
                     <div class=" col-lg-3 p-3">
-                        <select class="form-select select-group">
+                        <select id ="theme-filter" class="form-select select-group" onchange="themeFilter()"> 
                             <option value="1" selected disabled>Theme</option>
                             @foreach (var themes in Model.ThemeList)
                             {
-                                <option>@themes.Title</option>
+                                <option value="@themes.Title">@themes.Title</option>
                             }
                         </select>
                     </div>
                     <div class="col-lg-3 p-3">
-                        <select class="form-select select-group">
+                        <select class="form-select select-group" id="skill-filter" onchange="skillFilter()">
                             <option value="1" selected disabled>Skills</option>
                             @foreach (var skills in Model.SkillsList)
                             {
-                                <option>@skills.SkillName</option>
+                                <option value="@skills.SkillId">@skills.SkillName</option>
                             }
                         </select>
                     </div>

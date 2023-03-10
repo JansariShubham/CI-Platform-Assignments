@@ -191,8 +191,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         {
             PlatformLandingViewModel MissionVM = new();
             MissionVM.City = item.City;
-            /*MissionVM.Country = item.Country;
-              MissionVM.CountryId = item.CountryId;*/
+            MissionVM.Country = item.Country;
+            MissionVM.CountryId = item.CountryId;
             MissionVM.MissionId = item.MissionId;
             MissionVM.CityId = item.CityId;
             MissionVM.Status = item.Status;
@@ -204,12 +204,30 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             MissionVM.Theme = item.Theme;
             MissionVM.ThemeId = item.ThemeId;
             MissionVM.Title = item.Title;
+            MissionVM.MissionSkills = getMissionSkillList(item.MissionSkills);
             MissionVM.ThumbnailURL = getUrl(item.MissionMedia);
             MissionVM.StartDate = item.StartDate;
             MissionVM.EndDate = item.EndDate;
             MissionVM.GoalMissions = getGoalMission(item.GoalMissions);
 
             return MissionVM;
+        }
+
+        private MissionSkill getMissionSkillList(ICollection<MissionSkill> missionSkills)
+        {
+            MissionSkill obj = new MissionSkill();
+            foreach (var item in missionSkills)
+            {
+
+
+                obj.MissionSkillId = item.MissionSkillId;
+                obj.SkillId = item.SkillId;
+                obj.Skill = item.Skill;
+                obj.MissionId = item.MissionId;
+                obj.Mission = item.Mission;
+
+            }
+            return obj;
         }
 
         private GoalMission getGoalMission(ICollection<GoalMission> goalMissions)
