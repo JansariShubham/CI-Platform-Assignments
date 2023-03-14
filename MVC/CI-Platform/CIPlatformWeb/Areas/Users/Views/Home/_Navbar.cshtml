@@ -60,7 +60,7 @@
                     <img class="d-none d-md-inline d-lg-inline search-img mt-1" src="~/images/search.png"
                          alt="#">
                     <input type="text" id="search-bar" class="search-bar form-control border-0 p-0"
-                           placeholder="Search mission..." onkeyup="searchMissions()">
+                           placeholder="Search mission..." onkeyup="getFilterData()">
                 </div>
             </div>
             <!-- filter button -->
@@ -71,11 +71,11 @@
             <div class="col-6 m-0  filter-div" >
                 <div class="row d-lg-flex " id="filter-menu">
                     <div class="col-lg-3 p-3">
-                        <select id ="country-filter" class="form-select select-group" onchange="countryFilter()">
+                        <select id="country-filter" class="form-select select-group" >
                             <option value="1" selected disabled>Country</option>
                              @foreach(var country in Model.CountryList)
                             {
-                                <option value="@country.Name">@country.Name</option>
+                                <option value="@country.CountryId">@country.Name</option>
                                
                             }
 
@@ -83,7 +83,7 @@
                         </select>
                     </div>
                     <div class="col-lg-3 p-3 city-div">
-                        <select id="city-filter" class="form-select select-group" onchange="cityFilter()">
+                        <select id="city-filter" class="form-select select-group" >
                            
                             <option value="1" selected disabled>City</option>
                            @foreach (var cities in Model.CityList)
@@ -93,16 +93,16 @@
                         </select>
                     </div>
                     <div class=" col-lg-3 p-3">
-                        <select id ="theme-filter" class="form-select select-group" onchange="themeFilter()"> 
+                        <select id="theme-filter" class="form-select select-group" >
                             <option value="1" selected disabled>Theme</option>
                             @foreach (var themes in Model.ThemeList)
                             {
-                                <option value="@themes.Title">@themes.Title</option>
+                                <option value="@themes.MissionThemeId">@themes.Title</option>
                             }
                         </select>
                     </div>
                     <div class="col-lg-3 p-3">
-                        <select class="form-select select-group" id="skill-filter" onchange="skillFilter()">
+                        <select class="form-select select-group" id="skill-filter">
                             <option value="1" selected disabled>Skills</option>
                             @foreach (var skills in Model.SkillsList)
                             {
@@ -116,3 +116,8 @@
 </section>
 
 
+@section Scripts{
+    <script src="~/js/custom.js">
+  
+    </script>
+}

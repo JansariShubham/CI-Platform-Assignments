@@ -3,7 +3,9 @@ using CIPlatform.entities.DataModels;
 using CIPlatform.repository.IRepository;
 using CIPlatform.repository.Repository;
 using CIPlatform.utilities;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 /*using CIPlatform.DataAccess.Data;*/
 
@@ -18,7 +20,14 @@ builder.Services.AddSession();
 builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<EmailSender>();
-
+builder.Services.AddControllers(options =>
+{
+    options.OutputFormatters.RemoveType<SystemTextJsonOutputFormatter>();
+    options.OutputFormatters.Add(new SystemTextJsonOutputFormatter(new JsonSerializerOptions(JsonSerializerDefaults.Web)
+    {
+        ReferenceHandler = ReferenceHandler.Preserve,
+    }));
+});
 var app = builder.Build();
 
 

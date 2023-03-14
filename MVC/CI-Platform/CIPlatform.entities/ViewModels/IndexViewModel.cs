@@ -14,5 +14,6 @@ namespace CIPlatform.entities.ViewModels
         public List<SkillsViewModel> SkillsList { get; set; }
 
         public List<ThemeViewModel> ThemeList { get; set; }
+
     }
 }

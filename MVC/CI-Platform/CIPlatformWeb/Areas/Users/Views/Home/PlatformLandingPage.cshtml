@@ -1,5 +1,4 @@
-﻿@using Newtonsoft.Json;
-@model CIPlatform.entities.ViewModels.IndexViewModel;
+﻿@model CIPlatform.entities.ViewModels.IndexViewModel;
 
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -9,7 +8,6 @@
 }
 
 <partial name="_Navbar" />
-
 
 <!-- third section  -->
 <section class="d-none d-md-inline">
@@ -48,9 +46,7 @@
             <button class="border-0 clear-btn">Clear All</button>
         </ul>
     </div>
-
 </section>
-
 
 <!-- forth section  -->
 <section class="mt-3">
@@ -76,270 +72,7 @@
     </div>
 </section>
 
-<!-- grid and list view  -->
-<section class="mt-3 container p-0">
-    <!-- grid view  -->
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 grid-view" id="mainDiv">
-
-
-
-        @*<div class="col">
-        <div class="card">
-        <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
-        class="card-img-top position-relative" alt="...">
-        <div class="position-absolute country-div rounded-pill p-2">
-        <img class="" src="~/images/pin1.png" alt="#">
-        <span>Toronto</span>
-        </div>
-        <a href="" class="position-absolute favourate rounded-pill p-1">
-        <img class="" src="~/images/heart.png" alt="#">
-        </a>
-        <a href="" class="position-absolute user-div rounded-pill p-2">
-        <img class="" src="~/images/user.png" alt="#">
-        </a>
-        <span class="theme-name align-text-top py-2 px-4 mx-auto position-relative translate-middle-y">Environment</span>
-        <div class="card-body p-0">
-        <h5 class="card-title mission-title px-3">
-        Grow Trees - on the path to environment
-        sustainability
-        </h5>
-        <p class="card-text mission-desc px-3">
-        Lorem ipsum dolor, sit amet consectetur adipisicing
-        elit.
-        Iusto,
-        ipsa.
-        Sint
-        similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
-        iste
-        nobis
-        voluptatibus! Ipsa molestiae in maxime similique id!
-        </p>
-        <div class="d-flex justify-content-between px-3">
-        <div class="org-name">Tree Canada</div>
-        <div>
-        <img src="~/images/selected-star.png" alt="">
-        <img src="~/images/selected-star.png" alt="">
-        <img src="~/images/selected-star.png" alt="">
-        <img src="~/images/star.png" alt="">
-        <img src="~/images/star.png" alt="">
-        </div>
-        </div>
-        <div>
-        <div class="border start-end-date rounded-pill mx-auto p-2 -translate-middle-y bg-white">
-        From
-        Plant 10,000 Trees
-        </div>
-        <div class="d-flex justify-content-around  border-top pt-4 pb-2 border-bottom">
-        <div class="d-flex align-items-center">
-        <img class='h-50' src="~/images/Seats-left.png" alt="#">
-        <div class="ms-2">
-        <p class="m-0 p-0 fw-bold">10</p>
-        <span class="m-0 p-0 seats-left">Seats left</span>
-        </div>
-        </div>
-        <div class="d-flex align-items-center">
-        <img class="h-50" src="~/images/achieved.png" alt="#">
-
-        <div class="ms-2">
-        <div class="progress">
-        <div class="progress-bar w-75" role="progressbar" aria-valuenow="50"
-        aria-valuemin="0" aria-valuemax="100">
-        </div>
-        </div>
-
-        <span class="m-0 p-0">8000 achieved</span>
-
-        </div>
-        </div>
-        </div>
-        </div>
-        <div class="d-flex justify-content-center">
-        <a href="#" class="btn apply-btn mt-3 mb-3 ">
-        Apply <img src="~/images/right-arrow.png"
-        alt="#">
-        </a>
-        </div>
-        </div>
-        </div>
-        </div>*@
-
-
-        <!-- grid view end  -->
-
-    </div>
-    <!-- list view  -->
-    <div class="d-flex flex-column gap-5 list-view d-none">
-        @foreach (var missions in Model.MissionList)
-        {
-            <div class="card">
-                <div class="row">
-                    <div class="col-4">
-                        <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
-                         class="card-img-top position-relative" alt="...">
-                        <div class="position-absolute country-list-div rounded-pill p-2">
-                            <img class="" src="~/images/pin1.png" alt="#">
-                            <span class="city-span">@missions.City.Name</span>
-                        </div>
-                        <a href="#" class="position-absolute favourate-list rounded-pill p-1">
-                            <img class="" src="~/images/heart.png" alt="#">
-                        </a>
-                        <a href="#" class="position-absolute user-list-div rounded-pill p-2">
-                            <img class="" src="~/images/user.png" alt="#">
-                        </a>
-                        <div class="theme-name align-text-top py-2 px-4 mx-auto translate-middle-y">
-                            @missions.Theme.Title
-
-                        </div>
-                    </div>
-                    <div class="card-body col-8 p-0">
-                        <h5 class="card-title mission-title p-3 ">
-                            @missions.Title
-                        </h5>
-                        <p class="card-text mission-desc px-3">
-                            @missions.ShortDesc
-                        </p>
-                        <div class="d-flex justify-content-between me-3">
-                            <div class="mt-3">
-                                <div class="d-flex flex-md-column px-3">
-                                    <div class="org-name">@missions.OrgName</div>
-                                    <div class="ps-md-0 ps-4">
-                                        <img src="~/images/selected-star.png" alt="">
-                                        <img src="~/images/selected-star.png" alt="">
-                                        <img src="~/images/selected-star.png" alt="">
-                                        <img src="~/images/star.png" alt="">
-                                        <img src="~/images/star.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="d-flex ps-3">
-                                    <a href="#" class="btn apply-btn mt-3 mb-3">
-                                        Apply <img src="~/images/right-arrow.png" alt="#">
-                                    </a>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="border start-end-date rounded-pill mx-auto p-2 -translate-middle-y bg-white">
-                                    From
-                                    @missions.StartDate until
-                                    @missions.EndDate
-                                </div>
-                                <div class="d-flex justify-content-around border-top pt-4 pb-2  px-4">
-                                    <div class="d-flex align-items-center">
-                                        <img class='h-50' src="~/images/Seats-left.png" alt="#">
-                                        <div class="ms-2">
-                                            <p class="m-0 p-0 fw-bold">10</p>
-                                            <span class="m-0 p-0 seats-left">Seats left</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center ms-4">
-                                        <img class="h-50" src="~/images/deadline.png" alt="#">
-                                        <div class="ms-2">
-                                            <p class="m-0 p-0 fw-bold">09/01/2019</p>
-                                            <span class="m-0 p-0 deadline"> Deadline</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-        }
-
-
-
-
-        @*<div class="card">
-        <div class="row">
-        <div class="col-4">
-        <img src="~/images/Animal-welfare-&-save-birds-campaign.png"
-        class="card-img-top position-relative" alt="...">
-        <div class="position-absolute country-list-div rounded-pill p-2">
-        <img class="" src="~/images/pin1.png" alt="#">
-        <span>Toronto</span>
-        </div>
-        <a href="#" class="position-absolute favourate-list rounded-pill p-1">
-        <img class="" src="~/images/heart.png" alt="#">
-        </a>
-        <a href="#" class="position-absolute user-list-div rounded-pill p-2">
-        <img class="" src="~/images/user.png" alt="#">
-        </a>
-        <div class="theme-name align-text-top py-2 px-4 mx-auto translate-middle-y">Animals</div>
-        </div>
-        <div class="card-body col-8 p-0">
-        <h5 class="card-title mission-title p-3 ">
-        Animals welfare & save birds campaign
-
-        </h5>
-        <p class="card-text mission-desc px-3">
-        Lorem ipsum dolor, sit amet consectetur adipisicing
-        elit.
-        Iusto,
-        ipsa.
-        Sint
-        similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
-        iste
-        nobis
-        voluptatibus! Ipsa molestiae in maxime similique id!
-        </p>
-        <div class="d-flex justify-content-between me-3">
-        <div class="mt-3">
-        <div class="d-flex flex-md-column px-3">
-        <div class="org-name">JR Foundation</div>
-        <div class="ps-md-0 ps-4">
-        <img src="~/images/selected-star.png" alt="">
-        <img src="~/images/selected-star.png" alt="">
-        <img src="~/images/selected-star.png" alt="">
-        <img src="~/images/selected-star.png" alt="">
-        <img src="~/images/selected-star.png" alt="">
-        </div>
-        </div>
-        <div class="d-flex ps-3">
-        <a href="#" class="btn apply-btn mt-3 mb-3">
-        Apply <img src="~/images/right-arrow.png" alt="#">
-        </a>
-        </div>
-        </div>
-        <div>
-        <div class="border start-end-date rounded-pill mx-auto p-2 -translate-middle-y bg-white">
-        From
-        10/01/2019 until
-        25/02/2019
-        </div>
-        <div class="d-flex justify-content-around border-top pt-4 pb-2  px-4">
-        <div class="d-flex align-items-center">
-        <img class='h-50' src="~/images/Seats-left.png" alt="#">
-        <div class="ms-2">
-        <p class="m-0 p-0 fw-bold">10</p>
-        <span class="m-0 p-0 seats-left">Seats left</span>
-        </div>
-        </div>
-        <div class="d-flex align-items-center ms-4">
-        <img class="h-50" src="~/images/achieved.png" alt="#">
-        <div class="ms-2">
-        <div class="progress mt-2">
-        <div class="progress-bar w-75" role="progressbar" aria-valuenow="50"
-        aria-valuemin="0" aria-valuemax="100">
-        </div>
-        </div>
-
-
-        <span class="m-0 p-0 deadline">8000 achieved</span>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-
-
-        </div>
-        </div>
-        </div>*@
-
-    </div>
-</section>
-
+<div id="partial"> <partial name = "_index" /> </div>
 <!-- Pagination  -->
 
 <ul class="pagination mt-5 d-flex justify-content-center">
@@ -375,313 +108,169 @@
 @section Scripts{
     <script>
 
-        var userName = '@UserName';
-       // console.log(userName);
-        var myModel = @Json.Serialize(Model.MissionList);
-       // myModel = myModel.slice(1,5);
-       myModel.forEach((missions) => {
-            // console.log(missions["thumbnailURL"]);
-            //console.log(missions);
-            document.getElementById("mainDiv").innerHTML += `
-                             <div class="col grid-mission">
+        ////all filters code
 
-                                <div class="card">
-                                    <img src= ${missions.thumbnailURL}
-                                         class="card-img-top position-relative" alt="...">
-                        ${missions.status && userName != null && userName != "" ? `<span class= "position-absolute mission-status py-2 px-3 rounded-end-pill mt-2" > Applied </span>` : `<span> </span>` }
-        
-                                   
-        
+        //$(document).ready(function () {
+        //    $("#country-filter").change(function () {
+        //        var country = $(this).val();
+        //        $.ajax({
+        //            url: "/Users/Home/GetCitiesByCountry",
+        //            type: "GET",
+        //            dataType: "json",
+        //            data: { country: country },
+        //            success: function (result) {
 
-                                 <input type="hidden" class="skill-id" value="${missions.missionSkills.skillId}" />
-                                    <input type="hidden" class="country-name" value="${missions.country.name}"/>
-                                    <div class=" position-absolute country-div rounded-pill p-2">
-                                        <img class="" src="/images/pin1.png" alt="#">
-                                        <span class="city-span">"${missions.city.name}"</span>
-                                    </div>
-                                    <a href="#" class="position-absolute favourate rounded-pill p-1">
-                                        <img class="" src="/images/heart.png" alt="#">
-                                    </a>
-                                    <a href="#" class="position-absolute user-div rounded-pill p-2">
-                                        <img class="" src="/images/user.png" alt="#">
-                                    </a>
-                                    <span class="theme-name align-text-top py-2 px-4 mx-auto position-relative translate-middle-y">${missions.theme.title}</span>
-                                    <div class="card-body p-0">
-                                        <h5 class="card-title mission-title px-3">
-                    ${missions.title}
-                                        </h5>
-                                        <p class="card-text mission-desc px-3">
-                ${missions.shortDesc}
-                                        </p>
-                                        <div class="d-flex justify-content-between px-3">
-                                            <div class="org-name">${missions.orgName}</div>
-                                            <div>
-                                                <img src="~/images/selected-star.png" alt="">
-                                                <img src="~/images/selected-star.png" alt="">
-                                                <img src="~/images/selected-star.png" alt="">
-                                                <img src="~/images/star.png" alt="">
-                                                <img src="~/images/star.png" alt="">
-                                            </div>
-                                        </div>
-                ${
-            missions.missionType ? `<div>
-                <div class = "border start-end-date rounded-pill mx-auto p-2 -translate-middle-y bg-white" >
-                    From
-                        ${ missions.startDate.slice(0, 10) }
-            until
-                                ${ missions.endDate.slice(0, 10) }
-            </div>
-                <div class= "d-flex justify-content-around  border-top pt-4 pb-2 border-bottom">
-                    <div class="d-flex align-items-center" >
-                        <img class='h-50' src = "/images/Seats-left.png" alt = "#">
-                            <div class="ms-2" >
-                                <p class="m-0 p-0 fw-bold" > 10 </p>
-                                    <span class= "m-0 p-0 seats-left" > Seats left </span>
-                                        </div>
-                                        </div>
-                                        <div class= "d-flex align-items-center">
-                                            <img class="h-50" src = "/images/deadline.png" alt = "#" >
-                                                <div class="ms-2" >
-                                                    <p class="m-0 p-0 fw-bold" > ${ missions.endDate.slice(0, 10) } </p>
-                                                        <span class= "m-0 p-0 deadline"> Deadline </span>
-                                                            </div>
-                                                            </div>
-                                                            </div>
+        //                var cityDropdown = $("#city-filter");
+        //                cityDropdown.empty();
 
-
-                                                            </div>`:
-
-                                                             
-                                                       ` <div>
-                                                        <div class="border start-end-date rounded-pill mx-auto p-2 -translate-middle-y bg-white" >
-
-                                                            ${ missions.goalMissions.goalObjectiveText }
-        </div>
-            <div class= "d-flex justify-content-around  border-top pt-4 pb-2 border-bottom" >
-                <div class="d-flex align-items-center" >
-                    <img class='h-50' src = "/images/Seats-left.png" alt = "#" >
-                        <div class="ms-2" >
-                            <p class="m-0 p-0 fw-bold"> 10 </p>
-                                <span class= "m-0 p-0 seats-left"> Seats left </span>
-                                    </div>
-                                    </div>
-                                    <div class= "d-flex align-items-center" >
-                                        <img class="h-50" src = "/images/achieved.png" alt = "#" >
-
-                                            <div class="ms-2" >
-                                                <div class="progress" >
-                                                    <div class="progress-bar w-75" role = "progressbar" aria - valuenow="50"
-        aria - valuemin="0" aria - valuemax="100">
-            </div>
-            </div>
-
-            <span class= "m-0 p-0"> 8000 achieved </span>
-
-                </div>
-                </div>
-                </div>
-                </div>`} 
-
-
-
-
-                <div class="d-flex justify-content-center">
-                                ${missions.status == true && userName != null && userName != "" ? `<a href="#" class="btn apply-btn mt-3 mb-3">
-                                View Details <img src = "/images/right-arrow.png"
-                alt = "#">
-                    </a>` :
-                    
-           ` <a href = "#" class= "btn apply-btn mt-3 mb-3">
-                Apply <img src = "/images/right-arrow.png"
-        alt = "#">
-            </a>`}
+        //                $.each(result, function (i, city) {
+        //                    $("#city-filter").append($('<option></option>').val(city.name).html(city.name));
+        //                    //alert(city.name);
+        //                });
+        //            }
+        //        });
+        //    });
+        //});
 
         
-            </div>
-            </div>
-            </div>
-            </div>`  
-           
+        ////country filter
+        //const countryFilter = () => {
+        //    const country = document.getElementById("country-filter");
 
+        //    let countryName = document.getElementById("country-filter").value.toLowerCase();
 
-     })
-     
-     
-    
+        //    let missions = document.getElementsByClassName("grid-mission");
+        //    //alert(missions.Count());
+        //    //alert(countryName);
 
-        //all filters code
+        //    for (var i = 0; i <= missions.length; i++) {
+        //        var missionCountry = missions[i].getElementsByClassName("country-name")[0];
+        //        //alert(missionCountry.value);
+        //        if (missionCountry.value.toLowerCase().indexOf(countryName) > -1) {
+        //            missions[i].style.display = "";
 
-        $(document).ready(function () {
-            $("#country-filter").change(function () {
-                var country = $(this).val();
-                $.ajax({
-                    url: "/Users/Home/GetCitiesByCountry",
-                    type: "GET",
-                    dataType: "json",
-                    data: { country: country },
-                    success: function (result) {
+        //        }
+        //        else {
+        //            missions[i].style.display = "none";
 
-                        var cityDropdown = $("#city-filter");
-                        cityDropdown.empty();
+        //            //tempCount++;
+        //        }
+        //    }
 
-                        $.each(result, function (i, city) {
-                            $("#city-filter").append($('<option></option>').val(city.name).html(city.name));
-                            //alert(city.name);
-                        });
-                    }
-                });
-            });
-        });
-
-        //country filter
-        const countryFilter = () => {
-            const country = document.getElementById("country-filter");
-
-            let countryName = document.getElementById("country-filter").value.toLowerCase();
-
-            let missions = document.getElementsByClassName("grid-mission");
-            //alert(missions.Count());
-            //alert(countryName);
-
-            for (var i = 0; i <= missions.length; i++) {
-                var missionCountry = missions[i].getElementsByClassName("country-name")[0];
-                //alert(missionCountry.value);
-                if (missionCountry.value.toLowerCase().indexOf(countryName) > -1) {
-                    missions[i].style.display = "";
-
-                }
-                else {
-                    missions[i].style.display = "none";
-
-                    //tempCount++;
-                }
-            }
-
-        }
+        //}
 
 
 
-        //Theme filter
-        const themeFilter = () => {
-            const theme = document.getElementById("theme-filter");
+        ////Theme filter
+        //const themeFilter = () => {
+        //    const theme = document.getElementById("theme-filter");
 
-            let themeName = document.getElementById("theme-filter").value.toLowerCase();
-            //let filterValue = document.getElementById("filter-value").innerHTML = themeName;
-            //alert(themeName)
+        //    let themeName = document.getElementById("theme-filter").value.toLowerCase();
+        //    //let filterValue = document.getElementById("filter-value").innerHTML = themeName;
+        //    //alert(themeName)
 
-            // filterValue.innerHTML = themeName
-            let missions = document.getElementsByClassName("grid-mission");
-            //alert(missions.Count());
-            //alert(themeName);
+        //    // filterValue.innerHTML = themeName
+        //    let missions = document.getElementsByClassName("grid-mission");
+        //    //alert(missions.Count());
+        //    //alert(themeName);
 
-            for (var i = 0; i <= missions.length; i++) {
-                var missionTheme = missions[i].getElementsByClassName("theme-name")[0];
-                // alert(missionTheme.innerHTML);
-                if (missionTheme.innerHTML.toLowerCase().indexOf(themeName) > -1) {
-                    missions[i].style.display = "";
+        //    for (var i = 0; i <= missions.length; i++) {
+        //        var missionTheme = missions[i].getElementsByClassName("theme-name")[0];
+        //        // alert(missionTheme.innerHTML);
+        //        if (missionTheme.innerHTML.toLowerCase().indexOf(themeName) > -1) {
+        //            missions[i].style.display = "";
 
-                }
-                else {
-                    missions[i].style.display = "none";
+        //        }
+        //        else {
+        //            missions[i].style.display = "none";
 
-                    //tempCount++;
-                }
-            }
+        //            //tempCount++;
+        //        }
+        //    }
 
-        }
+        //}
 
-        //city filter
-        const cityFilter = () => {
-            const city = document.getElementById("city-filter");
+        ////city filter
+        //const cityFilter = () => {
+        //    const city = document.getElementById("city-filter");
 
-            let cityName = document.getElementById("city-filter").value.toLowerCase();
-            let missions = document.getElementsByClassName("grid-mission");
-            //alert(missions.Count());
-            //alert(cityName);
+        //    let cityName = document.getElementById("city-filter").value.toLowerCase();
+        //    let missions = document.getElementsByClassName("grid-mission");
+        //    //alert(missions.Count());
+        //    //alert(cityName);
 
-            for (var i = 0; i <= missions.length; i++) {
-                var missionCity = missions[i].getElementsByClassName("city-span")[0];
-                //var missionCity = missions[i].querySelectorAll(".city-span");
-                // alert("mission city=>>>>" + missionCity.innerHTML);
-                if (missionCity.innerHTML.toLowerCase().indexOf(cityName) > -1) {
-                    missions[i].style.display = "";
-                    //alert("inside if");
+        //    for (var i = 0; i <= missions.length; i++) {
+        //        var missionCity = missions[i].getElementsByClassName("city-span")[0];
+        //        //var missionCity = missions[i].querySelectorAll(".city-span");
+        //        // alert("mission city=>>>>" + missionCity.innerHTML);
+        //        if (missionCity.innerHTML.toLowerCase().indexOf(cityName) > -1) {
+        //            missions[i].style.display = "";
+        //            //alert("inside if");
 
-                }
-                else {
-                    missions[i].style.display = "none";
-                    // alert("inside else");
-                    //tempCount++;
-                }
-            }
+        //        }
+        //        else {
+        //            missions[i].style.display = "none";
+        //            // alert("inside else");
+        //            //tempCount++;
+        //        }
+        //    }
 
-        }
-        //Skill filter
-        const skillFilter = () => {
-            const skill = document.getElementById("skill-filter");
+        //}
+        ////Skill filter
+        //const skillFilter = () => {
+        //    const skill = document.getElementById("skill-filter");
 
-            let skillId = document.getElementById("skill-filter").value.toLowerCase();
-            let missions = document.getElementsByClassName("grid-mission");
-            //alert(missions.Count());
-            //alert(skillId);
+        //    let skillId = document.getElementById("skill-filter").value.toLowerCase();
+        //    let missions = document.getElementsByClassName("grid-mission");
+        //    //alert(missions.Count());
+        //    //alert(skillId);
 
-            for (var i = 0; i <= missions.length; i++) {
-                var missionskillId = missions[i].getElementsByClassName("skill-id")[0];
-                // alert(missionskillId.value);
-                if (missionskillId.value == skillId) {
-                    missions[i].style.display = "";
+        //    for (var i = 0; i <= missions.length; i++) {
+        //        var missionskillId = missions[i].getElementsByClassName("skill-id")[0];
+        //        // alert(missionskillId.value);
+        //        if (missionskillId.value == skillId) {
+        //            missions[i].style.display = "";
 
-                }
-                else {
-                    missions[i].style.display = "none";
+        //        }
+        //        else {
+        //            missions[i].style.display = "none";
 
-                    //tempCount++;
-                }
-            }
+        //            //tempCount++;
+        //        }
+        //    }
 
-        }
+        //}
 
         //Serach Missions
 
-        const inputValue = document.getElementById("search-bar");
-        //inputValue.addEventListner("keyup", searchMissions);
-        const searchMissions = () => {
+        //const inputValue = document.getElementById("search-bar");
+        ////inputValue.addEventListner("keyup", searchMissions);
+        //const searchMissions = () => {
 
-            let inputValue = document.getElementById("search-bar").value.toLowerCase();
-            let missions = document.getElementsByClassName("grid-mission");
-            let missionCount = @Model.MissionList.Count();
-            // alert("hiii");
-            //console.log("hello method called!!!");
+        //    let inputValue = document.getElementById("search-bar").value.toLowerCase();
+        //    let missions = document.getElementsByClassName("grid-mission");
+        //    let missionCount = @Model.MissionList.Count();
+        //    // alert("hiii");
+        //    //console.log("hello method called!!!");
 
+        //    //alert(missionCount);
+        //    var missionTitle;
+        //    //let tempCount = 0;
+        //    //let count;
 
+        //    for (var i = 0; i <= missions.length; i++) {
+        //        missionTitle = missions[i].getElementsByClassName("card-title")[0];
+        //        if (missionTitle.innerHTML.toLowerCase().indexOf(inputValue) > -1)
+        //            missions[i].style.display = "";
 
-            // let countryName = document.getElementById("country-filter").value.toLowerCase();
-            //let skillId = document.getElementById("skill-filter").value.toLowerCase();
-            //let cityName = document.getElementById("city-filter").value.toLowerCase();
+        //        else {
+        //            missions[i].style.display = "none";
 
-            //let themeName = document.getElementById("theme-filter").value.toLowerCase();
-            //alert(missionCount);
-            var missionTitle;
-            //let tempCount = 0;
-            //let count;
-
-            for (var i = 0; i <= missions.length; i++) {
-                missionTitle = missions[i].getElementsByClassName("card-title")[0];
-                // var missionCountry = missions[i].getElementsByClassName("country-name")[0];
-                //var missionskillId = missions[i].getElementsByClassName("skill-id")[0];
-                // var missionCity = missions[i].getElementsByClassName("city-span")[0];
-                //var missionTheme = missions[i].getElementsByClassName("theme-name")[0];
-                if (missionTitle.innerHTML.toLowerCase().indexOf(inputValue) > -1)
-                    missions[i].style.display = "";
-
-                else {
-                    missions[i].style.display = "none";
-
-                }
-            }
+        //        }
+        //    }
 
 
-        }
+        //}
 
 
     </script>

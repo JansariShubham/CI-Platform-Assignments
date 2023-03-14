@@ -14,6 +14,7 @@ using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
 using System.Linq.Expressions;
 using System.Diagnostics.Metrics;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.VisualStudio.Web.CodeGeneration;
 
 namespace CIPlatformWeb.Areas.Users.Controllers
 {
@@ -187,7 +188,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         }
 
 
-        PlatformLandingViewModel CovertToMissionVM(Mission item)
+        public PlatformLandingViewModel CovertToMissionVM(Mission item)
         {
             PlatformLandingViewModel MissionVM = new();
             MissionVM.City = item.City;
@@ -209,6 +210,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             MissionVM.StartDate = item.StartDate;
             MissionVM.EndDate = item.EndDate;
             MissionVM.GoalMissions = getGoalMission(item.GoalMissions);
+
 
             return MissionVM;
         }
@@ -250,6 +252,10 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         private String getUrl(ICollection<MissionMedia> missionMedia)
         {
+            if(missionMedia == null || missionMedia.Count() == 0)
+            {
+                return null;
+            }
             var missionObj = missionMedia.FirstOrDefault(missionMedia => missionMedia.DefaultMedia == true);
             var mediaName = missionObj.MediaName;
             var mediaType = missionObj.MediaType;
@@ -412,12 +418,45 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         }
         [HttpGet]
         /*[Route("/Users/Home/GetCitiesByCountry")]*/
-        public JsonResult GetCitiesByCountry(string country)
+        public JsonResult GetCitiesByCountry(int country)
         {
-            var CountryObj = _IUnitOfWork.CountryRepository.GetFirstOrDefault(countryName => countryName.Name== country);
+            var CountryObj = _IUnitOfWork.CountryRepository.GetFirstOrDefault(countryName => countryName.CountryId== country);
             var cityList = _IUnitOfWork.CityRepository.GetAll().Where(m => m.CountryId == CountryObj.CountryId).ToList();
 
             return Json(cityList);
+        }
+
+        [HttpPost]
+        public IActionResult GetFilterData(string? searchText, int[]? cityList, int[]? countryList, int[]? themeList, int[]? skillList)
+        {
+          Filters obj = new()
+            {
+                SearchText = searchText,
+                Cties = cityList,
+                Countries = countryList,
+                Themes = themeList,
+                Skills = skillList
+
+
+            };
+
+           var filterResult = _IUnitOfWork.MissionRepository.getFilters(obj);
+          List<PlatformLandingViewModel> fr = filterResult.Select(m => CovertToMissionVM(m)).ToList();
+
+            var indexViewModel = new IndexViewModel()
+            {
+                CountryList = this.getCountryList(),
+                CityList = this.getCityList(),
+                MissionList = fr,
+                SkillsList = this.getSkillList(),
+                ThemeList = this.getThemeList()
+
+
+            };
+            
+
+
+            return PartialView("_index", indexViewModel);
         }
     }
 }

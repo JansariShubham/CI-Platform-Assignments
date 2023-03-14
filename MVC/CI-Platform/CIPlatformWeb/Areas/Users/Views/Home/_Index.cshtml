@@ -1,0 +1,398 @@
+﻿@model CIPlatform.entities.ViewModels.IndexViewModel
+@{
+    var UserName = Context.Session.GetString("firstName");
+}
+<!-- grid and list view  -->
+<section class="mt-3 container p-0" id="mainContent">
+    <!-- grid view  -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 grid-view">
+
+        @foreach (var missions in Model.MissionList)
+        {
+            <div class="col grid-mission">
+
+                <div class="card">
+                    <img src="@missions.ThumbnailURL"
+                     class="card-img-top position-relative" alt="...">
+                    @if (missions.Status == true && UserName != null)
+                    {
+                        <span class="position-absolute mission-status py-2 px-3 rounded-end-pill mt-2">Applied</span>
+                    }
+                    @if (missions.Status == false && UserName != null)
+                    {
+                        <span class="position-absolute mission-status py-2 px-3 rounded-end-pill mt-2">Closed</span>
+                    }
+                    <input type="hidden" class="skill-id" value="@missions.MissionSkills.SkillId" />
+                    @*<input type="hidden" class="country-name" value="@missions.Country.Name" />*@
+                    <div class=" position-absolute country-div rounded-pill p-2">
+                        <img class="" src="~/images/pin1.png" alt="#">
+                        <span class="city-span">@missions.City.Name</span>
+                    </div>
+                    <a href="#" class="position-absolute favourate rounded-pill p-1">
+                        <img class="" src="~/images/heart.png" alt="#">
+                    </a>
+                    <a href="#" class="position-absolute user-div rounded-pill p-2">
+                        <img class="" src="~/images/user.png" alt="#">
+                    </a>
+                    <span class="theme-name align-text-top py-2 px-4 mx-auto position-relative translate-middle-y">@missions.Theme.Title</span>
+                    <div class="card-body p-0">
+                        <h5 class="card-title mission-title px-3">
+                            @missions.Title
+                        </h5>
+                        <p class="card-text mission-desc px-3">
+                            @missions.ShortDesc
+                        </p>
+                        <div class="d-flex justify-content-between px-3">
+                            <div class="org-name">@missions.OrgName</div>
+                            <div>
+                                <img src="~/images/selected-star.png" alt="">
+                                <img src="~/images/selected-star.png" alt="">
+                                <img src="~/images/selected-star.png" alt="">
+                                <img src="~/images/star.png" alt="">
+                                <img src="~/images/star.png" alt="">
+                            </div>
+                        </div>
+                        @if (missions.MissionType == true)
+                        {
+                            <div>
+                                <div class="border start-end-date rounded-pill mx-auto p-2 -translate-middle-y bg-white">
+                                    From
+                                    @missions.StartDate?.ToString("d") until
+                                    @missions.EndDate?.ToString("d")
+                                </div>
+                                <div class="d-flex justify-content-around  border-top pt-4 pb-2 border-bottom">
+                                    <div class="d-flex align-items-center">
+                                        <img class='h-50' src="~/images/Seats-left.png" alt="#">
+                                        <div class="ms-2">
+                                            <p class="m-0 p-0 fw-bold">10</p>
+                                            <span class="m-0 p-0 seats-left">Seats left</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img class="h-50" src="~/images/deadline.png" alt="#">
+                                        <div class="ms-2">
+                                            <p class="m-0 p-0 fw-bold">@missions.EndDate?.ToString("d")</p>
+                                            <span class="m-0 p-0 deadline"> Deadline</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <div class="border start-end-date rounded-pill mx-auto p-2 -translate-middle-y bg-white">
+
+                                    @missions.GoalMissions.GoalObjectiveText
+                                </div>
+                                <div class="d-flex justify-content-around  border-top pt-4 pb-2 border-bottom">
+                                    <div class="d-flex align-items-center">
+                                        <img class='h-50' src="~/images/Seats-left.png" alt="#">
+                                        <div class="ms-2">
+                                            <p class="m-0 p-0 fw-bold">10</p>
+                                            <span class="m-0 p-0 seats-left">Seats left</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img class="h-50" src="~/images/achieved.png" alt="#">
+
+                                        <div class="ms-2">
+                                            <div class="progress">
+                                                <div class="progress-bar w-75" role="progressbar" aria-valuenow="50"
+                                             aria-valuemin="0" aria-valuemax="100">
+                                                </div>
+                                            </div>
+
+                                            <span class="m-0 p-0">8000 achieved</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        }
+                        <div class="d-flex justify-content-center">
+                            @if (missions.Status == true && UserName != null)
+                            {
+                                <a href="#" class="btn apply-btn mt-3 mb-3 ">
+                                    View Details <img src="~/images/right-arrow.png"
+                                              alt="#">
+                                </a>
+
+                            }
+                            else
+                            {
+
+                                <a href="#" class="btn apply-btn mt-3 mb-3 ">
+                                    Apply <img src="~/images/right-arrow.png"
+                                       alt="#">
+                                </a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+        @*<div class="col">
+        <div class="card">
+        <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
+        class="card-img-top position-relative" alt="...">
+        <div class="position-absolute country-div rounded-pill p-2">
+        <img class="" src="~/images/pin1.png" alt="#">
+        <span>Toronto</span>
+        </div>
+        <a href="" class="position-absolute favourate rounded-pill p-1">
+        <img class="" src="~/images/heart.png" alt="#">
+        </a>
+        <a href="" class="position-absolute user-div rounded-pill p-2">
+        <img class="" src="~/images/user.png" alt="#">
+        </a>
+        <span class="theme-name align-text-top py-2 px-4 mx-auto position-relative translate-middle-y">Environment</span>
+        <div class="card-body p-0">
+        <h5 class="card-title mission-title px-3">
+        Grow Trees - on the path to environment
+        sustainability
+        </h5>
+        <p class="card-text mission-desc px-3">
+        Lorem ipsum dolor, sit amet consectetur adipisicing
+        elit.
+        Iusto,
+        ipsa.
+        Sint
+        similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
+        iste
+        nobis
+        voluptatibus! Ipsa molestiae in maxime similique id!
+        </p>
+        <div class="d-flex justify-content-between px-3">
+        <div class="org-name">Tree Canada</div>
+        <div>
+        <img src="~/images/selected-star.png" alt="">
+        <img src="~/images/selected-star.png" alt="">
+        <img src="~/images/selected-star.png" alt="">
+        <img src="~/images/star.png" alt="">
+        <img src="~/images/star.png" alt="">
+        </div>
+        </div>
+        <div>
+        <div class="border start-end-date rounded-pill mx-auto p-2 -translate-middle-y bg-white">
+        From
+        Plant 10,000 Trees
+        </div>
+        <div class="d-flex justify-content-around  border-top pt-4 pb-2 border-bottom">
+        <div class="d-flex align-items-center">
+        <img class='h-50' src="~/images/Seats-left.png" alt="#">
+        <div class="ms-2">
+        <p class="m-0 p-0 fw-bold">10</p>
+        <span class="m-0 p-0 seats-left">Seats left</span>
+        </div>
+        </div>
+        <div class="d-flex align-items-center">
+        <img class="h-50" src="~/images/achieved.png" alt="#">
+
+        <div class="ms-2">
+        <div class="progress">
+        <div class="progress-bar w-75" role="progressbar" aria-valuenow="50"
+        aria-valuemin="0" aria-valuemax="100">
+        </div>
+        </div>
+
+        <span class="m-0 p-0">8000 achieved</span>
+
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="d-flex justify-content-center">
+        <a href="#" class="btn apply-btn mt-3 mb-3 ">
+        Apply <img src="~/images/right-arrow.png"
+        alt="#">
+        </a>
+        </div>
+        </div>
+        </div>
+        </div>*@
+
+
+        <!-- grid view end  -->
+
+    </div>
+    <!-- list view  -->
+    <div class="d-flex flex-column gap-5 list-view d-none">
+        @foreach (var missions in Model.MissionList)
+        {
+            <div class="card">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
+                         class="card-img-top position-relative" alt="...">
+                        <div class="position-absolute country-list-div rounded-pill p-2">
+                            <img class="" src="~/images/pin1.png" alt="#">
+                            <span class="city-span">@missions.City.Name</span>
+                        </div>
+                        <a href="#" class="position-absolute favourate-list rounded-pill p-1">
+                            <img class="" src="~/images/heart.png" alt="#">
+                        </a>
+                        <a href="#" class="position-absolute user-list-div rounded-pill p-2">
+                            <img class="" src="~/images/user.png" alt="#">
+                        </a>
+                        <div class="theme-name align-text-top py-2 px-4 mx-auto translate-middle-y">
+                            @missions.Theme.Title
+
+                        </div>
+                    </div>
+                    <div class="card-body col-8 p-0">
+                        <h5 class="card-title mission-title p-3 ">
+                            @missions.Title
+                        </h5>
+                        <p class="card-text mission-desc px-3">
+                            @missions.ShortDesc
+                        </p>
+                        <div class="d-flex justify-content-between me-3">
+                            <div class="mt-3">
+                                <div class="d-flex flex-md-column px-3">
+                                    <div class="org-name">@missions.OrgName</div>
+                                    <div class="ps-md-0 ps-4">
+                                        <img src="~/images/selected-star.png" alt="">
+                                        <img src="~/images/selected-star.png" alt="">
+                                        <img src="~/images/selected-star.png" alt="">
+                                        <img src="~/images/star.png" alt="">
+                                        <img src="~/images/star.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="d-flex ps-3">
+                                    <a href="#" class="btn apply-btn mt-3 mb-3">
+                                        Apply <img src="~/images/right-arrow.png" alt="#">
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="border start-end-date rounded-pill mx-auto p-2 -translate-middle-y bg-white">
+                                    From
+                                    @missions.StartDate until
+                                    @missions.EndDate
+                                </div>
+                                <div class="d-flex justify-content-around border-top pt-4 pb-2  px-4">
+                                    <div class="d-flex align-items-center">
+                                        <img class='h-50' src="~/images/Seats-left.png" alt="#">
+                                        <div class="ms-2">
+                                            <p class="m-0 p-0 fw-bold">10</p>
+                                            <span class="m-0 p-0 seats-left">Seats left</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center ms-4">
+                                        <img class="h-50" src="~/images/deadline.png" alt="#">
+                                        <div class="ms-2">
+                                            <p class="m-0 p-0 fw-bold">09/01/2019</p>
+                                            <span class="m-0 p-0 deadline"> Deadline</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        }
+
+
+
+
+        @*<div class="card">
+        <div class="row">
+        <div class="col-4">
+        <img src="~/images/Animal-welfare-&-save-birds-campaign.png"
+        class="card-img-top position-relative" alt="...">
+        <div class="position-absolute country-list-div rounded-pill p-2">
+        <img class="" src="~/images/pin1.png" alt="#">
+        <span>Toronto</span>
+        </div>
+        <a href="#" class="position-absolute favourate-list rounded-pill p-1">
+        <img class="" src="~/images/heart.png" alt="#">
+        </a>
+        <a href="#" class="position-absolute user-list-div rounded-pill p-2">
+        <img class="" src="~/images/user.png" alt="#">
+        </a>
+        <div class="theme-name align-text-top py-2 px-4 mx-auto translate-middle-y">Animals</div>
+        </div>
+        <div class="card-body col-8 p-0">
+        <h5 class="card-title mission-title p-3 ">
+        Animals welfare & save birds campaign
+
+        </h5>
+        <p class="card-text mission-desc px-3">
+        Lorem ipsum dolor, sit amet consectetur adipisicing
+        elit.
+        Iusto,
+        ipsa.
+        Sint
+        similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
+        iste
+        nobis
+        voluptatibus! Ipsa molestiae in maxime similique id!
+        </p>
+        <div class="d-flex justify-content-between me-3">
+        <div class="mt-3">
+        <div class="d-flex flex-md-column px-3">
+        <div class="org-name">JR Foundation</div>
+        <div class="ps-md-0 ps-4">
+        <img src="~/images/selected-star.png" alt="">
+        <img src="~/images/selected-star.png" alt="">
+        <img src="~/images/selected-star.png" alt="">
+        <img src="~/images/selected-star.png" alt="">
+        <img src="~/images/selected-star.png" alt="">
+        </div>
+        </div>
+        <div class="d-flex ps-3">
+        <a href="#" class="btn apply-btn mt-3 mb-3">
+        Apply <img src="~/images/right-arrow.png" alt="#">
+        </a>
+        </div>
+        </div>
+        <div>
+        <div class="border start-end-date rounded-pill mx-auto p-2 -translate-middle-y bg-white">
+        From
+        10/01/2019 until
+        25/02/2019
+        </div>
+        <div class="d-flex justify-content-around border-top pt-4 pb-2  px-4">
+        <div class="d-flex align-items-center">
+        <img class='h-50' src="~/images/Seats-left.png" alt="#">
+        <div class="ms-2">
+        <p class="m-0 p-0 fw-bold">10</p>
+        <span class="m-0 p-0 seats-left">Seats left</span>
+        </div>
+        </div>
+        <div class="d-flex align-items-center ms-4">
+        <img class="h-50" src="~/images/achieved.png" alt="#">
+        <div class="ms-2">
+        <div class="progress mt-2">
+        <div class="progress-bar w-75" role="progressbar" aria-valuenow="50"
+        aria-valuemin="0" aria-valuemax="100">
+        </div>
+        </div>
+
+
+        <span class="m-0 p-0 deadline">8000 achieved</span>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+        </div>
+        </div>
+        </div>*@
+
+    </div>
+</section>
