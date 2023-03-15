@@ -11,40 +11,11 @@
 
 <!-- third section  -->
 <section class="d-none d-md-inline">
-    <div class="third-div  container">
-        <ul class="d-flex gap-2 flex-wrap mt-3">
-            <li class="gap-4 rounded-5" id="filter-value">
-                <img class="cancle-img" src="~/images/cancel1.png"
-                     alt="Cancle">
-            </li>
-            <li class="gap-4 rounded-5">
-                Canada <img class="cancle-img" src="~/images/cancel1.png" alt="Cancle">
-            </li>
-            <li class="gap-4 rounded-5">
-                Toronto <img class="cancle-img" src="~/images/cancel1.png" alt="Cancle">
-            </li>
-            <li class="gap-4 rounded-5">
-                Montreal <img class="cancle-img" src="~/images/cancel1.png"
-                              alt="Cancle">
-            </li>
-            <li class="gap-4 rounded-5">
-                Environment <img class="cancle-img" src="~/images/cancel1.png"
-                                 alt="Cancle">
-            </li>
-            <li class="gap-4 rounded-5">
-                Nutrition <img class="cancle-img" src="~/images/cancel1.png"
-                               alt="Cancle">
-            </li>
-            <li class="gap-4 rounded-5">
-                Anthropology <img class="cancle-img" src="~/images/cancel1.png"
-                                  alt="Cancle">
-            </li>
-            <li class="gap-4 rounded-5">
-                Environmental Science <img class="cancle-img" src="~/images/cancel1.png"
-                                           alt="Cancle">
-            </li>
-            <button class="border-0 clear-btn">Clear All</button>
+    <div class="third-div container d-none" id="filterOptionArea">
+        <ul class="d-flex gap-2 flex-wrap mt-3" id="userFilterList">
+            
         </ul>
+            <button class="border-0 clear-btn">Clear All</button>
     </div>
 </section>
 
@@ -57,7 +28,13 @@
         <div class="d-flex">
 
             <select class="form-select select-btn">
-                <option value="1" selected>Sort by</option>
+                <option selected disabled>Sort by</option>
+                <option value="1">Newest</option>
+                <option value="2">Oldest</option>
+                <option value="3">Lowest available seats</option>
+                <option value="4">Highest available seats</option>
+                <option value="5">Sort by my favourate</option>
+                <option value="6">Sort by deadline</option>
             </select>
             <button class="grid-btn d-none d-md-block">
                 <img class="grid-img h-100 w-100" src="~/images/grid.png"

@@ -12,11 +12,18 @@ $(document).ready(function () {
 
                 var cityDropdown = $("#city-filter");
                 cityDropdown.empty();
-
-                $.each(result, function (i, city) {
-                    $("#city-filter").append($('<option></option>').val(city.cityid).html(city.name));
-                    //alert(city.name);
-                });
+                //$("#city-filter").append($('<option></option>').val('city').html("City"));
+                //$.each(result, function (i, city) {
+                //    $("#city-filter").append($('<option></option>').val(city.cityId).html(city.name));
+                //    //alert(city.name);
+                //});
+                const cityFilter = document.querySelector("#city-filter");
+                cityFilter.innerHTML = `<option value="1" selected disabled>City</option>`;
+                result.forEach((c) => {
+                    cityFilter.innerHTML += `
+                    <option value=${c.cityId}>${c.name}</option>
+                        `
+                })
             }
         });
     });
@@ -40,19 +47,35 @@ var cityValue = document.getElementById("city-filter");
 cityValue.addEventListener('change', () => {
     city.push(+cityValue.value);
     getFilterData();
+    var id = cityValue.value;
+    var item = cityValue.options[cityValue.selectedIndex].text;
+    var type = "city";
+   // console.log("id=>" + id +"item=>" + item);
+    addFilterToHtmlList(id, item, type)
 })
 
 var countryValue = document.getElementById("country-filter");
 countryValue.addEventListener('change', () => {
     country.push(+countryValue.value);
-    console.log(country);
+    //console.log(country);
     getFilterData();
+
+    var id = countryValue.value;
+    var item = countryValue.options[countryValue.selectedIndex].text;
+    var type = "country";
+    addFilterToHtmlList(id, item, type)
+
 })
 
 var themeValue = document.getElementById("theme-filter");
 themeValue.addEventListener('change', () => {
     theme.push(+themeValue.value);
     getFilterData();
+
+    var id = themeValue.value;
+    var item = themeValue.options[themeValue.selectedIndex].text;
+    var type = "theme";
+    addFilterToHtmlList(id, item, type)
 })
 
 
@@ -60,6 +83,13 @@ var skillValue = document.getElementById("skill-filter");
 skillValue.addEventListener('change', () => {
     skill.push(+skillValue.value);
     getFilterData();
+
+
+    var id = skillValue.value;
+    var item = skillValue.options[skillValue.selectedIndex].text;
+    var type = "skill";
+    addFilterToHtmlList(id, item, type)
+
 })
 
 
@@ -81,7 +111,6 @@ function getFilterData() {
         data: obj,
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         success: (result) => {
-            console.log(result);
             $("#partial").html(result);
 
         },
@@ -92,9 +121,59 @@ function getFilterData() {
 
     })
 
+} 
+userFilterList = document.getElementById("userFilterList");
+filterOptionArea = document.getElementById("filterOptionArea");
+
+function addFilterToHtmlList(id, item, type) {
+    filterOptionArea.classList.remove('d-none');
+    let li = document.createElement('li');
+    li.classList.add(`gap-2`);
+    li.classList.add(`rounded-5`);
+    li.classList.add(`d-flex`);
+    li.classList.add(`filter-option-value`);
+    li.dataset.id = id;
+    li.dataset.type = type;
+
+    let image = document.createElement('img');
+    image.src = "./images/cancel1.png";
+    image.alt = "Cancel";
+    image.classList.add('cancle-img');
+    image.classList.add('cursor-pointer');
 
 
+    li.textContent = item.trim();
+    li.append(image);
 
+    image.addEventListener('click', () => {
+        let id = image.parentElement.dataset.id;
+        let type = image.parentElement.dataset.type;
 
-
+        if (type === "country")
+            removeElement(id, country);
+        else if (type === "city")
+            removeElement(id, city);
+        else if (type === "theme")
+            removeElement(id, theme);
+        else
+            removeElement(id, skill);
+        image.parentElement.remove();
+        getFilterData();
+       // if (userFilterList.childElementCount === 0) {  }
+    });
+    userFilterList.appendChild(li);
 }
+
+function removeElement(id, list) { list.splice(list.indexOf(id), 1) }
+
+
+    var clearAllFilter = document.querySelector(".clear-btn");
+    clearAllFilter.addEventListener("click", () => {
+        filterOptionArea.classList.add('d-none');
+        country.splice(0, country.length);
+        city.splice(0, city.length);
+        theme.splice(0, city.length);
+        skill.splice(0, city.length);
+        getFilterData();
+        userFilterList.innerHTML = "";
+    })

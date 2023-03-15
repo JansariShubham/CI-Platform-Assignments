@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CIPlatform.entities.ViewModels
 {
-    public class CityViewModel
+    public partial class CityViewModel
     {
         public short CityId { get; set; }
         public string Name { get; set; } = null!;

@@ -38,29 +38,45 @@ namespace CIPlatform.repository.Repository
         public List<Mission> getFilters(Filters obj)
         {
             var mission = getAllMissions();
+            var filterMission = mission;
             //var mission = _appDbContext.Missions.ToList();
             StringComparison comp = StringComparison.OrdinalIgnoreCase;
+            
+
             if (obj.SearchText != "" && obj.SearchText != null)
             {
-                mission = mission.Where(m => m.Title.Contains(obj.SearchText, comp)).ToList();
-                Console.WriteLine(mission.Count);
+                filterMission = filterMission.Where(m => m.Title.Contains(obj.SearchText, comp)).ToList();
+                //Console.WriteLine(mission.Count);
             }
+            
             if (obj.Countries.Count() > 0)
             {
-                mission = mission.Where(m => obj.Countries.ToList().Contains((int)m.CountryId)).ToList();
+                filterMission = filterMission.Where(m => obj.Countries.Contains((int)m.CountryId)).ToList();
+                //mission = filterMission;
             }
 
             if(obj.Themes.Count() > 0)
             {
-                mission = mission.Where(m => obj.Themes.ToList().Contains((int)m.ThemeId)).ToList(); 
-
+                filterMission = filterMission.Where(m => obj.Themes.Contains((int)m.ThemeId)).ToList();
+                //mission = filterMission;
             }
             if (obj.Cties.Count() > 0)
             {
-                mission = mission.Where(m => obj.Cties.ToList().Contains((int)m.CityId)).ToList();
+               filterMission = filterMission.Where(m => obj.Cties.Contains((int)m.CityId)).ToList();
+               // mission = filterMission;
+            }
+            if(obj.Skills.Count() > 0)
+            {
+                filterMission = filterMission.Where(m => 
+                   m.MissionSkills.Any(ms => obj.Skills.Any(s => s == ms.SkillId))
+                 ).ToList();
+               // mission = filterMission;
+                //var missionSkillObj = _appDbContext.MissionSkills.Where(m =>obj.Skills.ToList().Contains((int)m.MissionSkillId));
+
+                //mission = mission.Where(m => obj.Skills.Any(s => m.MissionSkills.Any(ms => ms.MissionSkillId == s))).ToList();
             }
 
-            return mission;
+            return filterMission.Count() == 0 ? mission : filterMission;
                     
 
             
