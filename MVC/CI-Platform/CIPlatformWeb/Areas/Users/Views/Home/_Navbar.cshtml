@@ -1,7 +1,10 @@
 ﻿@model CIPlatform.entities.ViewModels.IndexViewModel;
 @{
     var UserName = Context.Session.GetString("firstName");
+    var userId = Context.Session.GetString("userId");
 }
+
+<input type ="hidden" value="@userId" id="userId" />
 <div class="d-flex justify-content-between container my-3 first-div">
     <div class="dropdown left-div">
         <button class="header-toggle d-md-none border-0">
@@ -33,6 +36,8 @@
                 aria-expanded="false" type="button" id="dropdownMenuButton1">
                 <span> @UserName</span>
 
+                
+
                 <img class="m-1" src="~/images/drop-down.png" alt="#">
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -60,7 +65,7 @@
                     <img class="d-none d-md-inline d-lg-inline search-img mt-1" src="~/images/search.png"
                          alt="#">
                     <input type="text" id="search-bar" class="search-bar form-control border-0 p-0"
-                           placeholder="Search mission..." onkeyup="getFilterData()">
+                           placeholder="Search mission...">
                 </div>
             </div>
             <!-- filter button -->

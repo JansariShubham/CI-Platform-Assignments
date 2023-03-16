@@ -1,8 +1,11 @@
 ﻿//Get Cities By Country
 $(document).ready(function () {
+    var filterMissionsCount = document.getElementById("missionCount").value;
+    var missionCounts = document.getElementById("filterMissions");
+    missionCounts.textContent = filterMissionsCount;
+    
     $("#country-filter").change(function () {
-        var country = $(this).val();
-        console.log(country);
+        var country = $(this).val(); 
         $.ajax({
             url: "/Users/Home/GetCitiesByCountry",
             type: "GET",
@@ -40,13 +43,16 @@ var sort;
 
 var searchText = document.getElementById("search-bar");
 searchText.addEventListener('input', () => {
-        search = searchText.value;
+    search = searchText.value;
+    pageNumber = 1;
+    getFilterData();
 })
 
 var cityValue = document.getElementById("city-filter");
 cityValue.addEventListener('change', () => {
     city.push(+cityValue.value);
     getFilterData();
+    pageNumber = 1;
     var id = cityValue.value;
     var item = cityValue.options[cityValue.selectedIndex].text;
     var type = "city";
@@ -58,6 +64,7 @@ var countryValue = document.getElementById("country-filter");
 countryValue.addEventListener('change', () => {
     country.push(+countryValue.value);
     //console.log(country);
+    pageNumber = 1;
     getFilterData();
 
     var id = countryValue.value;
@@ -70,6 +77,7 @@ countryValue.addEventListener('change', () => {
 var themeValue = document.getElementById("theme-filter");
 themeValue.addEventListener('change', () => {
     theme.push(+themeValue.value);
+    pageNumber = 1;
     getFilterData();
 
     var id = themeValue.value;
@@ -82,6 +90,7 @@ themeValue.addEventListener('change', () => {
 var skillValue = document.getElementById("skill-filter");
 skillValue.addEventListener('change', () => {
     skill.push(+skillValue.value);
+    pageNumber = 1;
     getFilterData();
 
 
@@ -95,6 +104,8 @@ skillValue.addEventListener('change', () => {
 
 
 
+
+
 function getFilterData() {
 
     const obj = {
@@ -102,7 +113,11 @@ function getFilterData() {
         cityList: city,
         countryList: country,
         themeList: theme,
-        skillList: skill
+        skillList: skill,
+        sortingList: sortByValue,
+        pageNum: pageNumber,
+        userId : userId
+        
     };
     console.log(obj);
     $.ajax({
@@ -112,6 +127,7 @@ function getFilterData() {
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         success: (result) => {
             $("#partial").html(result);
+            filterMissions();
 
         },
         error: (err) => {
@@ -177,3 +193,55 @@ function removeElement(id, list) { list.splice(list.indexOf(id), 1) }
         getFilterData();
         userFilterList.innerHTML = "";
     })
+
+var sortByFilter = document.getElementById("sortByFilter");
+var sortByValue;
+sortByFilter.addEventListener("change", () => {
+    sortByValue = sortByFilter.value;
+    getFilterData();
+    //console.log(sortByFilter.value);
+})
+
+
+
+var missionCount = document.getElementById("missionCount").value;
+var ulPagination = document.querySelector(".pagination");
+//console.log("missions ===>" + missionCount);
+var totalPages = Math.ceil(missionCount / 4);
+if (missionCount < 4) {
+
+}
+else {
+    for (var i = 1; i < totalPages+1; i++) {
+
+        let li = document.createElement('li');
+        li.classList.add('page-item');
+        let a = document.createElement('a');
+        a.classList.add('page-link');
+        li.classList.add('cursor-pointer');
+        li.append(a);
+        a.dataset.id= i;
+        a.textContent = i;
+        ulPagination.appendChild(li);
+        
+
+    }
+}
+var pageNumber;
+var pages = document.querySelectorAll('.page-link');
+pages.forEach((page) => {
+    page.addEventListener("click", () => {
+        pageNumber = page.dataset.id;
+        getFilterData();
+    })
+})
+
+function filterMissions() {
+    var filterMissionsCount = document.getElementById("filterMissionCnt").value;
+   // console.log("filter missions: " + filterMissionsCount)
+    var missionCounts = document.getElementById("filterMissions");
+    missionCounts.textContent = filterMissionsCount;
+    //console.log("nmew missions: " + missionCounts.value);
+}
+
+var userId = document.getElementById("userId").value;

@@ -39,6 +39,8 @@ public partial class Mission
 
     public DateTimeOffset? DeletedAt { get; set; }
 
+    public int? TotalSeats { get; set; }
+
     public virtual City? City { get; set; }
 
     public virtual ICollection<Comment> Comments { get; } = new List<Comment>();

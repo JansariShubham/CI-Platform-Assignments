@@ -15,7 +15,9 @@ namespace CIPlatform.entities.ViewModels
        /* [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$", ErrorMessage = "Password must contain minimum 8 characters, 1 special character, number and capital letter")]*/
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; } = null!;
-   
+
+        public long UserId { get; set; }
+
 
     }
 }

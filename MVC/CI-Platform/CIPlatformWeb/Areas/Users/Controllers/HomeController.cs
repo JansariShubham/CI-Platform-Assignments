@@ -15,6 +15,7 @@ using System.Linq.Expressions;
 using System.Diagnostics.Metrics;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualStudio.Web.CodeGeneration;
+using System.Drawing.Printing;
 
 namespace CIPlatformWeb.Areas.Users.Controllers
 {
@@ -27,8 +28,10 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         private readonly EmailSender _EmailSender;
 
+       // string userId;
         public HomeController(IUnitOfWork IUnitOfWork, EmailSender emailSender)
         {
+            // userId = this.HttpContext.Session.GetString("userId");
             _IUnitOfWork = IUnitOfWork;
             _EmailSender = emailSender;
         }
@@ -55,6 +58,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 {
                     HttpContext.Session.SetString("email", model.Email.ToString());
                     HttpContext.Session.SetString("firstName", result.FirstName.ToString());
+                    HttpContext.Session.SetString("userId", result.UserId.ToString());
 
                     return RedirectToAction("PlatFormLandingPage");
                 }
@@ -167,6 +171,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
 
             };
+            ViewBag.missionCount = indexViewModel.MissionList.Count();
             return View(indexViewModel);
         }
 
@@ -207,6 +212,9 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             MissionVM.Title = item.Title;
             MissionVM.MissionSkills = getMissionSkillList(item.MissionSkills);
             MissionVM.ThumbnailURL = getUrl(item.MissionMedia);
+            MissionVM.SeatsLeft = item.TotalSeats - item.MissionApplications.Count();
+
+           // Console.WriteLine("seats lef====>>>>" + MissionVM.SeatsLeft);
             MissionVM.StartDate = item.StartDate;
             MissionVM.EndDate = item.EndDate;
             MissionVM.GoalMissions = getGoalMission(item.GoalMissions);
@@ -214,6 +222,21 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
             return MissionVM;
         }
+        public String? getUrl(ICollection<MissionMedia> missionMedia)
+        {
+            if (missionMedia == null || missionMedia.Count() == 0)
+            {
+                return null;
+            }
+            var missionObj = missionMedia.FirstOrDefault(missionMedia => missionMedia.DefaultMedia == true);
+            var mediaName = missionObj.MediaName;
+            var mediaType = missionObj.MediaType;
+            var mediaPath = missionObj.MediaPath;
+
+            var url = mediaPath + mediaName + mediaType;
+            return url;
+        }
+
 
         private MissionSkill getMissionSkillList(ICollection<MissionSkill> missionSkills)
         {
@@ -250,21 +273,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             return obj;
         }
 
-        private String getUrl(ICollection<MissionMedia> missionMedia)
-        {
-            if(missionMedia == null || missionMedia.Count() == 0)
-            {
-                return null;
-            }
-            var missionObj = missionMedia.FirstOrDefault(missionMedia => missionMedia.DefaultMedia == true);
-            var mediaName = missionObj.MediaName;
-            var mediaType = missionObj.MediaType;
-            var mediaPath = missionObj.MediaPath;
-
-            var url = mediaPath + mediaName + mediaType;
-            return url;
-        }
-
+        
         public List<CityViewModel> getCityList()
         {
 
@@ -427,7 +436,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         }
 
         [HttpPost]
-        public IActionResult GetFilterData(string? searchText, int[]? cityList, int[]? countryList, int[]? themeList, int[]? skillList)
+        public IActionResult GetFilterData(string? searchText, int[]? cityList, int[]? countryList, int[]? themeList, int[]? skillList, int sortingList, int pageNum, int userId)
         {
           Filters obj = new()
             {
@@ -435,14 +444,22 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 Cties = cityList,
                 Countries = countryList,
                 Themes = themeList,
-                Skills = skillList
-
+                Skills = skillList,
+                sortingList= sortingList,
+                PageNumber = pageNum,
+                userId = userId
+                
 
             };
 
            var filterResult = _IUnitOfWork.MissionRepository.getFilters(obj);
           List<PlatformLandingViewModel> fr = filterResult.Select(m => CovertToMissionVM(m)).ToList();
 
+
+            if (pageNum != 0)
+            {
+                fr.Skip((pageNum - 1) * 4).Take(4).ToList();
+            }
             var indexViewModel = new IndexViewModel()
             {
                 CountryList = this.getCountryList(),
@@ -453,10 +470,17 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
 
             };
+
+
+            ViewBag.missionCnt = fr.Count();
+
+            
             
 
 
             return PartialView("_index", indexViewModel);
+
+            
         }
     }
 }

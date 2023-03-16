@@ -228,13 +228,11 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<GoalMission>(entity =>
         {
-            entity.HasKey(e => e.GoalMissionId).HasName("PK__goal_mis__358E02C75424F6B0");
+            entity.HasKey(e => e.GoalMissionId).HasName("PK__goal_mis__358E02C7D69BE82F");
 
             entity.ToTable("goal_mission");
 
-            entity.Property(e => e.GoalMissionId)
-                .ValueGeneratedNever()
-                .HasColumnName("goal_mission_id");
+            entity.Property(e => e.GoalMissionId).HasColumnName("goal_mission_id");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
             entity.Property(e => e.GoalObjectiveText)
@@ -247,7 +245,7 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.Mission).WithMany(p => p.GoalMissions)
                 .HasForeignKey(d => d.MissionId)
-                .HasConstraintName("FK__goal_miss__missi__3587F3E0");
+                .HasConstraintName("FK__goal_miss__missi__625A9A57");
         });
 
         modelBuilder.Entity<Mission>(entity =>
@@ -288,6 +286,7 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(128)
                 .IsUnicode(false)
                 .HasColumnName("title");
+            entity.Property(e => e.TotalSeats).HasColumnName("total_seats");
             entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
 
             entity.HasOne(d => d.City).WithMany(p => p.Missions)

@@ -44,6 +44,11 @@ namespace CIPlatform.entities.ViewModels
 
         public virtual String?  ThumbnailURL { get; set; }
 
-        public virtual MissionSkill MissionSkills { get; set; } 
+        public virtual MissionSkill MissionSkills { get; set; }
+
+        public int? TotalSeats { get; set; }
+
+        public int? SeatsLeft { get; set; }
     }
+
 }

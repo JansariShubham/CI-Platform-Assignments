@@ -5,6 +5,8 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
 
+
+
 namespace CIPlatform.repository.Repository
 {
     public class UserRepository : Repository<User>, IUserRepository
