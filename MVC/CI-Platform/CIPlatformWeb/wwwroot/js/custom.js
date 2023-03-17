@@ -3,9 +3,9 @@ $(document).ready(function () {
     var filterMissionsCount = document.getElementById("missionCount").value;
     var missionCounts = document.getElementById("filterMissions");
     missionCounts.textContent = filterMissionsCount;
-    
+
     $("#country-filter").change(function () {
-        var country = $(this).val(); 
+        var country = $(this).val();
         $.ajax({
             url: "/Users/Home/GetCitiesByCountry",
             type: "GET",
@@ -39,6 +39,7 @@ var theme = [];
 var skill = [];
 var search;
 var sort;
+var pageNumber = 1;
 
 
 var searchText = document.getElementById("search-bar");
@@ -51,12 +52,12 @@ searchText.addEventListener('input', () => {
 var cityValue = document.getElementById("city-filter");
 cityValue.addEventListener('change', () => {
     city.push(+cityValue.value);
-    getFilterData();
     pageNumber = 1;
+    getFilterData();
     var id = cityValue.value;
     var item = cityValue.options[cityValue.selectedIndex].text;
     var type = "city";
-   // console.log("id=>" + id +"item=>" + item);
+    // console.log("id=>" + id +"item=>" + item);
     addFilterToHtmlList(id, item, type)
 })
 
@@ -116,8 +117,8 @@ function getFilterData() {
         skillList: skill,
         sortingList: sortByValue,
         pageNum: pageNumber,
-        userId : userId
-        
+        userId: userId
+
     };
     console.log(obj);
     $.ajax({
@@ -137,7 +138,7 @@ function getFilterData() {
 
     })
 
-} 
+}
 userFilterList = document.getElementById("userFilterList");
 filterOptionArea = document.getElementById("filterOptionArea");
 
@@ -175,7 +176,7 @@ function addFilterToHtmlList(id, item, type) {
             removeElement(id, skill);
         image.parentElement.remove();
         getFilterData();
-       // if (userFilterList.childElementCount === 0) {  }
+        // if (userFilterList.childElementCount === 0) {  }
     });
     userFilterList.appendChild(li);
 }
@@ -183,16 +184,16 @@ function addFilterToHtmlList(id, item, type) {
 function removeElement(id, list) { list.splice(list.indexOf(id), 1) }
 
 
-    var clearAllFilter = document.querySelector(".clear-btn");
-    clearAllFilter.addEventListener("click", () => {
-        filterOptionArea.classList.add('d-none');
-        country.splice(0, country.length);
-        city.splice(0, city.length);
-        theme.splice(0, city.length);
-        skill.splice(0, city.length);
-        getFilterData();
-        userFilterList.innerHTML = "";
-    })
+var clearAllFilter = document.querySelector(".clear-btn");
+clearAllFilter.addEventListener("click", () => {
+    filterOptionArea.classList.add('d-none');
+    country.splice(0, country.length);
+    city.splice(0, city.length);
+    theme.splice(0, city.length);
+    skill.splice(0, city.length);
+    getFilterData();
+    userFilterList.innerHTML = "";
+})
 
 var sortByFilter = document.getElementById("sortByFilter");
 var sortByValue;
@@ -212,7 +213,21 @@ if (missionCount < 4) {
 
 }
 else {
-    for (var i = 1; i < totalPages+1; i++) {
+    let li = document.createElement('li');
+    li.classList.add('page-item1');
+    let a = document.createElement('a');
+    a.classList.add('page-link');
+    a.classList.add('left-arrow');
+    // a.dataset.id = pageNumber;
+    li.classList.add('cursor-pointer');
+    li.append(a);
+    let image = document.createElement('img');
+    image.src = "./images/left.png";
+    a.append(image);
+    ulPagination.appendChild(li);
+
+    var i;
+    for (i = 1; i < totalPages + 1; i++) {
 
         let li = document.createElement('li');
         li.classList.add('page-item');
@@ -220,15 +235,33 @@ else {
         a.classList.add('page-link');
         li.classList.add('cursor-pointer');
         li.append(a);
-        a.dataset.id= i;
+        li.dataset.id = i;
         a.textContent = i;
         ulPagination.appendChild(li);
-        
-
     }
+
+
+    let list = document.createElement('li');
+    list.classList.add('page-item1');
+    let anchor = document.createElement('a');
+    //anchor.classList.add('page-link-side-arrows');
+    anchor.classList.add('page-link');
+    anchor.classList.add('right-arrow');
+    // anchor.dataset.id = pageNumber;
+    console.log(i);
+    list.classList.add('cursor-pointer');
+    list.append(anchor);
+    let images = document.createElement('img');
+    images.src = "./images/right-arrow1.png";
+    anchor.append(images);
+    ulPagination.appendChild(list);
+
+
+
 }
-var pageNumber;
-var pages = document.querySelectorAll('.page-link');
+
+
+var pages = document.querySelectorAll('.page-item');
 pages.forEach((page) => {
     page.addEventListener("click", () => {
         pageNumber = page.dataset.id;
@@ -236,9 +269,38 @@ pages.forEach((page) => {
     })
 })
 
+var rightArrow = document.querySelector('.right-arrow');
+rightArrow.addEventListener('click', () => {
+    //console.log("rightarrowCalled!!!")
+    if (pageNumber >= 3) {
+        pageNumber = 1;
+    }
+    else {
+        pageNumber++;
+    }
+    //console.log("pageNumber ===>>>" + pageNumber)
+    getFilterData();
+})
+
+var leftArrow = document.querySelector('.left-arrow');
+leftArrow.addEventListener('click', () => {
+    //console.log("rightarrowCalled!!!")
+    if (pageNumber <= 1) {
+        pageNumber = 1;
+    }
+    else {
+
+    pageNumber--;
+    }
+    //console.log("pageNumber ===>>>" + pageNumber)
+    getFilterData();
+})
+
+
+
 function filterMissions() {
     var filterMissionsCount = document.getElementById("filterMissionCnt").value;
-   // console.log("filter missions: " + filterMissionsCount)
+    // console.log("filter missions: " + filterMissionsCount)
     var missionCounts = document.getElementById("filterMissions");
     missionCounts.textContent = filterMissionsCount;
     //console.log("nmew missions: " + missionCounts.value);

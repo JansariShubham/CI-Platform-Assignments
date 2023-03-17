@@ -328,10 +328,17 @@ img {
 .page-link:hover {
     background-color: orange !important;
 }
-
-.title-heading {
-    font-size: 38px;
+.page-link-side-arrows {
+    padding:1rem;
+    color: #757575 !important;
 }
+.page-link-side-arrows:hover {
+        background-color: orange !important;
+ }
+
+    .title-heading {
+        font-size: 38px;
+    }
 
 .skills-ul {
     list-style: none !important;

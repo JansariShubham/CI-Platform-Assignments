@@ -456,15 +456,15 @@ namespace CIPlatformWeb.Areas.Users.Controllers
           List<PlatformLandingViewModel> fr = filterResult.Select(m => CovertToMissionVM(m)).ToList();
 
 
-            if (pageNum != 0)
-            {
-                fr.Skip((pageNum - 1) * 4).Take(4).ToList();
-            }
+            //if (pageNum != 0)
+            //{
+            //    fr.Skip((pageNum - 1) * 4).Take(4).ToList();
+            //}
             var indexViewModel = new IndexViewModel()
             {
                 CountryList = this.getCountryList(),
                 CityList = this.getCityList(),
-                MissionList = fr,
+                MissionList = fr.Skip((pageNum - 1) * 4).Take(4).ToList(),
                 SkillsList = this.getSkillList(),
                 ThemeList = this.getThemeList()
 
