@@ -119,7 +119,7 @@
                         <div class="d-flex justify-content-center">
                             @if (missions.Status == true && UserName != null)
                             {
-                                <a href="#" class="btn apply-btn mt-3 mb-3 ">
+                                <a class="btn apply-btn mt-3 mb-3" asp-action ="Index" asp-route-id ="@missions.MissionId" asp-controller ="MissionDetail">
                                     View Details <img src="~/images/right-arrow.png"
                                               alt="#">
                                 </a>
@@ -128,7 +128,7 @@
                             else
                             {
 
-                                <a href="#" class="btn apply-btn mt-3 mb-3 ">
+                                <a class="btn apply-btn mt-3 mb-3" asp-action="Index" asp-route-id="@missions.MissionId" asp-controller="MissionDetail">
                                     Apply <img src="~/images/right-arrow.png"
                                        alt="#">
                                 </a>

@@ -307,3 +307,4 @@ function filterMissions() {
 }
 
 var userId = document.getElementById("userId").value;
+

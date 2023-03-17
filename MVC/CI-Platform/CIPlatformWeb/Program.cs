@@ -13,8 +13,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers().AddJsonOptions(x =>
-                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 builder.Services.AddDbContext<AppDbContext>();
@@ -30,7 +28,7 @@ builder.Services.AddControllers(options =>
     }));
 });
 var app = builder.Build();
-
+ 
 
 
 // Configure the HTTP request pipeline.
@@ -52,5 +50,7 @@ app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Users}/{controller=Home}/{action=PlatformLandingPage}/{id?}");
+                    
+   
 
 app.Run();

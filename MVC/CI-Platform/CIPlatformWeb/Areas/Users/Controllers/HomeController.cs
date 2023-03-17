@@ -29,6 +29,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         private readonly EmailSender _EmailSender;
 
        // string userId;
+       
         public HomeController(IUnitOfWork IUnitOfWork, EmailSender emailSender)
         {
             // userId = this.HttpContext.Session.GetString("userId");
@@ -471,16 +472,14 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
             };
 
-
             ViewBag.missionCnt = fr.Count();
-
-            
-            
-
 
             return PartialView("_index", indexViewModel);
 
             
         }
+
+
+       
     }
 }
