@@ -29,7 +29,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         private readonly EmailSender _EmailSender;
 
        // string userId;
-       
+      
         public HomeController(IUnitOfWork IUnitOfWork, EmailSender emailSender)
         {
             // userId = this.HttpContext.Session.GetString("userId");
@@ -194,7 +194,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         }
 
 
-        public PlatformLandingViewModel CovertToMissionVM(Mission item)
+        public static PlatformLandingViewModel CovertToMissionVM(Mission? item)
         {
             PlatformLandingViewModel MissionVM = new();
             MissionVM.City = item.City;
@@ -208,6 +208,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             MissionVM.MissionType = item.MissionType;
             MissionVM.OrgName = item.OrgName;
             MissionVM.ShortDesc = item.ShortDesc;
+            MissionVM.OrgDetails = item.OrgDetails;
             MissionVM.Theme = item.Theme;
             MissionVM.ThemeId = item.ThemeId;
             MissionVM.Title = item.Title;
@@ -223,7 +224,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
             return MissionVM;
         }
-        public String? getUrl(ICollection<MissionMedia> missionMedia)
+        public static String? getUrl(ICollection<MissionMedia> missionMedia)
         {
             if (missionMedia == null || missionMedia.Count() == 0)
             {
@@ -239,7 +240,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         }
 
 
-        private MissionSkill getMissionSkillList(ICollection<MissionSkill> missionSkills)
+        public static MissionSkill getMissionSkillList(ICollection<MissionSkill> missionSkills)
         {
             MissionSkill obj = new MissionSkill();
             foreach (var item in missionSkills)
@@ -256,7 +257,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             return obj;
         }
 
-        private GoalMission getGoalMission(ICollection<GoalMission> goalMissions)
+        public static GoalMission getGoalMission(ICollection<GoalMission> goalMissions)
         {
             GoalMission obj = new GoalMission();
             foreach (var item in goalMissions)

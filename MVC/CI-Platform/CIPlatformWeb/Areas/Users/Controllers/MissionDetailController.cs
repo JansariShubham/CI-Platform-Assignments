@@ -16,6 +16,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         private readonly EmailSender _EmailSender;
 
+        //HomeController hcObj = new HomeController();
+
         public MissionDetailController(IUnitOfWork IUnitOfWork, EmailSender emailSender)
         {
             // userId = this.HttpContext.Session.GetString("userId");
@@ -27,52 +29,67 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
             if (id != 0)
             {
-                var missionObj = _IUnitOfWork.MissionRepository.GetFirstOrDefault(m => m.MissionId == id);
-                var missionVmObj = CovertToMissionVM(missionObj);
+                var missionObj = _IUnitOfWork.MissionRepository.getAllMissions().FirstOrDefault(m => m.MissionId == id);
+                
+               var missionVm =  HomeController.CovertToMissionVM(missionObj);
 
 
 
-                return View(missionVmObj);
+                return View(missionVm);
             }
             return View();
 
         }
 
-        public PlatformLandingViewModel CovertToMissionVM(Mission item)
+        public void AddToFavourite(int? userId, int? missionid)
         {
-            PlatformLandingViewModel MissionVM = new();
-            MissionVM.City = item.City;
-            MissionVM.Country = item.Country;
-            MissionVM.CountryId = item.CountryId;
-            MissionVM.MissionId = item.MissionId;
-            MissionVM.CityId = item.CityId;
-            MissionVM.Status = item.Status;
-            MissionVM.StartDate = item.StartDate;
-            MissionVM.EndDate = item.EndDate;
-            MissionVM.MissionType = item.MissionType;
-            MissionVM.OrgName = item.OrgName;
-            MissionVM.ShortDesc = item.ShortDesc;
-            MissionVM.Theme = item.Theme;
-            MissionVM.ThemeId = item.ThemeId;
-            MissionVM.Title = item.Title;
-            MissionVM.ThumbnailURL = getUrl(item.MissionMedia);
-            return MissionVM;
+            if (userId != 0 && missionid != 0)
+            {
+                FavouriteMission obj = new()
+                {
+                    MissionId = missionid,
+                    UserId = userId
 
+                };
+
+                _IUnitOfWork.FavMissionRepository.Add(obj);
+                _IUnitOfWork.Save();
+
+
+            }
 
         }
-        public String? getUrl(ICollection<MissionMedia> missionMedia)
-        {
-            if (missionMedia == null || missionMedia.Count() == 0)
-            {
-                return null;
-            }
-            var missionObj = missionMedia.FirstOrDefault(missionMedia => missionMedia.DefaultMedia == true);
-            var mediaName = missionObj.MediaName;
-            var mediaType = missionObj.MediaType;
-            var mediaPath = missionObj.MediaPath;
 
-            var url = mediaPath + mediaName + mediaType;
-            return url;
+        public void RemoveFromFavourite(int ?userId, int? missionid)
+        {
+            if (userId != 0 && missionid != 0)
+            {
+                FavouriteMission obj = new()
+                {
+                    MissionId = missionid,
+                    UserId = userId,
+                    
+
+                };
+
+               var favMissionObj =  _IUnitOfWork.FavMissionRepository.GetFirstOrDefault(m => m.UserId == userId && m.MissionId == missionid);
+
+                _IUnitOfWork.FavMissionRepository.Delete(favMissionObj);
+                _IUnitOfWork.Save();
+            }
+        }
+
+        public void AddRatings(int userId, int missionId, byte rating )
+        {
+            MissionRating missionRatingobj = new()
+            {
+                UserId = userId,
+                MissionId = missionId,
+                Rating = rating,
+                CreatedAt = DateTimeOffset.Now
+            };
+            _IUnitOfWork.MissionRatingRepository.Add(missionRatingobj);
+            _IUnitOfWork.Save();
         }
 
     }

@@ -13,12 +13,14 @@ namespace CIPlatform.repository.IRepository
 
         IMissionRepository MissionRepository { get; }
 
-
+        IfavMissionRepository FavMissionRepository { get; }
         ICityRepository CityRepository { get; } 
 
         ICountryRepository CountryRepository { get; }
          ISkillsRepository SkillsRepository { get; }
         IMissionThemeRepository MissionThemeRepository { get; }
+
+        IMissionRatingRepository MissionRatingRepository { get; }
         void Save();
     }
 }

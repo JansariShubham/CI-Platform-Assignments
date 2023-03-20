@@ -24,6 +24,9 @@ namespace CIPlatform.repository.Repository
 
         public IMissionThemeRepository MissionThemeRepository { get; private set; }
 
+        public IfavMissionRepository FavMissionRepository { get; private set; }
+
+        public IMissionRatingRepository MissionRatingRepository { get; private set; }
         private AppDbContext _appDbContext;
 
         public UnitOfWork(AppDbContext appDbContext) 
@@ -36,6 +39,8 @@ namespace CIPlatform.repository.Repository
             CountryRepository = new CountryRepository(_appDbContext);
             SkillsRepository = new SkillsRepository(_appDbContext);
             MissionThemeRepository =  new MissionThemeRepository(_appDbContext);
+            FavMissionRepository = new FavMissionRepository(appDbContext);
+            MissionRatingRepository = new MissionRatingRepository(appDbContext);
         }
 
 

@@ -20,11 +20,15 @@ img {
     bottom:0;
 }*/
 
-
+.div-left{
+    width: 50%;
+}
+.fav-img{
+    height:1.5rem !important;
+}
 /* .z-index {
     z-index: 9999;
 } */
-
 /* .minus-z-index {
     z-index: -9999;
     position: relative;
@@ -398,6 +402,13 @@ img {
 
 .cancle-img{
     margin-top:0.4rem;
+}
+
+.caption-badge {
+    display: none;
+}
+.krajee-icon-clear {
+    display: none;
 }
 
 

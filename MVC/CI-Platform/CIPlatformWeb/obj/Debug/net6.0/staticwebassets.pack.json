@@ -225,6 +225,14 @@
       "PackagePath": "staticwebassets\\images\\facebook.png"
     },
     {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\fill-heart.png",
+      "PackagePath": "staticwebassets\\images\\fill-heart.png"
+    },
+    {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\filled-heart.jpg",
+      "PackagePath": "staticwebassets\\images\\filled-heart.jpg"
+    },
+    {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\filter.png",
       "PackagePath": "staticwebassets\\images\\filter.png"
     },
