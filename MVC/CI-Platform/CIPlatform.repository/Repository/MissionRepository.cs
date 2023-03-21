@@ -30,10 +30,11 @@ namespace CIPlatform.repository.Repository
                  .Include(missions => missions.GoalMissions)
                  .Include(missions => missions.MissionMedia)
                  .Include(missions => missions.FavouriteMissions)
-                 .Include(missions => missions.MissionSkills)
+                 .Include(missions => missions.MissionSkills).ThenInclude(m => m.Skill)
                  .Include(missions => missions.Theme)
                  .Include(missions => missions.City)
-                 .Include(missions => missions.Country).ToList();
+                 .Include(missions => missions.Country)
+                 .Include(missions => missions.MissionRatings).ToList();
             
             return missionList;
         }

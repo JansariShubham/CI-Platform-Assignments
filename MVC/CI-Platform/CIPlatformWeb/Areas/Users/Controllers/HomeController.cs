@@ -212,6 +212,10 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             MissionVM.Theme = item.Theme;
             MissionVM.ThemeId = item.ThemeId;
             MissionVM.Title = item.Title;
+            MissionVM.FavouriteMissionsList = item.FavouriteMissions;
+            
+            MissionVM.MissionSkillsList = item.MissionSkills;
+            MissionVM.MissionRating = getMissionRatings(item.MissionRatings);
             MissionVM.MissionSkills = getMissionSkillList(item.MissionSkills);
             MissionVM.ThumbnailURL = getUrl(item.MissionMedia);
             MissionVM.SeatsLeft = item.TotalSeats - item.MissionApplications.Count();
@@ -224,6 +228,24 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
             return MissionVM;
         }
+
+        private static MissionRating getMissionRatings(ICollection<MissionRating> missionRatings)
+        {
+            MissionRating rating = new();
+            foreach(var missionRating in missionRatings)
+            {
+                rating.MissionRatingId = missionRating.MissionRatingId;
+                rating.UserId = missionRating.UserId;
+                rating.MissionId = missionRating.MissionId;
+
+
+            }
+             
+            return rating;
+
+
+        }
+
         public static String? getUrl(ICollection<MissionMedia> missionMedia)
         {
             if (missionMedia == null || missionMedia.Count() == 0)
@@ -252,6 +274,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 obj.Skill = item.Skill;
                 obj.MissionId = item.MissionId;
                 obj.Mission = item.Mission;
+               // obj.Skill.SkillName = item.Skill.SkillName;
 
             }
             return obj;

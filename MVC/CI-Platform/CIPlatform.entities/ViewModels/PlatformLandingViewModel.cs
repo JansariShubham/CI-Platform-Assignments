@@ -48,6 +48,11 @@ namespace CIPlatform.entities.ViewModels
 
         public virtual MissionSkill MissionSkills { get; set; }
 
+        public virtual MissionRating MissionRating { get; set; }
+
+        public virtual ICollection<MissionSkill> MissionSkillsList { get; set; }
+
+        public virtual ICollection<FavouriteMission> FavouriteMissionsList { get; set; }
         public int? TotalSeats { get; set; }
 
         public int? SeatsLeft { get; set; }

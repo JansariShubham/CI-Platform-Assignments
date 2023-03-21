@@ -1,6 +1,7 @@
 ﻿using CIPlatform.entities.DataModels;
 using CIPlatform.entities.ViewModels;
 using CIPlatform.repository.IRepository;
+using CIPlatform.repository.Repository;
 using CIPlatform.utilities;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
@@ -34,6 +35,14 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                var missionVm =  HomeController.CovertToMissionVM(missionObj);
 
 
+                /*var ratings = _IUnitOfWork.MissionRatingRepository.GetFirstOrDefault(m => m.MissionId == id);
+                var countOfRatings = ratings
+
+                
+
+                
+                ViewBag.ratingsByVolunteersCnt = countOfRatings;
+*/
 
                 return View(missionVm);
             }
@@ -81,16 +90,48 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         public void AddRatings(int userId, int missionId, byte rating )
         {
-            MissionRating missionRatingobj = new()
-            {
-                UserId = userId,
-                MissionId = missionId,
-                Rating = rating,
-                CreatedAt = DateTimeOffset.Now
-            };
+            
+            _IUnitOfWork.MissionRatingRepository.AddOrUpdateRatings(userId, missionId, rating);
+
+/*
             _IUnitOfWork.MissionRatingRepository.Add(missionRatingobj);
-            _IUnitOfWork.Save();
+            _IUnitOfWork.Save();*/
+
+            /*
+                        var ratings = _IUnitOfWork.MissionRatingRepository.GetAll();
+                        var countOfRatings = ratings.Count();
+
+                        ViewBag.ratingsByVolunteersCnt = countOfRatings;*/
         }
+
+        
+        public IActionResult getRelatedMission(int? missionId)
+        {
+            var missionObj = _IUnitOfWork.MissionRepository.GetFirstOrDefault(m => m.MissionId == missionId);
+            if (missionObj != null)
+            {
+                
+                
+               var missionThemes = _IUnitOfWork.MissionRepository.getAllMissions().Where(m => missionObj.Theme.Title == m.Theme.Title && m.MissionId != missionObj.MissionId);
+                List<PlatformLandingViewModel> missionThemeVm = new();
+
+                foreach (var item in missionThemes)
+                {
+                    missionThemeVm.Add(HomeController.CovertToMissionVM(item));
+                }
+                
+               // var missionVmThemes = HomeController.CovertToMissionVM(missionThemeVm);
+                return PartialView("_RelatedMission",missionThemeVm.Take(3).ToList());
+
+            }
+            return null;
+
+        }
+
+        
+
+
+
 
     }
 }

@@ -80,6 +80,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlcnNcVmlld3NcTWlzc2lvbkRldGFpbFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Users/Views/MissionDetail/_Comments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlcnNcVmlld3NcTWlzc2lvbkRldGFpbFxfQ29tbWVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Users/Views/MissionDetail/_RelatedMission.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlcnNcVmlld3NcTWlzc2lvbkRldGFpbFxfUmVsYXRlZE1pc3Npb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

@@ -405,10 +405,10 @@ img {
 }
 
 .caption-badge {
-    display: none;
+    display: none !important;
 }
 .krajee-icon-clear {
-    display: none;
+    display: none !important;
 }
 
 
