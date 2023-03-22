@@ -401,6 +401,10 @@
       "PackagePath": "staticwebassets\\images\\star.png"
     },
     {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\success-green-check-mark-icon.svg",
+      "PackagePath": "staticwebassets\\images\\success-green-check-mark-icon.svg"
+    },
+    {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\twitter.png",
       "PackagePath": "staticwebassets\\images\\twitter.png"
     },

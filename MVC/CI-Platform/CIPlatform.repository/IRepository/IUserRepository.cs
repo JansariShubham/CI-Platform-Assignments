@@ -14,5 +14,7 @@ namespace CIPlatform.repository.IRepository
         void Update(User user);
         public int UpadateUserPassword(String email, String password);
         public User GetLoginCredentials(UserLoginViewModel model);
+
+        public List<User> getAllUsers();
     }
 }

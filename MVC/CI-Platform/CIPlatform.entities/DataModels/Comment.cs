@@ -17,6 +17,10 @@ public partial class Comment
 
     public DateTimeOffset? DeletedAt { get; set; }
 
+    public byte? ApprovalStatus { get; set; }
+
+    public string? CommentMsg { get; set; }
+
     public virtual Mission? Mission { get; set; }
 
     public virtual User? User { get; set; }

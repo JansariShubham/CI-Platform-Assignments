@@ -3,7 +3,7 @@
     var UserName = Context.Session.GetString("firstName");
     var userId = Context.Session.GetString("userId");
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var ratingsCount = ViewBag.ratingsByVolunteersCnt;
+    //var ratingsCount = ViewBag.ratingsByVolunteersCnt;
     var isFavourate = 0;
 
     if(userId != "" && userId != null)
@@ -203,12 +203,15 @@
                         </button>
                         
                     }
-                    <button class="border rounded-pill bg-white  py-1">
+                    <button class="border rounded-pill bg-white py-1" id="recommendedBtn"  data-bs-target="#recommendedModal">
                             <img src="~/images/add1.png" alt="">
                             <span class="font-size">Recommend to a Co-Worker</span>
 
                         </button>
 
+                        <div id="recommendedPartial">
+
+                        </div>
 
 
 
@@ -297,8 +300,8 @@
         <div class="col-12  col-lg-7 mt-3">
             <div class="d-flex gap-3 border-bottom pt-3">
                 <button class="mission-btn border-0 bg-white active-tab">Mission</button>
-                <button class=" org-btn border-0 bg-white">Organization</button>
-                <button class=" comment-btn border-0 bg-white">Comments</button>
+                <button class="org-btn border-0 bg-white">Organization</button>
+                <button class="comment-btn border-0 bg-white">Comments</button>
 
             </div>
             <!-- mission  -->
@@ -377,19 +380,22 @@
                 </p>
             </div>
             <!-- Comments  -->
-            <div class="d-none comment-div mt-3">
-                <textarea name="" id="" cols=" 10" rows="4"
-                          class="form-control text-secondary" placeholder="Enter your comments..." required></textarea>
+            @if (userId != null)
+            {
+                <div class="d-none comment-div mt-3">
+                    <textarea name="" id="commentMsg" cols=" 10" rows="4"
+                          class="form-control text-secondary"   placeholder="Enter your comments..." onkeyup="enableDisableBtn()"></textarea>
 
                 <div class="d-flex">
-                    <a href="#" class="btn apply-btn mt-3 mb-3 px-4 ">
+                        <button class="btn apply-btn mt-3 mb-3 px-4" id="commentBtn" disabled>
                         Post Comment <img src="~/images/right-arrow.png" alt="#">
-                    </a>
+                    </button>
                 </div>
                 <div class="bg-light container p-3" id="partialComment">
                     </div>
 
             </div>
+            }
 
         </div>
 

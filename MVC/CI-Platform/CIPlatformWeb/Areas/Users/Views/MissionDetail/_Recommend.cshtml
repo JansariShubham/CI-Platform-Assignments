@@ -1,0 +1,53 @@
+﻿
+@model List<CIPlatform.entities.ViewModels.UserViewModel>
+@{
+    var userId = ViewBag.userId;
+    var missionId = ViewBag.missionId;
+}
+
+<!-- Modal -->
+<div class="modal fade" id="recommendedModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Users</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                    @foreach(var user in Model)
+                {
+                    @if (user.MissionInviteToUsers.Any(mi => mi.FromUserId == userId && mi.MissionId == missionId))
+                    {
+
+
+                                <div class="form-check mb-2">
+                                <img class="form-check-input border-0" src="~/images/success-green-check-mark-icon.svg" alt="check" height="30px" width="30px">
+                                    <label class="form-check-label d-flex gap-3 align-items-center flex-wrap">
+                        @*<img src="@user.Avatar" alt="user" height="40px" width="40px" class="rounded-circle object-fit-cover">*@
+                                @user.FirstName @user.LastName
+                                    </label>
+                                </div>
+                    }
+                
+                
+                else
+                {
+
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" value="@user.UserId" id="userChkBox">
+                    <label class="form-check-label d-flex gap-3 align-items-center flex-wrap">
+
+                        @user.FirstName @user.LastName
+                    </label>
+                </div>
+                }
+            }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="sendRecommendationBtn">Send Recommedation</button>
+            </div>
+        </div>
+    </div>
+</div>

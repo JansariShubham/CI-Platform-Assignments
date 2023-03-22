@@ -5,6 +5,7 @@ using CIPlatform.repository.Repository;
 using CIPlatform.utilities;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
+using System.Security.Policy;
 
 namespace CIPlatformWeb.Areas.Users.Controllers
 {
@@ -31,8 +32,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             if (id != 0)
             {
                 var missionObj = _IUnitOfWork.MissionRepository.getAllMissions().FirstOrDefault(m => m.MissionId == id);
-                
-               var missionVm =  HomeController.CovertToMissionVM(missionObj);
+
+                var missionVm = HomeController.CovertToMissionVM(missionObj);
 
 
                 /*var ratings = _IUnitOfWork.MissionRatingRepository.GetFirstOrDefault(m => m.MissionId == id);
@@ -69,7 +70,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         }
 
-        public void RemoveFromFavourite(int ?userId, int? missionid)
+        public void RemoveFromFavourite(int? userId, int? missionid)
         {
             if (userId != 0 && missionid != 0)
             {
@@ -77,25 +78,25 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 {
                     MissionId = missionid,
                     UserId = userId,
-                    
+
 
                 };
 
-               var favMissionObj =  _IUnitOfWork.FavMissionRepository.GetFirstOrDefault(m => m.UserId == userId && m.MissionId == missionid);
+                var favMissionObj = _IUnitOfWork.FavMissionRepository.GetFirstOrDefault(m => m.UserId == userId && m.MissionId == missionid);
 
                 _IUnitOfWork.FavMissionRepository.Delete(favMissionObj);
                 _IUnitOfWork.Save();
             }
         }
 
-        public void AddRatings(int userId, int missionId, byte rating )
+        public void AddRatings(int userId, int missionId, byte rating)
         {
-            
+
             _IUnitOfWork.MissionRatingRepository.AddOrUpdateRatings(userId, missionId, rating);
 
-/*
-            _IUnitOfWork.MissionRatingRepository.Add(missionRatingobj);
-            _IUnitOfWork.Save();*/
+            /*
+                        _IUnitOfWork.MissionRatingRepository.Add(missionRatingobj);
+                        _IUnitOfWork.Save();*/
 
             /*
                         var ratings = _IUnitOfWork.MissionRatingRepository.GetAll();
@@ -104,34 +105,166 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                         ViewBag.ratingsByVolunteersCnt = countOfRatings;*/
         }
 
-        
+
         public IActionResult getRelatedMission(int? missionId)
         {
             var missionObj = _IUnitOfWork.MissionRepository.GetFirstOrDefault(m => m.MissionId == missionId);
             if (missionObj != null)
             {
-                
-                
-               var missionThemes = _IUnitOfWork.MissionRepository.getAllMissions().Where(m => missionObj.Theme.Title == m.Theme.Title && m.MissionId != missionObj.MissionId);
+
+
+                var missionThemes = _IUnitOfWork.MissionRepository.getAllMissions().Where(m => missionObj.Theme.Title == m.Theme.Title && m.MissionId != missionObj.MissionId);
                 List<PlatformLandingViewModel> missionThemeVm = new();
 
                 foreach (var item in missionThemes)
                 {
                     missionThemeVm.Add(HomeController.CovertToMissionVM(item));
                 }
-                
-               // var missionVmThemes = HomeController.CovertToMissionVM(missionThemeVm);
-                return PartialView("_RelatedMission",missionThemeVm.Take(3).ToList());
+
+                // var missionVmThemes = HomeController.CovertToMissionVM(missionThemeVm);
+                return PartialView("_RelatedMission", missionThemeVm.Take(3).ToList());
 
             }
             return null;
 
         }
 
-        
+        public IActionResult AddComments(int? userId, int? missionId, string? commentText)
+        {
+
+            if (userId != 0 && missionId != 0 && commentText != "" && commentText != null)
+            {
+                Comment commentObj = new()
+                {
+                    UserId = userId,
+                    MissionId = missionId,
+                    CommentMsg = commentText,
+                    CreatedAt = DateTimeOffset.Now
+
+                };
+
+                _IUnitOfWork.CommentRepository.Add(commentObj);
+                _IUnitOfWork.Save();
+
+                var commentList = _IUnitOfWork.CommentRepository.getAllComments();
+                var commentsListAsPerMission = commentList.Where(c => c.MissionId == missionId).Select(c => ConvertToCommentVm(c)).ToList();
+                return PartialView("_Comments", commentsListAsPerMission);
+            }
+            return null;
 
 
 
 
+        }
+        [HttpGet]
+        public IActionResult getAllComments(int? missionId)
+        {
+            var commentList = _IUnitOfWork.CommentRepository.getAllComments();
+            var commentsListAsPerMission = commentList.Where(c => c.MissionId == missionId).Select(c => ConvertToCommentVm(c)).ToList();
+            // List<CommentViewModel> commentsVm = new(); 
+
+            return PartialView("_Comments", commentsListAsPerMission);
+
+        }
+
+        public CommentViewModel ConvertToCommentVm(Comment item)
+        {
+            CommentViewModel commentViewModel = new()
+            {
+                UserId = item.UserId,
+                MissionId = item.MissionId,
+                CommentMsg = item.CommentMsg,
+                User = item.User,
+                CommentId = item.CommentId,
+                CreatedAt = item.CreatedAt,
+                Mission = item.Mission
+            };
+            return commentViewModel;
+
+        }
+        [HttpGet]
+        public IActionResult getAllUsers(int? userId, int? missionId)
+        {
+            var usersList = _IUnitOfWork.UserRepository.getAllUsers();
+            List<UserViewModel> userVm = new();
+
+            foreach (var user in usersList)
+            {
+                userVm.Add(convertToUserVm(user));
+
+            }
+
+            ViewBag.userId = userId;
+            ViewBag.missionId = missionId;
+            return PartialView("_Recommend", userVm);
+        }
+
+
+
+
+        public UserViewModel convertToUserVm(User? user)
+        {
+            UserViewModel userVm = new()
+            {
+                UserId = user.UserId,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                MissionInviteToUsers= user.MissionInviteToUsers,
+                MissionInviteFromUsers= user.MissionInviteFromUsers,
+
+            };
+            return userVm;
+
+        }
+
+        public void AddUsersToMissionInvite(int[]? usersIdList, int? missionId, int? currentUserId)
+        {
+            try
+            {
+                var currentUser = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == currentUserId);
+                /*String subject = "Your Friend" + currentUser.FirstName + "is Recommended you this mission!";
+                String htmlMessage = "Please Checkout this Mission!";*/
+                var url = Url.Action("Index", "MissionDetail", new { id = missionId }, "https");
+                string subject = "CI Platform - Mission Recommendation";
+                string link = $"<a href='{url}' style='text-decoration:none;display:block;width:max-content;border:1px solid black;border-radius:5rem;padding:0.75rem 1rem;margin:1rem auto;color:black;font-size:1rem;'>Open mission</a>";
+                string htmlMessage = $"<p style='text-align:center;font-size:2rem'>Your co-worker {currentUser.FirstName} has recommended a mission to you.</p><p style='text-align:center;font-size:1.5rem'>Click on the link below check mission out</p><hr/>{link}";
+                for (int i = 0; i < usersIdList.Length; i++)
+                {
+
+
+                    MissionInvite missionInviteObj = new()
+                    {
+                        FromUserId = currentUserId,
+                        MissionId = missionId,
+                        ToUserId = usersIdList[i],
+                        CreatedAt = DateTimeOffset.Now
+
+
+                    };
+
+                    _IUnitOfWork.MissionInviteRepository.Add(missionInviteObj);
+                    _IUnitOfWork.Save();
+
+                    var userObj = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == usersIdList[i]);
+                    if (userObj != null)
+                    {
+                        _EmailSender.SendEmail(userObj.Email, subject, htmlMessage);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.GetBaseException();
+            }
+
+
+
+        }
     }
 }
+
+
+
+

@@ -167,6 +167,11 @@ public partial class AppDbContext : DbContext
             entity.ToTable("comment");
 
             entity.Property(e => e.CommentId).HasColumnName("comment_id");
+            entity.Property(e => e.ApprovalStatus).HasColumnName("approval_status");
+            entity.Property(e => e.CommentMsg)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("comment_msg");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
             entity.Property(e => e.MissionId).HasColumnName("mission_id");

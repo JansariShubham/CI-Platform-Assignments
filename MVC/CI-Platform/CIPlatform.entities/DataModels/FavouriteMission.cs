@@ -11,7 +11,7 @@ public partial class FavouriteMission
 
     public long? MissionId { get; set; }
 
-    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.Now;
+    public DateTimeOffset CreatedAt { get; set; }
 
     public DateTimeOffset? UpdatedAt { get; set; }
 

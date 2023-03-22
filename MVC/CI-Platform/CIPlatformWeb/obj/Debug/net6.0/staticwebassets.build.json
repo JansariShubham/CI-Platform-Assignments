@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ssK0eQ1/NOyAg2GEuChBVuAik/KO8IOyKmMd8F+A/fs=",
+  "Hash": "YO2YVNVbNtRF9fJ/RCorFCrsxXq21EtaKSiTw0vy8x0=",
   "Source": "CIPlatformWeb",
   "BasePath": "_content/CIPlatformWeb",
   "Mode": "Default",
@@ -1698,6 +1698,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\star-empty.png"
+    },
+    {
+      "Identity": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\success-green-check-mark-icon.svg",
+      "SourceId": "CIPlatformWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\",
+      "BasePath": "_content/CIPlatformWeb",
+      "RelativePath": "images/success-green-check-mark-icon.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\success-green-check-mark-icon.svg"
     },
     {
       "Identity": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\twitter.png",

@@ -42,5 +42,12 @@ namespace CIPlatform.repository.Repository
            return _appDbContext.Database.ExecuteSqlRaw("UPDATE [users] SET password = @password WHERE email = @email", userEmail, password);
             /*_appDbContext.SaveChanges();*/
         }
+
+
+        public List<User> getAllUsers()
+        {
+           return _appDbContext.Users.Include(u => u.MissionInviteFromUsers)
+                .Include(u => u.MissionInviteToUsers).ToList();
+        }
     }
 }

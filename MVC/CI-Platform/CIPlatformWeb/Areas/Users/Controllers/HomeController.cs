@@ -433,8 +433,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 return RedirectToAction("Login");
             }
 
-
-            return RedirectToAction("ResetPassword");
+            return View();
+            //return RedirectToAction("ResetPassword");
 
         }
         [Route("Logout")]

@@ -117,8 +117,11 @@ $(document).ready(() => {
     getRelatedMission();
 
     let starInput = $("#star-input-id");
-    console.log(starInput);
+   // console.log(starInput);
     addStar(starInput, userId, missionId);
+    
+    getComments();
+    
 
 
 });
@@ -144,6 +147,7 @@ function getRelatedMission() {
 
 
 
+
     function addStar(starInput, userId, missionId) {
         console.log(starInput);
         $("#rating .rating-stars").on("click", function (event) {
@@ -162,4 +166,112 @@ function getRelatedMission() {
     }
 
 
+
+var commentMsg = document.getElementById("commentMsg").value;
+console.log(commentMsg);
+var commentsBtn = document.getElementById("commentBtn");
+//console.log("btn")
+
+function enableDisableBtn() {
+   // console.log("hello inside fn");
+    if (document.getElementById("commentMsg").value.length) {
+        
+        commentsBtn.disabled = false;
+    }
+    else {
+        //console.log("In hiii");
+        commentsBtn.disabled = true;
+    }
+    
+}
+commentsBtn.addEventListener("click", () => {
+    var commentMsg = document.getElementById("commentMsg").value;
+    $.ajax({
+        type: "POST",
+        url: '/Users/MissionDetail/AddComments',
+        data: { userId: userId, missionId: missionId, commentText: commentMsg },
+        success:(data) => {
+           // console.log("Comments Addded");
+            alert("Comment Added Successfully");
+            $("#partialComment").html(data)
+           document.getElementById("commentMsg").value = '';
+    },
+        error : (err) => {
+            console.log("Error in adding comment");
+            }
+
+        })
+})
+
+function getComments() {
+$.ajax({
+    type: "GET",
+    url: '/Users/MissionDetail/getAllComments',
+    data: {missionId: missionId},
+    success: (data) => {
+        $("#partialComment").html(data)
+
+    },
+    error: (err) => {
+        console.log("Error in adding comment");
+    }
+
+})
+
+}
+
+var recommendBtn = document.getElementById("recommendedBtn");
+recommendBtn.addEventListener("click", () => {
+    $.ajax({
+        type: "GET",
+        url: '/Users/MissionDetail/getAllUsers',
+        data: { userId: userId, missionId: missionId },
+        success: (data) => {
+            $('#recommendedPartial').html(data);
+            $('#recommendedModal').modal('show');
+           
+            
+
+            var sendRecommendationBtn = document.getElementById("sendRecommendationBtn");
+            sendRecommendationBtn.addEventListener('click', () => {
+                getCheckedUsersId();
+                $('#recommendedModal').modal('hide');
+                $.ajax({
+                    type: "POST",
+                    url: '/Users/MissionDetail/AddUsersToMissionInvite',
+                    data: { usersIdList: usersId, missionId: missionId, currentUserId: userId },
+                    success: (data) => {
+                        
+
+                    },
+                    error: (err) => {
+
+                    }
+
+                })
+
+
+            })
+
+        },
+        error: (err) => {
+            
+        }
+
+    })
+})
+
+
+var usersId = [];
+function getCheckedUsersId() {
+    var checkedUser = 
+        Array.from(document.querySelectorAll("#userChkBox:checked")).forEach(val => {
+
+            var selectedUserId = $(val).val();
+        usersId.push(selectedUserId);
+        //console.log(userId);
+        })
+    
+    
+}
 

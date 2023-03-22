@@ -21,6 +21,10 @@ namespace CIPlatform.repository.IRepository
         IMissionThemeRepository MissionThemeRepository { get; }
 
         IMissionRatingRepository MissionRatingRepository { get; }
+
+        ICommentRepository CommentRepository { get; }
+
+        IMissionInviteRepository MissionInviteRepository { get; }
         void Save();
     }
 }
