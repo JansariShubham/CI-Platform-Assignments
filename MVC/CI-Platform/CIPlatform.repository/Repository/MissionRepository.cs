@@ -27,6 +27,7 @@ namespace CIPlatform.repository.Repository
         public List<Mission> getAllMissions()
         {
             var missionList = _appDbContext.Missions.Include(mission => mission.MissionApplications)
+                .ThenInclude(u => u.User)
                  .Include(missions => missions.GoalMissions)
                  .Include(missions => missions.MissionMedia)
                  .Include(missions => missions.FavouriteMissions)
@@ -34,7 +35,8 @@ namespace CIPlatform.repository.Repository
                  .Include(missions => missions.Theme)
                  .Include(missions => missions.City)
                  .Include(missions => missions.Country)
-                 .Include(missions => missions.MissionRatings).ToList();
+                 .Include(missions => missions.MissionRatings)
+                 .Include(missions => missions.MissionDocuments).ToList();
             
             return missionList;
         }

@@ -16,6 +16,7 @@ using System.Diagnostics.Metrics;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualStudio.Web.CodeGeneration;
 using System.Drawing.Printing;
+//using AspNetCore;
 
 namespace CIPlatformWeb.Areas.Users.Controllers
 {
@@ -213,22 +214,39 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             MissionVM.ThemeId = item.ThemeId;
             MissionVM.Title = item.Title;
             MissionVM.FavouriteMissionsList = item.FavouriteMissions;
-            
+            MissionVM.MissionApplications = item.MissionApplications;
             MissionVM.MissionSkillsList = item.MissionSkills;
             MissionVM.MissionRating = getMissionRatings(item.MissionRatings);
             MissionVM.MissionSkills = getMissionSkillList(item.MissionSkills);
             MissionVM.ThumbnailURL = getUrl(item.MissionMedia);
-            MissionVM.SeatsLeft = item.TotalSeats - item.MissionApplications.Count();
 
+            MissionVM.SeatsLeft = item.TotalSeats - item.MissionApplications.Count();
+            //MissionVM.MissionDocuments = item.MissionDocuments; 
            // Console.WriteLine("seats lef====>>>>" + MissionVM.SeatsLeft);
             MissionVM.StartDate = item.StartDate;
             MissionVM.EndDate = item.EndDate;
             MissionVM.GoalMissions = getGoalMission(item.GoalMissions);
+            MissionVM.MissionDocuments = getMissionDoc(item.MissionDocuments).ToList();
 
 
             return MissionVM;
         }
 
+
+
+        private static IEnumerable<MissionDocumentVM> getMissionDoc(ICollection<MissionDocument> missionDocuments)
+        {
+            var missionDoc = missionDocuments.Select(md => new MissionDocumentVM()
+            {
+                DocumentName = md.DocumentName,
+                DocumentPath = md.DocumentPath,
+                DocumentType = md.DocumentType,
+                DocumentLink = md.DocumentPath + md.DocumentName + md.DocumentType
+
+            });
+            return missionDoc;
+
+        }
         private static MissionRating getMissionRatings(ICollection<MissionRating> missionRatings)
         {
             MissionRating rating = new();

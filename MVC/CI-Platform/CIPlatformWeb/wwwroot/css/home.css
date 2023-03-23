@@ -411,8 +411,9 @@ img {
     display: none !important;
 }
 
-
-
+.default-img{
+    height:15rem !important;
+}
 /* media quary */
 @media(min-width:481px) and (max-width:992px) {
     .search-div {

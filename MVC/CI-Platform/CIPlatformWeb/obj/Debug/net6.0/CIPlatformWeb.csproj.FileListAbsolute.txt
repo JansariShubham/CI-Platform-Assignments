@@ -7,9 +7,6 @@ D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\CIPlat
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\CIPlatformWeb.MvcApplicationPartsAssemblyInfo.cache
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\CIPlatformWeb.RazorAssemblyInfo.cache
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\CIPlatformWeb.RazorAssemblyInfo.cs
-D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\CIPlatformWeb.dll
-D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\refint\CIPlatformWeb.dll
-D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\CIPlatformWeb.pdb
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\appsettings.Development.json
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\appsettings.json
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\CIPlatformWeb.staticwebassets.runtime.json
@@ -295,5 +292,8 @@ D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\scoped
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\scopedcss\bundle\CIPlatformWeb.styles.css
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\scopedcss\projectbundle\CIPlatformWeb.bundle.scp.css
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\CIPlatformWeb.csproj.CopyComplete
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\CIPlatformWeb.dll
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\refint\CIPlatformWeb.dll
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\CIPlatformWeb.pdb
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\CIPlatformWeb.genruntimeconfig.cache
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\ref\CIPlatformWeb.dll

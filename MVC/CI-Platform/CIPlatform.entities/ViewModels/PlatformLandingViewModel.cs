@@ -46,6 +46,7 @@ namespace CIPlatform.entities.ViewModels
 
         public virtual String?  ThumbnailURL { get; set; }
 
+        public virtual String? MissionDocURL { get; set; }
         public virtual MissionSkill MissionSkills { get; set; }
 
         public virtual MissionRating MissionRating { get; set; }
@@ -53,6 +54,10 @@ namespace CIPlatform.entities.ViewModels
         public virtual ICollection<MissionSkill> MissionSkillsList { get; set; }
 
         public virtual ICollection<FavouriteMission> FavouriteMissionsList { get; set; }
+
+        public virtual ICollection<MissionApplication> MissionApplications { get; set; }
+
+        public virtual List<MissionDocumentVM> MissionDocuments { get; set; } = new();
         public int? TotalSeats { get; set; }
 
         public int? SeatsLeft { get; set; }

@@ -1,3 +1,15 @@
+/* share story starts */
+.drag-drop-div {
+    border: dashed;
+    border-color: #757575;
+}
+
+.drag-label {
+    display: block !important;
+}
+
+/* share story end */
+
 img {
     max-width: 100%;
 }

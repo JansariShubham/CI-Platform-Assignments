@@ -9,6 +9,7 @@
   <ItemGroup>
     <Content Remove="Areas\Users\Views\Home\Forgot.cshtml" />
     <Content Remove="Areas\Users\Views\Home\Index1.cshtml" />
+    <Content Remove="Areas\Users\Views\MissionDetail\_Ratings.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +34,18 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Users\Views\MissionDetail\_Ratings.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Users\Views\MissionDetail\_Ratings.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Shared\_Ratings.cshtml" />
   </ItemGroup>
 
 </Project>

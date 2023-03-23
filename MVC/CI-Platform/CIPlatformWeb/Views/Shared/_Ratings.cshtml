@@ -1,0 +1,23 @@
+﻿@*@model IEnumerable<CIPlatform.entities.ViewModels.MissionRatingViewModel>*@
+@{
+    var volunteerCnt = ViewBag.volunteerCnt;
+    var avgRatings = ViewBag.avgRatings;
+}
+
+<p>Rating</p>
+<div>
+    @for(int i = 0; i < 5 ; i++)
+    {
+        @if (avgRatings > i)
+        {
+            <img src="~/images/selected-star.png" alt="">
+        }
+        else
+        {
+            <img src="~/images/star.png" alt="">
+            
+        }
+    }
+    
+    <span class="ms-2">(by @volunteerCnt volunteers)</span>
+</div>

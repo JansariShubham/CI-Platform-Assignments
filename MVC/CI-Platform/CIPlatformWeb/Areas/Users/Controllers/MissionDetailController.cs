@@ -89,10 +89,23 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             }
         }
 
-        public void AddRatings(int userId, int missionId, byte rating)
+        public IActionResult AddRatings(int userId, int missionId, byte rating)
         {
 
             _IUnitOfWork.MissionRatingRepository.AddOrUpdateRatings(userId, missionId, rating);
+
+            var missionRatingsObj = _IUnitOfWork.MissionRatingRepository.GetAll();
+            var ratingsCnt = missionRatingsObj.Where(mr => mr.MissionId == missionId).Count();
+
+            var ratings = missionRatingsObj.Where(mr => mr.MissionId == missionId).Select(r => convertToMissionRatingVm(r, ratingsCnt));
+
+            var avgRatings = ratings.Average(r => r.Rating);
+
+            ViewBag.volunteerCnt = ratingsCnt;
+            ViewBag.avgRatings = avgRatings;
+
+            return PartialView("_Ratings");
+
 
             /*
                         _IUnitOfWork.MissionRatingRepository.Add(missionRatingobj);
@@ -105,6 +118,38 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                         ViewBag.ratingsByVolunteersCnt = countOfRatings;*/
         }
 
+        [HttpGet]
+        public IActionResult getRatings(int? missionId)
+        {
+
+            
+            var missionRatingsObj = _IUnitOfWork.MissionRatingRepository.GetAll();
+            if (missionRatingsObj.Any(m => m.MissionId == missionId))
+            {
+                var ratingsCnt = missionRatingsObj.Where(mr => mr.MissionId == missionId).Count();
+
+                var ratings = missionRatingsObj.Where(mr => mr.MissionId == missionId).Select(r => convertToMissionRatingVm(r, ratingsCnt));
+
+                var avgRatings = ratings.Average(r => r.Rating);
+
+                ViewBag.volunteerCnt = ratingsCnt;
+                ViewBag.avgRatings = avgRatings;
+                return PartialView("_Ratings");
+            }
+            return null;
+
+
+        }
+
+        public MissionRatingViewModel convertToMissionRatingVm(MissionRating r, int ratingsCnt)
+        {
+            MissionRatingViewModel ratingVm = new()
+            {
+                Rating = r.Rating,
+                RatingCount = ratingsCnt
+            };
+            return ratingVm;
+        }
 
         public IActionResult getRelatedMission(int? missionId)
         {

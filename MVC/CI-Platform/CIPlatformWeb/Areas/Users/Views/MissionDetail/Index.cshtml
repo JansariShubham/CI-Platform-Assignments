@@ -21,7 +21,9 @@
         <button class="header-toggle d-md-none border-0">
             <img class="h-50" src="~/images/list.png" alt="#">
         </button>
+        <a asp-action="PlatformLandingPage" asp-controller ="Home">
         <img class="logo h-50" src="~/images/logo.png" alt="#">
+        </a>
         <a href="#" class="text-decoration-none mx-5 d-none d-md-inline d-lg-inline">Stories</a>
         <button class="dropdown-toggle policy-btn d-none d-md-inline d-lg-inline" data-bs-toggle="dropdown"
                 aria-expanded="false" type="button" id="dropdownMenuButton1">
@@ -69,9 +71,9 @@
 
 
 <section class="container mt-3 border-top p-5">
-    <div class="d-flex flex-column flex-sm-column flex-lg-row gap-5 ">
-        <div class="div-left">
-            <img class="poster-img mb-1" src="@Model.ThumbnailURL"
+    <div class="d-flex flex-column flex-sm-column flex-lg-row justify-content-around">
+        <div class="div-left w-50">
+            <img class="poster-img mb-1 w-100" src="@Model.ThumbnailURL"
                  alt="">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
@@ -180,14 +182,13 @@
             
             <input type="hidden" value="@userId" id="userId" />
 
+            
             @if (userId != null)
             {
-                
-
-
                     <div class="d-flex gap-2 m-3 justify-content-md-center">
                     @if (isFavourate == 1)
                     {
+                        <input type="hidden" value="1" id="isFavourate" />
                         <button class="border rounded-pill bg-white py-1" id="addToFavourite">
                             <img src="~/images/fill-heart.png" class="fav-img" alt="">
                             <span class="font-size fav-span">Remove From Favourite</span>
@@ -195,7 +196,8 @@
                         </button>
                     }
                     else
-                    { 
+                    {
+                        <input type="hidden" value="0" id="isFavourate" />
                         <button class="border rounded-pill bg-white py-1" id="addToFavourite">
                             <img src="~/images/heart1.png" class="fav-img" alt="">
                             <span class="font-size fav-span">Add to Favourite</span>
@@ -217,13 +219,18 @@
 
 
                     </div>
+                                <!-- rating.js file -->
+                         
+                    
+                     
+                    <div id="rating" class="d-flex justify-content-center align-items-center position-relative z-1 mb-1">
+
+                       <input id="star-input-id"  type="text" class="rating text-center d-none" data-size="sm" />
+                    </div>
+                    
                
 
 
-            <!-- rating.js file -->
-            <div id="rating" class="d-flex justify-content-center align-items-center position-relative z-1">
-                <input id="star-input-id" type="text" class="rating text-center d-none" data-size="sm" />
-            </div>
                         
                     
                 }
@@ -239,37 +246,37 @@
             </div>*@
             <div class="row gap-3 ">
                 <div class="border col d-flex flex-column justify-content-between p-0">
-                    <div class="ps-1">
+                    <div class="ps-2">
                         <img class="pt-2" src="~/images/pin1.png" alt="">
                     </div>
-                    <div class="ps-1 info-div">
+                    <div class="px-2 info-div">
                         <span> City </span>
                         <p class="fw-bold">@Model.City.Name</p>
                     </div>
                 </div>
                 <div class="border col d-flex flex-column justify-content-between p-0">
-                    <div class="ps-1">
+                    <div class="ps-2">
                         <img class="pt-2" src="~/images/web.png" alt="">
                     </div>
-                    <div class="ps-1 info-div">
+                    <div class="px-2 info-div">
                         <span>Theme</span>
                         <p class="fw-bold">@Model.Country.Name</p>
                     </div>
                 </div>
                 <div class="border col d-flex flex-column justify-content-between p-0">
-                    <div class="ps-1">
+                    <div class="ps-2">
                         <img class="pt-2" src="~/images/calender.png" alt="">
                     </div>
-                    <div class="ps-1 info-div">
+                    <div class="px-2 info-div">
                         <span>Date</span>
                         <p class="fw-bold">Ongoing Opportunity</p>
                     </div>
                 </div>
                 <div class="border col d-flex flex-column justify-content-between align-items-start p-0">
-                    <div class="ps-1">
+                    <div class="ps-2">
                         <img class="pt-2" src="~/images/organization.png" alt="">
                     </div>
-                    <div class="ps-1 info-div">
+                    <div class="px-2 info-div">
                         <span> Organization</span>
                         <p class="fw-bold ">@Model.OrgName</p>
                     </div>
@@ -354,11 +361,21 @@
                 </div>
                 <div>
                     <h3 class="fs-3">Documemts</h3>
+
                     <div class="d-flex gap-3 flex-wrap">
-                        <div class="border rounded-pill d-flex gap-2 px-4 py-2 align-items-center">
-                            <img src="~/images/pdf.png" alt="   ">
-                            lorem-ipsum.pdf
-                        </div>
+                        @foreach (var doc in Model.MissionDocuments)
+                         {
+                            <a href="@doc.DocumentLink" class="text-decoration-none text-black">
+                            <div class="border rounded-pill d-flex gap-2 px-4 py-2 align-items-center">
+                           
+                            @doc.DocumentName@doc.DocumentType
+                                
+                            </div>
+                        </a>
+                            
+                            
+                         }
+                         @*
                         <div class="border rounded-pill d-flex gap-2 px-4 py-2 align-items-center">
                             <img src="~/images/doc.png" alt="">
                             at_vero_eos_accusamus.doc
@@ -367,7 +384,7 @@
                         <div class="border rounded-pill d-flex gap-2 px-4 py-2 align-items-center">
                             <img src="~/images/xlsx.png" alt="">
                             important_doc.xls
-                        </div>
+                        </div>*@
 
                     </div>
 
@@ -422,16 +439,8 @@
                     <p>Weekend only</p>
                 </div>
 
-                <div class="d-flex gap-lg-4 mt-2 gap-5 justify-content-md-between ">
-                    <p>Rating</p>
-                    <div>
-                        <img src="~/images/selected-star.png" alt="">
-                        <img src="~/images/selected-star.png" alt="">
-                        <img src="~/images/selected-star.png" alt="">
-                        <img src="~/images/selected-star.png" alt="">
-                        <img src="~/images/selected-star.png" alt="">
-                        <span class="ms-2">(by  volunteers)</span>
-                    </div>
+                <div class="d-flex gap-lg-4 mt-2 gap-5 justify-content-md-between" id="ratingPartial">
+                    
                 </div>
             </div>
             
@@ -439,58 +448,31 @@
             <div class="border p-3 ps-0  pe-0 pb-0 ">
                 <h4 class="ps-3  py-3  border-bottom active-tab d-inline">Recent Volunteers</h4>
                 <div class="d-flex justify-content-around p-sm-1 p-lg-5 flex-wrap volunteer-div mt-4">
-                    <div class="text-center">
-                        <img class="rounded-pill" src="~/images/volunteer1.png" alt="">
-                        <p class="volunteer-name">Andrew Johnson</p>
-                    </div>
-                    <div class="text-center">
-                        <img class="rounded-pill" src="~/images/volunteer1.png" alt="">
-                        <p class="volunteer-name">Andrew Johnson</p>
-                    </div>
-
-                    <div class="text-center">
-                        <img class="rounded-pill" src="~/images/volunteer1.png" alt="">
-                        <p class="volunteer-name">Andrew Johnson</p>
-                    </div>
-
-                    <div class="text-center">
-                        <img class="rounded-pill" src="~/images/volunteer1.png" alt="">
-                        <p class="volunteer-name">Andrew Johnson</p>
-                    </div>
-
-                    <div class="text-center">
-                        <img class="rounded-pill" src="~/images/volunteer1.png" alt="">
-                        <p class="volunteer-name">Andrew Johnson</p>
-                    </div>
-
-                    <div class="text-center">
-                        <img class="rounded-pill" src="~/images/volunteer1.png" alt="">
-                        <p class="volunteer-name">Andrew Johnson</p>
-                    </div>
-
-                    <div class="text-center">
-                        <img class="rounded-pill" src="~/images/volunteer1.png" alt="">
-                        <p class="volunteer-name">Andrew Johnson</p>
-                    </div>
-
-                    <div class="text-center">
-                        <img class="rounded-pill" src="~/images/volunteer1.png" alt="">
-                        <p class="volunteer-name">Andrew Johnson</p>
-                    </div>
-
-                    <div class="text-center">
-                        <img class="rounded-pill" src="~/images/volunteer1.png" alt="">
-                        <p class="volunteer-name">Andrew Johnson</p>
-                    </div>
+                    @{int i = 0;}
+                    @foreach(var user in Model.MissionApplications)
+                    {
+                        if(user.ApprovalStatus == 1)
+                        {
+                    
+                            <div class="text-center" data-recent="@i">
+                                <img class="rounded-pill" src="~/images/volunteer1.png" alt="">
+                                <p class="volunteer-name">@user.User.FirstName</p>
+                            </div>
+                            {
+                                i++;
+                            }
+                        }
+                    }
+                    
 
 
                 </div>
                 <div class="d-flex justify-content-around border-top">
-                    <a class="border-end bg-white px-2 py-2 p-lg-3 p-md-4 ">
+                    <a class="border-end bg-white px-2 py-2 p-lg-3 p-md-4" id="leftPage">
                         <img src="~/images/left.png" alt="">
                     </a>
-                    <p class="pt-3 text-center">1 - 9 of 25 Recent Volunteers</p>
-                    <a class=" border-start bg-white px-2 py-2 p-lg-3 p-md-4">
+                    <p class="pt-3 text-center" id="pageRange"></p>
+                    <a class=" border-start bg-white px-2 py-2 p-lg-3 p-md-4" id="rightPage">
                         <img src="~/images/right-arrow1.png" alt="">
                     </a>
                 </div>

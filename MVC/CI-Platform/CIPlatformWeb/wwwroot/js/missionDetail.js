@@ -50,14 +50,16 @@ var favMissionObj = {
 }
 //console.log(favMissionObj);
 
-var isClicked = false;
 if (userId != null && userId != "") {
     var addToFavourite = document.getElementById("addToFavourite");
 
     //console.log("Outside..." + isClicked);
 
+    //var isClicked = false;
+    var isFavourite = document.getElementById("isFavourate").value; 
     addToFavourite.addEventListener("click", () => {
-        if (isClicked == true) {
+    
+        if (isFavourite == 1) {
 
 
             $.ajax({
@@ -69,9 +71,10 @@ if (userId != null && userId != "") {
                     favSpan.textContent = "Add to Favourite";
                     favImg.src = "/images/heart1.png";
                     //addToFavourite.disabled = true;
-                    isClicked = false;
-                    console.log("Removed");
-                    console.log(isClicked)
+                   // isClicked = false;
+                    console.log("Removed from fav");
+                    isFavourite = 0;
+                    
                 },
                 error: function (err) {
                     console.log("error");
@@ -90,9 +93,10 @@ if (userId != null && userId != "") {
                     favSpan.textContent = "Remove From Favourite";
                     favImg.src = "/images/fill-heart.png";
                     //addToFavourite.disabled = true;
-                    isClicked = true;
-                    console.log("added");
-                    console.log(isClicked);
+                   // isClicked = true;
+                    console.log("added to fav");
+                    isFavourite = 1;
+                   
                 },
                 error: function (err) {
                     console.log("error");
@@ -110,7 +114,7 @@ if (userId != null && userId != "") {
 
 
 
-//var ratingsBtnClicked = true; 
+var ratingsBtnClicked = true; 
 
 $(document).ready(() => {
     
@@ -119,9 +123,12 @@ $(document).ready(() => {
     let starInput = $("#star-input-id");
    // console.log(starInput);
     addStar(starInput, userId, missionId);
+
+    displayRatings();
     
     getComments();
-    
+
+    getRecentVolunteers();
 
 
 });
@@ -145,6 +152,23 @@ function getRelatedMission() {
     })
 }
 
+function displayRatings() {
+    $.ajax({
+        type: "GET",
+        url: '/Users/MissionDetail/getRatings',
+        data: {missionId: missionId},
+        success: function (data) {
+            
+            console.log("ratingsss....");
+            $("#ratingPartial").html(data);
+
+        },
+        error: (err) => {
+            console.log("error in rating");
+        }
+    });
+}
+
 
 
 
@@ -159,49 +183,54 @@ function getRelatedMission() {
                 data: { userId: userId, missionId: missionId, rating: starRating },
                 success: function (data) {
                     ratingsBtnClicked == false;
-
+                    console.log("rating sufccess");
+                    $("#ratingPartial").html(data);
                 }
             });
         });
     }
 
-
-
-var commentMsg = document.getElementById("commentMsg").value;
-console.log(commentMsg);
-var commentsBtn = document.getElementById("commentBtn");
-//console.log("btn")
-
-function enableDisableBtn() {
-   // console.log("hello inside fn");
-    if (document.getElementById("commentMsg").value.length) {
-        
-        commentsBtn.disabled = false;
-    }
-    else {
-        //console.log("In hiii");
-        commentsBtn.disabled = true;
-    }
-    
-}
-commentsBtn.addEventListener("click", () => {
+if (userId != null && userId != "") {
     var commentMsg = document.getElementById("commentMsg").value;
-    $.ajax({
-        type: "POST",
-        url: '/Users/MissionDetail/AddComments',
-        data: { userId: userId, missionId: missionId, commentText: commentMsg },
-        success:(data) => {
-           // console.log("Comments Addded");
-            alert("Comment Added Successfully");
-            $("#partialComment").html(data)
-           document.getElementById("commentMsg").value = '';
-    },
-        error : (err) => {
-            console.log("Error in adding comment");
+    console.log(commentMsg);
+    var commentsBtn = document.getElementById("commentBtn");
+
+    console.log("btn")
+
+    function enableDisableBtn() {
+        // console.log("hello inside fn");
+        if (document.getElementById("commentMsg").value.length) {
+
+            commentsBtn.disabled = false;
+        }
+        else {
+            //console.log("In hiii");
+            commentsBtn.disabled = true;
+        }
+
+    }
+    commentsBtn.addEventListener("click", () => {
+        var commentMsg = document.getElementById("commentMsg").value;
+        $.ajax({
+            type: "POST",
+            url: '/Users/MissionDetail/AddComments',
+            data: { userId: userId, missionId: missionId, commentText: commentMsg },
+            success: (data) => {
+                // console.log("Comments Addded");
+                alert("Comment Added Successfully");
+                $("#partialComment").html(data)
+                document.getElementById("commentMsg").value = '';
+            },
+            error: (err) => {
+                console.log("Error in adding comment");
             }
 
         })
-})
+    })
+
+}
+
+//
 
 function getComments() {
 $.ajax({
@@ -219,47 +248,48 @@ $.ajax({
 })
 
 }
+if (userId != null && userId != "") {
+    var recommendBtn = document.getElementById("recommendedBtn");
+    recommendBtn.addEventListener("click", () => {
+        $.ajax({
+            type: "GET",
+            url: '/Users/MissionDetail/getAllUsers',
+            data: { userId: userId, missionId: missionId },
+            success: (data) => {
+                $('#recommendedPartial').html(data);
+                $('#recommendedModal').modal('show');
 
-var recommendBtn = document.getElementById("recommendedBtn");
-recommendBtn.addEventListener("click", () => {
-    $.ajax({
-        type: "GET",
-        url: '/Users/MissionDetail/getAllUsers',
-        data: { userId: userId, missionId: missionId },
-        success: (data) => {
-            $('#recommendedPartial').html(data);
-            $('#recommendedModal').modal('show');
-           
-            
 
-            var sendRecommendationBtn = document.getElementById("sendRecommendationBtn");
-            sendRecommendationBtn.addEventListener('click', () => {
-                getCheckedUsersId();
-                $('#recommendedModal').modal('hide');
-                $.ajax({
-                    type: "POST",
-                    url: '/Users/MissionDetail/AddUsersToMissionInvite',
-                    data: { usersIdList: usersId, missionId: missionId, currentUserId: userId },
-                    success: (data) => {
-                        
 
-                    },
-                    error: (err) => {
+                var sendRecommendationBtn = document.getElementById("sendRecommendationBtn");
+                sendRecommendationBtn.addEventListener('click', () => {
+                    getCheckedUsersId();
+                    $('#recommendedModal').modal('hide');
+                    $.ajax({
+                        type: "POST",
+                        url: '/Users/MissionDetail/AddUsersToMissionInvite',
+                        data: { usersIdList: usersId, missionId: missionId, currentUserId: userId },
+                        success: (data) => {
 
-                    }
+
+                        },
+                        error: (err) => {
+
+                        }
+
+                    })
+
 
                 })
 
+            },
+            error: (err) => {
 
-            })
+            }
 
-        },
-        error: (err) => {
-            
-        }
-
+        })
     })
-})
+}
 
 
 var usersId = [];
@@ -273,5 +303,55 @@ function getCheckedUsersId() {
         })
     
     
+}
+
+
+function getRecentVolunteers() {
+    
+    let currentPage = 1;
+        const recentVolunteers = document.querySelectorAll("[data-recent]");
+    const totalVolunteers = recentVolunteers.length;
+    if (totalVolunteers > 0) {
+       const totalPages = Math.ceil(totalVolunteers / 2);
+        //console.log(recentVolunteers.length);
+        
+        const rightPage = document.querySelector("#rightPage");
+        const leftPage = document.querySelector("#leftPage");
+        setPage(recentVolunteers);
+        $(rightPage).click(() => {
+            if (currentPage == totalPages) return;
+            currentPage++;
+            setPage(recentVolunteers);
+        })
+        $(leftPage).click(() => {
+            if (currentPage == 1) return;
+            currentPage--;
+            setPage(recentVolunteers)
+        })
+    }
+    function setPage(recentVolunteers) {
+        let count = 0;
+        Array.from($(recentVolunteers)).forEach((vol) => {
+            const i = $(vol).data('recent');
+            if (i >= (currentPage - 1)*  2 && i < currentPage * 2) {
+            $(vol).removeClass("d-none");
+            count++;
+        } else {
+            $(vol).addClass("d-none");
+        }
+    })
+    const pageRange = document.querySelector("#pageRange");
+    const start = (currentPage - 1) * 2 + 1;
+    pageRange.textContent = `${start} - ${start + count - 1} of ${totalVolunteers} recent volunteers`
+}
+    /*var itemsPerPage = 1;
+    var pageNumber = 1;
+    const startIndex = (pageNumber - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
+    // Display the items in the current page
+    for (let i = startIndex; i < endIndex && i < totalItems; i++) {
+        dataContainer.children[i].style.display = "block";
+    }*/
 }
 

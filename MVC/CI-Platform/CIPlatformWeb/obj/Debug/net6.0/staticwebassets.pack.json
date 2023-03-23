@@ -29,6 +29,18 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\documents\\lorem.xlsx",
+      "PackagePath": "staticwebassets\\documents\\lorem.xlsx"
+    },
+    {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\documents\\test.docx",
+      "PackagePath": "staticwebassets\\documents\\test.docx"
+    },
+    {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\documents\\testpdf.pdf",
+      "PackagePath": "staticwebassets\\documents\\testpdf.pdf"
+    },
+    {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
