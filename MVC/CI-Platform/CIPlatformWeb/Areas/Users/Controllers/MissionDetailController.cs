@@ -263,6 +263,36 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         }
 
+        public void AddOrRemoveFavourite(int? userId, int? missionId)
+        {
+            if(userId == null || missionId == null)
+            { 
+                return;
+            }
+            var fmObj = _IUnitOfWork.FavMissionRepository.GetFirstOrDefault(fm => fm.UserId == userId && missionId == fm.MissionId);
+            
+            if(fmObj != null)
+            {
+                _IUnitOfWork.FavMissionRepository.Delete(fmObj);
+
+
+
+            }
+            else
+            {
+                FavouriteMission fm = new()
+                {
+                    UserId = userId,
+                    MissionId = missionId
+                };
+
+                _IUnitOfWork.FavMissionRepository.Add(fm);
+
+            }
+            _IUnitOfWork.Save();
+
+        }
+
         public void AddUsersToMissionInvite(int[]? usersIdList, int? missionId, int? currentUserId)
         {
             try

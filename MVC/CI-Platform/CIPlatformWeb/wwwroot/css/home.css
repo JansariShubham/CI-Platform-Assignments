@@ -1,3 +1,35 @@
+/* share story starts */
+.drag-drop-div {
+    border: dashed;
+    border-color: #757575;
+}
+
+.drag-label {
+    display: block !important;
+}
+
+.orange-btn {
+    color: #F88634 !important;
+}
+
+
+
+.drag-img {
+    height: 4rem;
+    width: 4rem;
+}
+
+
+.cancle-image {
+    height: 1rem;
+    width: 1rem;
+    top: 0px;
+    right: 1.8rem;
+    background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+}
+
+
+/* share story end */
 img {
     max-width: 100%;
 }

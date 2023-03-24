@@ -5,19 +5,19 @@
 *@
 @{
     var UserName = Context.Session.GetString("firstName");
+    var userId = Context.Session.GetString("userId");
     var missionCnt = ViewBag.missionCount;
 }
 
 
 <partial name="_Navbar" />
-<input type = "hidden" value = "@missionCnt"  id ="missionCount"/>
+<input type="hidden" value="@missionCnt" id="missionCount" />
 <!-- third section  -->
 <section class="d-none d-md-inline">
     <div class="third-div container d-none" id="filterOptionArea">
         <ul class="d-flex gap-2 flex-wrap mt-3" id="userFilterList">
-            
         </ul>
-            <button class="border-0 clear-btn">Clear All</button>
+        <button class="border-0 clear-btn">Clear All</button>
     </div>
 
 </section>
@@ -36,10 +36,10 @@
                 <option value="2">Oldest</option>
                 <option value="3">Lowest available seats</option>
                 <option value="4">Highest available seats</option>
-                @if(UserName != null)
+                @if (UserName != null)
                 {
-                    
-                <option value="5">Sort by my favourate</option>
+
+                    <option value="5">Sort by my favourate</option>
                 }
                 <option value="6">Sort by deadline</option>
             </select>
@@ -56,208 +56,44 @@
     </div>
 </section>
 
-<div id="partial"> <partial name = "_index" /> </div>
+<div id="partial"> <partial name="_index" /> </div>
 <!-- Pagination  -->
 
 <ul class="pagination mt-5 d-flex justify-content-center">
     @*    <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-        </a>
+    <a class="page-link" href="#" aria-label="Previous">
+    <span aria-hidden="true">&laquo;</span>
+    </a>
     </li>*@
     @*<li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-            <img src="~/images/left.png" alt="">
-        </a>
+    <a class="page-link" href="#" aria-label="Next">
+    <img src="~/images/left.png" alt="">
+    </a>
     </li>*@
 
-   @* <li class="page-item"><a class="page-link" id ="pageNumber" href="#"></a></li>
+    @* <li class="page-item"><a class="page-link" id ="pageNumber" href="#"></a></li>
     <li class="page-item"><a class="page-link" href="#">2</a></li>
     <li class="page-item"><a class="page-link" href="#">3</a></li>
     <li class="page-item"><a class="page-link" href="#">4</a></li>
     <li class="page-item"><a class="page-link" href="#">5</a></li>*@
     @*<li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-            <img src="~/images/right-arrow1.png" alt="">
-        </a>
+    <a class="page-link" href="#" aria-label="Next">
+    <img src="~/images/right-arrow1.png" alt="">
+    </a>
     </li>@**@
     @*<li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-        </a>
+    <a class="page-link" href="#" aria-label="Next">
+    <span aria-hidden="true">&raquo;</span>
+    </a>
     </li>*@
 </ul>
 
-
-@section Scripts{
-    <script>
-
-        ////all filters code
-
-        //$(document).ready(function () {
-        //    $("#country-filter").change(function () {
-        //        var country = $(this).val();
-        //        $.ajax({
-        //            url: "/Users/Home/GetCitiesByCountry",
-        //            type: "GET",
-        //            dataType: "json",
-        //            data: { country: country },
-        //            success: function (result) {
-
-        //                var cityDropdown = $("#city-filter");
-        //                cityDropdown.empty();
-
-        //                $.each(result, function (i, city) {
-        //                    $("#city-filter").append($('<option></option>').val(city.name).html(city.name));
-        //                    //alert(city.name);
-        //                });
-        //            }
-        //        });
-        //    });
-        //});
-
-        
-        ////country filter
-        //const countryFilter = () => {
-        //    const country = document.getElementById("country-filter");
-
-        //    let countryName = document.getElementById("country-filter").value.toLowerCase();
-
-        //    let missions = document.getElementsByClassName("grid-mission");
-        //    //alert(missions.Count());
-        //    //alert(countryName);
-
-        //    for (var i = 0; i <= missions.length; i++) {
-        //        var missionCountry = missions[i].getElementsByClassName("country-name")[0];
-        //        //alert(missionCountry.value);
-        //        if (missionCountry.value.toLowerCase().indexOf(countryName) > -1) {
-        //            missions[i].style.display = "";
-
-        //        }
-        //        else {
-        //            missions[i].style.display = "none";
-
-        //            //tempCount++;
-        //        }
-        //    }
-
-        //}
-
-
-
-        ////Theme filter
-        //const themeFilter = () => {
-        //    const theme = document.getElementById("theme-filter");
-
-        //    let themeName = document.getElementById("theme-filter").value.toLowerCase();
-        //    //let filterValue = document.getElementById("filter-value").innerHTML = themeName;
-        //    //alert(themeName)
-
-        //    // filterValue.innerHTML = themeName
-        //    let missions = document.getElementsByClassName("grid-mission");
-        //    //alert(missions.Count());
-        //    //alert(themeName);
-
-        //    for (var i = 0; i <= missions.length; i++) {
-        //        var missionTheme = missions[i].getElementsByClassName("theme-name")[0];
-        //        // alert(missionTheme.innerHTML);
-        //        if (missionTheme.innerHTML.toLowerCase().indexOf(themeName) > -1) {
-        //            missions[i].style.display = "";
-
-        //        }
-        //        else {
-        //            missions[i].style.display = "none";
-
-        //            //tempCount++;
-        //        }
-        //    }
-
-        //}
-
-        ////city filter
-        //const cityFilter = () => {
-        //    const city = document.getElementById("city-filter");
-
-        //    let cityName = document.getElementById("city-filter").value.toLowerCase();
-        //    let missions = document.getElementsByClassName("grid-mission");
-        //    //alert(missions.Count());
-        //    //alert(cityName);
-
-        //    for (var i = 0; i <= missions.length; i++) {
-        //        var missionCity = missions[i].getElementsByClassName("city-span")[0];
-        //        //var missionCity = missions[i].querySelectorAll(".city-span");
-        //        // alert("mission city=>>>>" + missionCity.innerHTML);
-        //        if (missionCity.innerHTML.toLowerCase().indexOf(cityName) > -1) {
-        //            missions[i].style.display = "";
-        //            //alert("inside if");
-
-        //        }
-        //        else {
-        //            missions[i].style.display = "none";
-        //            // alert("inside else");
-        //            //tempCount++;
-        //        }
-        //    }
-
-        //}
-        ////Skill filter
-        //const skillFilter = () => {
-        //    const skill = document.getElementById("skill-filter");
-
-        //    let skillId = document.getElementById("skill-filter").value.toLowerCase();
-        //    let missions = document.getElementsByClassName("grid-mission");
-        //    //alert(missions.Count());
-        //    //alert(skillId);
-
-        //    for (var i = 0; i <= missions.length; i++) {
-        //        var missionskillId = missions[i].getElementsByClassName("skill-id")[0];
-        //        // alert(missionskillId.value);
-        //        if (missionskillId.value == skillId) {
-        //            missions[i].style.display = "";
-
-        //        }
-        //        else {
-        //            missions[i].style.display = "none";
-
-        //            //tempCount++;
-        //        }
-        //    }
-
-        //}
-
-        //Serach Missions
-
-        //const inputValue = document.getElementById("search-bar");
-        ////inputValue.addEventListner("keyup", searchMissions);
-        //const searchMissions = () => {
-
-        //    let inputValue = document.getElementById("search-bar").value.toLowerCase();
-        //    let missions = document.getElementsByClassName("grid-mission");
-        //    let missionCount = @Model.MissionList.Count();
-        //    // alert("hiii");
-        //    //console.log("hello method called!!!");
-
-        //    //alert(missionCount);
-        //    var missionTitle;
-        //    //let tempCount = 0;
-        //    //let count;
-
-        //    for (var i = 0; i <= missions.length; i++) {
-        //        missionTitle = missions[i].getElementsByClassName("card-title")[0];
-        //        if (missionTitle.innerHTML.toLowerCase().indexOf(inputValue) > -1)
-        //            missions[i].style.display = "";
-
-        //        else {
-        //            missions[i].style.display = "none";
-
-        //        }
-        //    }
-
-
-        //}
-
-
-    </script>
 }
 
 <partial name="_Footer" />
+
+@section Scripts{
+    <script src="~/js/custom.js">
+
+    </script>
+}

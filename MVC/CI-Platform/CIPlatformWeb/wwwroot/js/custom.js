@@ -307,3 +307,30 @@ function filterMissions() {
 }
 
 var userId = document.getElementById("userId").value;
+
+
+
+function addRemoveFavourate(missionId) {
+    userId = document.getElementById("userId").value;
+    if (userId != null && userId != "") {
+
+
+
+        $.ajax({
+            url: "/Users/MissionDetail/AddOrRemoveFavourite",
+            type: "POST",
+            data: { userId: userId, missionId: missionId },
+            success: function (result) {
+                isFavourite = 0;
+                getFilterData();
+
+
+            },
+            error: function (err) {
+                console.log("error");
+            }
+
+
+        });
+    }
+}

@@ -10,8 +10,9 @@
         <button class="header-toggle d-md-none border-0">
             <img class="h-50" src="~/images/list.png" alt="#">
         </button>
-        <img class="logo h-50" src="~/images/logo.png" alt="#">
-        <a href="#" class="text-decoration-none mx-5 d-none d-md-inline d-lg-inline">Stories</a>
+        <a asp-action="PlatformLandingPage" asp-controller="Home"><img class="logo h-50" src="~/images/logo.png" alt="#"></a>
+
+        <a asp-action="StoryListing" asp-controller="Story" class="text-decoration-none mx-5 d-none d-md-inline d-lg-inline">Stories</a>
         <button class="dropdown-toggle policy-btn d-none d-md-inline d-lg-inline" data-bs-toggle="dropdown"
                 aria-expanded="false" type="button" id="dropdownMenuButton1">
             Policy
