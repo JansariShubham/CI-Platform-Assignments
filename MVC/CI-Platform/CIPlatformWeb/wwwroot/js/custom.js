@@ -248,7 +248,7 @@ else {
     anchor.classList.add('page-link');
     anchor.classList.add('right-arrow');
     // anchor.dataset.id = pageNumber;
-    console.log(i);
+    //console.log(i);
     list.classList.add('cursor-pointer');
     list.append(anchor);
     let images = document.createElement('img');

@@ -63,5 +63,9 @@ public partial class Mission
 
     public virtual ICollection<MissionSkill> MissionSkills { get; } = new List<MissionSkill>();
 
+    public virtual ICollection<Story> Stories { get; } = new List<Story>();
+
     public virtual MissionTheme? Theme { get; set; }
+
+    public virtual ICollection<Timesheet> Timesheets { get; } = new List<Timesheet>();
 }

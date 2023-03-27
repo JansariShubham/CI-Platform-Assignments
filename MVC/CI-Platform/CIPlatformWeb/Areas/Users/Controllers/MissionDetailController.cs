@@ -35,16 +35,6 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
                 var missionVm = HomeController.CovertToMissionVM(missionObj);
 
-
-                /*var ratings = _IUnitOfWork.MissionRatingRepository.GetFirstOrDefault(m => m.MissionId == id);
-                var countOfRatings = ratings
-
-                
-
-                
-                ViewBag.ratingsByVolunteersCnt = countOfRatings;
-*/
-
                 return View(missionVm);
             }
             return View();
@@ -304,7 +294,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 string subject = "CI Platform - Mission Recommendation";
                 string link = $"<a href='{url}' style='text-decoration:none;display:block;width:max-content;border:1px solid black;border-radius:5rem;padding:0.75rem 1rem;margin:1rem auto;color:black;font-size:1rem;'>Open mission</a>";
                 string htmlMessage = $"<p style='text-align:center;font-size:2rem'>Your co-worker {currentUser.FirstName} has recommended a mission to you.</p><p style='text-align:center;font-size:1.5rem'>Click on the link below check mission out</p><hr/>{link}";
-                for (int i = 0; i < usersIdList.Length; i++)
+                for (int i = 0; i < usersIdList!.Length; i++)
                 {
 
 

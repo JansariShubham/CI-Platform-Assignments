@@ -17,7 +17,7 @@
 
                     @foreach(var user in Model)
                 {
-                    @if (user.MissionInviteToUsers.Any(mi => mi.FromUserId == userId && mi.MissionId == missionId))
+                    @if (user.MissionInviteToUsers!.Any(mi => mi.FromUserId == userId && mi.MissionId == missionId))
                     {
 
 

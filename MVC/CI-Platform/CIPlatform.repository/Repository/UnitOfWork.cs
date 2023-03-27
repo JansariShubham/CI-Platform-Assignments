@@ -31,6 +31,9 @@ namespace CIPlatform.repository.Repository
         public ICommentRepository CommentRepository { get; private set; }
 
         public IMissionInviteRepository MissionInviteRepository { get; private set; }
+
+        public IMissionApplicationRepository MissionApplicationRepository { get; private set; }
+
         private AppDbContext _appDbContext;
 
         public UnitOfWork(AppDbContext appDbContext) 
@@ -47,6 +50,7 @@ namespace CIPlatform.repository.Repository
             MissionRatingRepository = new MissionRatingRepository(appDbContext);
             CommentRepository = new CommentRepository(appDbContext);
             MissionInviteRepository = new MissionInviteRepository(appDbContext);
+            MissionApplicationRepository = new MissionApplicationRepository(appDbContext);
         }
 
 

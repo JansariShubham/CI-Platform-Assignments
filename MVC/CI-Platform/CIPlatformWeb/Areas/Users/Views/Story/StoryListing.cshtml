@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    var userId = Context.Session.GetString("userId");
 }
 @*<partial name = "_Navbar" />*@
 <!-- image div  -->
@@ -17,8 +18,8 @@
         veritatis beatae doloribus!
     </p>
     <div class="d-flex justify-content-center">
-        <a href="#" class="btn rounded-pill border text-white mt-1 px-3 font-size">
-            Share Your Story <img src="~/images/right-arrow-white.svg" alt="#" class="arrow">
+        <a asp-action="ShareStory" asp-route-id = "@userId" asp-controller="Story"  asp-area="Users" class="btn rounded-pill border text-white mt-1 px-3 font-size">
+            Share Your Story <img src="~/images/right-arrow.png" alt="#" class="arrow">
         </a>
     </div>
 </div>
@@ -33,7 +34,7 @@
                          id="view-details-btn">
                         <a href="#" class="btn rounded-pill border text-white mt-1 px-3 font-size">
                             View Details
-                            <img src="~/images/right-arrow-white.svg" alt="#" class="arrow">
+                            <img src="~/images/right-arrow.png" alt="#" class="arrow">
                         </a>
                     </div>
                 </div>

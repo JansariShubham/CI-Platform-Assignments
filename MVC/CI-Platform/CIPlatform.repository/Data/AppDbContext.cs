@@ -51,6 +51,14 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Skill> Skills { get; set; }
 
+    public virtual DbSet<Story> Stories { get; set; }
+
+    public virtual DbSet<StoryInvite> StoryInvites { get; set; }
+
+    public virtual DbSet<StoryMedia> StoryMedia { get; set; }
+
+    public virtual DbSet<Timesheet> Timesheets { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -519,6 +527,126 @@ public partial class AppDbContext : DbContext
                 .HasDefaultValueSql("((1))")
                 .HasColumnName("status");
             entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
+        });
+
+        modelBuilder.Entity<Story>(entity =>
+        {
+            entity.HasKey(e => e.StoryId).HasName("PK__story__66339C568F39158F");
+
+            entity.ToTable("story");
+
+            entity.Property(e => e.StoryId).HasColumnName("story_id");
+            entity.Property(e => e.CreatedAt).HasColumnName("created_at");
+            entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
+            entity.Property(e => e.Description)
+                .HasColumnType("text")
+                .HasColumnName("description");
+            entity.Property(e => e.MissionId).HasColumnName("mission_id");
+            entity.Property(e => e.PublishedAt).HasColumnName("published_at");
+            entity.Property(e => e.Status)
+                .HasDefaultValueSql("((1))")
+                .HasColumnName("status");
+            entity.Property(e => e.Title)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("title");
+            entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.Mission).WithMany(p => p.Stories)
+                .HasForeignKey(d => d.MissionId)
+                .HasConstraintName("FK__story__mission_i__662B2B3B");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Stories)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK__story__user_id__65370702");
+        });
+
+        modelBuilder.Entity<StoryInvite>(entity =>
+        {
+            entity.HasKey(e => e.StoryInviteId).HasName("PK__story_in__04497867A9ADC0B1");
+
+            entity.ToTable("story_invite");
+
+            entity.Property(e => e.StoryInviteId).HasColumnName("story_invite_id");
+            entity.Property(e => e.CreatedAt).HasColumnName("created_at");
+            entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
+            entity.Property(e => e.FromUserId).HasColumnName("from_user_id");
+            entity.Property(e => e.StoryId).HasColumnName("story_id");
+            entity.Property(e => e.ToUserId).HasColumnName("to_user_id");
+            entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
+
+            entity.HasOne(d => d.FromUser).WithMany(p => p.StoryInviteFromUsers)
+                .HasForeignKey(d => d.FromUserId)
+                .HasConstraintName("FK__story_inv__from___6AEFE058");
+
+            entity.HasOne(d => d.Story).WithMany(p => p.StoryInvites)
+                .HasForeignKey(d => d.StoryId)
+                .HasConstraintName("FK__story_inv__story__69FBBC1F");
+
+            entity.HasOne(d => d.ToUser).WithMany(p => p.StoryInviteToUsers)
+                .HasForeignKey(d => d.ToUserId)
+                .HasConstraintName("FK__story_inv__to_us__6BE40491");
+        });
+
+        modelBuilder.Entity<StoryMedia>(entity =>
+        {
+            entity.HasKey(e => e.StoryMediaId).HasName("PK__story_me__29BD053C82A9C26A");
+
+            entity.ToTable("story_media");
+
+            entity.Property(e => e.StoryMediaId).HasColumnName("story_media_id");
+            entity.Property(e => e.CreatedAt).HasColumnName("created_at");
+            entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
+            entity.Property(e => e.MadiaPath)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("madia_path");
+            entity.Property(e => e.MediaName)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("media_name");
+            entity.Property(e => e.MediaType)
+                .HasMaxLength(8)
+                .IsUnicode(false)
+                .HasColumnName("media_type");
+            entity.Property(e => e.StoryId).HasColumnName("story_id");
+            entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
+
+            entity.HasOne(d => d.Story).WithMany(p => p.StoryMedia)
+                .HasForeignKey(d => d.StoryId)
+                .HasConstraintName("FK__story_med__story__6EC0713C");
+        });
+
+        modelBuilder.Entity<Timesheet>(entity =>
+        {
+            entity.HasKey(e => e.TimesheetId).HasName("PK__timeshee__7BBF5068DFD0B3E1");
+
+            entity.ToTable("timesheet");
+
+            entity.Property(e => e.TimesheetId).HasColumnName("timesheet_id");
+            entity.Property(e => e.Action).HasColumnName("action");
+            entity.Property(e => e.CreatedAt).HasColumnName("created_at");
+            entity.Property(e => e.DateVolunteered).HasColumnName("date_volunteered");
+            entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
+            entity.Property(e => e.MissionId).HasColumnName("mission_id");
+            entity.Property(e => e.Notes)
+                .HasColumnType("text")
+                .HasColumnName("notes");
+            entity.Property(e => e.Status)
+                .HasDefaultValueSql("((0))")
+                .HasColumnName("status");
+            entity.Property(e => e.Time).HasColumnName("time");
+            entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.Mission).WithMany(p => p.Timesheets)
+                .HasForeignKey(d => d.MissionId)
+                .HasConstraintName("FK__timesheet__missi__72910220");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Timesheets)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK__timesheet__user___719CDDE7");
         });
 
         modelBuilder.Entity<User>(entity =>

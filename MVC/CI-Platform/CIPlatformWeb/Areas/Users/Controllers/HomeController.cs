@@ -77,7 +77,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         }
 
-
+        
         public IActionResult Privacy()
         {
             return View();

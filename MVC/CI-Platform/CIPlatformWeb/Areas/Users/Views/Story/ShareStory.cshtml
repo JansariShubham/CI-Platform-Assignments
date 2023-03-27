@@ -1,9 +1,10 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model CIPlatform.entities.ViewModels.StoryShareViewModel
 @{
+    var missions = ViewBag.missions;
+    var userId = Context.Session.GetString("userId");
 
 }
+
 <!-- navbar  -->
 <nav class="d-flex justify-content-between container mt-3 first-div">
     <div class="dropdown left-div">
@@ -40,6 +41,7 @@
 
 </nav>
 <section class="border-top">
+    <form method="post" action="ShareStory">
 
     <div class="container mt-4">
         <h3 class="text-secondary">Share your story</h3>
@@ -49,12 +51,18 @@
                 <label>Select Your Mission</label>
                 <select id="" class="form-select mt-1">
                     <option selected disabled>Select your mission</option>
+                    @foreach(var mission in missions)
+                    {
+                        <option value = "@mission.MissionId" > @mission.Title</option>   
+                    }
+                    
                 </select>
             </div>
 
             <div class="col">
                 <label>My Story Title</label>
-                <input type="text" class="form-control mt-1" placeholder="Enter story title" />
+                <input type="text" asp-for="StoryTitle" class="form-control mt-1" placeholder="Enter story title" />
+                    <span asp-validation-for="StoryTitle" class="text-danger error-span"></span>
             </div>
         </div>
         <div class="mt-4">
@@ -88,13 +96,14 @@
                        style="border-color: #F88634 !important">Save</a>
                 </div>
                 <div class="mt-4">
-                    <a class="btn border rounded-pill px-4 py-2 orange-btn"
-                       style="border-color: #F88634 !important">Submit</a>
+                    <button type ="submit" class="btn border rounded-pill px-4 py-2 orange-btn"
+                       style="border-color: #F88634 !important">Submit</button>
                 </div>
             </div>
         </div>
 
     </div>
+    </form>
 </section>
 
 <partial name = "_Footer"></partial>
@@ -105,4 +114,5 @@
 
     <script src="~/js/tinymce.js"></script>
     <script src="~/js/story.js"></script>
+    <partial name ="_ValidationScriptsPartial"/>
 }

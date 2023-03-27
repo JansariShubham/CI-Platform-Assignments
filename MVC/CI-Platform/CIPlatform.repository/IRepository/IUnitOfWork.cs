@@ -25,6 +25,8 @@ namespace CIPlatform.repository.IRepository
         ICommentRepository CommentRepository { get; }
 
         IMissionInviteRepository MissionInviteRepository { get; }
+
+        IMissionApplicationRepository MissionApplicationRepository { get; }
         void Save();
     }
 }
