@@ -1,13 +1,16 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<CIPlatform.entities.ViewModels.StoryListingViewModel>
 @{
+    var storyCnt = ViewBag.storyCount;
     var userId = Context.Session.GetString("userId");
+    var userName = Context.Session.GetString("userName");
 }
-@*<partial name = "_Navbar" />*@
+}
+
+<!-- navbar  -->
+<partial name = "_Navbar1" />
 <!-- image div  -->
 <div class="main-img d-flex justify-content-center flex-column">
-
+    <input type="hidden" value="@storyCnt" id="storyCount" />
     <p class="text-white text-center img-caption d-none d-sm-block">
         Lorem ipsum dolor sit amet, consectetur
         adipisicing elit. Harum aliquam
@@ -25,14 +28,16 @@
 </div>
 <section class="container">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-3 p-0">
+        @foreach(var story in Model)
+        {
         <div class="col mt-3">
             <div class="card sl-card ">
                 <div class="position-relative story-card">
-                    <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
-                         class="card-img-top" alt="...">
+                    <img src="@story.imageUrl"
+                         class="card-img-top" id="card-img-top" alt="...">
                     <div class="top-0 bottom-0 start-0 end-0 align-items-center justify-content-center  position-absolute d-none"
                          id="view-details-btn">
-                        <a href="#" class="btn rounded-pill border text-white mt-1 px-3 font-size">
+                        <a asp-route-id ="@story.StoryId" class="btn rounded-pill border text-white mt-1 px-3 font-size">
                             View Details
                             <img src="~/images/right-arrow.png" alt="#" class="arrow">
                         </a>
@@ -42,12 +47,11 @@
 
 
                 <span class="theme-name align-text-top py-1 px-4 mx-auto translate-middle-y">
-                    Customer
-                    Experience
+                    @story.Title
                 </span>
                 <div class="card-body p-0">
                     <h5 class="card-title mission-title px-3">
-                        10 User and Customer Engagement Strategies for 2019
+                        @story.Description
                     </h5>
                     <p class="card-text mission-desc px-3">
                         Lorem ipsum dolor, sit amet consectetur adipisicing
@@ -64,352 +68,28 @@
                 </div>
                 <div class="p-3">
                     <img class="rounded-pill vol-img" src="~/images/volunteer1.png" alt="">
-                    <span class="font-size">Andrew Johnson</span>
+                    <span class="font-size">@story.User.FirstName @story.User.LastName</span>
                 </div>
             </div>
 
         </div>
+        }
 
-        <div class="col mt-3">
-            <div class="card sl-card">
-                <div class="position-relative story-card">
-                    <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
-                         class="card-img-top" alt="...">
-                    <div class=" top-0 bottom-0 start-0 end-0 align-items-center justify-content-center position-absolute d-none "
-                         id="view-details-btn">
-                        <a href="#" class="btn rounded-pill border text-white mt-1 px-3 font-size">
-                            View Details
-                            <img src="~/images/right-arrow-white.svg" alt="#" class="arrow">
-                        </a>
-                    </div>
-                </div>
-                <span class="theme-name align-text-top py-1 px-4 mx-auto translate-middle-y">
-                    Customer
-                    Experience
-                </span>
-                <div class="card-body p-0">
-                    <h5 class="card-title mission-title px-3">
-                        10 User and Customer Engagement Strategies for 2019
-                    </h5>
-                    <p class="card-text mission-desc px-3">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit.
-                        Iusto,
-                        ipsa.
-                        Sint
-                        similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
-                        iste
-                        nobis
-                        voluptatibus! Ipsa molestiae in maxime similique id!
-                    </p>
-
-                </div>
-                <div class="p-3">
-                    <img class="rounded-pill vol-img" src="~/images/volunteer1.png" alt="">
-                    <span class="font-size">Andrew Johnson</span>
-                </div>
-            </div>
-
-        </div>
-        <div class="col mt-3">
-            <div class="card sl-card">
-                <div class="position-relative story-card">
-                    <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
-                         class="card-img-top" alt="...">
-                    <div class="top-0 bottom-0 start-0 end-0 align-items-center justify-content-center position-absolute d-none"
-                         id="view-details-btn">
-                        <a href="#" class="btn rounded-pill border text-white mt-1 px-3 font-size">
-                            View Details
-                            <img src="~/images/right-arrow-white.svg" alt="#" class="arrow">
-                        </a>
-                    </div>
-                </div>
-
-
-                <span class="theme-name align-text-top py-1 px-4 mx-auto translate-middle-y">
-                    Customer
-                    Experience
-                </span>
-                <div class="card-body p-0">
-                    <h5 class="card-title mission-title px-3">
-                        10 User and Customer Engagement Strategies for 2019
-                    </h5>
-                    <p class="card-text mission-desc px-3">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit.
-                        Iusto,
-                        ipsa.
-                        Sint
-                        similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
-                        iste
-                        nobis
-                        voluptatibus! Ipsa molestiae in maxime similique id!
-                    </p>
-
-                </div>
-                <div class="p-3">
-                    <img class="rounded-pill vol-img" src="~/images/volunteer1.png" alt="">
-                    <span class="font-size">Andrew Johnson</span>
-                </div>
-            </div>
-
-        </div>
-        <div class="col mt-3">
-            <div class="card sl-card">
-                <div class="position-relative story-card">
-                    <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
-                         class="card-img-top" alt="...">
-                    <div class="top-0 bottom-0 start-0 end-0 align-items-center justify-content-center position-absolute d-none"
-                         id="view-details-btn">
-                        <a href="#" class="btn rounded-pill border text-white mt-1 px-3 font-size">
-                            View Details
-                            <img src="~/images/right-arrow-white.svg" alt="#" class="arrow">
-                        </a>
-                    </div>
-                </div>
-
-                <span class="theme-name align-text-top py-1 px-4 mx-auto translate-middle-y">
-                    Customer
-                    Experience
-                </span>
-                <div class="card-body p-0">
-                    <h5 class="card-title mission-title px-3">
-                        10 User and Customer Engagement Strategies for 2019
-                    </h5>
-                    <p class="card-text mission-desc px-3">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit.
-                        Iusto,
-                        ipsa.
-                        Sint
-                        similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
-                        iste
-                        nobis
-                        voluptatibus! Ipsa molestiae in maxime similique id!
-                    </p>
-
-                </div>
-                <div class="p-3">
-                    <img class="rounded-pill vol-img" src="~/images/volunteer1.png" alt="">
-                    <span class="font-size">Andrew Johnson</span>
-                </div>
-            </div>
-
-        </div>
-        <div class="col mt-3">
-            <div class="card sl-card">
-                <div class="position-relative story-card">
-                    <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
-                         class="card-img-top" alt="...">
-                    <div class="top-0 bottom-0 start-0 end-0 align-items-center justify-content-center position-absolute d-none"
-                         id="view-details-btn">
-                        <a href="#" class="btn rounded-pill border text-white mt-1 px-3 font-size">
-                            View Details
-                            <img src="~/images/right-arrow-white.svg" alt="#" class="arrow">
-                        </a>
-                    </div>
-                </div>
-
-                <span class="theme-name align-text-top py-1 px-4 mx-auto translate-middle-y">
-                    Customer
-                    Experience
-                </span>
-                <div class="card-body p-0">
-                    <h5 class="card-title mission-title px-3">
-                        10 User and Customer Engagement Strategies for 2019
-                    </h5>
-                    <p class="card-text mission-desc px-3">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit.
-                        Iusto,
-                        ipsa.
-                        Sint
-                        similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
-                        iste
-                        nobis
-                        voluptatibus! Ipsa molestiae in maxime similique id!
-                    </p>
-
-                </div>
-                <div class="p-3">
-                    <img class="rounded-pill vol-img" src="~/images/volunteer1.png" alt="">
-                    <span class="font-size">Andrew Johnson</span>
-                </div>
-            </div>
-
-        </div>
-        <div class="col mt-3">
-            <div class="card sl-card">
-                <div class="position-relative story-card">
-                    <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
-                         class="card-img-top" alt="...">
-                    <div class="top-0 bottom-0 start-0 end-0 align-items-center justify-content-center position-absolute d-none"
-                         id="view-details-btn">
-                        <a href="#" class="btn rounded-pill border text-white mt-1 px-3 font-size">
-                            View Details
-                            <img src="~/images/right-" alt="#" class="arrow">
-                        </a>
-                    </div>
-                </div>
-
-                <span class="theme-name align-text-top py-1 px-4 mx-auto translate-middle-y">
-                    Customer
-                    Experience
-                </span>
-                <div class="card-body p-0">
-                    <h5 class="card-title mission-title px-3">
-                        10 User and Customer Engagement Strategies for 2019
-                    </h5>
-                    <p class="card-text mission-desc px-3">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit.
-                        Iusto,
-                        ipsa.
-                        Sint
-                        similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
-                        iste
-                        nobis
-                        voluptatibus! Ipsa molestiae in maxime similique id!
-                    </p>
-
-                </div>
-                <div class="p-3">
-                    <img class="rounded-pill vol-img" src="~/images/volunteer1.png" alt="">
-                    <span class="font-size">Andrew Johnson</span>
-                </div>
-            </div>
-
-        </div>
-        <div class="col mt-3">
-            <div class="card sl-card">
-                <div class="position-relative story-card">
-                    <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
-                         class="card-img-top" alt="...">
-                    <div class="top-0 bottom-0 start-0 end-0 align-items-center justify-content-center position-absolute d-none"
-                         id="view-details-btn">
-                        <a href="#" class="btn rounded-pill border text-white mt-1 px-3 font-size">
-                            View Details
-                            <img src="~/images/right-arrow-white.svg" alt="#" class="arrow">
-                        </a>
-                    </div>
-                </div>
-                <span class="theme-name align-text-top py-1 px-4 mx-auto translate-middle-y">
-                    Customer
-                    Experience
-                </span>
-                <div class="card-body p-0">
-                    <h5 class="card-title mission-title px-3">
-                        10 User and Customer Engagement Strategies for 2019
-                    </h5>
-                    <p class="card-text mission-desc px-3">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit.
-                        Iusto,
-                        ipsa.
-                        Sint
-                        similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
-                        iste
-                        nobis
-                        voluptatibus! Ipsa molestiae in maxime similique id!
-                    </p>
-
-                </div>
-                <div class="p-3">
-                    <img class="rounded-pill vol-img" src="~/images/volunteer1.png" alt="">
-                    <span class="font-size">Andrew Johnson</span>
-                </div>
-            </div>
-
-        </div>
-        <div class="col mt-3">
-            <div class="card sl-card">
-                <div class="position-relative story-card">
-                    <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
-                         class="card-img-top" alt="...">
-                    <div class="top-0 bottom-0 start-0 end-0 align-items-center justify-content-center position-absolute d-none"
-                         id="view-details-btn">
-                        <a href="#" class="btn rounded-pill border text-white mt-1 px-3 font-size">
-                            View Details
-                            <img src="~/images/right-arrow-white.svg" alt="#" class="arrow">
-                        </a>
-                    </div>
-                </div>
-
-                <span class="theme-name align-text-top py-1 px-4 mx-auto translate-middle-y">
-                    Customer
-                    Experience
-                </span>
-                <div class="card-body p-0">
-                    <h5 class="card-title mission-title px-3">
-                        10 User and Customer Engagement Strategies for 2019
-                    </h5>
-                    <p class="card-text mission-desc px-3">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit.
-                        Iusto,
-                        ipsa.
-                        Sint
-                        similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
-                        iste
-                        nobis
-                        voluptatibus! Ipsa molestiae in maxime similique id!
-                    </p>
-
-                </div>
-                <div class="p-3">
-                    <img class="rounded-pill vol-img" src="~/images/volunteer1.png" alt="">
-                    <span class="font-size">Andrew Johnson</span>
-                </div>
-            </div>
-
-        </div>
-        <div class="col mt-3">
-            <div class="card sl-card">
-                <div class="position-relative story-card">
-                    <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png"
-                         class="card-img-top" alt="...">
-                    <div class="top-0 bottom-0 start-0 end-0 align-items-center justify-content-center position-absolute d-none"
-                         id="view-details-btn">
-                        <a href="#" class="btn rounded-pill border text-white mt-1 px-3 font-size">
-                            View Details
-                            <img src="~/images/right-arrow-white.svg" alt="#" class="arrow">
-                        </a>
-                    </div>
-                </div>
-
-                <span class="theme-name align-text-top py-1 px-4 mx-auto translate-middle-y">
-                    Customer
-                    Experience
-                </span>
-                <div class="card-body p-0">
-                    <h5 class="card-title mission-title px-3">
-                        10 User and Customer Engagement Strategies for 2019
-                    </h5>
-                    <p class="card-text mission-desc px-3">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit.
-                        Iusto,
-                        ipsa.
-                        Sint
-                        similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
-                        iste
-                        nobis
-                        voluptatibus! Ipsa molestiae in maxime similique id!
-                    </p>
-
-                </div>
-                <div class="p-3">
-                    <img class="rounded-pill vol-img" src="~/images/volunteer1.png" alt="">
-                    <span class="font-size">Andrew Johnson</span>
-                </div>
-            </div>
-
-        </div>
 
     </div>
 </section>
+
+
+<!-- Pagination  -->
+
+<ul class="pagination mt-5 d-flex justify-content-center">
+</ul>
+
 <partial name ="_Footer" />
 
+
 @section Scripts{
-    <script src="~/js/site.js"></script>
+    @*<script src="~/js/site.js"></script>*@
+    <script src="~/js/pagination.js"></script>
+    
 }

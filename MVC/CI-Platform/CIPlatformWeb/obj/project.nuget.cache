@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "UAzfQRo6QiIInxBszw+qrt2lfUxstjvUUYu1NFFFxZn+U6XTdUcuZyp2Imwcys9iK+YOTBbiMkDiwYvfteRs0w==",
+  "dgSpecHash": "LryimmPzHvczCvfNH8pEebRod+wpEHmEOFTCM9+r3rfIbETLMCs/SizQ84ZdAbkU/TKGZs712fd1S4i9oaSQ2w==",
   "success": true,
   "projectFilePath": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\CIPlatformWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SHUBHAM\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\SHUBHAM\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\SHUBHAM\\.nuget\\packages\\htmlagilitypack\\1.11.46\\htmlagilitypack.1.11.46.nupkg.sha512",
     "C:\\Users\\SHUBHAM\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\SHUBHAM\\.nuget\\packages\\mailkit\\3.5.0\\mailkit.3.5.0.nupkg.sha512",
     "C:\\Users\\SHUBHAM\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

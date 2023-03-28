@@ -297,3 +297,4 @@ D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\refint
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\CIPlatformWeb.pdb
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\CIPlatformWeb.genruntimeconfig.cache
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\ref\CIPlatformWeb.dll
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\HtmlAgilityPack.dll

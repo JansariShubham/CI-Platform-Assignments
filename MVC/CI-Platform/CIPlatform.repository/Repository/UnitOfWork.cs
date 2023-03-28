@@ -33,7 +33,9 @@ namespace CIPlatform.repository.Repository
         public IMissionInviteRepository MissionInviteRepository { get; private set; }
 
         public IMissionApplicationRepository MissionApplicationRepository { get; private set; }
+        public IStoryRepository StoryRepository { get; private set; }
 
+        public IStoryMediaRepository StoryMediaRepository { get; private set; }
         private AppDbContext _appDbContext;
 
         public UnitOfWork(AppDbContext appDbContext) 
@@ -51,6 +53,8 @@ namespace CIPlatform.repository.Repository
             CommentRepository = new CommentRepository(appDbContext);
             MissionInviteRepository = new MissionInviteRepository(appDbContext);
             MissionApplicationRepository = new MissionApplicationRepository(appDbContext);
+            StoryRepository = new StoryRepository(appDbContext);
+            StoryMediaRepository = new StoryMediaRepository(appDbContext);
         }
 
 

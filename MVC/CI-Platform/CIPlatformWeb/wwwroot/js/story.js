@@ -1,8 +1,8 @@
 
 var images = [];
 document.getElementById("drag-img").addEventListener("change", () => {
+var files = document.getElementById("drag-img").files;
 
-    var files = document.getElementById("drag-img").files;
     for (var i = 0; i < files.length; i++) {
 
         images.push(files[i]);
@@ -56,5 +56,42 @@ function removeImg(index) {
     images.splice(index, 1);
     displayImages();
 }
+
+function setImageInput() {
+    var fileId = document.getElementById("drag-img");
+    let myFileList = new DataTransfer();
+    images.forEach(function (file) {
+        myFileList.items.add(file);
+        //console.log("hello" + file);
+    });
+    fileId.files = myFileList.files;
+}
+
+var submitForm = document.getElementById("formSubmit");
+submitForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        setImageInput();
+        $('#action').val(e.submitter.getAttribute("value"));
+        var tinyTextArea = tinymce.get("tiny").getContent();
+        var descSpan = document.getElementById("descSpan");
+
+        if (tinyTextArea === "" || tinyTextArea === null) {
+            descSpan.innerHTML = "Story description is required!";
+            return;
+
+        }
+
+        if (images.length == 0 || images.length < 1) {
+            var dragImgSpan = document.getElementById("dragImgSpan");
+            dragImgSpan.innerHTML = "Minimum 1 Picture is Required!";
+            return;
+        }
+    
+        $('#action').val(e.submitter.getAttribute("value"));
+        submitForm.submit();
+    
+    
+
+})
 
 

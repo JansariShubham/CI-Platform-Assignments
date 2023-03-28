@@ -27,6 +27,10 @@ namespace CIPlatform.repository.IRepository
         IMissionInviteRepository MissionInviteRepository { get; }
 
         IMissionApplicationRepository MissionApplicationRepository { get; }
+
+        IStoryRepository StoryRepository { get; }
+
+        IStoryMediaRepository StoryMediaRepository { get; }
         void Save();
     }
 }
