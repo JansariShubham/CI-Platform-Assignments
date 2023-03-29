@@ -31,6 +31,8 @@ namespace CIPlatform.repository.IRepository
         IStoryRepository StoryRepository { get; }
 
         IStoryMediaRepository StoryMediaRepository { get; }
+
+        IStoryInviteRepository StoryInviteRepository { get; }
         void Save();
     }
 }

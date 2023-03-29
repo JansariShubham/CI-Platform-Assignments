@@ -1,3 +1,20 @@
+/* @media (min-width: 992px) {
+    .slide-1 {
+        width: 60rem !important;
+    }
+} */
+
+.recommend-div {
+    border: 2px solid #757575;
+
+}
+
+.volunteer-img {
+    height: 4rem;
+    width: 4rem;
+}
+
+
 /* share story starts */
 .drag-drop-div {
     border: dashed;

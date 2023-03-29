@@ -1,3 +1,10 @@
+
+@media(min-width: 992px){
+    .story-vol-img{
+        width:50rem !important;
+    }
+
+}
 /* share story starts */
 .drag-drop-div {
     border: dashed;
@@ -11,6 +18,16 @@
 .orange-btn {
     color: #F88634 !important;
 }
+
+.recommend-div {
+    border: 2px solid #757575;
+}
+
+.volunteer-img {
+    height: 4rem;
+    width: 4rem;
+}
+
 
 
 

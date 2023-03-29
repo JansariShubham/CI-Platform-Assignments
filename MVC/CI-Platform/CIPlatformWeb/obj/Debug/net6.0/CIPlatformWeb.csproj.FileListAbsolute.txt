@@ -8,6 +8,7 @@ D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\CIPlat
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\CIPlatformWeb.pdb
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\Azure.Core.dll
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\Azure.Identity.dll
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\HtmlAgilityPack.dll
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\Humanizer.dll
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\MailKit.dll
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\MessagePack.dll
@@ -297,4 +298,3 @@ D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\refint
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\CIPlatformWeb.pdb
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\CIPlatformWeb.genruntimeconfig.cache
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\obj\Debug\net6.0\ref\CIPlatformWeb.dll
-D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\HtmlAgilityPack.dll

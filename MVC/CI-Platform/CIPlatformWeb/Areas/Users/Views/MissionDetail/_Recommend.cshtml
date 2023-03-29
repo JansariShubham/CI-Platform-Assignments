@@ -1,8 +1,9 @@
 ﻿
 @model List<CIPlatform.entities.ViewModels.UserViewModel>
 @{
-    var userId = ViewBag.userId;
-    var missionId = ViewBag.missionId;
+    var userId = ViewBag?.userId;
+    var missionId = ViewBag?.missionId;
+    var storyId = ViewBag?.storyId;
 }
 
 <!-- Modal -->
@@ -17,7 +18,8 @@
 
                     @foreach(var user in Model)
                 {
-                    @if (user.MissionInviteToUsers!.Any(mi => mi.FromUserId == userId && mi.MissionId == missionId))
+                    @if ((missionId!=null && user.MissionInviteToUsers!.Any(mi => mi.FromUserId == userId && mi.MissionId == missionId))
+                   || (storyId != null && user.StoryInviteToUsers!.Any(si => si.FromUserId == userId && si.StoryId == storyId)))
                     {
 
 

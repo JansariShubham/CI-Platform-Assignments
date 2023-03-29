@@ -585,6 +585,10 @@
       "PackagePath": "staticwebassets\\js\\story.js"
     },
     {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\js\\storyRecommend.js",
+      "PackagePath": "staticwebassets\\js\\storyRecommend.js"
+    },
+    {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\js\\tinymce.js",
       "PackagePath": "staticwebassets\\js\\tinymce.js"
     },

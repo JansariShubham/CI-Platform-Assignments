@@ -218,19 +218,20 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         }
         [HttpGet]
-        public IActionResult getAllUsers(int? userId, int? missionId)
+        public IActionResult GetAllUsers(int? userId, int? missionId, int? storyId)
         {
             var usersList = _IUnitOfWork.UserRepository.getAllUsers();
             List<UserViewModel> userVm = new();
 
             foreach (var user in usersList)
             {
-                userVm.Add(convertToUserVm(user));
+                userVm.Add(convertToUserVm(user));  
 
             }
 
             ViewBag.userId = userId;
             ViewBag.missionId = missionId;
+            ViewBag.storyId = storyId;
             return PartialView("_Recommend", userVm);
         }
 
@@ -247,6 +248,9 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 Email = user.Email,
                 MissionInviteToUsers= user.MissionInviteToUsers,
                 MissionInviteFromUsers= user.MissionInviteFromUsers,
+                StoryInviteFromUsers= user.StoryInviteFromUsers,
+                StoryInviteToUsers  = user.StoryInviteToUsers,
+                
 
             };
             return userVm;

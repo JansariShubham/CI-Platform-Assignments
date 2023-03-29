@@ -1,45 +1,47 @@
 
-var images = [];
-document.getElementById("drag-img").addEventListener("change", () => {
-var files = document.getElementById("drag-img").files;
 
-    for (var i = 0; i < files.length; i++) {
+    var images = [];
+    document.getElementById("drag-img").addEventListener("change", () => {
+        var files = document.getElementById("drag-img").files;
 
-        images.push(files[i]);
-    }
-    displayImages();
+        for (var i = 0; i < files.length; i++) {
 
-    //console.log(images);
-})
-var dragDiv = document.querySelector(".drag-drop-div");
+            images.push(files[i]);
+        }
+        displayImages();
 
-dragDiv.addEventListener("click", () => {
-    document.getElementById("drag-img").click();
-})
+        //console.log(images);
+    })
+    var dragDiv = document.querySelector(".drag-drop-div");
 
-
-dragDiv.addEventListener("dragover", (e) => {
-    e.preventDefault();
-
-})
-
-dragDiv.addEventListener("drop", (e) => {
-    e.preventDefault();
-
-    var image = e.dataTransfer.files;
-
-    for (var i = 0; i < image.length; i++) {
-
-        images.push(image[i]);
-    }
-    displayImages();
-
-})
+    dragDiv.addEventListener("click", () => {
+        document.getElementById("drag-img").click();
+    })
 
 
-dragDiv.addEventListener("dragenter", (e) => {
-    e.preventDefault();
-})
+    dragDiv.addEventListener("dragover", (e) => {
+        e.preventDefault();
+
+    })
+
+    dragDiv.addEventListener("drop", (e) => {
+        e.preventDefault();
+
+        var image = e.dataTransfer.files;
+
+        for (var i = 0; i < image.length; i++) {
+
+            images.push(image[i]);
+        }
+        displayImages();
+
+    })
+
+
+    dragDiv.addEventListener("dragenter", (e) => {
+        e.preventDefault();
+    })
+
 
 function displayImages() {
     document.querySelector(".image-display-div").innerHTML = '';
@@ -93,5 +95,3 @@ submitForm.addEventListener('submit', (e) => {
     
 
 })
-
-

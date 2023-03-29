@@ -11,6 +11,7 @@ namespace CIPlatform.entities.ViewModels
     {
         public int StoryId { get; set; }
 
+        public long? MissionId { get; set; }
         public string? Title { get; set; }
 
         public string? Description { get; set; }

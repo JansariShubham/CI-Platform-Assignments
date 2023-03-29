@@ -47,7 +47,9 @@ namespace CIPlatform.repository.Repository
         public List<User> getAllUsers()
         {
            return _appDbContext.Users.Include(u => u.MissionInviteFromUsers)
-                .Include(u => u.MissionInviteToUsers).ToList();
+                .Include(u => u.MissionInviteToUsers)
+                .Include(u => u.StoryInviteToUsers)
+                .Include(u => u.StoryInviteFromUsers).ToList();
         }
     }
 }

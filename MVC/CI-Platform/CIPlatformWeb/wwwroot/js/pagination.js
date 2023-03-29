@@ -1,7 +1,28 @@
 ﻿
     //< !---------Pagination  ----------->
+function getStory() {
 
-    var storyCount = document.getElementById("storyCount").value;
+    $.ajax({
+        type: "GET",
+        url: "/Users/Story/GetStories",
+        data: {
+            pageNum: pageNumber
+        },
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        success: (result) => {
+            $("#storyListingPartial").html(result);
+
+        },
+        error: (err) => {
+            console.log("error...");
+        }
+
+
+    })
+}
+
+
+var storyCount = document.getElementById("storyCount").value;
 var ulPagination = document.querySelector(".pagination");
 //console.log("missions ===>" + missionCount);
 var totalPages = Math.ceil(storyCount / 1);
@@ -61,7 +82,7 @@ var pages = document.querySelectorAll('.page-item');
 pages.forEach((page) => {
     page.addEventListener("click", () => {
         pageNumber = page.dataset.id;
-
+        getStory();
     })
 })
 
@@ -74,6 +95,7 @@ rightArrow.addEventListener('click', () => {
     else {
         pageNumber++;
     }
+    getStory();
     //console.log("pageNumber ===>>>" + pageNumber)
 
 })
@@ -88,6 +110,7 @@ leftArrow.addEventListener('click', () => {
 
         pageNumber--;
     }
+    getStory();
     //console.log("pageNumber ===>>>" + pageNumber)
-    getFilterData();
+    
 })

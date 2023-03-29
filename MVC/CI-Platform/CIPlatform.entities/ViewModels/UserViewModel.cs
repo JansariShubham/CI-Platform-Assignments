@@ -37,11 +37,15 @@ namespace CIPlatform.entities.ViewModels
         [Required(ErrorMessage = "Phone Number is required")]
         [StringLength(10, MinimumLength =10, ErrorMessage="Phone Number Must Contain atleast 10 Characters")]
         [RegularExpression("^[0-9]+$")]
-        public String PhoneNumber { get; set; }
+        public String? PhoneNumber { get; set; }
 
 
         public virtual ICollection<MissionInvite>? MissionInviteToUsers { get; set; }
         public virtual ICollection<MissionInvite>? MissionInviteFromUsers { get; set; }
+
+        public virtual ICollection<StoryInvite>? StoryInviteFromUsers { get; set; } 
+
+        public virtual ICollection<StoryInvite>? StoryInviteToUsers { get; set; }
 
     }
 }

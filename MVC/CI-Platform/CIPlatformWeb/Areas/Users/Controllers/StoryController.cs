@@ -136,7 +136,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 Description = HtmlToPlainText(story.Description!),
                 User = story.User,
                 StoryId = story.StoryId,
-                imageUrl = getUrl(story.StoryMedia, story.StoryId)
+                imageUrl = getUrl(story.StoryMedia, story.StoryId),
+                MissionId = story.MissionId
                 
             };
             return vm;
@@ -166,6 +167,67 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         doc.LoadHtml(html);
         return doc.DocumentNode.InnerText;
     }
-}
+    [HttpGet]
+    public IActionResult GetStories(int pageNum)
+     {
+            var  storyObj = _IUnitOfWork.StoryRepository.getAllStories().Where(s => s.Status != 2);
+           List<StoryListingViewModel> storyListingVm = storyObj.Select(s => convertToStoryListingVm(s)).ToList();
+            var stories = storyListingVm.Skip((pageNum - 1) * 1).Take(1).ToList();
+            return PartialView("_StoryListing", stories);
+
+     }
+
+    public IActionResult StoryDetail(int? id)
+        {
+            if (id != 0 && id != null)
+            {
+                var story = _IUnitOfWork.StoryRepository.getAllStories().FirstOrDefault(s => s.StoryId == id);
+                var storyVm = convertToStoryListingVm(story!);
+                return View(storyVm);
+            }
+            return View();
+        }
+
+        public void AddUsersToStoryInvite(int[]? usersIdList, int? storyId, int? currentUserId)
+        {
+            try
+            {
+                var currentUser = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == currentUserId);
+                /*String subject = "Your Friend" + currentUser.FirstName + "is Recommended you this mission!";
+                String htmlMessage = "Please Checkout this Mission!";*/
+                var url = Url.Action("StoryDetail", "Story", new { id = storyId }, "https");
+                string subject = "CI Platform - Story Recommendation";
+                string link = $"<a href='{url}' style='text-decoration:none;display:block;width:max-content;border:1px solid black;border-radius:5rem;padding:0.75rem 1rem;margin:1rem auto;color:black;font-size:1rem;'>Open Story</a>";
+                string htmlMessage = $"<p style='text-align:center;font-size:2rem'>Your co-worker {currentUser.FirstName} has recommended a story to you.</p><p style='text-align:center;font-size:1.5rem'>Click on the link below check story out</p><hr/>{link}";
+                for (int i = 0; i < usersIdList!.Length; i++)
+                {
+
+                    StoryInvite storyInviteObj = new()
+                    {
+                        FromUserId = currentUserId,
+                        StoryId = storyId,
+                        ToUserId = usersIdList[i],
+                        CreatedAt = DateTimeOffset.Now
+                    };
+
+
+                    _IUnitOfWork.StoryInviteRepository.Add(storyInviteObj);
+                    _IUnitOfWork.Save();
+
+                    var userObj = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == usersIdList[i]);
+                    if (userObj != null)
+                    {
+                        _EmailSender.SendEmail(userObj.Email, subject, htmlMessage);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.GetBaseException();
+            }
+
+        }
+    }
 
 }
