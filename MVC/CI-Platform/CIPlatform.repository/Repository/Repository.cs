@@ -24,6 +24,7 @@ namespace CIPlatform.repository.Repository
             dbSet.Remove(item);
         }
 
+        
         public IEnumerable<T> GetAll()
         {
             IQueryable<T> query = dbSet;

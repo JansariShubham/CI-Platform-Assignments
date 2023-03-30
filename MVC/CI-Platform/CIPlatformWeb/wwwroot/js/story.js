@@ -1,5 +1,4 @@
 
-
     var images = [];
     document.getElementById("drag-img").addEventListener("change", () => {
         var files = document.getElementById("drag-img").files;
@@ -95,3 +94,38 @@ submitForm.addEventListener('submit', (e) => {
     
 
 })
+/*$(document).ready(function () {
+    // Code to be executed when the DOM is ready
+    console.log("DOM is ready");
+
+});*//*
+var storyMedia = document.querySelector("#storyMedia");
+var mediaPath = storyMedia.getAttribute("data-path");
+console.log("path===>>> " + mediaPath);*/
+
+var mediaPath = $("#storyMedia").data("path");
+var mediaName = $("#storyMedia").data("name");
+var mediaType = $("#storyMedia").data("type");
+
+console.log("path===>>> " + mediaPath + mediaName + mediaType);
+
+
+
+Promise.all(Array.from(document.querySelectorAll('[data-path]')).map((image, index) => {
+    const fileName = image.value;
+    const url = $(image).data("path") + $(image).data("name") + $(image).data("type");
+    const type = $(image).data("type");
+    return fetch(url)
+        .then(response => response.arrayBuffer())
+        .then(buffer => {
+            const myFile = new File([buffer], $(image).data("name") + $(image).data("type"), { type: `image/${type.slice(1)}` });
+            images.push(myFile);
+        });
+}))
+    .then(() => {
+            displayImages();
+        
+    })
+    .catch(error => {
+        console.error(error);
+    });

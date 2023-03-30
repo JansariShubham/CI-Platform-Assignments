@@ -19,5 +19,9 @@ namespace CIPlatform.entities.ViewModels
         public virtual User? User { get; set; }
 
         public string? imageUrl { get; set; }
+
+        public long? StoryViews { get; set; }
+
+        
     }
 }

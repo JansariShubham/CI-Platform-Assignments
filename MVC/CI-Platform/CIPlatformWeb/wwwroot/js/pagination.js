@@ -89,7 +89,7 @@ pages.forEach((page) => {
 var rightArrow = document.querySelector('.right-arrow');
 rightArrow.addEventListener('click', () => {
     //console.log("rightarrowCalled!!!")
-    if (pageNumber >= 3) {
+    if (pageNumber >= 2) {
         pageNumber = 1;
     }
     else {

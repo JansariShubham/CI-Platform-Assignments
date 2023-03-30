@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CIPlatform.entities.DataModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace CIPlatform.entities.ViewModels
     public class StoryShareViewModel
     {
         public long? UserId { get; set; }
+        public int? StoryId { get; set; }
 
         [Required(ErrorMessage = "Mission is required!")]
         public long? MissionId { get; set; }
@@ -20,13 +22,16 @@ namespace CIPlatform.entities.ViewModels
         public string? Description { get; set; }
 
         public string? VideoUrl { get; set; }
-        
-        
+        public byte? Status { get; set; }
+        public long? StoryViews { get; set; }
+
         public string? MediaName { get; set; } 
 
         public string? MadiaPath { get; set; }
 
         public string? MediaType { get; set; }
+
+        public virtual ICollection<StoryMedia>? StoryMedia { get; set; }
 
         //public string? ImageUrl { get; set;}
 

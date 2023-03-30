@@ -1616,12 +1616,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\star.png))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\1902e039-e3f2-4bdc-80e8-0b8f39edde55.jpeg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\38244274-3c65-4136-a078-51d8a6b1fa43.png))">
       <SourceType>Package</SourceType>
       <SourceId>CIPlatformWeb</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/1902e039-e3f2-4bdc-80e8-0b8f39edde55.jpeg</RelativePath>
+      <RelativePath>images/storyimages/38244274-3c65-4136-a078-51d8a6b1fa43.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1630,14 +1630,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\1902e039-e3f2-4bdc-80e8-0b8f39edde55.jpeg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\38244274-3c65-4136-a078-51d8a6b1fa43.png))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\343463f0-3e90-4fc3-9f8c-62200d081568.jpeg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\6dc554cc-1f5a-49e8-983f-08ee98012004.png))">
       <SourceType>Package</SourceType>
       <SourceId>CIPlatformWeb</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/343463f0-3e90-4fc3-9f8c-62200d081568.jpeg</RelativePath>
+      <RelativePath>images/storyimages/6dc554cc-1f5a-49e8-983f-08ee98012004.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1646,14 +1646,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\343463f0-3e90-4fc3-9f8c-62200d081568.jpeg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\6dc554cc-1f5a-49e8-983f-08ee98012004.png))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\467155c1-6f08-444a-b4e0-bab92abfa6dd.jpeg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\6ddf436a-1246-4e1a-9a62-1f19fe66a20c.png))">
       <SourceType>Package</SourceType>
       <SourceId>CIPlatformWeb</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/467155c1-6f08-444a-b4e0-bab92abfa6dd.jpeg</RelativePath>
+      <RelativePath>images/storyimages/6ddf436a-1246-4e1a-9a62-1f19fe66a20c.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1662,14 +1662,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\467155c1-6f08-444a-b4e0-bab92abfa6dd.jpeg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\6ddf436a-1246-4e1a-9a62-1f19fe66a20c.png))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\481a50a1-d00b-494f-b584-ef82ab4ad56a.jpeg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\9c49a725-e153-4a8a-8e44-8028e590b383.png))">
       <SourceType>Package</SourceType>
       <SourceId>CIPlatformWeb</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/481a50a1-d00b-494f-b584-ef82ab4ad56a.jpeg</RelativePath>
+      <RelativePath>images/storyimages/9c49a725-e153-4a8a-8e44-8028e590b383.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1678,14 +1678,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\481a50a1-d00b-494f-b584-ef82ab4ad56a.jpeg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\9c49a725-e153-4a8a-8e44-8028e590b383.png))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\63d51f4d-580b-4df0-9ccb-cd0f33fd2513.jpeg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\da2edc7c-52ef-4784-b792-104f871bc864.png))">
       <SourceType>Package</SourceType>
       <SourceId>CIPlatformWeb</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/63d51f4d-580b-4df0-9ccb-cd0f33fd2513.jpeg</RelativePath>
+      <RelativePath>images/storyimages/da2edc7c-52ef-4784-b792-104f871bc864.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1694,14 +1694,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\63d51f4d-580b-4df0-9ccb-cd0f33fd2513.jpeg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\da2edc7c-52ef-4784-b792-104f871bc864.png))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\71e97242-8f2d-4a76-b236-e5d444d76155.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\dd59017f-abcb-4f3d-a092-b6841aeaa7fd.png))">
       <SourceType>Package</SourceType>
       <SourceId>CIPlatformWeb</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/71e97242-8f2d-4a76-b236-e5d444d76155.png</RelativePath>
+      <RelativePath>images/storyimages/dd59017f-abcb-4f3d-a092-b6841aeaa7fd.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1710,14 +1710,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\71e97242-8f2d-4a76-b236-e5d444d76155.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\dd59017f-abcb-4f3d-a092-b6841aeaa7fd.png))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\736ad955-8d30-4e4b-8637-dba114cd460e.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\e24acc20-e410-4e7b-bea8-f8d15fd4266e.png))">
       <SourceType>Package</SourceType>
       <SourceId>CIPlatformWeb</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/736ad955-8d30-4e4b-8637-dba114cd460e.png</RelativePath>
+      <RelativePath>images/storyimages/e24acc20-e410-4e7b-bea8-f8d15fd4266e.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1726,215 +1726,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\736ad955-8d30-4e4b-8637-dba114cd460e.png))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\7621cb89-50fa-4ace-948b-8fe1d0a44d14.jpeg))">
-      <SourceType>Package</SourceType>
-      <SourceId>CIPlatformWeb</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/7621cb89-50fa-4ace-948b-8fe1d0a44d14.jpeg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\7621cb89-50fa-4ace-948b-8fe1d0a44d14.jpeg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\79dcf9af-b2d8-4df2-a346-253cb01ad236.png))">
-      <SourceType>Package</SourceType>
-      <SourceId>CIPlatformWeb</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/79dcf9af-b2d8-4df2-a346-253cb01ad236.png</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\79dcf9af-b2d8-4df2-a346-253cb01ad236.png))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\7af6f7f5-c842-49d3-bfe8-c40b2f02316b.jpeg))">
-      <SourceType>Package</SourceType>
-      <SourceId>CIPlatformWeb</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/7af6f7f5-c842-49d3-bfe8-c40b2f02316b.jpeg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\7af6f7f5-c842-49d3-bfe8-c40b2f02316b.jpeg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\8ecd4455-be20-4572-a23c-c8565210916e.png))">
-      <SourceType>Package</SourceType>
-      <SourceId>CIPlatformWeb</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/8ecd4455-be20-4572-a23c-c8565210916e.png</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\8ecd4455-be20-4572-a23c-c8565210916e.png))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\8eddc9b5-f330-4ce3-8f7a-fd48dd999b28.jpeg))">
-      <SourceType>Package</SourceType>
-      <SourceId>CIPlatformWeb</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/8eddc9b5-f330-4ce3-8f7a-fd48dd999b28.jpeg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\8eddc9b5-f330-4ce3-8f7a-fd48dd999b28.jpeg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\8f7b571a-efb1-410c-b2d4-e9f6544158f2.jpeg))">
-      <SourceType>Package</SourceType>
-      <SourceId>CIPlatformWeb</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/8f7b571a-efb1-410c-b2d4-e9f6544158f2.jpeg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\8f7b571a-efb1-410c-b2d4-e9f6544158f2.jpeg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\93415006-ce33-410f-a72e-c21ce7464189.jpeg))">
-      <SourceType>Package</SourceType>
-      <SourceId>CIPlatformWeb</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/93415006-ce33-410f-a72e-c21ce7464189.jpeg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\93415006-ce33-410f-a72e-c21ce7464189.jpeg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\9b612e7b-cf6b-4e71-b4c4-e646db364dd5.jpeg))">
-      <SourceType>Package</SourceType>
-      <SourceId>CIPlatformWeb</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/9b612e7b-cf6b-4e71-b4c4-e646db364dd5.jpeg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\9b612e7b-cf6b-4e71-b4c4-e646db364dd5.jpeg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\a106d637-027c-49d5-8414-b93cf5d9d93c.jpeg))">
-      <SourceType>Package</SourceType>
-      <SourceId>CIPlatformWeb</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/a106d637-027c-49d5-8414-b93cf5d9d93c.jpeg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\a106d637-027c-49d5-8414-b93cf5d9d93c.jpeg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\aa0d86e1-8110-48db-aa78-7ffbb7412a38.jpeg))">
-      <SourceType>Package</SourceType>
-      <SourceId>CIPlatformWeb</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/aa0d86e1-8110-48db-aa78-7ffbb7412a38.jpeg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\aa0d86e1-8110-48db-aa78-7ffbb7412a38.jpeg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\ae73e5fb-024d-4403-b824-c6f04a2d6551.png))">
-      <SourceType>Package</SourceType>
-      <SourceId>CIPlatformWeb</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/ae73e5fb-024d-4403-b824-c6f04a2d6551.png</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\ae73e5fb-024d-4403-b824-c6f04a2d6551.png))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\cc7980ae-ec8c-4c93-a1e2-a75d82b02c6f.png))">
-      <SourceType>Package</SourceType>
-      <SourceId>CIPlatformWeb</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/cc7980ae-ec8c-4c93-a1e2-a75d82b02c6f.png</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\cc7980ae-ec8c-4c93-a1e2-a75d82b02c6f.png))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\f36cf775-d592-47a5-8b3e-bfc2633446e0.jpeg))">
-      <SourceType>Package</SourceType>
-      <SourceId>CIPlatformWeb</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/CIPlatformWeb</BasePath>
-      <RelativePath>images/storyimages/f36cf775-d592-47a5-8b3e-bfc2633446e0.jpeg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\f36cf775-d592-47a5-8b3e-bfc2633446e0.jpeg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\storyimages\e24acc20-e410-4e7b-bea8-f8d15fd4266e.png))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\success-green-check-mark-icon.svg))">
       <SourceType>Package</SourceType>

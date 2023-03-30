@@ -22,4 +22,6 @@ public partial class StoryMedia
     public DateTimeOffset? DeletedAt { get; set; }
 
     public virtual Story? Story { get; set; }
+
+    public string? VideoUrl { get; set; } 
 }

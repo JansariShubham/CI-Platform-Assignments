@@ -19,11 +19,13 @@ public partial class Story
 
     public DateTimeOffset? PublishedAt { get; set; }
 
-    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.Now; 
+    public DateTimeOffset CreatedAt { get; set; }
 
     public DateTimeOffset? UpdatedAt { get; set; }
 
     public DateTimeOffset? DeletedAt { get; set; }
+
+    public long? StoryViews { get; set; }
 
     public virtual Mission? Mission { get; set; }
 

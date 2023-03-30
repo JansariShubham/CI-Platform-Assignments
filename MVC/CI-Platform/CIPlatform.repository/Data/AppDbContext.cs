@@ -546,6 +546,7 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Status)
                 .HasDefaultValueSql("((1))")
                 .HasColumnName("status");
+            entity.Property(e => e.StoryViews).HasColumnName("story_views");
             entity.Property(e => e.Title)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -603,7 +604,7 @@ public partial class AppDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("madia_path");
             entity.Property(e => e.MediaName)
-                .HasMaxLength(20)
+                .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("media_name");
             entity.Property(e => e.MediaType)
@@ -612,6 +613,10 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("media_type");
             entity.Property(e => e.StoryId).HasColumnName("story_id");
             entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
+            entity.Property(e => e.VideoUrl)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("video_url");
 
             entity.HasOne(d => d.Story).WithMany(p => p.StoryMedia)
                 .HasForeignKey(d => d.StoryId)

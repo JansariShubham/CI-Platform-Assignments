@@ -27,6 +27,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         public IActionResult ShareStory(string? id)
         {
+
             var missionList = _IUnitOfWork.MissionApplicationRepository.getAllMissionApplication();
             var missions = missionList.Where(ma => ma.UserId == long.Parse(id!) && ma.ApprovalStatus == 1).Select(ma => ma.Mission);
             List<PlatformLandingViewModel> missionVm = new();
@@ -34,11 +35,31 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             {
                 missionVm.Add(ConvertToMissionVm(mission));
             }
+            var draftStory = _IUnitOfWork.StoryRepository.GetStoryWithInclude(s => s.UserId == long.Parse(id!) && s.Status == 2);
+            if(draftStory != null)
+            {
+                StoryShareViewModel storyShareVm = new();
+
+                storyShareVm.UserId = draftStory.UserId;
+                storyShareVm.MissionId = draftStory.MissionId;
+                storyShareVm.StoryTitle = draftStory.Title!;
+                storyShareVm.Description = draftStory.Description;
+                storyShareVm.StoryMedia = draftStory.StoryMedia;
+                storyShareVm.StoryId = draftStory.StoryId;  
+                storyShareVm.Status = draftStory.Status;
+                
+                ViewBag.missions = missionVm;
+
+                return View(storyShareVm);
+               
+
+
+            }
 
 
 
             ViewBag.missions = missionVm;
-            return View();
+            return View(new StoryShareViewModel());
         }
 
         private PlatformLandingViewModel ConvertToMissionVm(Mission? mission)
@@ -54,7 +75,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         }
 
         [HttpPost]
-        public void AddStory(StoryShareViewModel storyVm, List<IFormFile?> file, string action)
+        public IActionResult AddStory(StoryShareViewModel storyVm, List<IFormFile?> file, string action, string[] preloaded, string? storyID) 
         {
             if (ModelState.IsValid)
             {
@@ -70,8 +91,70 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
 
                     };
+                  
+
                     var isDraft = action == "draft" ? storyObj.Status = 2 : storyObj.Status = 1;
-                    _IUnitOfWork.StoryRepository.Add(storyObj);
+                    var draftStory = _IUnitOfWork.StoryRepository.GetFirstOrDefault(s => s.UserId == storyVm.UserId && s.Status == 2);
+                    if (draftStory != null && action == "draft")
+                    {
+                        draftStory.Status = 2;
+                        draftStory.Title = storyVm.StoryTitle;
+                        draftStory.Description = storyVm.Description;
+                        draftStory.UserId = storyVm.UserId;
+                        draftStory.MissionId = storyVm.MissionId;
+                        draftStory.UpdatedAt = DateTimeOffset.Now;
+
+                        _IUnitOfWork.StoryRepository.Update(draftStory);
+                    }
+                    else if(action == "draft")
+                    {
+                        _IUnitOfWork.StoryRepository.Add(storyObj);
+
+                    }
+                    if (action == "share")
+                    {
+                        if (storyID != null)
+                        {
+                            var draft = _IUnitOfWork.StoryRepository.GetAll().Where(s => s.StoryId == int.Parse(storyID) && s.Status == 2);
+                            _IUnitOfWork.StoryRepository.RemoveRange(draft);
+
+                        }
+
+
+                        _IUnitOfWork.StoryRepository.Add(storyObj);
+                    }
+
+                    
+                    if (storyID != null)
+                    {
+
+                        var media = _IUnitOfWork.StoryMediaRepository.GetAll().Where(s => s.StoryId == int.Parse(storyID));
+                        if (media != null)
+                        {
+                            _IUnitOfWork.StoryMediaRepository.RemoveRange(media);
+                            string wwwRootPath = _webHostEnvironment.WebRootPath;
+                            var path = $@"{wwwRootPath}\images\storyimages";
+
+                            foreach(var m in media)
+                            {
+                               
+                                var fileName = m.MediaName;
+                                var filePath = m.MadiaPath;
+                                var fileType = m.MediaType;
+
+                                
+
+                                var url = Path.Combine(path, fileName + fileType);
+                                System.IO.File.Delete(url);
+
+
+                            }
+                        }
+                        
+
+                    }
+
+                    //_IUnitOfWork.StoryRepository.Add(storyObj);
                     _IUnitOfWork.Save();
                 }
                var storyId = _IUnitOfWork.StoryRepository.GetAll().OrderByDescending(s => s.CreatedAt).FirstOrDefault(s => s.MissionId == storyVm!.MissionId && s.UserId == storyVm.UserId)!.StoryId;
@@ -110,9 +193,11 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
 
                 }
+                 return  RedirectToAction("StoryListing");
 
 
             }
+            return RedirectToAction("StoryListing");
         }
 
         public IActionResult StoryListing()
@@ -137,7 +222,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 User = story.User,
                 StoryId = story.StoryId,
                 imageUrl = getUrl(story.StoryMedia, story.StoryId),
-                MissionId = story.MissionId
+                MissionId = story.MissionId,
+                StoryViews = story.StoryViews
                 
             };
             return vm;
@@ -183,6 +269,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             {
                 var story = _IUnitOfWork.StoryRepository.getAllStories().FirstOrDefault(s => s.StoryId == id);
                 var storyVm = convertToStoryListingVm(story!);
+
                 return View(storyVm);
             }
             return View();
@@ -227,6 +314,26 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 ex.GetBaseException();
             }
 
+        }
+
+       public void deleteStory(int? storyId)
+        {
+            if(storyId != null)
+            {
+                var storyMedia = _IUnitOfWork.StoryMediaRepository.GetAll().Where(s => s.StoryId == storyId);
+                if (storyMedia != null)
+                {
+                    _IUnitOfWork.StoryMediaRepository.RemoveRange(storyMedia);
+                }
+                var story = _IUnitOfWork.StoryRepository.GetFirstOrDefault(s => s.StoryId == storyId);
+                if (story != null)
+                {
+                    _IUnitOfWork.StoryRepository.Delete(story);
+                   
+                }
+                _IUnitOfWork.Save();
+
+            }
         }
     }
 
