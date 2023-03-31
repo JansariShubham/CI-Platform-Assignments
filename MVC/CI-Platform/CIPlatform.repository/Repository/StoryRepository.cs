@@ -1,5 +1,6 @@
 ﻿using CIPlatform.entities.DataModels;
 using CIPlatform.repository.IRepository;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,11 @@ namespace CIPlatform.repository.Repository
         
         public void updateStoryViews(int? StoryId, long? StoryViews)
         {
-            
+            var storyId = new SqlParameter("@storyId", StoryId);
+            var storyViews = new SqlParameter("@storyViews", StoryViews);
+
+            _appDbContext.Database.ExecuteSqlRaw("UPDATE [story] SET story_views = @storyViews WHERE story_id = @storyId", storyId, storyViews);
+
         }
 
        

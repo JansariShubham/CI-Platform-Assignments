@@ -87,6 +87,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                         Title = storyVm.StoryTitle,
                         Description = storyVm.Description,
                         UserId = storyVm.UserId,
+                        CreatedAt = DateTimeOffset.Now
                         
 
 
@@ -183,7 +184,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                             MadiaPath = @"\images\storyimages\",
                             MediaName = fileName,
                             MediaType = extension!,
-                            StoryId  = storyId
+                            StoryId  = storyId,
+                            VideoUrl = storyVm!.VideoUrl
 
                         };
                         _IUnitOfWork.StoryMediaRepository.Add(storyMediaObj);
@@ -223,7 +225,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 StoryId = story.StoryId,
                 imageUrl = getUrl(story.StoryMedia, story.StoryId),
                 MissionId = story.MissionId,
-                StoryViews = story.StoryViews
+                StoryViews = story.StoryViews??0
                 
             };
             return vm;
@@ -269,7 +271,9 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             {
                 var story = _IUnitOfWork.StoryRepository.getAllStories().FirstOrDefault(s => s.StoryId == id);
                 var storyVm = convertToStoryListingVm(story!);
-
+                storyVm.StoryViews++;
+                _IUnitOfWork.StoryRepository.updateStoryViews(story!.StoryId, storyVm.StoryViews);  
+                
                 return View(storyVm);
             }
             return View();

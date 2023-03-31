@@ -1,8 +1,13 @@
-/* @media (min-width: 992px) {
+/* (min-width: @media 992px) {
     .slide-1 {
         width: 60rem !important;
     }
 } */
+
+.head-border {
+    border-bottom: 2px solid black;
+    width: max-content;
+}
 
 .recommend-div {
     border: 2px solid #757575;
