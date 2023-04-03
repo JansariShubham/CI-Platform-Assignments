@@ -27,6 +27,15 @@
     height: 4rem;
     width: 4rem;
 }
+.skill-list {
+    list-style-type: none;
+}
+
+.head-border {
+    border-bottom: 2px solid black;
+    width: max-content;
+}
+
 
 
 

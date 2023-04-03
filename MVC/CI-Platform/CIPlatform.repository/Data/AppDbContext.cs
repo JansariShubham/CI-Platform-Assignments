@@ -61,6 +61,8 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<UserSkill> UserSkills { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=DESKTOP-M52MJI3;Initial Catalog=CI_Platform_db;Encrypt=False;Trusted_Connection=True");
@@ -720,6 +722,28 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.Country).WithMany(p => p.Users)
                 .HasForeignKey(d => d.CountryId)
                 .HasConstraintName("FK__users__country_i__2A164134");
+        });
+
+        modelBuilder.Entity<UserSkill>(entity =>
+        {
+            entity.HasKey(e => e.UserSkillId).HasName("PK__user_ski__FD3B576B755DFACA");
+
+            entity.ToTable("user_skill");
+
+            entity.Property(e => e.UserSkillId).HasColumnName("user_skill_id");
+            entity.Property(e => e.CreatedAt).HasColumnName("created_at");
+            entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
+            entity.Property(e => e.SkillId).HasColumnName("skill_id");
+            entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.Skill).WithMany(p => p.UserSkills)
+                .HasForeignKey(d => d.SkillId)
+                .HasConstraintName("FK__user_skil__skill__7755B73D");
+
+            entity.HasOne(d => d.User).WithMany(p => p.UserSkills)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK__user_skil__user___76619304");
         });
 
         OnModelCreatingPartial(modelBuilder);

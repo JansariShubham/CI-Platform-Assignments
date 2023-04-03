@@ -4,10 +4,16 @@
     }
 } */
 
+.skill-list {
+    list-style-type: none;
+}
+
 .head-border {
     border-bottom: 2px solid black;
     width: max-content;
 }
+
+
 
 .recommend-div {
     border: 2px solid #757575;

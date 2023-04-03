@@ -29,8 +29,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         private readonly EmailSender _EmailSender;
 
-       // string userId;
-      
+        // string userId;
+
         public HomeController(IUnitOfWork IUnitOfWork, EmailSender emailSender)
         {
             // userId = this.HttpContext.Session.GetString("userId");
@@ -77,7 +77,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         }
 
-        
+
         public IActionResult Privacy()
         {
             return View();
@@ -222,7 +222,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
             MissionVM.SeatsLeft = item.TotalSeats - item.MissionApplications.Count();
             //MissionVM.MissionDocuments = item.MissionDocuments; 
-           // Console.WriteLine("seats lef====>>>>" + MissionVM.SeatsLeft);
+            // Console.WriteLine("seats lef====>>>>" + MissionVM.SeatsLeft);
             MissionVM.StartDate = item.StartDate;
             MissionVM.EndDate = item.EndDate;
             MissionVM.GoalMissions = getGoalMission(item.GoalMissions);
@@ -250,7 +250,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         private static MissionRating getMissionRatings(ICollection<MissionRating> missionRatings)
         {
             MissionRating rating = new();
-            foreach(var missionRating in missionRatings)
+            foreach (var missionRating in missionRatings)
             {
                 rating.MissionRatingId = missionRating.MissionRatingId;
                 rating.UserId = missionRating.UserId;
@@ -258,7 +258,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
 
             }
-             
+
             return rating;
 
 
@@ -292,7 +292,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 obj.Skill = item.Skill;
                 obj.MissionId = item.MissionId;
                 obj.Mission = item.Mission;
-               // obj.Skill.SkillName = item.Skill.SkillName;
+                // obj.Skill.SkillName = item.Skill.SkillName;
 
             }
             return obj;
@@ -316,7 +316,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             return obj;
         }
 
-        
+
         public List<CityViewModel> getCityList()
         {
 
@@ -472,7 +472,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         /*[Route("/Users/Home/GetCitiesByCountry")]*/
         public JsonResult GetCitiesByCountry(int country)
         {
-            var CountryObj = _IUnitOfWork.CountryRepository.GetFirstOrDefault(countryName => countryName.CountryId== country);
+            var CountryObj = _IUnitOfWork.CountryRepository.GetFirstOrDefault(countryName => countryName.CountryId == country);
             var cityList = _IUnitOfWork.CityRepository.GetAll().Where(m => m.CountryId == CountryObj.CountryId).ToList();
 
             return Json(cityList);
@@ -481,22 +481,22 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         [HttpPost]
         public IActionResult GetFilterData(string? searchText, int[]? cityList, int[]? countryList, int[]? themeList, int[]? skillList, int sortingList, int pageNum, int userId)
         {
-          Filters obj = new()
+            Filters obj = new()
             {
                 SearchText = searchText,
                 Cties = cityList,
                 Countries = countryList,
                 Themes = themeList,
                 Skills = skillList,
-                sortingList= sortingList,
+                sortingList = sortingList,
                 PageNumber = pageNum,
                 userId = userId
-                
+
 
             };
 
-           var filterResult = _IUnitOfWork.MissionRepository.getFilters(obj);
-          List<PlatformLandingViewModel> fr = filterResult.Select(m => CovertToMissionVM(m)).ToList();
+            var filterResult = _IUnitOfWork.MissionRepository.getFilters(obj);
+            List<PlatformLandingViewModel> fr = filterResult.Select(m => CovertToMissionVM(m)).ToList();
 
 
             //if (pageNum != 0)
@@ -518,10 +518,44 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
             return PartialView("_index", indexViewModel);
 
+
+        }
+
+        public IActionResult UserEditProfile()
+        {
+            return View();
+        }
+        [HttpPost]
+        public void ChangePassword(UserProfile userProfileVm, string? userId)
+        {
+            if(ModelState.IsValid)
+            {
+                if(userId != null)
+                {
+                    var userPassword = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == long.Parse(userId)).Password;
+                    var userEmail = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == long.Parse(userId)).Email;
+
+                    if (userPassword != null)
+                    {
+                        if(userProfileVm.Password!.Equals(userPassword))
+                        {
+                            _IUnitOfWork.UserRepository.UpadateUserPassword(userEmail,userPassword);
+
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("OldPassword", "Please Enter Correct Password!");
+                        }
+                    }
+                }
+
+            }
             
+
+
         }
 
 
-       
+
     }
 }
