@@ -21,7 +21,7 @@ namespace CIPlatform.entities.ViewModels
         public string? LastName { get; set; }
 
         [StringLength(16)]
-        public int? EmployeeId { get; set; }
+        public string? EmployeeId { get; set; }
 
         [StringLength(255)]
         public string? Title { get; set; }
@@ -33,14 +33,13 @@ namespace CIPlatform.entities.ViewModels
         public string? MyProfile { get; set; }
         public string? WhyIVolunteer { get; set; }
 
-        public virtual ICollection<City>? Cities{ get; set; }
 
-
+        public string? Avatar { get; set; }
         public short? CityId { get; set; }
 
         [Required(ErrorMessage = "Enter Your Country")]
         public byte? CountryId { get; set; }
-        public virtual ICollection<Country>? Countries { get; set; }
+        
 
         public string? LinkedinURL { get; set; }
 
@@ -57,6 +56,14 @@ namespace CIPlatform.entities.ViewModels
 
 
         public string? OldPassword { get; set; }
+
+        public List<SkillsViewModel>? SkillsList { get; set; }
+
+        public List<CountryViewModel>? Countries { get; set; }
+
+        public List<CityViewModel>? Cities { get; set; }
+
+        
 
 
     }

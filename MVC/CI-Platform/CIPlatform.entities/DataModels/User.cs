@@ -17,7 +17,7 @@ public partial class User
 
     public string? PhoneNumber { get; set; }
 
-    public byte[]? Avatar { get; set; }
+    public string? Avatar { get; set; }
 
     public string? WhyIVolunteer { get; set; }
 

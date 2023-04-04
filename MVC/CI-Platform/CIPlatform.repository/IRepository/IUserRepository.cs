@@ -16,5 +16,7 @@ namespace CIPlatform.repository.IRepository
         public User GetLoginCredentials(UserLoginViewModel model);
 
         public List<User> getAllUsers();
+
+        public int UpdateProfie(int? userId,string? url);
     }
 }

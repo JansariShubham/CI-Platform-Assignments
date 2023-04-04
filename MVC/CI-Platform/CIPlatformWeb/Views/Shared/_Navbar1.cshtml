@@ -37,7 +37,7 @@
                 <img class="m-1" src="~/images/drop-down.png" alt="#">
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" asp-action="UserEditProfile" asp-controller="Home" asp-route-id ="@userId">My Profile</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
                 <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home">Logout</a></li>
             </ul>

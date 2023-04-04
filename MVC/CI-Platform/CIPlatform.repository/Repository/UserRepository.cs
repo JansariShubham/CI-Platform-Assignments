@@ -51,5 +51,13 @@ namespace CIPlatform.repository.Repository
                 .Include(u => u.StoryInviteToUsers)
                 .Include(u => u.StoryInviteFromUsers).ToList();
         }
+
+        public int UpdateProfie(int? userId, string? url)
+        {
+            var userID = new SqlParameter("@user_id", userId);
+            var avatar = new SqlParameter("@avatar", url);
+
+            return _appDbContext.Database.ExecuteSqlRaw("UPDATE [users] set avatar = @avatar WHERE user_id = @user_id", userID, avatar);
+        }
     }
 }

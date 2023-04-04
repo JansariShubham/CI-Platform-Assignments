@@ -16,6 +16,8 @@ using System.Diagnostics.Metrics;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualStudio.Web.CodeGeneration;
 using System.Drawing.Printing;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.CodeAnalysis.Differencing;
 //using AspNetCore;
 
 namespace CIPlatformWeb.Areas.Users.Controllers
@@ -29,13 +31,16 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         private readonly EmailSender _EmailSender;
 
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
         // string userId;
 
-        public HomeController(IUnitOfWork IUnitOfWork, EmailSender emailSender)
+        public HomeController(IUnitOfWork IUnitOfWork, EmailSender emailSender, IWebHostEnvironment webHostEnvironment)
         {
             // userId = this.HttpContext.Session.GetString("userId");
             _IUnitOfWork = IUnitOfWork;
             _EmailSender = emailSender;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         /*public HomeController(ILogger<HomeController> logger)
@@ -521,12 +526,39 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         }
 
-        public IActionResult UserEditProfile()
+        public IActionResult UserEditProfile(string? id)
         {
-            return View();
+            var userObj = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == long.Parse(id!));
+
+
+            UserProfile userProfileVm = new()
+            {
+                FirstName = userObj.FirstName,
+                LastName = userObj.LastName,
+                CityId = userObj.CityId,
+                CountryId = userObj.CountryId,
+                Department = userObj.Departmemt,
+                EmployeeId = userObj.EmployeeId,
+                LinkedinURL = userObj.LinkedInUrl,
+                MyProfile = userObj.ProfileText,
+                Title = userObj.Title,
+                Avatar = userObj.Avatar,
+                Cities = getCityList(),
+                Countries = getCountryList(),
+                SkillsList= getSkillList(),
+
+                
+                WhyIVolunteer = userObj.WhyIVolunteer,
+                
+
+            };
+
+            return View(userProfileVm);
         }
+
+        
         [HttpPost]
-        public void ChangePassword(UserProfile userProfileVm, string? userId)
+        public string ChangePassword(string? oldPassword, string? newPassword, string? userId)
         {
             if(ModelState.IsValid)
             {
@@ -537,21 +569,73 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
                     if (userPassword != null)
                     {
-                        if(userProfileVm.Password!.Equals(userPassword))
+                        if(oldPassword!.Equals(userPassword))
                         {
-                            _IUnitOfWork.UserRepository.UpadateUserPassword(userEmail,userPassword);
+                            _IUnitOfWork.UserRepository.UpadateUserPassword(userEmail,newPassword!);
 
                         }
                         else
                         {
-                            ModelState.AddModelError("OldPassword", "Please Enter Correct Password!");
+                            return "error";
                         }
                     }
                 }
 
             }
+            return "success";
             
 
+
+        }
+
+        public void UpdateUserProfile(IFormFile? profile, int? userId)
+        {
+            if (profile != null && userId != null)
+            {
+                deleteFileInFolder(userId);
+                //var userObj = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == userId);
+
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"images\user_images");
+                    var extension = Path.GetExtension(profile?.FileName);
+
+                    using (var fileStrems = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        profile?.CopyTo(fileStrems);
+                    }
+                string path = @"\images\user_images\";
+
+                var url = path + fileName + extension;
+
+                var isProfileUpdated = _IUnitOfWork.UserRepository.UpdateProfie(userId, url);
+
+                
+                     
+                }
+        }
+
+        public void deleteFileInFolder(int? userId)
+        {
+
+            var userObj = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == userId);
+
+            if (userObj != null)
+            {
+                
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                var path = $@"{wwwRootPath}\images\user_images";
+
+                var avatarUrl = userObj.Avatar!.Remove(0,20);
+
+
+                   var url = Path.Combine(path, avatarUrl);
+                    System.IO.File.Delete(url!);
+
+
+                
+            }
 
         }
 

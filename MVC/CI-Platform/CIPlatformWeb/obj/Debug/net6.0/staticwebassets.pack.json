@@ -533,6 +533,10 @@
       "PackagePath": "staticwebassets\\images\\user1.png"
     },
     {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\user_images\\62888f2c-ba47-460b-b546-c3a9f5add078.png",
+      "PackagePath": "staticwebassets\\images\\user_images\\62888f2c-ba47-460b-b546-c3a9f5add078.png"
+    },
+    {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\volunteer1.png",
       "PackagePath": "staticwebassets\\images\\volunteer1.png"
     },
@@ -579,6 +583,10 @@
     {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\js\\custom.js",
       "PackagePath": "staticwebassets\\js\\custom.js"
+    },
+    {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\js\\editProfile.js",
+      "PackagePath": "staticwebassets\\js\\editProfile.js"
     },
     {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\js\\missionDetail.js",

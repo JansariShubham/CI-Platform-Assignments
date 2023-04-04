@@ -665,7 +665,10 @@ public partial class AppDbContext : DbContext
             entity.HasIndex(e => e.Email, "UQ__users__AB6E6164BB82FF8A").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("user_id");
-            entity.Property(e => e.Avatar).HasColumnName("avatar");
+            entity.Property(e => e.Avatar)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("avatar");
             entity.Property(e => e.CityId).HasColumnName("city_id");
             entity.Property(e => e.CountryId).HasColumnName("country_id");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
