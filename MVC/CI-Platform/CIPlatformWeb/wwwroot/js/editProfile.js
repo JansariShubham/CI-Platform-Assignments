@@ -86,6 +86,7 @@ userImgInput.addEventListener("change", () => {
 
 //Get Cities By Country
 $(document).ready(function () {
+
     
     $("#country-filter").change(function () {
         
@@ -111,3 +112,8 @@ $(document).ready(function () {
         });
     });
 });
+
+
+
+
+

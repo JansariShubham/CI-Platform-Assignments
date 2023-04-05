@@ -65,7 +65,9 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 {
                     HttpContext.Session.SetString("email", model.Email.ToString());
                     HttpContext.Session.SetString("firstName", result.FirstName.ToString());
+                    HttpContext.Session.SetString("lastName", result.LastName.ToString());
                     HttpContext.Session.SetString("userId", result.UserId.ToString());
+
 
                     return RedirectToAction("PlatFormLandingPage");
                 }
@@ -536,6 +538,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 FirstName = userObj.FirstName,
                 LastName = userObj.LastName,
                 CityId = userObj.CityId,
+                Email = userObj.Email,
+                
                 CountryId = userObj.CountryId,
                 Department = userObj.Departmemt,
                 EmployeeId = userObj.EmployeeId,
@@ -638,7 +642,33 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             }
 
         }
+        
+        public IActionResult GetContactUsData()
+        {
+             
+            return PartialView("_ContactUs");
+        }
 
+        public void AddContactUsDetails(int userId, string subject, string message)
+            {
+            ContactUs obj = new()
+            {
+                UserId = userId,
+                Subject = subject,
+                Message = message,
+                CreatedAt = DateTimeOffset.Now
+            };
+
+            _IUnitOfWork.ContactUsRepository.Add(obj);
+            _IUnitOfWork.Save();
+
+
+        }
+
+        public IActionResult PolicyPage()
+        {
+            return View();
+        }
 
 
     }

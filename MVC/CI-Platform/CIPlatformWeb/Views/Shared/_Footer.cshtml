@@ -2,22 +2,27 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    var userId = Context.Session.GetString("userId");
 }
 
 <footer>
     <div class="container border-top p-3 d-flex gap-3 mt-5 footer-div">
         <div>
-            <a href="" class="fw-bold text-decoration-none text-black">Privacy Policy</a>
+            <a class="fw-bold text-decoration-none text-black privacy-link"asp-action="PolicyPage" asp-controller="Home">Privacy Policy</a>
 
         </div>
-        <div>
-            <a href="" class="text-secondary text-decoration-none" data-bs-target="#contactUsModal"
-               data-bs-toggle="modal">Contact us</a>
+        @if (userId != null)
+        {
+            <div>
+                <a class="text-secondary text-decoration-none" id="contactModal">Contact us</a>
 
         </div>
+        }
 
 
     </div>
+    <div id="contactUsPartial"></div>
+
 
 
 

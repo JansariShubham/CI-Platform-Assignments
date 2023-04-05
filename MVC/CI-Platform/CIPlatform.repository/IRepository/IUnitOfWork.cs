@@ -33,6 +33,8 @@ namespace CIPlatform.repository.IRepository
         IStoryMediaRepository StoryMediaRepository { get; }
 
         IStoryInviteRepository StoryInviteRepository { get; }
+
+        IContactUsRepository ContactUsRepository { get; }
         void Save();
     }
 }

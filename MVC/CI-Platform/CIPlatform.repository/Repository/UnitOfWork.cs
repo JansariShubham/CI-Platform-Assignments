@@ -37,7 +37,9 @@ namespace CIPlatform.repository.Repository
 
         public IStoryMediaRepository StoryMediaRepository { get; private set; }
 
-        public IStoryInviteRepository StoryInviteRepository { get; private set; }   
+        public IStoryInviteRepository StoryInviteRepository { get; private set; } 
+        
+        public IContactUsRepository ContactUsRepository { get; private set; }
         private AppDbContext _appDbContext;
 
         public UnitOfWork(AppDbContext appDbContext) 
@@ -58,6 +60,7 @@ namespace CIPlatform.repository.Repository
             StoryRepository = new StoryRepository(appDbContext);
             StoryMediaRepository = new StoryMediaRepository(appDbContext);
             StoryInviteRepository = new StoryInviteRepository(appDbContext);
+            ContactUsRepository = new ContactUsRepository(appDbContext);
         }
 
 

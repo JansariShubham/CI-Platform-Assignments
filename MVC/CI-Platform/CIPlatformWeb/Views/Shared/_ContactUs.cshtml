@@ -1,0 +1,54 @@
+﻿@model CIPlatform.entities.ViewModels.ContactUsViewModel
+@{
+    var userId = Context.Session.GetString("userId");
+    var firstName = Context.Session.GetString("firstName");
+    var lastName = Context.Session.GetString("lastName");
+     var email = Context.Session.GetString("email");
+}
+
+
+
+<div class="modal" id="contactUsModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">Contact Us</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            
+              <form id="contactUsForm">  
+                  <input type ="hidden" value="@userId" id="userId" />
+            <div class="modal-body">
+                <label for="name" class="form-label text-secondary">Name*</label>
+                <input type="text" class="form-control bg-body-secondary" placeholder="@firstName @lastName"
+                       id="name" disabled>
+                <label for="email" class="form-label text-secondary mt-3">Email Address*</label>
+                <input type="text" id="email" class="form-control bg-body-secondary"
+                       placeholder="@email" disabled>
+                <label for="subject" class="form-label text-secondary mt-3">Subject*</label>
+                <input type="text" id="subject" class="form-control" asp-for= "Subject"
+                       placeholder="Enter your Subject" required>
+                <span asp-validation-for="Subject" class="text-danger font-size d-block mt-1"></span>
+                <label for="message" class="form-label text-secondary mt-3">Message*</label>
+                <textarea id="message" cols="30" rows="3" class="form-control" asp-for ="Message"
+                          placeholder="Enter your Message" required></textarea>
+                  <span asp-validation-for="Message" class="text-danger font-size"></span>
+            </div>
+            <div class="modal-footer border-0">
+                <a class="btn border-secondary rounded-pill px-4 py-2 text-secondary"
+                   data-bs-dismiss="modal">Cancle</a>
+                <button type ="submit" class="btn border rounded-pill px-4 py-2 orange-btn"
+                        style="border-color: #F88634 !important">
+                    Save
+                </button>
+            </div>
+            </form>
+                
+        </div>
+        
+    </div>
+</div>
+
+<partial name="_ValidationScriptsPartial" />

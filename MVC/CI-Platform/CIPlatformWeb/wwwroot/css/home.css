@@ -5,6 +5,52 @@
     }
 
 }
+
+.cookie-div:hover {
+    color: black !important;
+    font-weight: bolder
+}
+
+.preference-div:hover {
+    color: black !important;
+    font-weight: bolder;
+}
+
+.intro-div:hover{
+    color: black !important;
+    font-weight: bolder;
+}
+
+.policy-ol {
+    counter-reset: item
+}
+
+.policy-ol li {
+    display: block  
+}
+
+.policy-ol li:before {
+    content: counters(item, ".") " ";
+    counter-increment: item
+}
+
+.skill-transfer-btn:hover {
+    background-color: #D9D9D9 !important;
+}
+.user-name{
+    font-size:14px !important;
+}
+#contactModal{
+    cursor:pointer;
+}
+.privacy-link{
+    cursor:pointer;
+}
+
+.skill-li:hover {
+    background-color: #D9D9D9;
+    cursor: pointer;
+}
 /* share story starts */
 .drag-drop-div {
     border: dashed;

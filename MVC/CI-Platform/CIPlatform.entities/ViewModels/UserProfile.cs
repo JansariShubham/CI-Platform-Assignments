@@ -23,6 +23,8 @@ namespace CIPlatform.entities.ViewModels
         [StringLength(16)]
         public string? EmployeeId { get; set; }
 
+        public string? Email { get; set; }
+
         [StringLength(255)]
         public string? Title { get; set; }
 
