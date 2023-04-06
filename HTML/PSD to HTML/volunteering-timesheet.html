@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteering Timesheet</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+
+    <!-- navbar  -->
+    <nav class="d-flex justify-content-between container mt-3 first-div">
+        <div class="dropdown left-div">
+
+            <img class="logo h-50" src="./images/logo.png" alt="#">
+            <a href="#" class="text-decoration-none mx-5 d-none d-md-inline d-lg-inline">Stories</a>
+            <button class="dropdown-toggle policy-btn d-none d-md-inline d-lg-inline" data-bs-toggle="dropdown"
+                aria-expanded="false" type="button" id="dropdownMenuButton1">Policy
+                <img class="m-1" src="images/drop-down.png" alt="#">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+
+        </div>
+        <div class="dropdown right-div mb-3">
+
+            <img class="rounded-circle user-img" src="images/user-img.png" alt="#">
+            <button class="dropdown-toggle policy-btn profile-btn d-none d-sm-inline" data-bs-toggle="dropdown"
+                aria-expanded="false" type="button" id="dropdownMenuButton1">Evan Donohue
+                <img class="m-1" src="images/drop-down.png" alt="#">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+        </div>
+
+    </nav>
+    <!-- time mission modal -->
+    <div class="modal" id="timeMissionModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered timesheet-modal">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Please input below Volunteering Hours</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <label for="mission" class="form-label">Mission</label>
+                    <select name="" id="mission" class="form-select bg-secondary-subtle  text-secondary">
+                        <option value="" selected disabled>Faith Community Fellowship</option>
+                    </select>
+
+
+                    <label for="date" class="mt-3 form-label">Date Volunteered</label>
+                    <input type="date" id="date" class="d-block w-100 text-secondary form-control"
+                        placeholder="Select Date">
+                    <div class="d-flex gap-2">
+                        <div class="hour-min-div">
+                            <label for="hours" class="mt-3 form-label">Hours</label>
+                            <input type="number" for="hours" placeholder="Enter Spent Hours"
+                                class="d-block w-100 form-control text-secondary" />
+                        </div>
+                        <div class="hour-min-div">
+
+                            <label for="minutes" class="form-label mt-3">Minutes</label>
+                            <input type="number" id="minutes" placeholder="Enter Spent Minutes"
+                                class="d-block w-100  text-secondary form-control" />
+                        </div>
+                    </div>
+                    <label for="message" class="mt-3">Message</label>
+                    <textarea name="" id="message" cols="30" rows="5" placeholder="Enter your message"
+                        class="d-block w-100 text-secondary form-control"></textarea>
+                </div>
+                <div class="modal-footer border-0">
+                    <a class="btn border-secondary rounded-pill px-4 py-2 text-secondary"
+                        data-bs-dismiss="modal">Cancle</a>
+                    <button class="btn border rounded-pill px-4 py-2 orange-btn"
+                        style="border-color: #F88634 !important">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- goal mission modal -->
+    <div class="modal" id="goalMissionModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered timesheet-modal">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Please input below Volunteering Goal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <label for="mission" class="form-label">Mission</label>
+                    <select name="" id="mission" class="form-select bg-secondary-subtle  text-secondary">
+                        <option value="" selected disabled>Plantation and Afforestation Programme</option>
+                    </select>
+
+
+                    <label for="action" class="mt-3 form-label">Action</label>
+                    <input type="text" id="action"
+                        class="d-block w-100 text-secondary border-secondary-subtle form-control"
+                        placeholder="Enter Actions">
+
+                    <label for="date" class="mt-3 form-label">Date Volunteered</label>
+                    <input type="date" id="date"
+                        class="d-block w-100 text-secondary border-secondary-subtle form-control"
+                        placeholder="Select Date">
+                    <label for="message" class="mt-3 form-label">Message</label>
+                    <textarea name="" id="message" cols="30" rows="5" placeholder="Enter your message"
+                        class="d-block w-100 text-secondary border-secondary-subtle form-control"></textarea>
+                </div>
+                <div class="modal-footer border-0">
+                    <a class="btn border-secondary rounded-pill px-4 py-2 text-secondary"
+                        data-bs-dismiss="modal">Cancle</a>
+                    <button class="btn border rounded-pill px-4 py-2 orange-btn"
+                        style="border-color: #F88634 !important">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="border-top m-3">
+        <div class="container mt-5" style="color: #414141;">
+            <h3>Volunteering Timesheet</h3>
+            <div class="d-flex gap-3 flex-column flex-lg-row">
+                <div class="border py-4 px-3 mt-3 timesheet-div">
+                    <div class="d-flex justify-content-between">
+                        <div class="text-secondary pb-4">Volunteering Hours</div>
+                        <div>
+                            <div>
+                                <a class="btn border rounded-pill px-sm-4 py-sm-2 px-2 orange-btn"
+                                    style="border-color: #F88634 !important" data-bs-target="#timeMissionModal"
+                                    data-bs-toggle="modal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F88634"
+                                        class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                                    </svg> Add</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table ">
+                            <thead>
+                                <tr class="timesheet-tr">
+                                    <th scope="col">Mission</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Hours</th>
+                                    <th>Minutes</th>
+                                    <th scope="col"></th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="timesheet-tr text-secondary font-size">
+
+                                    <td>Plantation Programme</td>
+                                    <td>22/02/2022</td>
+                                    <td class="">1h</td>
+                                    <td>30min</td>
+                                    <td
+                                        class="p-0 d-flex gap-3 ps-lg-5 pe-5 ps-3 justify-content-md-end edit-delete-btn">
+
+
+                                        <img class="edit-img" src="./images/editing.png" alt="">
+                                        <img class="delete-img" src="./images/bin.png" alt="">
+
+
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="border py-4 px-3 mt-3 timesheet-div">
+                    <div class="d-flex justify-content-between">
+                        <div class="text-secondary pb-4">Volunteering Goals</div>
+                        <div>
+                            <div>
+                                <a class="btn border rounded-pill px-sm-4 py-sm-2 px-2 orange-btn"
+                                    style="border-color: #F88634 !important" data-bs-target="#goalMissionModal"
+                                    data-bs-toggle="modal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F88634"
+                                        class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                                    </svg> Add</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr class="timesheet-tr">
+                                    <th scope="col">Mission</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Action</th>
+                                    <th scope="col"></th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="timesheet-tr text-secondary font-size">
+
+                                    <td>Plantation Programme</td>
+                                    <td>22/02/2022</td>
+                                    <td class="">0</td>
+                                    <td
+                                        class="p-0 ps-lg-5 d-flex gap-3 pe-5 ps-3 justify-content-md-end edit-delete-btn">
+
+                                        <img src="./images/editing.png" alt="">
+                                        <img src="./images/bin.png" alt="">
+
+
+                                    </td>
+
+                                </tr>
+                                <tr class="timesheet-tr text-secondary font-size">
+
+                                    <td>Education Programme</td>
+                                    <td>22/02/2022</td>
+                                    <td class="">1</td>
+                                    <td
+                                        class="p-0 ps-lg-5 d-flex gap-3 pe-5 ps-3 justify-content-md-end edit-delete-btn">
+
+                                        <img src="./images/editing.png" alt="">
+
+                                        <img src="./images/bin.png" alt="">
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <script src="./js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

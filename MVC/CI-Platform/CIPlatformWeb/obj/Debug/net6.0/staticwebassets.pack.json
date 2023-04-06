@@ -229,6 +229,18 @@
       "PackagePath": "staticwebassets\\images\\drop-down.png"
     },
     {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\edit.png",
+      "PackagePath": "staticwebassets\\images\\edit.png"
+    },
+    {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\editing.png",
+      "PackagePath": "staticwebassets\\images\\editing.png"
+    },
+    {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\editing@2x.png",
+      "PackagePath": "staticwebassets\\images\\editing@2x.png"
+    },
+    {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\eye.png",
       "PackagePath": "staticwebassets\\images\\eye.png"
     },
@@ -607,6 +619,10 @@
     {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\js\\storyRecommend.js",
       "PackagePath": "staticwebassets\\js\\storyRecommend.js"
+    },
+    {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\js\\timesheet.js",
+      "PackagePath": "staticwebassets\\js\\timesheet.js"
     },
     {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\js\\tinymce.js",

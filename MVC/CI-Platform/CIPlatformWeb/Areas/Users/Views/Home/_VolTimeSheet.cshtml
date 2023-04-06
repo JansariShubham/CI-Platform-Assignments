@@ -1,0 +1,132 @@
+﻿@model CIPlatform.entities.ViewModels.TimeSheetViewModel
+@{
+    var userId = Context.Session.GetString("userId");
+}
+<!-- time mission modal -->
+<input type = "hidden" value="@userId" id ="userId" />
+
+<section class="border-top m-3">
+    <div class="container mt-5" style="color: #414141;">
+        <h3>Volunteering Timesheet</h3>
+        <div class="d-flex gap-3 flex-column flex-lg-row">
+            <div class="border py-4 px-3 mt-3 timesheet-div">
+                <div class="d-flex justify-content-between">
+                    <div class="text-secondary pb-4">Volunteering Hours</div>
+                    <div>
+                        <div>
+                            <a class="btn border rounded-pill px-sm-4 py-sm-2 px-2 orange-btn" id="timeModal"
+                               style="border-color: #F88634 !important"
+                               >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F88634"
+                                     class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                          d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                                </svg> Add
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table ">
+                        <thead>
+                            <tr class="timesheet-tr">
+                                <th scope="col">Mission</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Hours</th>
+                                <th>Minutes</th>
+                                <th scope="col"></th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="timesheet-tr text-secondary font-size">
+
+                                <td>Plantation Programme</td>
+                                <td>22/02/2022</td>
+                                <td class="">1h</td>
+                                <td>30min</td>
+                                <td class="p-0 d-flex gap-3 ps-lg-5 pe-5 ps-3 justify-content-md-end edit-delete-btn">
+
+
+                                    <img class="edit-img" src="./images/editing.png" alt="">
+                                    <img class="delete-img" src="./images/bin.png" alt="">
+
+
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="border py-4 px-3 mt-3 timesheet-div">
+                <div class="d-flex justify-content-between">
+                    <div class="text-secondary pb-4">Volunteering Goals</div>
+                    <div>
+                        <div>
+                            <a class="btn border rounded-pill px-sm-4 py-sm-2 px-2 orange-btn" id="goalModal" 
+                               style="border-color: #F88634 !important"
+                               >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F88634"
+                                     class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                          d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                                </svg> Add
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr class="timesheet-tr">
+                                <th scope="col">Mission</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Action</th>
+                                <th scope="col"></th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="timesheet-tr text-secondary font-size">
+
+                                <td>Plantation Programme</td>
+                                <td>22/02/2022</td>
+                                <td class="">0</td>
+                                <td class="p-0 ps-lg-5 d-flex gap-3 pe-5 ps-3 justify-content-md-end edit-delete-btn">
+
+                                    <img src="./images/editing.png" alt="">
+                                    <img src="./images/bin.png" alt="">
+
+
+                                </td>
+
+                            </tr>
+                            <tr class="timesheet-tr text-secondary font-size">
+
+                                <td>Education Programme</td>
+                                <td>22/02/2022</td>
+                                <td class="">1</td>
+                                <td class="p-0 ps-lg-5 d-flex gap-3 pe-5 ps-3 justify-content-md-end edit-delete-btn">
+
+                                    <img src="./images/editing.png" alt="">
+
+                                    <img src="./images/bin.png" alt="">
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+
+</section>
+
+<script src="~/js/timesheet.js"></script>

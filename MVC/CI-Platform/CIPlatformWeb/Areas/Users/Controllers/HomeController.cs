@@ -670,6 +670,67 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             return View();
         }
 
+        public IActionResult TimeSheet(int? id)
+        {
+           
+
+           return View();
+            
+        }
+        private PlatformLandingViewModel ConvertToMissionVm(Mission? mission)
+        {
+            PlatformLandingViewModel missionVm = new()
+            {
+                Title = mission!.Title,
+                MissionId = mission.MissionId,
+                MissionType = mission.MissionType
+
+            };
+            return missionVm;
+
+        }
+
+        public IActionResult GetGoalMission(int? userId)
+        {
+            var missionList = _IUnitOfWork.MissionApplicationRepository.getAllMissionApplication();
+            var missions = missionList.Where(ma => ma.UserId == userId && ma.ApprovalStatus == 1 && ma.Mission.MissionType == true).Select(ma => ma.Mission);
+
+            List<PlatformLandingViewModel> missionVm = new();
+            foreach (var mission in missions)
+            {
+                missionVm.Add(ConvertToMissionVm(mission));
+            }
+
+            TimeSheetViewModel vm = new()
+            {
+                missionList = missionVm
+            };
+
+            
+            return PartialView("_TimeGoalModal",vm);
+
+        }
+
+        public IActionResult GetTimeMission(int? userId)
+        {
+            var missionList = _IUnitOfWork.MissionApplicationRepository.getAllMissionApplication();
+            var missions = missionList.Where(ma => ma.UserId == userId && ma.ApprovalStatus == 1 && ma.Mission.MissionType == false).Select(ma => ma.Mission);
+
+            List<PlatformLandingViewModel> missionVm = new();
+            foreach (var mission in missions)
+            {
+                missionVm.Add(ConvertToMissionVm(mission));
+            }
+
+            TimeSheetViewModel vm = new()
+            {
+                missionList = missionVm
+            };
+           
+
+           return PartialView("_TimeGoalModal", vm);
+
+        }
 
     }
 }

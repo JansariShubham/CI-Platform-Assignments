@@ -35,6 +35,7 @@ namespace CIPlatform.repository.IRepository
         IStoryInviteRepository StoryInviteRepository { get; }
 
         IContactUsRepository ContactUsRepository { get; }
+        ITimeSheetRepository TimeSheetRepository { get; }
         void Save();
     }
 }

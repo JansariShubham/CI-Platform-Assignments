@@ -4,6 +4,33 @@
     }
 } */
 
+.timesheet-tr td {
+    border: none;
+
+
+}
+
+.timesheet-modal {
+    max-width: 57rem !important;
+}
+
+.hour-min-div {
+    flex-basis: 100%;
+}
+
+.edit-delete-btn img {
+    cursor: pointer;
+}
+
+.timesheet-div {
+    flex-basis: 100%;
+}
+
+.timesheet-tr th {
+    border: none;
+    font-weight: normal;
+}
+
 .skill-list {
     list-style-type: none;
 }

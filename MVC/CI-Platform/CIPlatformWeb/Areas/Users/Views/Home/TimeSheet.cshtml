@@ -1,0 +1,18 @@
+﻿
+@{
+    var userId = Context.Session.GetString("userId");
+}
+<partial name = "_Navbar1" />
+
+<partial name ="_VolTimeSheet" />
+
+<div id="modalPartial"></div>
+
+<partial name="_Footer" />
+
+
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
