@@ -11,8 +11,6 @@ public partial class Timesheet
 
     public long? MissionId { get; set; }
 
-    public DateTimeOffset? Time { get; set; }
-
     public int? Action { get; set; }
 
     public DateTimeOffset DateVolunteered { get; set; }
@@ -26,6 +24,10 @@ public partial class Timesheet
     public DateTimeOffset? UpdatedAt { get; set; }
 
     public DateTimeOffset? DeletedAt { get; set; }
+
+    public int? Hour { get; set; }
+
+    public int? Minutes { get; set; }
 
     public virtual Mission? Mission { get; set; }
 

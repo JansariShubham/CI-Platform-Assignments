@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CIPlatform.entities.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace CIPlatform.repository.IRepository
 {
-    internal interface ITimeSheetRepository
+    public interface ITimeSheetRepository: IRepository<Timesheet>
     {
+        List<Timesheet> getTimeSheetList();
+
+        public void Update(Timesheet timesheet);
     }
 }

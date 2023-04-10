@@ -68,12 +68,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlcnNcVmlld3NcSG9tZVxVc2VyRWRpdFByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Users/Views/Home/_Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlcnNcVmlld3NcSG9tZVxfSW5kZXguY3NodG1s
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Users/Views/Home/_EditGoalTimeSheetModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlcnNcVmlld3NcSG9tZVxfRWRpdEdvYWxUaW1lU2hlZXRNb2RhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Users/Views/Home/_TimeGoalModal.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlcnNcVmlld3NcSG9tZVxfVGltZUdvYWxNb2RhbC5jc2h0bWw=
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Users/Views/Home/_EditHourTimeSheetModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlcnNcVmlld3NcSG9tZVxfRWRpdEhvdXJUaW1lU2hlZXRNb2RhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Users/Views/Home/_GoalTimeSheetModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlcnNcVmlld3NcSG9tZVxfR29hbFRpbWVTaGVldE1vZGFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Users/Views/Home/_HourTimeSheetModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlcnNcVmlld3NcSG9tZVxfSG91clRpbWVTaGVldE1vZGFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Users/Views/Home/_Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlcnNcVmlld3NcSG9tZVxfSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Users/Views/Home/_ViewImports.cshtml]

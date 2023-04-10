@@ -1,6 +1,8 @@
 ﻿
 var userId = document.getElementById("userId").value;
 
+
+
 var goalModalBtn = document.getElementById("goalModal");
 goalModalBtn.addEventListener('click', () => {
     $.ajax({
@@ -9,7 +11,10 @@ goalModalBtn.addEventListener('click', () => {
 
         data: { userId:userId },
         success: (result) => {
-            $('##goalMissionModal').modal('show');
+            $('#goalModalPartial').html(result);
+            $('#goalMissionModal').modal('show');
+            addGoalTimeSheet();
+
             console.log('success');
         },
         error: (err) => {
@@ -27,7 +32,9 @@ timeModalBtn.addEventListener('click', () => {
 
         data: { userId: userId },
         success: (result) => {
+            $('#hourModalPartial').html(result);
             $('#timeMissionModal').modal('show');
+            addHourTimeSheet()
             console.log('success');
         },
         error: (err) => {
@@ -36,4 +43,241 @@ timeModalBtn.addEventListener('click', () => {
         }
     })
 
+})
+
+function addHourTimeSheet() {
+    var timeForm = document.getElementById("hourTimeSheetForm");
+    timeForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if ($("#hourTimeSheetForm").valid()) {
+
+            var userId = document.getElementById("userId").value;
+            var hours = document.getElementById("hours").value;
+            var minutes = document.getElementById("minutes").value;
+            var message = document.getElementById("message").value;
+            var date = document.getElementById("date").value;
+
+            var mission = $('#mission :selected').val();
+
+            alert(userId + hours + minutes + message + date + mission);
+
+            $.ajax({
+                url: '/Users/Home/AddHourTimeSheet',
+                type: "POST",
+                data: { userId: userId, hours: hours, message: message, minutes: minutes, date: date, missionId:mission },
+                success: (result) => {
+                    console.log("success in addinng hour timesheet data")
+                    $('#volTimeSheetPartial').html(result);
+                    $("#timeMissionModal").modal('hide');
+
+                },
+                error: (err) => {
+                    console.log("error in hour timesheet");
+                    console.log(err);
+                }
+            })
+        }
+        else {
+            return;
+        }
+
+
     })
+}
+
+
+function addGoalTimeSheet() {
+    var timeForm = document.getElementById("goalTimeSheetForm");
+    timeForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if ($("#goalTimeSheetForm").valid()) {
+
+            var userId = document.getElementById("userId").value;
+            var action = document.getElementById("action").value;
+            
+            var message = document.getElementById("message").value;
+            var date = document.getElementById("date").value;
+
+            var mission = $('#mission :selected').val();
+
+            $.ajax({
+                url: '/Users/Home/AddGoalTimeSheet',
+                type: "POST",
+                data: { userId: userId, message: message, action:action,  date: date, missionId: mission },
+                success: (result) => {
+                    console.log("success in addinng goal timesheet data")
+                    $('#volTimeSheetPartial').html(result);
+                    $("#goalMissionModal").modal('hide');
+
+                },
+                error: (err) => {
+                    console.log("error in goal timesheet");
+                    console.log(err);
+                }
+            })
+        }
+        else {
+            return;
+        }
+
+
+    })
+}
+
+var deleteTimeSheet = document.querySelectorAll(".delete-img");
+    deleteTimeSheet.forEach((timeSheet) => {
+        timeSheet.addEventListener("click", () => {
+            var timeSheetId = timeSheet.getAttribute('data-timesheetid');
+
+
+            console.log("heeyyyy " + timeSheetId);
+
+            $.ajax({
+                url: '/Users/Home/deleteTimeSheet',
+                type: "POST",
+                data: { userId: userId, timeSheetId : timeSheetId },
+                success: (result) => {
+                    
+                    $('#volTimeSheetPartial').html(result);
+                
+
+                },
+                error: (err) => {
+                   
+                    console.log(err);
+                }
+            })
+        })
+    })
+
+
+var editGoalTimeSheetBtn = document.querySelectorAll(".edit-img");
+editGoalTimeSheetBtn.forEach((editTimeSheet) => {
+    editTimeSheet.addEventListener("click", () => {
+        var timeSheetId = editTimeSheet.getAttribute("data-timesheetid");
+
+        $.ajax({
+            url: '/Users/Home/getGoalTimeSheetData',
+            type: "GET",
+            data: { userId: userId, timeSheetId: timeSheetId },
+            success: (result) => {
+                
+                $('#editGoalModal').html(result);
+                $('#goalEditModal').modal('show');
+                updateGoalTimeSheet(timeSheetId);
+
+
+            },
+            error: (err) => {
+
+                console.log(err);
+            }
+        })
+    })
+})
+
+
+
+var editHourTimeSheetBtn = document.querySelectorAll(".edit1-img");
+editHourTimeSheetBtn.forEach((editTimeSheet) => {
+    editTimeSheet.addEventListener("click", () => {
+        var timeSheetId = editTimeSheet.getAttribute("data-timesheetid");
+
+        $.ajax({
+            url: '/Users/Home/getHourTimeSheetData',
+            type: "GET",
+            data: { userId: userId, timeSheetId: timeSheetId },
+            success: (result) => {
+
+                $('#editTimeModal').html(result);
+                $('#timeEditModal').modal('show');
+                updateHourTimeSheet(timeSheetId);
+
+
+            },
+            error: (err) => {
+
+                console.log(err);
+            }
+        })
+    })
+})
+
+function updateHourTimeSheet(timeSheetId) {
+    var timeForm = document.getElementById("hourTimeSheetEditForm");
+    timeForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if ($("#hourTimeSheetEditForm").valid()) {
+
+            var userId = document.getElementById("userId").value;
+            var hours = document.getElementById("hours").value;
+            var minutes = document.getElementById("minutes").value;
+            var message = document.getElementById("message").value;
+            var date = document.getElementById("date").value;
+
+            var mission = $('#mission :selected').val();
+            //alert(timeSheetId);
+            //alert(userId + hours + minutes + message + date + mission);
+
+            $.ajax({
+                url: '/Users/Home/UpdateHourTimeSheet',
+                type: "POST",
+                data: { userId: userId, hours: hours, message: message, minutes: minutes, date: date, missionId: mission, timeSheetId: timeSheetId },
+                success: (result) => {
+                    console.log("success in updating hour timesheet data")
+                    $("#timeEditModal").modal('hide');
+                    $('#volTimeSheetPartial').html(result);
+
+                },
+                error: (err) => {
+                    console.log("error in hour timesheet");
+                    console.log(err);
+                }
+            })
+        }
+        else {
+            return;
+        }
+
+
+    })
+}
+
+
+function updateGoalTimeSheet(timeSheetId) {
+    var timeForm = document.getElementById("goalTimeSheetEditForm");
+    timeForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if ($("#goalTimeSheetEditForm").valid()) {
+
+            var userId = document.getElementById("userId").value;
+            var action = document.getElementById("action").value;
+
+            var message = document.getElementById("message").value;
+            var date = document.getElementById("date").value;
+
+            var mission = $('#mission :selected').val();
+
+            $.ajax({
+                url: '/Users/Home/UpdateGoalTimeSheet',
+                type: "POST",
+                data: { userId: userId, message: message, action: action, date: date, missionId: mission, timeSheetId: timeSheetId },
+                success: (result) => {
+                    console.log("success in addinng goal timesheet data")
+                    $("#goalEditModal").modal('hide');
+                    $('#volTimeSheetPartial').html(result);
+
+                },
+                error: (err) => {
+                    console.log("error in goal timesheet");
+                    console.log(err);
+                }
+            })
+        }
+        else {
+            return;
+        }
+
+
+    })
+}

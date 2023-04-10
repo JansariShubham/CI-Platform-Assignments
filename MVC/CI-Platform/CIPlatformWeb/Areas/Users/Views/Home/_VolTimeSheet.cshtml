@@ -1,10 +1,12 @@
-﻿@model CIPlatform.entities.ViewModels.TimeSheetViewModel
+﻿@model List<CIPlatform.entities.ViewModels.TimeSheetViewModel>
 @{
     var userId = Context.Session.GetString("userId");
 }
 <!-- time mission modal -->
 <input type = "hidden" value="@userId" id ="userId" />
 
+<div id="editGoalModal"></div>
+<div id="editTimeModal"></div>
 <section class="border-top m-3">
     <div class="container mt-5" style="color: #414141;">
         <h3>Volunteering Timesheet</h3>
@@ -40,22 +42,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="timesheet-tr text-secondary font-size">
+                            @foreach(var timeSheetData in Model )
+                            {
+                                if (timeSheetData.Mission?.MissionType == true)
+                                {
+                                    <tr class="timesheet-tr text-secondary font-size">
 
-                                <td>Plantation Programme</td>
-                                <td>22/02/2022</td>
-                                <td class="">1h</td>
-                                <td>30min</td>
-                                <td class="p-0 d-flex gap-3 ps-lg-5 pe-5 ps-3 justify-content-md-end edit-delete-btn">
+                                        <td>@timeSheetData.Mission?.Title</td>
+                                        <td>@timeSheetData.Date?.ToString("d")</td>
+                                        <td class="">@timeSheetData.Hour h</td>
+                                        <td>@timeSheetData.Minutes min</td>
+                                        <td class="p-0 d-flex gap-3 ps-lg-5 pe-5 ps-3 justify-content-md-end edit-delete-btn">
 
 
-                                    <img class="edit-img" src="./images/editing.png" alt="">
-                                    <img class="delete-img" src="./images/bin.png" alt="">
+                                            <img class="edit1-img" src="~/images/editing.png" alt="" data-timesheetid="@timeSheetData.TimeSheetId">
 
+                                            <img class="delete-img" src="~/images/bin.png" alt=""  data-timesheetid="@timeSheetData.TimeSheetId">
+                                            
 
-                                </td>
+                                            
+                                        </td>
 
-                            </tr>
+                                    </tr>
+                                }
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -90,33 +100,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="timesheet-tr text-secondary font-size">
+                            @foreach(var timeSheetData in Model)
+                            {
+                                if (timeSheetData.Mission?.MissionType == false)
+                                {
+                                    <tr class="timesheet-tr text-secondary font-size">
 
-                                <td>Plantation Programme</td>
-                                <td>22/02/2022</td>
-                                <td class="">0</td>
-                                <td class="p-0 ps-lg-5 d-flex gap-3 pe-5 ps-3 justify-content-md-end edit-delete-btn">
+                                        <td>@timeSheetData.Mission?.Title</td>
+                                        <td>@timeSheetData.Date?.ToString("d")</td>
+                                        <td class="">@timeSheetData.Action</td>
+                                        <td class="p-0 ps-lg-5 d-flex gap-3 pe-5 ps-3 justify-content-md-end edit-delete-btn">
 
-                                    <img src="./images/editing.png" alt="">
-                                    <img src="./images/bin.png" alt="">
+                                            <img class="edit-img" src="~/images/editing.png" alt="" data-timesheetid="@timeSheetData.TimeSheetId">
+
+                                            <img class="delete-img" src="~/images/bin.png" alt="" data-timesheetid="@timeSheetData.TimeSheetId">
+                                            
 
 
-                                </td>
+                                        </td>
 
-                            </tr>
-                            <tr class="timesheet-tr text-secondary font-size">
-
-                                <td>Education Programme</td>
-                                <td>22/02/2022</td>
-                                <td class="">1</td>
-                                <td class="p-0 ps-lg-5 d-flex gap-3 pe-5 ps-3 justify-content-md-end edit-delete-btn">
-
-                                    <img src="./images/editing.png" alt="">
-
-                                    <img src="./images/bin.png" alt="">
-
-                                </td>
-                            </tr>
+                                    </tr>
+                                }
+                            }
                         </tbody>
                     </table>
                 </div>

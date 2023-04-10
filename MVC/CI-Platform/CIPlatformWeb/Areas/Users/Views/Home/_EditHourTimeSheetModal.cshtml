@@ -1,0 +1,73 @@
+﻿@model CIPlatform.entities.ViewModels.VolunteeringHoursViewModel
+@{
+    var userId = Context.Session.GetString("userId");
+}
+
+
+<input type="hidden" value="@userId" id="userId" />
+<div class="modal" id="timeEditModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered timesheet-modal">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">Please input below Volunteering Hours</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="hourTimeSheetEditForm">
+                <div class="modal-body">
+
+                    <label for="mission" class="form-label">Mission</label>
+                    <select name="" id="mission" class="form-select bg-secondary-subtle  text-secondary" asp-for="Mission">
+                        <option value="@Model.Mission.MissionId" selected>@Model.Mission.Title</option>
+                        @if (Model.MissionList != null)
+                        {
+                            @foreach (var mission in Model.MissionList!)
+                            {
+
+                                <option value="@mission.MissionId">@mission.Title</option>
+
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="Mission" class="font-size text-danger"></span>
+
+
+                    <label for="date" class="mt-3 form-label">Date Volunteered</label>
+                    <input type="date" id="date" class="d-block w-100 text-secondary form-control"
+                           placeholder="Select Date" asp-for="Date">
+                    <span asp-validation-for="Date" class="font-size text-danger"></span>
+
+                    <div class="d-flex gap-2">
+                        <div class="hour-min-div">
+                            <label for="hours" class="mt-3 form-label">Hours</label>
+                            <input type="number" id="hours" placeholder="Enter Spent Hours"
+                                   class="d-block w-100 form-control text-secondary" asp-for="Hour" />
+                            <span asp-validation-for="Hour" class="font-size text-danger"></span>
+                        </div>
+                        <div class="hour-min-div">
+
+                            <label for="minutes" class="form-label mt-3">Minutes</label>
+                            <input type="number" id="minutes" placeholder="Enter Spent Minutes"
+                                   class="d-block w-100  text-secondary form-control" asp-for="Minutes" />
+                            <span asp-validation-for="Minutes" class="font-size text-danger"></span>
+                        </div>
+                    </div>
+                    <label for="message" class="mt-3">Message</label>
+                    <textarea asp-for="Message" id="message" cols="30" rows="5"
+                              class="d-block w-100 text-secondary form-control"></textarea>
+                    <span asp-validation-for="Message" class="font-size text-danger"></span>
+                </div>
+                <div class="modal-footer border-0">
+                    <a class="btn border-secondary rounded-pill px-4 py-2 text-secondary"
+                       data-bs-dismiss="modal">Cancle</a>
+                    <button type="submit" class="btn border rounded-pill px-4 py-2 orange-btn"
+                            style="border-color: #F88634 !important">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<partial name="_ValidationScriptsPartial" />

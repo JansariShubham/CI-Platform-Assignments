@@ -666,6 +666,8 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DateVolunteered).HasColumnName("date_volunteered");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
+            entity.Property(e => e.Hour).HasColumnName("hour");
+            entity.Property(e => e.Minutes).HasColumnName("minutes");
             entity.Property(e => e.MissionId).HasColumnName("mission_id");
             entity.Property(e => e.Notes)
                 .HasColumnType("text")
@@ -673,7 +675,6 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Status)
                 .HasDefaultValueSql("((0))")
                 .HasColumnName("status");
-            entity.Property(e => e.Time).HasColumnName("time");
             entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
             entity.Property(e => e.UserId).HasColumnName("user_id");
 

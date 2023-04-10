@@ -539,7 +539,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 LastName = userObj.LastName,
                 CityId = userObj.CityId,
                 Email = userObj.Email,
-                
+
                 CountryId = userObj.CountryId,
                 Department = userObj.Departmemt,
                 EmployeeId = userObj.EmployeeId,
@@ -549,33 +549,33 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 Avatar = userObj.Avatar,
                 Cities = getCityList(),
                 Countries = getCountryList(),
-                SkillsList= getSkillList(),
+                SkillsList = getSkillList(),
 
-                
+
                 WhyIVolunteer = userObj.WhyIVolunteer,
-                
+
 
             };
 
             return View(userProfileVm);
         }
 
-        
+
         [HttpPost]
         public string ChangePassword(string? oldPassword, string? newPassword, string? userId)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                if(userId != null)
+                if (userId != null)
                 {
                     var userPassword = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == long.Parse(userId)).Password;
                     var userEmail = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == long.Parse(userId)).Email;
 
                     if (userPassword != null)
                     {
-                        if(oldPassword!.Equals(userPassword))
+                        if (oldPassword!.Equals(userPassword))
                         {
-                            _IUnitOfWork.UserRepository.UpadateUserPassword(userEmail,newPassword!);
+                            _IUnitOfWork.UserRepository.UpadateUserPassword(userEmail, newPassword!);
 
                         }
                         else
@@ -587,7 +587,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
             }
             return "success";
-            
+
 
 
         }
@@ -600,24 +600,24 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 //var userObj = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == userId);
 
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
-                
-                    string fileName = Guid.NewGuid().ToString();
-                    var uploads = Path.Combine(wwwRootPath, @"images\user_images");
-                    var extension = Path.GetExtension(profile?.FileName);
 
-                    using (var fileStrems = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
-                    {
-                        profile?.CopyTo(fileStrems);
-                    }
+                string fileName = Guid.NewGuid().ToString();
+                var uploads = Path.Combine(wwwRootPath, @"images\user_images");
+                var extension = Path.GetExtension(profile?.FileName);
+
+                using (var fileStrems = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                {
+                    profile?.CopyTo(fileStrems);
+                }
                 string path = @"\images\user_images\";
 
                 var url = path + fileName + extension;
 
                 var isProfileUpdated = _IUnitOfWork.UserRepository.UpdateProfie(userId, url);
 
-                
-                     
-                }
+
+
+            }
         }
 
         public void deleteFileInFolder(int? userId)
@@ -627,30 +627,30 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
             if (userObj != null)
             {
-                
+
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 var path = $@"{wwwRootPath}\images\user_images";
 
-                var avatarUrl = userObj.Avatar!.Remove(0,20);
+                var avatarUrl = userObj.Avatar!.Remove(0, 20);
 
 
-                   var url = Path.Combine(path, avatarUrl);
-                    System.IO.File.Delete(url!);
+                var url = Path.Combine(path, avatarUrl);
+                System.IO.File.Delete(url!);
 
 
-                
+
             }
 
         }
-        
+
         public IActionResult GetContactUsData()
         {
-             
+
             return PartialView("_ContactUs");
         }
 
         public void AddContactUsDetails(int userId, string subject, string message)
-            {
+        {
             ContactUs obj = new()
             {
                 UserId = userId,
@@ -672,11 +672,36 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         public IActionResult TimeSheet(int? id)
         {
-           
+            var timeSheetList = _IUnitOfWork.TimeSheetRepository.getTimeSheetList().Where(t => t.UserId == id).ToList();
 
-           return View();
-            
+            List<TimeSheetViewModel> timeSheetVmList = new();
+            foreach (var item in timeSheetList)
+            {
+                timeSheetVmList.Add(ConvertToTimeSheetVm(item));
+            }
+            return View(timeSheetVmList);
         }
+
+        private TimeSheetViewModel ConvertToTimeSheetVm(Timesheet item)
+        {
+            TimeSheetViewModel vm = new()
+            {
+                Action = item.Action,
+                Date = item.DateVolunteered,
+                Hour = item.Hour,
+                Minutes = item.Minutes,
+                Mission = item.Mission,
+                TimeSheetId = item.TimesheetId
+                
+
+
+            };
+            return vm;
+
+        }
+
+
+
         private PlatformLandingViewModel ConvertToMissionVm(Mission? mission)
         {
             PlatformLandingViewModel missionVm = new()
@@ -693,27 +718,6 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         public IActionResult GetGoalMission(int? userId)
         {
             var missionList = _IUnitOfWork.MissionApplicationRepository.getAllMissionApplication();
-            var missions = missionList.Where(ma => ma.UserId == userId && ma.ApprovalStatus == 1 && ma.Mission.MissionType == true).Select(ma => ma.Mission);
-
-            List<PlatformLandingViewModel> missionVm = new();
-            foreach (var mission in missions)
-            {
-                missionVm.Add(ConvertToMissionVm(mission));
-            }
-
-            TimeSheetViewModel vm = new()
-            {
-                missionList = missionVm
-            };
-
-            
-            return PartialView("_TimeGoalModal",vm);
-
-        }
-
-        public IActionResult GetTimeMission(int? userId)
-        {
-            var missionList = _IUnitOfWork.MissionApplicationRepository.getAllMissionApplication();
             var missions = missionList.Where(ma => ma.UserId == userId && ma.ApprovalStatus == 1 && ma.Mission.MissionType == false).Select(ma => ma.Mission);
 
             List<PlatformLandingViewModel> missionVm = new();
@@ -722,15 +726,274 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 missionVm.Add(ConvertToMissionVm(mission));
             }
 
-            TimeSheetViewModel vm = new()
+            VolunteerGoalViewModel vm = new()
             {
-                missionList = missionVm
+                MissionList = missionVm
             };
-           
 
-           return PartialView("_TimeGoalModal", vm);
+
+            return PartialView("_GoalTimeSheetModal", vm);
 
         }
 
+        public IActionResult GetTimeMission(int? userId)
+        {
+            var missionList = _IUnitOfWork.MissionApplicationRepository.getAllMissionApplication();
+            var missions = missionList.Where(ma => ma.UserId == userId && ma.ApprovalStatus == 1 && ma.Mission.MissionType == true).Select(ma => ma.Mission);
+
+            List<PlatformLandingViewModel> missionVm = new();
+            foreach (var mission in missions)
+            {
+                missionVm.Add(ConvertToMissionVm(mission));
+            }
+
+
+            VolunteeringHoursViewModel vm = new()
+            {
+                MissionList = missionVm,
+            };
+
+
+            return PartialView("_HourTimeSheetModal", vm);
+
+        }
+
+        public IActionResult AddHourTimeSheet(int userId, int hours, string message,int minutes, DateTimeOffset date, int missionId )
+        {
+            if (ModelState.IsValid)
+            {
+                Timesheet timeSheetObj = new()
+                {
+                    DateVolunteered = date,
+                    CreatedAt = DateTimeOffset.Now,
+                    Hour = hours,
+                    Notes = message,
+                    Minutes = minutes,
+                    UserId = userId,
+                    MissionId = missionId
+
+                };
+                if (timeSheetObj != null)
+                {
+                    _IUnitOfWork.TimeSheetRepository.Add(timeSheetObj);
+                    _IUnitOfWork.Save();
+                }
+
+                var timeSheetList = _IUnitOfWork.TimeSheetRepository.getTimeSheetList().Where(t => t.UserId == userId).ToList();
+
+                List<TimeSheetViewModel> timeSheetVmList = new();
+                foreach (var item in timeSheetList)
+                {
+                    timeSheetVmList.Add(ConvertToTimeSheetVm(item));
+                }
+                return PartialView("_VolTimeSheet", timeSheetVmList);
+               
+            }
+            return null;
+        }
+
+
+        public IActionResult AddGoalTimeSheet(int userId,  string message, int action, DateTimeOffset date, int missionId)
+        {
+            if (ModelState.IsValid)
+            {
+                Timesheet timeSheetObj = new()
+                {
+                    DateVolunteered = date,
+                    CreatedAt = DateTimeOffset.Now,
+                    
+                    Notes = message,
+                    Action = action,
+                    UserId = userId,
+                    MissionId = missionId
+
+                };
+                if (timeSheetObj != null)
+                {
+                    _IUnitOfWork.TimeSheetRepository.Add(timeSheetObj);
+                    _IUnitOfWork.Save();
+                }
+
+
+                var timeSheetList = _IUnitOfWork.TimeSheetRepository.getTimeSheetList().Where(t => t.UserId == userId).ToList();
+
+                List<TimeSheetViewModel> timeSheetVmList = new();
+                foreach (var item in timeSheetList)
+                {
+                    timeSheetVmList.Add(ConvertToTimeSheetVm(item));
+                }
+                return PartialView("_VolTimeSheet", timeSheetVmList);
+            }
+            return null;
+
+        }
+
+        public IActionResult deleteTimeSheet(long? timeSheetId, int? userId)
+        {
+            var timeSheetObj = _IUnitOfWork.TimeSheetRepository.GetFirstOrDefault(t => t.TimesheetId == timeSheetId);
+            if(timeSheetObj != null)
+            {
+                _IUnitOfWork.TimeSheetRepository.Delete(timeSheetObj);
+                _IUnitOfWork.Save();
+            }
+
+            var timeSheetList = _IUnitOfWork.TimeSheetRepository.getTimeSheetList().Where(t => t.UserId == userId).ToList();
+
+            List<TimeSheetViewModel> timeSheetVmList = new();
+            foreach (var item in timeSheetList)
+            {
+                timeSheetVmList.Add(ConvertToTimeSheetVm(item));
+            }
+            return PartialView("_VolTimeSheet", timeSheetVmList);
+
+        }
+
+        //public IActionResult updateTimeSheet(long? timeSheetId, int? userId)
+        //{
+        //    var timeSheetObj = _IUnitOfWork.TimeSheetRepository.GetFirstOrDefault(t => t.TimesheetId == timeSheetId);
+        //    if (timeSheetObj != null)
+        //    {
+                
+        //        _IUnitOfWork.Save();
+        //    }
+
+        //    var timeSheetList = _IUnitOfWork.TimeSheetRepository.getTimeSheetList().Where(t => t.UserId == userId).ToList();
+
+        //    List<TimeSheetViewModel> timeSheetVmList = new();
+        //    foreach (var item in timeSheetList)
+        //    {
+        //        timeSheetVmList.Add(ConvertToTimeSheetVm(item));
+        //    }
+        //    return PartialView("_VolTimeSheet", timeSheetVmList);
+
+        //}
+
+        public IActionResult getGoalTimeSheetData(long? timeSheetId, int? userId)
+        {
+            var timeSheetObj = _IUnitOfWork.TimeSheetRepository.GetFirstOrDefault(t => t.TimesheetId == timeSheetId);
+
+            var missionList = _IUnitOfWork.MissionApplicationRepository.getAllMissionApplication();
+            var missions = missionList.Where(ma => ma.UserId == userId && ma.ApprovalStatus == 1 && ma.Mission.MissionType == false).Select(ma => ma.Mission);
+
+            List<PlatformLandingViewModel> missionVm = new();
+            foreach (var mission in missions)
+            {
+                missionVm.Add(ConvertToMissionVm(mission));
+            }
+            if (timeSheetObj != null)
+            {
+                VolunteerGoalViewModel vm = new()
+                {
+                    Action = timeSheetObj.Action,
+                    Date = timeSheetObj.DateVolunteered,
+                    Message = timeSheetObj.Notes,
+                    Mission = timeSheetObj.Mission,
+                    MissionList = missionVm
+                };
+
+                return PartialView("_EditGoalTimeSheetModal", vm);
+            }
+            return null;
+        }
+
+        
+        public IActionResult getHourTimeSheetData(long? timeSheetId, int? userId)
+        {
+            var timeSheetObj = _IUnitOfWork.TimeSheetRepository.GetFirstOrDefault(t => t.TimesheetId == timeSheetId);
+
+            var missionList = _IUnitOfWork.MissionApplicationRepository.getAllMissionApplication();
+            var missions = missionList.Where(ma => ma.UserId == userId && ma.ApprovalStatus == 1 && ma.Mission.MissionType == true).Select(ma => ma.Mission);
+
+            List<PlatformLandingViewModel> missionVm = new();
+            foreach (var mission in missions)
+            {
+                missionVm.Add(ConvertToMissionVm(mission));
+            }
+            if (timeSheetObj != null)
+            {
+                VolunteeringHoursViewModel vm = new()
+                {
+                    Hour = timeSheetObj.Hour,
+                    Minutes = timeSheetObj.Minutes,
+                    Date = timeSheetObj.DateVolunteered,
+                    Message = timeSheetObj.Notes,
+                    Mission = timeSheetObj.Mission,
+                    MissionList = missionVm
+                };
+
+                return PartialView("_EditHourTimeSheetModal", vm);
+            }
+            return null;
+        }
+
+
+        public IActionResult UpdateHourTimeSheet(int userId, int hours, string message, int minutes, DateTimeOffset date, int missionId, long timeSheetId)
+        {
+            if (ModelState.IsValid)
+            {
+               var timeSheetObj =  _IUnitOfWork.TimeSheetRepository.GetFirstOrDefault(t => t.TimesheetId == timeSheetId);
+
+                timeSheetObj.DateVolunteered = date;
+                timeSheetObj.CreatedAt = DateTimeOffset.Now;
+                timeSheetObj.Hour = hours;
+                timeSheetObj.Notes = message;
+                timeSheetObj.Minutes = minutes;
+                timeSheetObj.UserId = userId;
+                timeSheetObj.MissionId = missionId;
+
+                
+                if (timeSheetObj != null)
+                {
+                    _IUnitOfWork.TimeSheetRepository.Update(timeSheetObj);
+                    _IUnitOfWork.Save();
+                }
+
+                var timeSheetList = _IUnitOfWork.TimeSheetRepository.getTimeSheetList().Where(t => t.UserId == userId).ToList();
+
+                List<TimeSheetViewModel> timeSheetVmList = new();
+                foreach (var item in timeSheetList)
+                {
+                    timeSheetVmList.Add(ConvertToTimeSheetVm(item));
+                }
+                return PartialView("_VolTimeSheet", timeSheetVmList);
+
+            }
+            return null;
+        }
+
+
+        public IActionResult UpdateGoalTimeSheet(int userId, string message, int action, DateTimeOffset date, int missionId, long timeSheetId)
+        {
+            if (ModelState.IsValid)
+            {
+               var timeSheetObj =  _IUnitOfWork.TimeSheetRepository.GetFirstOrDefault(t => t.TimesheetId == timeSheetId);
+                timeSheetObj.DateVolunteered = date;
+                timeSheetObj.CreatedAt = DateTimeOffset.Now;
+
+                timeSheetObj.Notes = message;
+                timeSheetObj.Action = action;
+                timeSheetObj.UserId = userId;
+                timeSheetObj.MissionId = missionId;
+
+                
+                if (timeSheetObj != null)
+                {
+                    _IUnitOfWork.TimeSheetRepository.Update(timeSheetObj);
+                    _IUnitOfWork.Save();
+                }
+
+
+                var timeSheetList = _IUnitOfWork.TimeSheetRepository.getTimeSheetList().Where(t => t.UserId == userId).ToList();
+
+                List<TimeSheetViewModel> timeSheetVmList = new();
+                foreach (var item in timeSheetList)
+                {
+                    timeSheetVmList.Add(ConvertToTimeSheetVm(item));
+                }
+                return PartialView("_VolTimeSheet", timeSheetVmList);
+            }
+            return null;
+
+        }
     }
 }

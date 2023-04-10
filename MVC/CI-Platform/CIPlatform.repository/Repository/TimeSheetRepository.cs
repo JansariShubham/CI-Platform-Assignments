@@ -17,6 +17,11 @@ namespace CIPlatform.repository.Repository
             _appDbContext = appDbContext;
         }
 
+        public void Update(Timesheet timesheet)
+        {
+            _appDbContext.Update(timesheet);
+        }
+
         public List<Timesheet> getTimeSheetList()
         {
            return  _appDbContext.Timesheets.Include(t => t.Mission).ToList();
