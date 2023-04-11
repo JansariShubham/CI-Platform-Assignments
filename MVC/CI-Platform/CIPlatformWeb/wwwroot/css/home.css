@@ -5,6 +5,10 @@
     }
 
 }
+.skillSelect::-webkit-scrollbar
+{
+    display: none !important;
+}
 
 .timesheet-tr td {
     border: none;

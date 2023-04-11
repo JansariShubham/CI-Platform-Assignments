@@ -5,43 +5,53 @@ var passwordForm = document.getElementById("editPasswordForm");
 
 passwordForm.addEventListener("submit", (e) => {
     e.preventDefault();
-   
-    var oldPassword = document.getElementById("oldPassword").value;
-    var newPassword = document.getElementById("newPassword").value;
-    var confirmPassword = document.getElementById("confirmPassword").value;
-   
-    if (newPassword != confirmPassword) {
-        return;
-    }
 
-    $.ajax({
-        url: "/Users/Home/ChangePassword",
-        type: "POST",
-        data: { userId: userId, oldPassword: oldPassword, newPassword: newPassword },
-        success: function (result) {
-            console.log("result =>>>" +result);
-            if (result != "success") {
-                
-                document.getElementById("oldPasswordSpan").textContent = "Please Enter Correct Password";
-            }
-            else {
-                document.getElementById("oldPassword").value = ""
-                document.getElementById("oldPasswordSpan").textContent = ""
-                document.getElementById("newPassword").value = "";
-                document.getElementById("confirmPassword").value = "";
-                $('#passwordModal').modal('hide');
-                
+    if ($("#editPasswordForm").valid()) {
 
-            }
+        var oldPassword = document.getElementById("oldPassword").value;
+        var newPassword = document.getElementById("newPassword").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
 
-
-        },
-        error: function (err) {
-            console.log("error in updating password");
+        if (newPassword != confirmPassword) {
+            return;
         }
 
+        $.ajax({
+            url: "/Users/Home/ChangePassword",
+            type: "POST",
+            data: { userId: userId, oldPassword: oldPassword, newPassword: newPassword },
+            success: function (result) {
+                console.log("result =>>>" + result);
+                if (result != "success") {
 
-    });
+                    document.getElementById("oldPasswordSpan").textContent = "Please Enter Correct Password";
+                }
+                else {
+                    document.getElementById("oldPassword").value = ""
+                    document.getElementById("oldPasswordSpan").textContent = ""
+                    document.getElementById("newPassword").value = "";
+                    document.getElementById("confirmPassword").value = "";
+                    $('#passwordModal').modal('hide');
+                    Swal.fire(
+                        'Password Updated Successfully!',
+                        'You clicked the button!',
+                        'success'
+                    )
+
+                }
+
+
+            },
+            error: function (err) {
+                console.log("error in updating password");
+            }
+
+
+        });
+    }
+    else {
+        return;
+    }
 })
 
 
@@ -75,6 +85,11 @@ userImgInput.addEventListener("change", () => {
         processData : false,
         success: (data) => {
             console.log("INNNNN");
+            Swal.fire(
+                'Profile Photo Updated Successfully!',
+                'You clicked the button!',
+                'success'
+            )
             
 
         },
@@ -113,7 +128,134 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(() => {
+    renderSkills();
+})
+
+var leftDiv;
+var rightDiv;
+
+var leftArrow;
+var rightArrow;
 
 
 
+var selectSkillsArr = [];
+leftDiv = $("#leftDivSelect");
 
+
+rightDiv = $("#rightDivSelect");
+
+leftArrow = $("#leftArrow");
+rightArrow = $("#rightArrow");
+
+
+
+    //alert(leftDiv + rightDiv + leftArrow + rightArrow)
+
+
+rightArrowClickFun();
+leftArrowClickFun();
+
+function rightArrowClickFun() {
+    rightArrow.on('click', () => {
+        let selectedSkills = $("#leftDivSelect option:selected");
+    
+        if (selectedSkills.length < 0) {
+            Swal.fire(
+                'Skill is empty!',
+                'You clicked the button!',
+                'error'
+            )
+        }
+        else {
+            addAndPreviewSelectedSkills(selectedSkills);
+        }
+
+    })
+}
+function addAndPreviewSelectedSkills(selectedSkills) {
+    for (let skill of selectedSkills) {
+       // console.log(skill);
+        var currSkillId = +skill.value;
+        if (selectSkillsArr.indexOf(currSkillId) === -1) {
+            selectSkillsArr.push(currSkillId);
+
+            previewSkills(skill);
+        }
+    }
+
+}
+
+function previewSkills(skill) {
+    //alert("hello")
+
+    rightDiv.append($(skill).clone());
+}
+
+function leftArrowClickFun() {
+    leftArrow.on('click', () => {
+        let selectedSkills = $("#rightDivSelect option:selected");
+
+        if (selectedSkills.length < 0) {
+            Swal.fire(
+                'Skill is empty!',
+                'You clicked the button!',
+                'error'
+            )
+        }
+        else {
+            removeSkillsFromRightDiv(selectedSkills);
+        }
+
+    })
+}
+
+function removeSkillsFromRightDiv(selectedSkills) {
+    for (let skill of selectedSkills) {
+        // console.log(skill);
+        var currSkillId = +skill.value;
+
+        var indexOfCurrSkillArr = selectSkillsArr.indexOf(currSkillId);
+        if (indexOfCurrSkillArr > -1) {
+            selectSkillsArr.splice(indexOfCurrSkillArr, 1);
+            $(skill).remove();
+
+            document.querySelector(`#leftDivSelect option[value = "${currSkillId}"]`).selected = false;
+
+            
+        }
+        
+    }
+
+
+}
+
+
+function renderSkills() {
+
+    let hiddenSkills = document.querySelectorAll(".hidden-skills");
+
+    if (hiddenSkills > 0) {
+        for (skill of hiddenSkills) {
+            let currSkillId = skill.value;
+            selectSkillsArr.push(currSkillId);
+            document.querySelector(`#leftDivSelect option[value = "${currSkillId}"]`).selected = true;
+
+            
+
+        }
+        let selectedUserSkill = $("#leftDivSelect option:selected");
+        for (var userSkill of selectedUserSkill) {
+            previewSkills(userSkill);
+            renderNameOfSkillInTextArea(userSkill.textContent);
+        }
+    }
+}
+
+let skillTextArea = document.getElementById("skillTextArea");
+
+function renderNameOfSkillInTextArea(skillName) {
+    skillTextArea.value += skillName + "\n";
+
+}

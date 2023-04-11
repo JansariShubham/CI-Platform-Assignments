@@ -3,11 +3,38 @@
         width: 60rem !important;
     }
 } */
+/* .cms-nav {
+    box-shadow: 3px 5px 10px #00000014;
+    opacity: 1;
+} */
+
+
+#sidebar {
+    background: #F88634;
+}
+
+#sidebar a {
+    cursor: pointer;
+}
+
+#sidebar a:hover {
+    border: 2px solid white !important;
+
+    padding-left: 1rem !important;
+    border-radius: var(--bs-border-radius-sm) !important;
+
+    padding: 0.25rem;
+
+}
 
 .timesheet-tr td {
     border: none;
 
 
+}
+
+.cms-table {
+    background-color: #0000000D !important;
 }
 
 .timesheet-modal {

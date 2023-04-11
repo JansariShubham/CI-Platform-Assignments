@@ -14,8 +14,8 @@
             <form id="hourTimeSheetForm">
             <div class="modal-body">
 
-                <label for="mission" class="form-label">Mission</label>
-                <select name="" id="mission" class="form-select bg-secondary-subtle  text-secondary" asp-for="Mission">
+                <label for="missions" class="form-label">Mission</label>
+                <select name="" id="missions" class="form-select bg-secondary-subtle  text-secondary" asp-for="Mission">
                     <option value="" selected disabled>Select Mission</option>
                     @if (Model.MissionList != null)
                     {
@@ -30,28 +30,28 @@
                     <span asp-validation-for="Mission" class="font-size text-danger"></span>
 
 
-                <label for="date" class="mt-3 form-label">Date Volunteered</label>
-                <input type="date" id="date" class="d-block w-100 text-secondary form-control"
+                    <label for="dateVol" class="mt-3 form-label">Date Volunteered</label>
+                <input type="date" id="dateVol" class="d-block w-100 text-secondary form-control"
                        placeholder="Select Date" asp-for="Date">
                 <span asp-validation-for="Date" class="font-size text-danger"></span>
 
                 <div class="d-flex gap-2">
                     <div class="hour-min-div">
-                        <label for="hours" class="mt-3 form-label">Hours</label>
-                        <input type="number" id="hours" placeholder="Enter Spent Hours"
+                        <label for="hour" class="mt-3 form-label">Hours</label>
+                        <input type="number" id="hour" placeholder="Enter Spent Hours"
                                class="d-block w-100 form-control text-secondary" asp-for="Hour" />
                         <span asp-validation-for="Hour" class="font-size text-danger"></span>
                     </div>
                     <div class="hour-min-div">
 
-                        <label for="minutes" class="form-label mt-3">Minutes</label>
-                        <input type="number" id="minutes" placeholder="Enter Spent Minutes"
+                        <label for="minute" class="form-label mt-3">Minutes</label>
+                        <input type="number" id="minute" placeholder="Enter Spent Minutes"
                                class="d-block w-100  text-secondary form-control"  asp-for="Minutes"/>
                         <span asp-validation-for="Minutes" class="font-size text-danger"></span>
                     </div>
                 </div>
-                <label for="message" class="mt-3">Message</label>
-                    <textarea asp-for="Message"  id="message" cols="30" rows="5"
+                <label for="notes" class="mt-3">Message</label>
+                    <textarea asp-for="Message"  id="notes" cols="30" rows="5"
                           class="d-block w-100 text-secondary form-control"></textarea>
                 <span asp-validation-for="Message" class="font-size text-danger"></span>
                 </div>

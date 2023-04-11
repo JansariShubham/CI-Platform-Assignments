@@ -16,11 +16,11 @@ namespace CIPlatform.entities.ViewModels
         public List<PlatformLandingViewModel>? MissionList { get; set; }
 
         [Required(ErrorMessage = "Hour is Required!")]
-        [RegularExpression("^[0-23]+$", ErrorMessage ="Hour must between 0 to 23")]
+        [RegularExpression("^(0?[0-9]|1[0-9]|2[0-3])$", ErrorMessage ="Hour must between 0 to 23")]
         public Double? Hour { get; set; }
 
         [Required(ErrorMessage = "Minutes is Required!")]
-        [RegularExpression("^[0-59]+$", ErrorMessage ="Minutes must between 0 to 59")]
+        [RegularExpression("^(0?[0-9]|[1-5][0-9])$", ErrorMessage ="Minutes must between 0 to 59")]
         public Double? Minutes { get; set; }
 
         [Required(ErrorMessage = "Date is Required!")]

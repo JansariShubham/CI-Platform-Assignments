@@ -88,6 +88,7 @@ function contactForm() {
                 success: (result) => {
                     console.log("success in adding data")
                     $("#contactUsModal").modal('hide');
+                    
 
                 },
                 error: (err) => {

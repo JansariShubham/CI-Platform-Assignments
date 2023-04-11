@@ -61,6 +61,8 @@ namespace CIPlatform.entities.ViewModels
 
         public List<SkillsViewModel>? SkillsList { get; set; }
 
+        public virtual ICollection<UserSkill>? UserSkills { get; set; }
+
         public List<CountryViewModel>? Countries { get; set; }
 
         public List<CityViewModel>? Cities { get; set; }

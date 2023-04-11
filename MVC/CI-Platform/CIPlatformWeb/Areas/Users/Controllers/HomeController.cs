@@ -549,6 +549,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 Avatar = userObj.Avatar,
                 Cities = getCityList(),
                 Countries = getCountryList(),
+                UserSkills = userObj.UserSkills,
                 SkillsList = getSkillList(),
 
 
@@ -651,16 +652,20 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         public void AddContactUsDetails(int userId, string subject, string message)
         {
-            ContactUs obj = new()
-            {
-                UserId = userId,
-                Subject = subject,
-                Message = message,
-                CreatedAt = DateTimeOffset.Now
-            };
+            
+            
+                ContactUs obj = new()
+                {
+                    UserId = userId,
+                    Subject = subject,
+                    Message = message,
+                    CreatedAt = DateTimeOffset.Now
+                };
 
-            _IUnitOfWork.ContactUsRepository.Add(obj);
-            _IUnitOfWork.Save();
+                _IUnitOfWork.ContactUsRepository.Add(obj);
+                _IUnitOfWork.Save();
+            
+            
 
 
         }
