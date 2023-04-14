@@ -49,7 +49,8 @@ namespace CIPlatform.repository.Repository
            return _appDbContext.Users.Include(u => u.MissionInviteFromUsers)
                 .Include(u => u.MissionInviteToUsers)
                 .Include(u => u.StoryInviteToUsers)
-                .Include(u => u.StoryInviteFromUsers).ToList();
+                .Include(u => u.StoryInviteFromUsers)
+                .Include(u=> u.UserSkills).ToList();
         }
 
         public int UpdateProfie(int? userId, string? url)
@@ -59,5 +60,8 @@ namespace CIPlatform.repository.Repository
 
             return _appDbContext.Database.ExecuteSqlRaw("UPDATE [users] set avatar = @avatar WHERE user_id = @user_id", userID, avatar);
         }
+
+
+       
     }
 }

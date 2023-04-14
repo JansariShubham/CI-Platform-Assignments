@@ -696,6 +696,7 @@ public partial class AppDbContext : DbContext
             entity.HasIndex(e => e.Email, "UQ__users__AB6E6164BB82FF8A").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.Avaibility).HasColumnName("avaibility");
             entity.Property(e => e.Avatar)
                 .HasMaxLength(255)
                 .IsUnicode(false)

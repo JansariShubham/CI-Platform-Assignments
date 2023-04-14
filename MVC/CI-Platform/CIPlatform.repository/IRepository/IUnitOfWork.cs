@@ -36,6 +36,8 @@ namespace CIPlatform.repository.IRepository
 
         IContactUsRepository ContactUsRepository { get; }
         ITimeSheetRepository TimeSheetRepository { get; }
+
+        IUserSkillRepository UserSkillRepository { get; }
         void Save();
     }
 }

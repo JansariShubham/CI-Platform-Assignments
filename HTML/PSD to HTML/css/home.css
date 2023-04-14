@@ -17,6 +17,10 @@
     cursor: pointer;
 }
 
+#page {
+    margin-left: 1.1rem;
+}
+
 #sidebar a:hover {
     border: 2px solid white !important;
 

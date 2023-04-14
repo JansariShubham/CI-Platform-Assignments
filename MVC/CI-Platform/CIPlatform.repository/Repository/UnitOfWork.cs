@@ -42,6 +42,8 @@ namespace CIPlatform.repository.Repository
         public IContactUsRepository ContactUsRepository { get; private set; }
 
         public ITimeSheetRepository TimeSheetRepository { get; private set; }
+
+        public IUserSkillRepository UserSkillRepository { get; private set; }
         private AppDbContext _appDbContext;
 
         public UnitOfWork(AppDbContext appDbContext) 
@@ -64,6 +66,7 @@ namespace CIPlatform.repository.Repository
             StoryInviteRepository = new StoryInviteRepository(appDbContext);
             ContactUsRepository = new ContactUsRepository(appDbContext);
             TimeSheetRepository = new TimeSheetRepository(appDbContext);
+            UserSkillRepository = new UserSkillRepository(appDbContext);
         }
 
 

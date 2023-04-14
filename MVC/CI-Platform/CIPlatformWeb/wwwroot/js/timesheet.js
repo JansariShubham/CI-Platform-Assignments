@@ -143,30 +143,49 @@ var deleteTimeSheet = document.querySelectorAll(".delete-img");
     deleteTimeSheet.forEach((timeSheet) => {
         timeSheet.addEventListener("click", () => {
             var timeSheetId = timeSheet.getAttribute('data-timesheetid');
+            
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this data",
+                icon: "warning",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes",
+                cancelButtonText: "Cancle",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            })
+                .then((response) => {
+                    if (response.isConfirmed) {
+
+                        $.ajax({
+                            url: '/Users/Home/deleteTimeSheet',
+                            type: "POST",
+                            data: { userId: userId, timeSheetId: timeSheetId },
+                            success: (result) => {
+
+                                $('#volTimeSheetPartial').html(result);
+                                Swal.fire(
+                                    'Data Deleted Successfully!',
+                                    'You clicked the button!',
+                                    'success'
+                                )
+
+
+                            },
+                            error: (err) => {
+
+                                console.log(err);
+                            }
+                        })
+                        
+                    }
+                });
 
 
             //console.log("heeyyyy " + timeSheetId);
 
-            $.ajax({
-                url: '/Users/Home/deleteTimeSheet',
-                type: "POST",
-                data: { userId: userId, timeSheetId : timeSheetId },
-                success: (result) => {
-                    
-                    $('#volTimeSheetPartial').html(result);
-                    Swal.fire(
-                        'Data Deleted Successfully!',
-                        'You clicked the button!',
-                        'success'
-                    )
-                
-
-                },
-                error: (err) => {
-                   
-                    console.log(err);
-                }
-            })
         })
     })
 

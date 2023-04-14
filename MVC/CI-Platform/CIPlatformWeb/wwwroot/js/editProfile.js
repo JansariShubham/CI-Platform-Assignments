@@ -194,9 +194,11 @@ function previewSkills(skill) {
 }
 
 function leftArrowClickFun() {
+    
     leftArrow.on('click', () => {
         let selectedSkills = $("#rightDivSelect option:selected");
-
+       // console.log(selectSkillsArr);
+        //console.log(selectedSkills);
         if (selectedSkills.length < 0) {
             Swal.fire(
                 'Skill is empty!',
@@ -213,12 +215,17 @@ function leftArrowClickFun() {
 
 function removeSkillsFromRightDiv(selectedSkills) {
     for (let skill of selectedSkills) {
+        // console.log("remove");
         // console.log(skill);
         var currSkillId = +skill.value;
+      //  console.log(currSkillId)
 
+        console.log(selectSkillsArr)
         var indexOfCurrSkillArr = selectSkillsArr.indexOf(currSkillId);
+        console.log(indexOfCurrSkillArr);
         if (indexOfCurrSkillArr > -1) {
             selectSkillsArr.splice(indexOfCurrSkillArr, 1);
+           // console.log(selectSkillsArr)
             $(skill).remove();
 
             document.querySelector(`#leftDivSelect option[value = "${currSkillId}"]`).selected = false;
@@ -235,11 +242,18 @@ function removeSkillsFromRightDiv(selectedSkills) {
 function renderSkills() {
 
     let hiddenSkills = document.querySelectorAll(".hidden-skills");
+    
+    //console.log("Hekkki" );
+   // console.log(hiddenSkills);
 
-    if (hiddenSkills > 0) {
-        for (skill of hiddenSkills) {
-            let currSkillId = skill.value;
+    if (hiddenSkills.length > 0) {
+        for (let skill of hiddenSkills) {
+            
+            
+   // console.log(skill);
+            let currSkillId = +skill.value;
             selectSkillsArr.push(currSkillId);
+         //   console.log(selectSkillsArr);
             document.querySelector(`#leftDivSelect option[value = "${currSkillId}"]`).selected = true;
 
             
@@ -247,6 +261,7 @@ function renderSkills() {
         }
         let selectedUserSkill = $("#leftDivSelect option:selected");
         for (var userSkill of selectedUserSkill) {
+         //   console.log(userSkill);
             previewSkills(userSkill);
             renderNameOfSkillInTextArea(userSkill.textContent);
         }
@@ -257,5 +272,49 @@ let skillTextArea = document.getElementById("skillTextArea");
 
 function renderNameOfSkillInTextArea(skillName) {
     skillTextArea.value += skillName + "\n";
+   // console.log("skillTextArea ====>>> " + skillTextArea);
+    
 
 }
+
+$('#saveSkillBtn').on('click', () => {
+    let selectedSkills = $('#rightDivSelect option');
+    skillTextArea.value = "";
+    for (let skill of selectedSkills) {
+        renderNameOfSkillInTextArea(skill.textContent);
+
+    }
+    $('#skillModal').modal('hide');
+    console.log(selectSkillsArr);
+
+})
+
+var profileForm = document.getElementById("userProfileForm");
+
+profileForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if ($('#userProfileForm').valid()) {
+
+
+        let rightDivSelectedSkills = $('#rightDivSelect option');
+        let selectedSkillTextArea = skillTextArea.value.trim().split("\n");
+
+        for (let i = 0; i < selectedSkillTextArea.length; i++) {
+            for (let j = 0; j < rightDivSelectedSkills.length; j++) {
+                let skillTextName = selectedSkillTextArea[i];
+                let skillName = rightDivSelectedSkills[j].getAttribute('data-skillname');
+                if (skillTextName == skillName) {
+                    document.querySelector(`#rightDivSelect option[data-skillname = "${skillName}"]`).selected = true;
+                }
+            }
+        }
+        
+
+        profileForm.submit();
+
+
+    }
+    else {
+        return;
+    }
+})

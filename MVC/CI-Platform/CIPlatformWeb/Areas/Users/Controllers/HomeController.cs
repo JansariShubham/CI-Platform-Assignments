@@ -530,7 +530,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         public IActionResult UserEditProfile(string? id)
         {
-            var userObj = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == long.Parse(id!));
+            var userObj = _IUnitOfWork.UserRepository.getAllUsers().FirstOrDefault(u => u.UserId == long.Parse(id!));
+
 
 
             UserProfile userProfileVm = new()
@@ -538,7 +539,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 FirstName = userObj.FirstName,
                 LastName = userObj.LastName,
                 CityId = userObj.CityId,
-                Email = userObj.Email,
+               
 
                 CountryId = userObj.CountryId,
                 Department = userObj.Departmemt,
@@ -652,20 +653,20 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         public void AddContactUsDetails(int userId, string subject, string message)
         {
-            
-            
-                ContactUs obj = new()
-                {
-                    UserId = userId,
-                    Subject = subject,
-                    Message = message,
-                    CreatedAt = DateTimeOffset.Now
-                };
 
-                _IUnitOfWork.ContactUsRepository.Add(obj);
-                _IUnitOfWork.Save();
-            
-            
+
+            ContactUs obj = new()
+            {
+                UserId = userId,
+                Subject = subject,
+                Message = message,
+                CreatedAt = DateTimeOffset.Now
+            };
+
+            _IUnitOfWork.ContactUsRepository.Add(obj);
+            _IUnitOfWork.Save();
+
+
 
 
         }
@@ -697,7 +698,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 Minutes = item.Minutes,
                 Mission = item.Mission,
                 TimeSheetId = item.TimesheetId
-                
+
 
 
             };
@@ -763,7 +764,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         }
 
-        public IActionResult AddHourTimeSheet(int userId, int hours, string message,int minutes, DateTimeOffset date, int missionId )
+        public IActionResult AddHourTimeSheet(int userId, int hours, string message, int minutes, DateTimeOffset date, int missionId)
         {
             if (ModelState.IsValid)
             {
@@ -792,13 +793,13 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                     timeSheetVmList.Add(ConvertToTimeSheetVm(item));
                 }
                 return PartialView("_VolTimeSheet", timeSheetVmList);
-               
+
             }
             return null;
         }
 
 
-        public IActionResult AddGoalTimeSheet(int userId,  string message, int action, DateTimeOffset date, int missionId)
+        public IActionResult AddGoalTimeSheet(int userId, string message, int action, DateTimeOffset date, int missionId)
         {
             if (ModelState.IsValid)
             {
@@ -806,7 +807,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 {
                     DateVolunteered = date,
                     CreatedAt = DateTimeOffset.Now,
-                    
+
                     Notes = message,
                     Action = action,
                     UserId = userId,
@@ -836,7 +837,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         public IActionResult deleteTimeSheet(long? timeSheetId, int? userId)
         {
             var timeSheetObj = _IUnitOfWork.TimeSheetRepository.GetFirstOrDefault(t => t.TimesheetId == timeSheetId);
-            if(timeSheetObj != null)
+            if (timeSheetObj != null)
             {
                 _IUnitOfWork.TimeSheetRepository.Delete(timeSheetObj);
                 _IUnitOfWork.Save();
@@ -858,7 +859,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         //    var timeSheetObj = _IUnitOfWork.TimeSheetRepository.GetFirstOrDefault(t => t.TimesheetId == timeSheetId);
         //    if (timeSheetObj != null)
         //    {
-                
+
         //        _IUnitOfWork.Save();
         //    }
 
@@ -901,7 +902,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             return null;
         }
 
-        
+
         public IActionResult getHourTimeSheetData(long? timeSheetId, int? userId)
         {
             var timeSheetObj = _IUnitOfWork.TimeSheetRepository.GetFirstOrDefault(t => t.TimesheetId == timeSheetId);
@@ -936,7 +937,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         {
             if (ModelState.IsValid)
             {
-               var timeSheetObj =  _IUnitOfWork.TimeSheetRepository.GetFirstOrDefault(t => t.TimesheetId == timeSheetId);
+                var timeSheetObj = _IUnitOfWork.TimeSheetRepository.GetFirstOrDefault(t => t.TimesheetId == timeSheetId);
 
                 timeSheetObj.DateVolunteered = date;
                 timeSheetObj.CreatedAt = DateTimeOffset.Now;
@@ -946,7 +947,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 timeSheetObj.UserId = userId;
                 timeSheetObj.MissionId = missionId;
 
-                
+
                 if (timeSheetObj != null)
                 {
                     _IUnitOfWork.TimeSheetRepository.Update(timeSheetObj);
@@ -971,7 +972,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         {
             if (ModelState.IsValid)
             {
-               var timeSheetObj =  _IUnitOfWork.TimeSheetRepository.GetFirstOrDefault(t => t.TimesheetId == timeSheetId);
+                var timeSheetObj = _IUnitOfWork.TimeSheetRepository.GetFirstOrDefault(t => t.TimesheetId == timeSheetId);
                 timeSheetObj.DateVolunteered = date;
                 timeSheetObj.CreatedAt = DateTimeOffset.Now;
 
@@ -980,7 +981,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 timeSheetObj.UserId = userId;
                 timeSheetObj.MissionId = missionId;
 
-                
+
                 if (timeSheetObj != null)
                 {
                     _IUnitOfWork.TimeSheetRepository.Update(timeSheetObj);
@@ -998,6 +999,58 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 return PartialView("_VolTimeSheet", timeSheetVmList);
             }
             return null;
+
+        }
+
+
+
+        [HttpPost]
+        public IActionResult SaveUserDetail(short? CityId,string? MyProfile, byte? CountryId, string? Department , string? EmployeeId,string? FirstName, string? LastName,string? Title, string? WhyIVolunteer, string? LinkedinURL,byte? Avaibility, int[]? userSkillsId, int? userId)
+        {
+
+          var userObj =   _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == userId);
+
+            userObj.CityId = CityId;
+            userObj.ProfileText = MyProfile;
+           userObj.CountryId = CountryId;
+            userObj.UpdatedAt = DateTimeOffset.Now;
+           userObj.Departmemt = Department;
+            userObj.EmployeeId = EmployeeId;
+            userObj.FirstName = FirstName;
+            userObj.LastName = LastName;
+            userObj.Title = Title;
+           userObj.WhyIVolunteer = WhyIVolunteer;
+            userObj.LinkedInUrl = LinkedinURL;
+           userObj.Avaibility = Avaibility;
+
+
+                
+                _IUnitOfWork.UserRepository.Update(userObj);
+            _IUnitOfWork.Save();
+
+
+            var SkillObj = _IUnitOfWork.UserSkillRepository.GetAll().Where(u => u.UserId == userId);
+            if (SkillObj != null)
+            {
+                _IUnitOfWork.UserSkillRepository.RemoveRange(SkillObj);
+                _IUnitOfWork.Save();
+            }
+            for (int i = 0; i < userSkillsId?.Length; i++)
+            {
+                UserSkill userSkillObj = new()
+                {
+                    SkillId = userSkillsId[i],
+                    CreatedAt = DateTimeOffset.Now,
+                    UserId = userId
+                };
+
+                _IUnitOfWork.UserSkillRepository.Add(userSkillObj);
+                _IUnitOfWork.Save();
+            }
+
+            TempData["EditProfileSuccess"] = "Profile updated successfully";
+           return  RedirectToAction("PlatFormLandingPage");
+
 
         }
     }

@@ -8,8 +8,16 @@
     var userId = Context.Session.GetString("userId");
     var missionCnt = ViewBag.missionCount;
 }
+@*@if (TempData["EditProfileSuccess"] != null)
+{
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
+    <script>
+        toastr.success('@TempData["EditProfileSuccess"]');
+    </script>
+}*@
 
-
+<input type="hidden" value="@TempData["EditProfileSuccess"]" id="editProfileSuccess" />
 <partial name="_Navbar" />
 <input type="hidden" value="@missionCnt" id="missionCount" />
 <!-- third section  -->
@@ -91,3 +99,17 @@
 
 
 <partial name="_Footer" />
+@section scripts{
+    <script>
+       var tempData =  document.getElementById("editProfileSuccess").value;
+       console.log(tempData);
+       if(tempData != "")
+       {
+           Swal.fire(
+                        'Profile Updated Successfully!',
+                        'You clicked the button!',
+                        'success'
+                    )
+       }
+    </script>
+}

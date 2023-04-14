@@ -43,6 +43,8 @@ public partial class User
 
     public DateTimeOffset? DeletedAt { get; set; }
 
+    public byte? Avaibility { get; set; }
+
     public virtual City? City { get; set; }
 
     public virtual ICollection<Comment> Comments { get; } = new List<Comment>();

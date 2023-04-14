@@ -23,7 +23,7 @@ namespace CIPlatform.entities.ViewModels
         [StringLength(16)]
         public string? EmployeeId { get; set; }
 
-        public string? Email { get; set; }
+       
 
         [StringLength(255)]
         public string? Title { get; set; }
@@ -67,7 +67,10 @@ namespace CIPlatform.entities.ViewModels
 
         public List<CityViewModel>? Cities { get; set; }
 
-        
+        public byte? Avaibility { get; set; }
+
+
+
 
 
     }
