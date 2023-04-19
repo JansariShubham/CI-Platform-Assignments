@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS PAGE</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/home.css">
+</head>
+
+<body>
+    <div class="row m-0 gap-5">
+        <div class="col-2 text-white vh-100 d-none d-lg-block" id="sidebar">
+            <div class="mt-5 ms-3">NAVIGATION</div>
+            <a class="text-decoration-none text-white d-block mt-3 ps-3"> <img src="./images/user (4).png" alt="">
+                User</a>
+            <a class=" text-decoration-none d-block mt-3 cms-page text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-file-earmark" id="page" viewBox="0 0 16 16">
+                    <path
+                        d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z" />
+                </svg>
+                CMS
+                Page</a>
+            <a class="text-decoration-none text-white d-block mt-3 ps-3"><img src="./images/target (1).png" class="pe-3"
+                    alt=""> Mission</a>
+            <a class="text-decoration-none text-white d-block mt-3 ps-3"> <img src="./images/themes.png" class="pe-3"
+                    alt="">Mission Theme</a>
+            <a class="text-decoration-none text-white d-block mt-3 ps-3"><img src="./images/skills (1).png" class="pe-3"
+                    alt="">Mission Skills</a>
+            <a class="text-decoration-none text-white d-block  mt-3 ps-3"><img src="./images/folder.png" class="pe-3"
+                    alt="">Mission Application</a>
+            <a class="text-decoration-none text-white d-block mt-3 ps-3"> <img src="./images/tale.png" class="pe-3"
+                    alt="">Story</a>
+            <a class="text-decoration-none text-white d-block mt-3 ps-3"><img src="./images/folded-ribbon.png"
+                    class="pe-3" alt="">Banner Management</a>
+        </div>
+        <!-- navbar  -->
+        <div class=" col mt-3 first-div cms-nav ps-2 pe-lg-5">
+            <nav>
+                <div class="d-flex justify-content-between">
+                    <div>
+
+                        Thursday, November 3, 2022, 10:06 AM
+
+                    </div>
+                    <div class="dropdown right-div mb-3">
+
+                        <img class="rounded-circle user-img" src="images/user-img.png" alt="#">
+                        <button class="dropdown-toggle policy-btn profile-btn d-none d-sm-inline"
+                            data-bs-toggle="dropdown" aria-expanded="false" type="button" id="dropdownMenuButton1">Evan
+                            Donohue
+                            <img class="m-1" src="images/drop-down.png" alt="#">
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="partial"></div>
+                <div class="border">
+                    <div class="bg-secondary-subtle p-2 ">
+                        <h3 class="ps-4">Edit</h3>
+
+                    </div>
+                    <div class="ps-3 py-3">
+                        <label for="title" class="form-label ">Title</label>
+                        <input type="text" id="title" class="form-control">
+
+                        <label for="desc" class="form-label mt-3">Description</label>
+                        <textarea id="tiny"></textarea>
+
+                        <label for="slug" class="form-label mt-3">Slug</label>
+                        <input type="text" class="form-control">
+
+
+                        <label for="status" class="form-label mt-3">Status</label>
+                        <select id="status" class="form-select">
+                            <option value=""></option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer border-0 mt-3 d-flex gap-3">
+                    <a class="btn border-secondary rounded-pill px-4 py-2 text-secondary"
+                        data-bs-dismiss="modal">Cancle</a>
+                    <button class="btn border rounded-pill px-4 py-2 orange-btn"
+                        style="border-color: #F88634 !important">Save</button>
+                </div>
+
+
+            </nav>
+        </div>
+    </div>
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script src="js/tinymce.js"></script>
+
+
+</body>
+
+</html>

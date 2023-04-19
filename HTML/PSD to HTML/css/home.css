@@ -7,8 +7,6 @@
     box-shadow: 3px 5px 10px #00000014;
     opacity: 1;
 } */
-
-
 #sidebar {
     background: #F88634;
 }
@@ -19,6 +17,10 @@
 
 #page {
     margin-left: 1.1rem;
+}
+
+.story-view-btn {
+    font-size: 10px;
 }
 
 #sidebar a:hover {
@@ -520,6 +522,11 @@ li:before {
         margin: 0;
     }
 
+    #sidebar {
+        width: 300px !important;
+        position: fixed !important;
+    }
+
     .left-div {
         margin: 0;
     }
@@ -606,6 +613,11 @@ li:before {
 
     .skills-ul {
         display: inline !important;
+    }
+
+    #sidebar {
+        width: 250px !important;
+        position: fixed !important;
     }
 
 

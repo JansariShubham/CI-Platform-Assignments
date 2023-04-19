@@ -18,5 +18,9 @@ namespace CIPlatform.repository.IRepository
         public List<User> getAllUsers();
 
         public int UpdateProfie(int? userId,string? url);
+
+        public int ChangeUserStatus(long? userId, byte? status);
+
+       public List<User> getSearchedResult(string? searchText);
     }
 }

@@ -1,4 +1,7 @@
 ﻿@model CIPlatform.entities.ViewModels.StoryListingViewModel
+@{
+    var userId = Context.Session.GetString("userId");
+}
 <!-- navbar  -->
 <partial name="_Navbar1" />
 <input type = "hidden" value ="@Model.StoryId" id="storyId" />
@@ -51,39 +54,27 @@
 
                 <div class="mt-4">
                     <p class="text-secondary">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut
-                        labore
-                        et dolore magna aliqua. Ut enim ad minim veniam. Sed ut perspiciatis unde omnis iste natus
-                        error
-                        sit
-                        voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-                        inventore.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                        et dolore magna aliqua. Ut enim ad minim veniam. Sed ut perspiciatis unde omnis iste natus
-                        error
-                        sit
-                        voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-                        inventore.
+                        @Model.User.WhyIVolunteer
                     </p>
                 </div>
+                @if (userId != null)
+                {
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <button class="recommend-div rounded-pill bg-white py-sm-2 px-sm-3 p-2" id="recommendedBtn" data-bs-target="#recommendedModal">
+                                <img src="~/images/add1.png" alt="">
+                                <span class="font-size" style="color:#757575">Recommend to a Co-Worker</span>
 
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <button class="recommend-div rounded-pill bg-white py-sm-2 px-sm-3 p-2" id="recommendedBtn" data-bs-target="#recommendedModal">
-                            <img src="~/images/add1.png" alt="">
-                            <span class="font-size" style="color:#757575">Recommend to a Co-Worker</span>
+                            </button>
+                        </div>
 
-                        </button>
+                        <div>
+                            <a asp-route-id="@Model.MissionId" asp-action="Index" asp-controller="MissionDetail" class="btn apply-btn px-sm-3 py-sm-2 p-2 font-size">
+                                Open Mission<img src="~/images/right-arrow.png" class="ps-sm-3 p-1" alt="#">
+                            </a>
+                        </div>
                     </div>
-                    
-                    <div>
-                        <a asp-route-id="@Model.MissionId" asp-action="Index" asp-controller="MissionDetail" class="btn apply-btn px-sm-3 py-sm-2 p-2 font-size">
-                            Open Mission<img src="~/images/right-arrow.png" class="ps-sm-3 p-1" alt="#">
-                        </a>
-                    </div>
-                </div>
+                }
                 <div id="recommendedPartial">
                 </div>
             </div>

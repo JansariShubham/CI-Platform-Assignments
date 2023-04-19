@@ -1,0 +1,73 @@
+﻿@model CIPlatform.entities.ViewModels.UserProfile
+@{
+}
+<div class="modal" tabindex="-1" id="editUserModal">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="editUserForm">
+                <div class="modal-body">
+                    <div>
+                        <label class="form-label" for="firstName">First Name</label>
+                        <input type="text" id="firstName" class="form-control" asp-for="FirstName" />
+                        <span asp-validation-for="FirstName" class="text-danger error-span"></span>
+                    </div>
+
+                    <div>
+                        <label class="form-label mt-3" for="lastName">Last Name</label>
+                        <input type="text" id="lastName" class="form-control" asp-for="LastName" />
+                        <span asp-validation-for="LastName" class="text-danger error-span"></span>
+                    </div>
+
+                    <div>
+                        <label class="form-label mt-3" for="email">Email</label>
+                        <input type="text" id="email" class="form-control" asp-for="email" />
+                        <span asp-validation-for="email" class="text-danger error-span"></span>
+                    </div>
+
+                    <div>
+
+                        <label class="form-label mt-3" for="empId">Employee Id</label>
+                        <input type="text" id="empId" class="form-control" asp-for="EmployeeId" />
+                        <span asp-validation-for="EmployeeId" class="text-danger error-span"></span>
+                    </div>
+
+                    <div>
+                        <label class="form-label mt-3" for="department">Department</label>
+                        <input type="text" id="department" class="form-control" asp-for="Department" />
+                        <span asp-validation-for="Department" class="text-danger error-span"></span>
+                    </div>
+
+
+                    <div>
+                        <label class="form-label mt-3" for="password">Password</label>
+                        <input type="text" id="password" class="form-control" asp-for="Password" />
+                        <span asp-validation-for="Password" class="text-danger error-span"></span>
+                    </div>
+
+
+                    <div>
+                        <label class="form-label mt-3" for="conPassword">Confirm Password</label>
+                        <input type="text" id="conPassword" class="form-control" asp-for="ConfirmPasword" />
+                        <span asp-validation-for="ConfirmPasword" class="text-danger error-span"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <a class="btn border-secondary rounded-pill px-4 py-2 text-secondary"
+                       data-bs-dismiss="modal">Cancle</a>
+                    <button type="submit" class="btn border rounded-pill px-4 py-2 orange-btn"
+                            style="border-color: #F88634 !important">
+                        Edit
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<partial name="_ValidationScriptsPartial" />

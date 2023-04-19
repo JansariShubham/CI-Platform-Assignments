@@ -21,14 +21,25 @@ namespace CIPlatform.entities.ViewModels
         public string? LastName { get; set; }
 
         [StringLength(16)]
+        [RegularExpression("\\d+", ErrorMessage ="Please Enter Only Digits")]
         public string? EmployeeId { get; set; }
 
-       
+        public long? userId { get; set; }
+
+
+        [Required(ErrorMessage = "Email is required")]
+        [RegularExpression(@"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
++ "@"
++ @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$", ErrorMessage = "Invalid Email ID")]
+        public string? email { get; set; }
+
+        public byte? Status { get; set; }
 
         [StringLength(255)]
         public string? Title { get; set; }
 
         [StringLength(16)]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Please Enter Only Characters")]
         public string? Department { get; set; }
 
         [Required(ErrorMessage = "Enter Your Profile Summary")]

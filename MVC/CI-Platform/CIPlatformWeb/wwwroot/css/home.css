@@ -5,6 +5,33 @@
     }
 
 }
+#deleteUser{
+    height:1.2rem !important;
+}
+
+#sidebar {
+    background: #F88634;
+}
+
+    #sidebar a {
+        cursor: pointer;
+    }
+
+#page {
+    margin-left: 1.1rem;
+}
+
+.story-view-btn {
+    font-size: 10px;
+}
+
+#sidebar a:hover {
+    border: 2px solid white !important;
+    padding-left: 1rem !important;
+    border-radius: var(--bs-border-radius-sm) !important;
+    padding: 0.25rem;
+}
+
 .skillSelect::-webkit-scrollbar
 {
     display: none !important;
@@ -562,6 +589,10 @@ img {
     .search-div {
         margin: 0;
     }
+    #sidebar {
+        width: 300px !important;
+        position: fixed !important;
+    }
 
     .left-div {
         margin: 0;
@@ -653,7 +684,10 @@ img {
     .search-div {
         margin: 0;
     }
-
+    #sidebar {
+        width: 250px !important;
+        position: fixed !important;
+    }
     .skills-ul {
         display: inline !important;
     }

@@ -20,11 +20,14 @@
         illo
         veritatis beatae doloribus!
     </p>
-    <div class="d-flex justify-content-center">
-        <a asp-action="ShareStory" asp-route-id = "@userId" asp-controller="Story"  asp-area="Users" class="btn rounded-pill border text-white mt-1 px-3 font-size">
-            Share Your Story <img src="~/images/right-arrow.png" alt="#" class="arrow">
-        </a>
-    </div>
+    @if (userId != null)
+    {
+        <div class="d-flex justify-content-center">
+            <a asp-action="ShareStory" asp-route-id = "@userId" asp-controller="Story"  asp-area="Users" class="btn rounded-pill border text-white mt-1 px-3 font-size">
+                Share Your Story <img src="~/images/right-arrow.png" alt="#" class="arrow">
+            </a>
+        </div>
+    }
 </div>
 
 

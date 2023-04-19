@@ -409,6 +409,10 @@
       "PackagePath": "staticwebassets\\images\\previous.png"
     },
     {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\restore.svg",
+      "PackagePath": "staticwebassets\\images\\restore.svg"
+    },
+    {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\right-arrow.png",
       "PackagePath": "staticwebassets\\images\\right-arrow.png"
     },
@@ -461,6 +465,10 @@
       "PackagePath": "staticwebassets\\images\\storyimages\\0220de88-30fd-48a9-9def-f052d0f517b2.png"
     },
     {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\storyimages\\03bd979d-d899-43f6-8355-95686620cf87.png",
+      "PackagePath": "staticwebassets\\images\\storyimages\\03bd979d-d899-43f6-8355-95686620cf87.png"
+    },
+    {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\storyimages\\16550bba-9822-4b65-b7f3-df1acd615c91.png",
       "PackagePath": "staticwebassets\\images\\storyimages\\16550bba-9822-4b65-b7f3-df1acd615c91.png"
     },
@@ -475,10 +483,6 @@
     {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\storyimages\\32667222-64a5-4f7b-8822-d24ef8eae6ff.png",
       "PackagePath": "staticwebassets\\images\\storyimages\\32667222-64a5-4f7b-8822-d24ef8eae6ff.png"
-    },
-    {
-      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\storyimages\\33640b13-6fb0-4ef2-a26d-0d8abd5e05e8.png",
-      "PackagePath": "staticwebassets\\images\\storyimages\\33640b13-6fb0-4ef2-a26d-0d8abd5e05e8.png"
     },
     {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\storyimages\\38244274-3c65-4136-a078-51d8a6b1fa43.png",
@@ -513,6 +517,10 @@
       "PackagePath": "staticwebassets\\images\\storyimages\\85738542-03f7-4a89-af4e-ccfbe2e5b910.png"
     },
     {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\storyimages\\8c72069d-3e39-4b66-8453-15854f8ee315.png",
+      "PackagePath": "staticwebassets\\images\\storyimages\\8c72069d-3e39-4b66-8453-15854f8ee315.png"
+    },
+    {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\storyimages\\928e6842-ae8c-48c9-b590-a95274be14ed.png",
       "PackagePath": "staticwebassets\\images\\storyimages\\928e6842-ae8c-48c9-b590-a95274be14ed.png"
     },
@@ -531,6 +539,10 @@
     {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\storyimages\\da2edc7c-52ef-4784-b792-104f871bc864.png",
       "PackagePath": "staticwebassets\\images\\storyimages\\da2edc7c-52ef-4784-b792-104f871bc864.png"
+    },
+    {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\storyimages\\dc62a80e-e1db-4adc-8938-ecef8c34959d.png",
+      "PackagePath": "staticwebassets\\images\\storyimages\\dc62a80e-e1db-4adc-8938-ecef8c34959d.png"
     },
     {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\storyimages\\dd59017f-abcb-4f3d-a092-b6841aeaa7fd.png",
@@ -655,6 +667,10 @@
     {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\xlsx.png",
       "PackagePath": "staticwebassets\\images\\xlsx.png"
+    },
+    {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\js\\admin.js",
+      "PackagePath": "staticwebassets\\js\\admin.js"
     },
     {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\js\\custom.js",

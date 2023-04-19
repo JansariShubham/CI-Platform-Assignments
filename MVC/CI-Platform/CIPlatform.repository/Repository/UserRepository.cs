@@ -61,7 +61,24 @@ namespace CIPlatform.repository.Repository
             return _appDbContext.Database.ExecuteSqlRaw("UPDATE [users] set avatar = @avatar WHERE user_id = @user_id", userID, avatar);
         }
 
+        public int ChangeUserStatus(long? userId, byte? status)
+        {
+            var userID = new SqlParameter("@user_id", userId);
+            var userStatus = new SqlParameter("@status", status);
 
-       
+            return _appDbContext.Database.ExecuteSqlRaw("UPDATE [users] set status = @status WHERE user_id = @user_id", userID, userStatus);
+        }
+
+        public List<User> getSearchedResult(string? searchText)
+        {
+            //StringComparison comp = StringComparison.OrdinalIgnoreCase;
+            
+            if (searchText != "" && searchText != null)
+            {
+                var searchedResult = _appDbContext.Users.Where(u => u.FirstName.ToLower().Contains(searchText.ToLower()) || u.LastName.ToLower().Contains(searchText.ToLower()));
+                return searchedResult.ToList();
+            }
+            return null;
+        }
     }
 }
