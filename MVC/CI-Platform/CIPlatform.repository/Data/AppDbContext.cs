@@ -161,10 +161,7 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("slug");
-            entity.Property(e => e.Status)
-                .IsRequired()
-                .HasDefaultValueSql("((1))")
-                .HasColumnName("status");
+            entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.Title)
                 .HasMaxLength(255)
                 .IsUnicode(false)

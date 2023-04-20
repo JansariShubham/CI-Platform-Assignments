@@ -13,7 +13,7 @@ public partial class CmsPage
 
     public string Slug { get; set; } = null!;
 
-    public bool? Status { get; set; }
+    public bool Status { get; set; }
 
     public DateTimeOffset CreatedAt { get; set; }
 

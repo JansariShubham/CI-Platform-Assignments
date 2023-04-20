@@ -160,13 +160,78 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
         public IActionResult getSearchedUsers(string? searchText)
         {
            List<User> userList =  _IUnitOfWork.UserRepository.getSearchedResult(searchText);
-            List<UserProfile> userVmList = new();
-            foreach (var user in userList)
+            if (userList != null)
             {
-                userVmList.Add(ConverToUserVm(user));
+                List<UserProfile> userVmList = new();
+                foreach (var user in userList)
+                {
+                    userVmList.Add(ConverToUserVm(user));
+                }
+                return PartialView("_User", userVmList);
             }
-            return PartialView("_User", userVmList);
+            else
+            {
+                var usersList = _IUnitOfWork.UserRepository.GetAll().ToList();
+                List<UserProfile> userVmList = new();
+                foreach (var user in usersList)
+                {
+                    userVmList.Add(ConverToUserVm(user));
+                }
 
+            return PartialView("_User", userVmList);
+            }
+
+        }
+
+
+        public IActionResult getCmsDetails()
+        {
+            var cmsList = _IUnitOfWork.CmsRepository.GetAll().ToList();
+            List<CmsViewModel> cmsVmList = new();
+            if (cmsList != null)
+            {
+                foreach(var cms in cmsList)
+                {
+                    cmsVmList.Add(ConvertToCmsVm(cms));
+                }
+            }
+            return PartialView("_CMS",cmsVmList);
+        }
+
+        private CmsViewModel ConvertToCmsVm(CmsPage cms)
+        {
+            CmsViewModel cmsVm = new()
+            {
+                CmsPageId= cms.CmsPageId,
+                Description = cms.Description,
+                Slug = cms.Slug,
+                Status = cms.Status,
+                Title = cms.Title
+            };
+            return cmsVm;
+        }
+
+        public IActionResult cmsAddPage()
+        {
+            return PartialView("_AddCms");
+        }
+
+        [HttpPost]
+        public IActionResult AddCmsDetails(string? title, string? desc, string? slug , bool status)
+        {
+            
+            CmsPage obj = new()
+            {
+                    CreatedAt = DateTimeOffset.Now,
+                    Description = desc,
+                    Slug = slug!,
+                    Status = status,
+                    Title = title!,
+
+                };
+              _IUnitOfWork.CmsRepository.Add(obj);
+                _IUnitOfWork.Save();
+            return StatusCode(200);
         }
     }
 

@@ -55,6 +55,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         [HttpPost]
         public IActionResult Login(UserLoginViewModel model)
         {
+            
 
             var result = _IUnitOfWork.UserRepository.GetLoginCredentials(model);
 
@@ -63,6 +64,14 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             {
                 if (result != null)
                 {
+                    if(result.Status == 1)
+                    {
+
+                        TempData["statuserror"] = "You are inactive for some reason!, Please contact admin for login";
+                        return View();
+
+                    }
+                    
                     HttpContext.Session.SetString("email", model.Email.ToString());
                     HttpContext.Session.SetString("firstName", result.FirstName.ToString());
                     HttpContext.Session.SetString("lastName", result.LastName.ToString());

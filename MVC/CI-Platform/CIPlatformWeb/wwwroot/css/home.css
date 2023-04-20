@@ -31,7 +31,12 @@
     border-radius: var(--bs-border-radius-sm) !important;
     padding: 0.25rem;
 }
-
+/*#sidebar a:active {
+    border: 2px solid white !important;
+    padding-left: 1rem !important;
+    border-radius: var(--bs-border-radius-sm) !important;
+    padding: 0.25rem;
+}*/
 .skillSelect::-webkit-scrollbar
 {
     display: none !important;

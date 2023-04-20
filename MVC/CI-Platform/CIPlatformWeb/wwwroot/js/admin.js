@@ -17,16 +17,20 @@ function userAjaxCall() {
         success: function (data) {
 
             console.log("success in getting users data");
-            $("#userPartial").html(data);
+            $("#adminPartial").html(data);
             showAddUserModal();
             editUserData();
             deleteUser();
             updateSidebarHeight();
             searchOperation();
 
-            var search = document.getElementById("searchInput");
-            search.focus();
-            search.value = searchText;
+            /*var userBtn = $('#userBtn');
+            userBtn.addEventListener('click', () => {
+                userBtn.style.backgroundColor = "red";
+            })*/
+
+            
+
 
 
         },
@@ -81,12 +85,17 @@ function addUserData() {
                 data: {firstName : firstName, lastName : lastName, email : email , empId : empId, department : department, password: password},
                 success: function (data) {
                     console.log("success adding user")
-                    $("#userPartial").html(data);
+                    $("#adminPartial").html(data);
                     Swal.fire(
                         'User Added Successfully!',
                         'You clicked the button!',
                         'success'
                     )
+
+                    showAddUserModal();
+                    editUserData();
+                    deleteUser();
+                    searchOperation();
 
                 },
                 error: (err) => {
@@ -149,9 +158,11 @@ function editUser(userId) {
                 data: { firstName: firstName, lastName: lastName, email: email, empId: empId, department: department, password: password, userId: userId },
                 success: function (data) {
                     console.log("success edit user")
-                    $("#userPartial").html(data);
+                    $("#adminPartial").html(data);
                     editUserData();
                     deleteUser();
+                    showAddUserModal();
+                    searchOperation();
                     Swal.fire(
                         'User Updated Successfully!',
                         'You clicked the button!',
@@ -199,9 +210,11 @@ function deleteUser() {
                                 data: { userId: userId, status: status },
                                 success: function (data) {
 
-                                    $("#userPartial").html(data);
+                                    $("#adminpartial").html(data);
                                     deleteUser();
                                     editUserData();
+                                    showAddUserModal();
+                                    searchOperation();
                                 },
                                 error: (err) => {
                                     console.log("error in  getting users modal");
@@ -218,9 +231,11 @@ function deleteUser() {
                     data: { userId: userId, status: status },
                     success: function (data) {
 
-                        $("#userPartial").html(data);
+                        $("#adminPartial").html(data);
                         deleteUser();
                         editUserData();
+                        showAddUserModal();
+                        searchOperation();
                     },
                     error: (err) => {
                         console.log("error in  getting users modal");
@@ -269,10 +284,14 @@ function searchOperation() {
             data: { searchText: searchText },
             success: function (data) {
 
-                $("#userPartial").html(data);
+                $("#adminPartial").html(data);
                 deleteUser();
                 editUserData();
                 searchOperation();
+                showAddUserModal();
+                search = document.getElementById("searchInput");
+                search.focus();
+                search.value = searchText;
             },
             error: (err) => {
                 console.log("error in  getting users modal");
@@ -281,3 +300,123 @@ function searchOperation() {
        
     })
 }
+
+
+var cmsPageBtn = document.getElementById('cmsPageBtn');
+cmsPageBtn.addEventListener('click', () => {
+
+    cmsAjax();
+})
+
+function cmsAjax() {
+    tinymce.remove('#tiny');
+    $.ajax({
+        type: "GET",
+        url: '/Admin/Dashboard/getCmsDetails',
+
+        success: function (data) {
+
+            console.log("success in getting cms");
+            $("#adminPartial").html(data);
+
+            addCms();
+
+        },
+        error: (err) => {
+            console.log("error in  getting cms data");
+        }
+    });
+}
+var userBtn = document.getElementById("userBtn");
+userBtn.addEventListener('click', () => {
+    
+    userAjaxCall();
+})
+
+
+
+
+function addCms() {
+    var addCmsBtn = document.getElementById('addCmsBtn');
+    addCmsBtn.addEventListener('click', () => {
+        $.ajax({
+            type: "GET",
+            url: '/Admin/Dashboard/cmsAddPage',
+
+            success: function (data) {
+
+                console.log("success in getting adding cms");
+                $("#adminPartial").html(data);
+                $.getScript('/js/tinymce.js');
+                
+                addCmsData();
+
+            },
+            error: (err) => {
+                console.log("error in  getting cms adding data");
+            }
+        });
+    })
+}
+
+function addCmsData() {
+    var addCmsForm = document.getElementById('addCmsForm');
+    addCmsForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        var tinyTextArea = tinymce.get("tiny").getContent();
+        var title = document.getElementById("title").value;
+        var slug = document.getElementById("slug").value;
+        //var status = document.getElementById("status").value;
+        let status = $("#status option:selected").val();
+        alert(status);
+        if (tinyTextArea === "" || tinyTextArea === null) {
+            descSpan.innerHTML = "CMS description is required!";
+            return;
+
+        }
+
+        const cmsPageDetails = {
+            desc: tinyTextArea,
+            title: title,
+            slug: slug,
+            status : status
+        };
+
+
+        if ($('#addCmsForm').valid()) {
+            
+            //var obj = $('#addCmsForm').serialize();
+            $.ajax({
+                type: "POST",
+                url: '/Admin/Dashboard/AddCmsDetails',
+                data: cmsPageDetails,
+                success: function (data) {
+
+                    console.log("success in adding cms");
+                    //$("#adminPartial").html(data);
+
+                    
+                    cmsAjax();
+
+                    Swal.fire(
+                        'CMS Page Added Successfully!',
+                        'You clicked the button!',
+                        'success'
+                    )
+                    
+
+                },
+                error: (err) => {
+                    console.log("error in  getting cms data");
+                }
+            });
+            
+        }
+        else {
+            return;
+        }
+    })
+}
+
+

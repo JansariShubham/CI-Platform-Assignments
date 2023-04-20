@@ -3,6 +3,7 @@
     ViewData["Title"] = "Home Page";
 }
 
+
 <section class="d-flex flex-column flex-md-column flex-lg-row login-content">
     <div id="carouselExampleCaptions" class="carousel slide d-flex justify-content-center flex-column hero-image"
          data-bs-ride="carousel">
@@ -71,6 +72,15 @@
 
 
     <div class="d-flex flex-column p-5 justify-content-center">
+
+        @if (TempData["statuserror"] != null)
+        {
+            <div class="bg-danger-subtle text-center p-3 mb-3">
+
+                @TempData["statuserror"]
+
+            </div>
+        }
         <form class="d-flex flex-column mx-auto justify-content-center" method="post" asp-action="Login">
             <label asp-for="Email" class="form-label login-label text-light-custom text-secondary">Email Address</label>
             <input type="email" asp-for="Email" id="email" class="form-control login-input text-light-custom"
