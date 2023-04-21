@@ -24,6 +24,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9BZGRDbXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_AddMissionTheme.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9BZGRNaXNzaW9uVGhlbWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_AddSkill.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9BZGRTa2lsbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_AddUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9BZGRVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -32,8 +40,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9DTVMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_EditCms.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9FZGl0Q21zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_EditMissionTheme.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9FZGl0TWlzc2lvblRoZW1lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_EditUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9FZGl0VXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_MissionSkill.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9NaXNzaW9uU2tpbGwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_MissionTheme.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9NaXNzaW9uVGhlbWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_User.cshtml]

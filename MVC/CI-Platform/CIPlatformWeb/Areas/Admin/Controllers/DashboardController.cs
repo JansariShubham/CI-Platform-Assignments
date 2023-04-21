@@ -233,6 +233,247 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
                 _IUnitOfWork.Save();
             return StatusCode(200);
         }
+
+
+        public IActionResult changeCmsStatus(int cmsId, byte status)
+        {
+            if(status == 1)
+            {
+                _IUnitOfWork.CmsRepository.ChangeCmsStatus(cmsId, 0);
+            }
+            else
+            {
+                _IUnitOfWork.CmsRepository.ChangeCmsStatus(cmsId, 1);
+
+            }
+
+            return Ok(200);
+        }
+
+        public IActionResult getCmsEditDetails(int cmsId)
+        {
+           var cmsObj = _IUnitOfWork.CmsRepository.GetFirstOrDefault(c => c.CmsPageId == cmsId);
+           
+                CmsViewModel cmsVm = new()
+                {
+                    CmsPageId = cmsObj.CmsPageId,
+                    Description = cmsObj.Description,
+                    Slug = cmsObj.Slug,
+                    Status = cmsObj.Status,
+                    Title= cmsObj.Title,
+                    
+
+                };
+                return PartialView("_EditCms", cmsVm);
+            
+        }
+
+        public IActionResult editCmsDetails(string desc, string title, string slug, bool status, int cmsId)
+        {   
+            var cmsObj = _IUnitOfWork.CmsRepository.GetFirstOrDefault(c => c.CmsPageId == cmsId);
+
+            cmsObj.Status = status;
+            cmsObj.Title = title;
+            cmsObj.UpdatedAt = DateTimeOffset.Now;
+            cmsObj.Slug = slug;
+            cmsObj.Description = desc;
+
+            _IUnitOfWork.CmsRepository.Update(cmsObj);
+            _IUnitOfWork.Save();
+            return Ok(200);
+        }
+
+
+        public IActionResult getSearchedCms(string? searchText)
+        {
+                List<CmsPage> cmsSerachedList = _IUnitOfWork.CmsRepository.getSearchedCms(searchText);
+                if (cmsSerachedList != null)
+                {
+                    List<CmsViewModel> cmsVmList = new();
+
+                    foreach (var cms in cmsSerachedList)
+                    {
+                        cmsVmList.Add(ConvertToCmsVm(cms));
+                    }
+
+                    return PartialView("_CMS", cmsVmList);
+                }
+            
+            else
+            {
+                var cmsList = _IUnitOfWork.CmsRepository.GetAll().ToList();
+                List<CmsViewModel> cmsVmList = new();
+                if (cmsList != null)
+                {
+                    foreach (var cms in cmsList)
+                    {
+                        cmsVmList.Add(ConvertToCmsVm(cms));
+                    }
+                }
+                return PartialView("_CMS", cmsVmList);
+            }
+          
+
+        }
+
+        public IActionResult getMissionThemeList()
+        {
+           var missionThemeList =  _IUnitOfWork.MissionThemeRepository.GetAll().ToList();
+
+            List<ThemeViewModel> themeVm = new();
+            if (missionThemeList != null)
+            {
+                foreach(var theme in missionThemeList)
+                {
+                    themeVm.Add(ConvertToMissionThemeVm(theme));
+                }
+            }
+            return PartialView("_MissionTheme", themeVm);
+        }
+
+        private ThemeViewModel ConvertToMissionThemeVm(MissionTheme theme)
+        {
+            ThemeViewModel themeViewModel = new()
+            {
+                MissionThemeId = theme.MissionThemeId,
+                Status = theme.Status,
+                Title = theme.Title,
+            };
+            return themeViewModel;
+        }
+
+        public IActionResult getAddThemeDetails()
+        {
+            return PartialView("_AddMissionTheme");
+        }
+
+
+        public IActionResult AddMissionTheme(ThemeViewModel model)
+        {
+            if(model != null)
+            {
+                MissionTheme obj = new()
+                {
+                    Status= model.Status,
+                    Title = model.Title,
+                    CreatedAt = DateTimeOffset.Now
+                };
+
+                _IUnitOfWork.MissionThemeRepository.Add(obj);
+                _IUnitOfWork.Save();
+
+            }
+            return Ok(200);
+        }
+
+        public IActionResult ChangeMissionThemeStatus(int missionThemeId,byte missionThemeStatus)
+        {
+            if(missionThemeStatus == 1)
+            {
+                _IUnitOfWork.MissionThemeRepository.ChangeThemeStatus(missionThemeId, 0);
+            }
+            else
+            {
+                _IUnitOfWork.MissionThemeRepository.ChangeThemeStatus(missionThemeId, 1);
+            }
+
+        return Ok(200);
+        }
+
+
+        public IActionResult GetThemeEditForm(int themeId)
+        {
+          var themeObj = _IUnitOfWork.MissionThemeRepository.GetFirstOrDefault(mt => mt.MissionThemeId == themeId);
+            ThemeViewModel themeVm = new()
+            { 
+                Title = themeObj.Title,
+                Status = themeObj.Status,
+                
+            };
+            return PartialView("_EditMissionTheme", themeVm);
+
+        }
+
+        public IActionResult EditThemeData(string title,byte status , int themeId)
+        {
+            var themeObj = _IUnitOfWork.MissionThemeRepository.GetFirstOrDefault(mt => mt.MissionThemeId == themeId);
+            themeObj.Title = title;
+            themeObj.Status = status;
+            themeObj.UpdatedAt = DateTimeOffset.Now;
+            _IUnitOfWork.MissionThemeRepository.Update(themeObj);
+            _IUnitOfWork.Save();
+            return Ok(200);
+        }
+
+        public IActionResult getSearchedThemes(string searchText)
+        {
+            var searchedThemeList = _IUnitOfWork.MissionThemeRepository.getSearchedThemeList(searchText);
+            if(searchedThemeList != null)
+            {
+                List<ThemeViewModel> themeVm = new();
+                
+                    foreach (var theme in searchedThemeList)
+                    {
+                        themeVm.Add(ConvertToMissionThemeVm(theme));
+                    }
+                return PartialView("_MissionTheme", themeVm);
+            }
+            else
+            {
+                var missionThemeList = _IUnitOfWork.MissionThemeRepository.GetAll().ToList();
+                List<ThemeViewModel> themeVm = new();
+                if (missionThemeList != null)
+                {
+                    foreach (var theme in missionThemeList)
+                    {
+                        themeVm.Add(ConvertToMissionThemeVm(theme));
+                    }
+                }
+                return PartialView("_MissionTheme", themeVm);
+            }
+        }
+
+
+        public IActionResult GetSkillList()
+        {
+           var skillList =  _IUnitOfWork.SkillsRepository.GetAll().ToList();
+            List<SkillsViewModel> skillVmList = new();
+
+            foreach(var skill in skillList)
+            {
+                skillVmList.Add(ConvertToSkillVm(skill));
+            }
+            return PartialView("_MissionSkill", skillVmList);
+            
+        }
+
+        private SkillsViewModel ConvertToSkillVm(Skill skill)
+        {
+            SkillsViewModel skillVm = new()
+            {
+                SkillId = skill.SkillId,
+                SkillName = skill.SkillName,
+                Status = skill.Status
+                
+            };
+            return skillVm;
+        }
+
+        public IActionResult GetAddSkillForm()
+        {
+            return PartialView("_AddSkill");
+        }
+
+        public IActionResult AddSkill(SkillsViewModel model)
+        {
+            Skill obj = new()
+            {
+                SkillName= model.SkillName,
+            };
+            _IUnitOfWork.SkillsRepository.Add(obj);
+            _IUnitOfWork.Save();
+            return Ok(200);
+        }
     }
 
     

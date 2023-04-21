@@ -9,5 +9,11 @@ namespace CIPlatform.repository.IRepository
 {
     public interface ICmsRepository : IRepository<CmsPage>
     {
+
+        public int ChangeCmsStatus(int id, byte status);
+
+        public void Update(CmsPage obj);
+
+        public List<CmsPage> getSearchedCms(string? searchText);
     }
 }

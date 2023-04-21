@@ -1,0 +1,60 @@
+﻿@model CIPlatform.entities.ViewModels.CmsViewModel
+@{
+}
+<div>
+    <div class="border">
+        <div class="bg-secondary-subtle p-2 ">
+            <h3 class="ps-4">Edit</h3>
+
+        </div>
+        <div>
+            <form id="editCmsForm">
+
+                <div class="ps-3 py-3">
+                    <div>
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" id="title" asp-for="Title" class="form-control">
+                        <span asp-validation-for="Title" class="text-danger error-span"></span>
+                    </div>
+
+                    <div>
+                        <label for="tiny" class="form-label mt-3">Description</label>
+                        <textarea id="tiny" asp-for="Description"></textarea>
+                        <span asp-validation-for="Description" id="descSpan" class="text-danger error-span"></span>
+                    </div>
+
+                    <div>
+                        <label for="slug" class="form-label mt-3">Slug</label>
+                        <input type="text" class="form-control" id="slug" asp-for="Slug">
+                        <span asp-validation-for="Slug" class="text-danger error-span"></span>
+                    </div>
+
+                    <div>
+                        <label for="status" class="form-label mt-3">Status</label>
+                        <select id="status" class="form-select" asp-for="Status">
+                            <option value="" selected disabled>Select Status</option>
+                            <option value="false">Active</option>
+                            <option value="true">In Active</option>
+                        </select>
+                        <span asp-validation-for="Status" class="text-danger error-span"></span>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer border-0 mt-3 d-flex gap-3">
+                    <a class="btn border-secondary rounded-pill px-4 py-2 text-secondary"
+                       data-bs-dismiss="modal">Cancle</a>
+                    <button type="submit" class="btn border rounded-pill px-4 py-2 orange-btn"
+                            style="border-color: #F88634 !important">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+<partial name="_ValidationScriptsPartial" />
+

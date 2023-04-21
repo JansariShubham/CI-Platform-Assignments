@@ -9,5 +9,10 @@ namespace CIPlatform.repository.IRepository
 {
     public interface IMissionThemeRepository : IRepository<MissionTheme>
     {
+        public int ChangeThemeStatus(int missionThemeId, byte missionThemeStatus);
+
+        public void Update(MissionTheme missionTheme);
+
+        public List<MissionTheme> getSearchedThemeList(string searchText);
     }
 }
