@@ -868,7 +868,9 @@ function getSkillList() {
 
             $('#adminPartial').html(data);
             getAddSkillForm();
-
+            deleteSkill();
+            getEditSkillForm();
+            searchSkill();
         },
         error: (err) => {
             console.log("error in  getting skill list");
@@ -918,4 +920,261 @@ function addSkill() {
             return;
         }
     })
+}
+function deleteSkill() {
+    var deleteSkill = document.querySelectorAll(".delete-skill");
+    deleteSkill.forEach((deleteBtn) => {
+        var skillId = deleteBtn.getAttribute("data-skillid");
+        var status = deleteBtn.getAttribute("data-status");
+        deleteBtn.addEventListener('click', () => {
+            if (status == "True") {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "",
+                    icon: "warning",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "Cancle",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                })
+                    .then((response) => {
+                        if (response.isConfirmed) {
+                            $.ajax({
+                                type: "POST",
+                                url: '/Admin/Dashboard/ChangeSkillStatus',
+                                data: { status: status, skillId: skillId },
+                                success: function (data) {
+                                    $('#adminPartial').html(data);
+
+                                    getSkillList();
+
+
+                                },
+                                error: (err) => {
+                                    console.log("error in skill delete");
+                                }
+                            });
+                        }
+                    });
+
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: '/Admin/Dashboard/ChangeSkillStatus',
+                    data: { status: status, skillId: skillId },
+                    success: function (data) {
+                        $('#adminPartial').html(data);
+
+                        getSkillList();
+
+
+                    },
+                    error: (err) => {
+                        console.log("error in skill delete");
+                    }
+                });
+            }
+        })
+
+    })
+}
+
+function getEditSkillForm() {
+    var editSkill = document.querySelectorAll(".edit-skill");
+    editSkill.forEach((editSkillBtn) => {
+        var skillId = editSkillBtn.getAttribute("data-skillid");
+        editSkillBtn.addEventListener("click", () => {
+            $.ajax({
+                type: "GET",
+                url: '/Admin/Dashboard/GetSkillEditForm',
+                data: {skillId: skillId},
+                success: function (data) {
+                    $('#adminPartial').html(data);
+                    editSkillData(skillId);
+                    //getSkillList();
+
+
+                },
+                error: (err) => {
+                    console.log("error in skill delete");
+                }
+            });
+        })
+    })
+} 
+
+function editSkillData(skillId) {
+   
+    $('#editSkillForm').submit((e) => {
+        e.preventDefault();
+        if ($('#editSkillForm').valid()) {
+            var skillName = $('#skillName').val();
+            $.ajax({
+                type: "POST",
+                url: '/Admin/Dashboard/EditSkill',
+                data: { skillId: skillId , skillName: skillName},
+                success: function (data) {
+                    //$('#adminPartial').html(data);
+                   
+                    getSkillList();
+
+                    Swal.fire(
+                        'CMS Page Added Successfully!',
+                        'You clicked the button!',
+                        'success'
+                    )
+                },
+                error: (err) => {
+                    console.log("error in skill delete");
+                }
+            });
+        }
+        else {
+            return;
+        }
+    })
+}
+
+function searchSkill() {
+    var search = document.getElementById("searchInput");
+    search.addEventListener('input', () => {
+        searchText = search.value;
+        $.ajax({
+            type: "GET",
+            url: '/Admin/Dashboard/getSearchedSkills',
+            data: { searchText: searchText },
+            success: function (data) {
+
+                $("#adminPartial").html(data);
+                deleteSkill();
+                getEditSkillForm();
+                searchSkill();
+                getAddSkillForm();
+                search = document.getElementById("searchInput");
+                search.focus();
+                search.value = searchText;
+            },
+            error: (err) => {
+                console.log("error in  getting users modal");
+            }
+        });
+    });
+    }
+
+
+$("#missionApplicationBtn").click(() => {
+    missionAppAjax();
+
+})
+
+function missionAppAjax() {
+    $.ajax({
+        type: "GET",
+        url: '/Admin/Dashboard/MissionApplicationList',
+       
+        success: function (data) {
+            $('#adminPartial').html(data);
+            approveStatus();
+            declineStatus();
+            searchMissions();
+        },
+        error: (err) => {
+            console.log("error in getting missionapp list");
+        }
+    });
+}
+
+function approveStatus() {
+    var approvedBtn = document.querySelectorAll(".approved-btn");
+    approvedBtn.forEach((approveButton) => {
+        var missionAppId = approveButton.getAttribute("data-applicationid");
+        approveButton.addEventListener('click', () => {
+            $.ajax({
+                type: "POST",
+                url: '/Admin/Dashboard/ApproveStatus',
+                data: { missionAppId: missionAppId },
+                success: function (data) {
+                    missionAppAjax();
+                   
+
+                },
+                error: (err) => {
+                    console.log("error in getting missionapp list");
+                }
+            });
+
+        })
+    })
+}
+
+
+function declineStatus() {
+    var declineBtn = document.querySelectorAll(".decline-btn");
+    declineBtn.forEach((declineButton) => {
+        var missionAppId = declineButton.getAttribute("data-applicationid");
+        declineButton.addEventListener('click', () => {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "",
+                icon: "warning",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes",
+                cancelButtonText: "Cancle",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            })
+                .then((response) => {
+                    if (response.isConfirmed) {
+                        $.ajax({
+                            type: "POST",
+                            url: '/Admin/Dashboard/DeclineStatus',
+                            data: { missionAppId: missionAppId },
+                            success: function (data) {
+                                missionAppAjax();
+
+
+                            },
+                            error: (err) => {
+                                console.log("error in getting missionapp list");
+                            }
+                        });  
+                    }
+                });
+
+           
+
+        })
+    })
+}
+
+
+function searchMissions() {
+    var search = document.getElementById("searchInput");
+    search.addEventListener('input', () => {
+        searchText = search.value;
+        $.ajax({
+            type: "GET",
+            url: '/Admin/Dashboard/getSearchedMissions',
+            data: { searchText: searchText },
+            success: function (data) {
+
+                $("#adminPartial").html(data);
+                approveStatus();
+                declineStatus();
+                searchMissions();
+                search = document.getElementById("searchInput");
+                search.focus();
+                search.value = searchText;
+            },
+            error: (err) => {
+                console.log("error in  getting users modal");
+            }
+        });
+    });
 }

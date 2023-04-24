@@ -474,6 +474,148 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
             _IUnitOfWork.Save();
             return Ok(200);
         }
+
+        [HttpPost]
+        public IActionResult ChangeSkillStatus(bool status, int skillId)
+        {
+            if (status) {
+                _IUnitOfWork.SkillsRepository.ChangeSkillsStatus(0, skillId);
+             }
+            else
+            {
+                _IUnitOfWork.SkillsRepository.ChangeSkillsStatus(1, skillId);
+            }
+            return Ok();
+        }
+
+        
+        public IActionResult GetSkillEditForm(int skillId)
+        {
+            var skillObj = _IUnitOfWork.SkillsRepository.GetFirstOrDefault(s => s.SkillId == skillId);
+            SkillsViewModel skillVm = new()
+            {
+                SkillName = skillObj.SkillName,
+                SkillId = skillObj.SkillId
+            };
+            return PartialView("_EditSkill", skillVm);
+        }
+
+        public IActionResult EditSkill(int skillId, string skillName)
+        {
+            var skillObj = _IUnitOfWork.SkillsRepository.GetFirstOrDefault(s => s.SkillId == skillId);
+
+            skillObj.SkillName = skillName;
+            _IUnitOfWork.SkillsRepository.Update(skillObj);
+            _IUnitOfWork.Save();
+            return Ok(200);
+        }
+
+        public IActionResult getSearchedSkills(string? searchText)
+        {
+            List<Skill> skillList = _IUnitOfWork.SkillsRepository.getSearchedSkillList(searchText);
+            if(skillList != null)
+            {
+                List<SkillsViewModel> skillVmList = new();
+                foreach (var skill in skillList)
+                {
+                    skillVmList.Add(ConvertToSkillVm(skill));
+                }
+                return PartialView("_MissionSkill", skillVmList);
+            }
+            else
+            {
+                var skillsList = _IUnitOfWork.SkillsRepository.GetAll().ToList();
+                List<SkillsViewModel> skillVmList = new();
+
+                foreach (var skill in skillsList)
+                {
+                    skillVmList.Add(ConvertToSkillVm(skill));
+                }
+                return PartialView("_MissionSkill", skillVmList);
+
+            }
+        }
+
+        public IActionResult MissionApplicationList()
+        {
+           var missionAppList =  _IUnitOfWork.MissionApplicationRepository.getAllMissionApplication();
+
+                List<MissionApplicationViewModel> missionAppVmList = new();
+            if (missionAppList != null)
+            {
+                foreach(var mission in missionAppList)
+                {
+                    missionAppVmList.Add(ConvertToMissionAppVm(mission));
+                }
+            }
+            return PartialView("_MissionApplication", missionAppVmList);
+        }
+
+        private MissionApplicationViewModel ConvertToMissionAppVm(MissionApplication mission)
+        {
+            MissionApplicationViewModel missionApplicationVm = new()
+            {
+                MissionApplicationId = mission.MissionApplicationId,
+                AppliedAt = mission.AppliedAt,
+                ApprovalStatus = mission.ApprovalStatus,
+                Mission = mission.Mission,
+                User = mission.User,
+                UserId = mission.UserId,
+                MissionId = mission.MissionId,
+            };
+            return missionApplicationVm;
+        }
+
+        public IActionResult ApproveStatus(int missionAppId)
+        {
+            var result = _IUnitOfWork.MissionApplicationRepository.ApproveApplication(missionAppId);
+            if (result != 0)
+            {
+                return Ok();
+            }
+            return null;
+        }
+
+        public IActionResult DeclineStatus(int missionAppId)
+        {
+
+            var result = _IUnitOfWork.MissionApplicationRepository.DeclineApplication(missionAppId);
+            if (result != 0)
+            {
+                return Ok();
+            }
+            return null;
+
+        }
+
+        public IActionResult getSearchedMissions(string? searchText)
+        {
+            List<MissionApplication> missionAppList = _IUnitOfWork.MissionApplicationRepository.getSearchedMissionList(searchText);
+            if(missionAppList != null)
+            {
+                List<MissionApplicationViewModel> missionAppVmList = new();
+                foreach (var mission in missionAppList)
+                {
+                    missionAppVmList.Add(ConvertToMissionAppVm(mission));
+                }
+                return PartialView("_MissionApplication", missionAppVmList);
+
+            }
+            else
+            {
+                var missionApplicationList = _IUnitOfWork.MissionApplicationRepository.getAllMissionApplication();
+
+                List<MissionApplicationViewModel> missionAppVmList = new();
+                
+                    foreach (var mission in missionApplicationList)
+                    {
+                        missionAppVmList.Add(ConvertToMissionAppVm(mission));
+                    }
+                
+                return PartialView("_MissionApplication", missionAppVmList);
+
+            }
+        }
     }
 
     

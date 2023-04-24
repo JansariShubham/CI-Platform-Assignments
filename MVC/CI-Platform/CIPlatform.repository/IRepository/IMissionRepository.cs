@@ -14,5 +14,7 @@ namespace CIPlatform.repository.IRepository
         public List<Mission> getAllMissions();
 
         public List<Mission> getFilters(Filters obj);
+
+        
     }
 }
