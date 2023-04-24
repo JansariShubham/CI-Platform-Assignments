@@ -18,11 +18,36 @@ namespace CIPlatform.repository.Repository
         {
             _appDbContext = appDbContext;
         }
+
+        public int ApproveStoryStatus(int storyId)
+        {
+            string query = "UPDATE story SET status = {0} WHERE story_id = {1}";
+            return _appDbContext.Database.ExecuteSqlRaw(query, 1, storyId);
+        }
+
+        public int DeclineStoryStatus(int storyId)
+        {
+            string query = "UPDATE story SET status = {0} WHERE story_id = {1}";
+            return _appDbContext.Database.ExecuteSqlRaw(query, 0, storyId);
+        }
+
         public List<Story> getAllStories()
         {
             return _appDbContext.Stories.Include(stories => stories.User)
-                .Include(stories => stories.StoryMedia).ToList();
+                .Include(stories => stories.StoryMedia)
+                .Include(stories => stories.Mission).ToList();
         }
+
+        public List<Story> getSearchedStories(string? searchText)
+        {
+            var story = _appDbContext.Stories.Include(s => s.User).Include(s => s.Mission).ToList();
+            if(searchText != null && searchText != "")
+            {
+                return story.Where(s => s.Title.ToLower().Contains(searchText.ToLower())).ToList();
+            }
+            return null!;
+        }
+
         public Story GetStoryWithInclude(Expression<Func<Story, bool>> filter)
         {
             return dbSet.Include(stories => stories.StoryMedia).FirstOrDefault(filter)!;

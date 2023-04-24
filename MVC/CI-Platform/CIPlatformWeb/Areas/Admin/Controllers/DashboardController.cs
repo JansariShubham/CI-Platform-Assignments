@@ -3,6 +3,7 @@ using CIPlatform.entities.ViewModels;
 using CIPlatform.repository.IRepository;
 using CIPlatform.utilities;
 using CIPlatformWeb.Areas.Users.Controllers;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CIPlatformWeb.Areas.Admin.Controllers
@@ -15,12 +16,14 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
         private readonly IUnitOfWork _IUnitOfWork;
 
         private readonly EmailSender _EmailSender;
+        private readonly IWebHostEnvironment _WebHostEnvironment;
 
-        public DashboardController(ILogger<HomeController> logger, IUnitOfWork iUnitOfWork, EmailSender emailSender)
+        public DashboardController(ILogger<HomeController> logger, IUnitOfWork iUnitOfWork, EmailSender emailSender, IWebHostEnvironment webHostEnvironment)
         {
             _logger = logger;
             _IUnitOfWork = iUnitOfWork;
             _EmailSender = emailSender;
+            _WebHostEnvironment = webHostEnvironment;
         }
     
         public IActionResult Index()
@@ -615,6 +618,141 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
                 return PartialView("_MissionApplication", missionAppVmList);
 
             }
+        }
+
+
+        public IActionResult getStoryList()
+        {
+            var storyList = _IUnitOfWork.StoryRepository.getAllStories().ToList();
+
+            List<StoryShareViewModel> storyVmList = new();
+            foreach(var story in storyList)
+            {
+                storyVmList.Add(ConvertToStoryVm(story));   
+            }
+            return PartialView("_Story", storyVmList);
+        }
+
+        private StoryShareViewModel ConvertToStoryVm(Story story)
+        {
+            StoryShareViewModel storyVm = new()
+            { 
+                StoryId = story.StoryId,
+                StoryTitle = story.Title,
+                User = story.User,
+                Mission = story.Mission,
+                Status = story.Status
+            };
+            return storyVm;
+
+        }
+
+        public IActionResult getSearchedStories(string? searchText)
+        {
+            var storyList = _IUnitOfWork.StoryRepository.getSearchedStories(searchText);
+            if (storyList != null)
+            {
+                List<StoryShareViewModel> storyVmList = new();
+                foreach (var story in storyList)
+                {
+                    storyVmList.Add(ConvertToStoryVm(story));
+                }
+                return PartialView("_Story", storyVmList);
+            }
+            else
+            {
+                var storiesList = _IUnitOfWork.StoryRepository.getAllStories().ToList();
+                List<StoryShareViewModel> storyVmList = new();
+                foreach (var story in storiesList)
+                {
+                    storyVmList.Add(ConvertToStoryVm(story));
+                }
+                return PartialView("_Story", storyVmList);
+            }
+        }
+
+
+        public IActionResult ApproveStory(int storyId)
+        {
+            _IUnitOfWork.StoryRepository.ApproveStoryStatus(storyId);
+            return Ok(200);
+        }
+
+        public IActionResult DeclineStory(int storyId)
+        {
+            _IUnitOfWork.StoryRepository.DeclineStoryStatus(storyId);
+            return Ok(200);
+        }
+
+
+        public IActionResult StoryDetail(int id)
+        {
+            var storyObj = _IUnitOfWork.StoryRepository.getAllStories().FirstOrDefault(s => s.StoryId == id);
+            StoryListingViewModel storyVm = new()
+            {
+                StoryId = storyObj.StoryId,
+                Description = storyObj.Description,
+                Title = storyObj.Title,
+                StoryViews = storyObj.StoryViews,
+                User = storyObj.User,
+                imageUrl = getUrl(storyObj.StoryMedia, storyObj.StoryId),
+                
+            };
+            return View(storyVm);
+        }
+
+        private string getUrl(ICollection<StoryMedia> storyMedia, int storyId)
+        {
+            var storyMediaObj = _IUnitOfWork.StoryMediaRepository.GetFirstOrDefault(sm => sm.StoryId == storyId);
+            if (storyMediaObj != null)
+            {
+                var storyName = storyMediaObj.MediaName;
+                var storyPath = storyMediaObj.MadiaPath;
+                var storyType = storyMediaObj.MediaType;
+
+                var url = storyPath + storyName + storyType;
+                return url;
+            }
+            return null;
+
+        }
+
+        public IActionResult DeleteStory(int storyId)
+        {
+           var storyMediaList =  _IUnitOfWork.StoryMediaRepository.GetAll().Where(sm => sm.StoryId == storyId);
+            
+            if (storyMediaList != null)
+            {
+                
+                string wwwRootPath = _WebHostEnvironment.WebRootPath;
+                var path = $@"{wwwRootPath}\images\storyimages";
+
+                foreach (var m in storyMediaList)
+                {
+
+                    var fileName = m.MediaName;
+                    var filePath = m.MadiaPath;
+                    var fileType = m.MediaType;
+
+
+
+                    var url = Path.Combine(path, fileName + fileType);
+                    System.IO.File.Delete(url);
+                    _IUnitOfWork.StoryMediaRepository.RemoveRange(storyMediaList);
+                    _IUnitOfWork.Save();
+
+                }
+            }
+           var storyInviteObj =  _IUnitOfWork.StoryInviteRepository.GetAll().Where(si => si.StoryId == storyId);
+            if(storyInviteObj != null)
+            {
+                _IUnitOfWork.StoryInviteRepository.RemoveRange(storyInviteObj);
+            }
+            var storyObj = _IUnitOfWork.StoryRepository.GetFirstOrDefault(s => s.StoryId == storyId);
+            _IUnitOfWork.StoryRepository.Delete(storyObj);
+            _IUnitOfWork.Save();
+            return Ok(200);
+            
         }
     }
 

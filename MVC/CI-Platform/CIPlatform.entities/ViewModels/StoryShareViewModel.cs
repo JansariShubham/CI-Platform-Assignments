@@ -35,7 +35,8 @@ namespace CIPlatform.entities.ViewModels
 
         //public string? ImageUrl { get; set;}
 
-
+        public virtual User? User { get; set; }
+        public virtual Mission? Mission { get; set; }
 
     }
 }

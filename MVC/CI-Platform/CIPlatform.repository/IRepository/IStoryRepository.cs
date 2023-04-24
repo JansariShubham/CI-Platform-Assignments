@@ -18,5 +18,13 @@ namespace CIPlatform.repository.IRepository
 
         void updateStoryViews(int? StoryId, long? StoryViews);
 
+
+        public List<Story> getSearchedStories(string? searchText);
+
+        public int ApproveStoryStatus(int storyId);
+
+        public int DeclineStoryStatus(int storyId);
+
+
     }
 }

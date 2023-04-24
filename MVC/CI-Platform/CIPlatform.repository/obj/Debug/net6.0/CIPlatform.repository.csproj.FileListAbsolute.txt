@@ -1,0 +1,17 @@
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\bin\Debug\net6.0\CIPlatform.repository.deps.json
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\bin\Debug\net6.0\CIPlatform.repository.runtimeconfig.json
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\bin\Debug\net6.0\CIPlatform.repository.dll
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\bin\Debug\net6.0\CIPlatform.repository.pdb
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\bin\Debug\net6.0\CIPlatform.entities.dll
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\bin\Debug\net6.0\CIPlatform.entities.pdb
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.0\CIPlatform.repository.csproj.AssemblyReference.cache
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.0\CIPlatform.repository.GeneratedMSBuildEditorConfig.editorconfig
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.0\CIPlatform.repository.AssemblyInfoInputs.cache
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.0\CIPlatform.repository.AssemblyInfo.cs
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.0\CIPlatform.repository.csproj.CoreCompileInputs.cache
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.0\CIPlatform.repository.csproj.CopyComplete
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.0\CIPlatform.repository.dll
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.0\refint\CIPlatform.repository.dll
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.0\CIPlatform.repository.pdb
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.0\CIPlatform.repository.genruntimeconfig.cache
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.repository\obj\Debug\net6.0\ref\CIPlatform.repository.dll

@@ -1178,3 +1178,187 @@ function searchMissions() {
         });
     });
 }
+
+
+$('#storyBtn').click( () => {
+    storyAjax();
+})
+
+function storyAjax() {
+    $.ajax({
+        type: "GET",
+        url: '/Admin/Dashboard/getStoryList',
+       
+        success: function (data) {
+            $('#adminPartial').html(data);
+            searchStories();
+            approveStory();
+            restoreStory();
+            declineStory();
+            deleteStory();
+        },
+        error: (err) => {
+            console.log("error in getting missionapp list");
+        }
+    });
+}
+
+function searchStories() {
+    var search = document.getElementById("searchInput");
+    search.addEventListener('input', () => {
+        searchText = search.value;
+        $.ajax({
+            type: "GET",
+            url: '/Admin/Dashboard/getSearchedStories',
+            data: { searchText: searchText },
+            success: function (data) {
+
+                $("#adminPartial").html(data);
+               
+                searchStories();
+                approveStory();
+                declineStory();
+                restoreStory();
+                deleteStory();
+                search = document.getElementById("searchInput");
+                search.focus();
+                search.value = searchText;
+            },
+            error: (err) => {
+                console.log("error in  getting users modal");
+            }
+        });
+    });
+}
+
+function approveStory() {
+    var approvedBtn = document.querySelectorAll(".approved-btn");
+    approvedBtn.forEach((approveButton) => {
+        var storyId = approveButton.getAttribute("data-storyid");
+        approveButton.addEventListener('click', () => {
+            $.ajax({
+                type: "POST",
+                url: '/Admin/Dashboard/ApproveStory',
+                data: { storyId : storyId },
+                success: function (data) {
+                    storyAjax();
+
+
+                },
+                error: (err) => {
+                    console.log("error in getting missionapp list");
+                }
+            });
+
+        })
+    })
+}
+
+
+function restoreStory() {
+ 
+    var restoreStory = document.querySelectorAll(".restore-btn");
+    restoreStory.forEach((restoreBtn) => {
+        //alert("hello")
+        var storyId = restoreBtn.getAttribute("data-storyid");
+        
+        restoreBtn.addEventListener('click', () => {
+            $.ajax({
+                type: "POST",
+                url: '/Admin/Dashboard/ApproveStory',
+                data: { storyId: storyId },
+                success: function (data) {
+                    storyAjax();
+
+
+                },
+                error: (err) => {
+                    console.log("error in getting missionapp list");
+                }
+            });
+        })
+    })
+}
+function declineStory() {
+    var declineStories = document.querySelectorAll(".decline-btn");
+    declineStories.forEach((declineBtn) => {
+        var storyId = declineBtn.getAttribute("data-storyid");
+        
+        declineBtn.addEventListener('click', () => {
+    
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You want to decline",
+                icon: "warning",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes",
+                cancelButtonText: "Cancle",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            })
+                .then((response) => {
+                    if (response.isConfirmed) {
+                        $.ajax({
+                            type: "POST",
+                            url: '/Admin/Dashboard/DeclineStory',
+                            data: { storyId: storyId },
+                            success: function (data) {
+                                storyAjax();
+
+
+                            },
+                            error: (err) => {
+                                console.log("error in getting missionapp list");
+                            }
+                        });
+                    }
+                });
+
+
+           
+        })
+    })
+}
+
+function deleteStory() {
+    var deleteStory = document.querySelectorAll(".delete-story");
+    deleteStory.forEach((deleteBtn) => {
+        
+        var storyId = deleteBtn.getAttribute("data-storyid");
+        deleteBtn.addEventListener('click', () => {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You want to decline",
+                icon: "warning",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes",
+                cancelButtonText: "Cancle",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            })
+                .then((response) => {
+                    if (response.isConfirmed) {
+
+                        $.ajax({
+                            type: "POST",
+                            url: '/Admin/Dashboard/DeleteStory',
+                            data: { storyId: storyId },
+                            success: function (data) {
+                                storyAjax();
+
+
+                            },
+                            error: (err) => {
+                                console.log("error in getting missionapp list");
+                            }
+                        });
+                    }
+                });
+        });
+       
+    })
+}
