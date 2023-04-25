@@ -1,10 +1,13 @@
 ﻿using CIPlatform.entities.DataModels;
 using CIPlatform.entities.ViewModels;
 using CIPlatform.repository.IRepository;
+using CIPlatform.repository.Repository;
 using CIPlatform.utilities;
 using CIPlatformWeb.Areas.Users.Controllers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Differencing;
+using System.Reflection.Metadata.Ecma335;
 
 namespace CIPlatformWeb.Areas.Admin.Controllers
 {
@@ -754,7 +757,198 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
             return Ok(200);
             
         }
-    }
+
+        public IActionResult getBannerList()
+        {
+            var bannerList = _IUnitOfWork.BannerRepository.GetAll();
+
+            List<BannerViewModel> bannerVmList = new();
+
+            foreach(var banner in bannerList) {
+                bannerVmList.Add(ConvertToBannerVm(banner));            
+            }
+
+            return PartialView("_Banner", bannerVmList);
+        }
+
+        private BannerViewModel ConvertToBannerVm(Banner banner)
+        {
+            BannerViewModel vm = new()
+            {
+                BannerId = banner.BannerId,
+                Path = banner.BannerImage,
+                SortOrder = banner.SortOrder,
+                TextDesc = banner.TextDesc,
+                TextTitle = banner.TextTitle,
+                Status = banner.Status,
+            };
+            return vm;
+        }
+
+
+        public IActionResult getBannerAddForm()
+        {
+            return PartialView("_AddBanner");
+        }
+
+        public IActionResult AddBannerDetails(IFormFile image, string TextTitle,string TextDesc, int SortOrder, bool Status)
+        {
+            
+            string wwwRootPath = _WebHostEnvironment.WebRootPath;
+            string fileName = Guid.NewGuid().ToString();
+            var path = @"images\banner_images";
+            var uploads = Path.Combine(wwwRootPath,path);
+            var extension = Path.GetExtension(image?.FileName);
+            using (var fileStrems = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+            {
+                image?.CopyTo(fileStrems);
+            }
+            
+            Banner obj = new()
+            {
+                BannerImage = @"\images\banner_images\" + fileName + extension,
+                CreatedAt = DateTimeOffset.Now,
+                TextDesc = TextDesc,
+                TextTitle = TextTitle,
+                SortOrder = SortOrder,
+                Status = Status
+            };
+
+            _IUnitOfWork.BannerRepository.Add(obj);
+            _IUnitOfWork.Save();
+            return Ok(200);
+        }
+
+
+        public IActionResult ChangeBannerStatus(int bannerId, bool status)
+        {
+            var result = 0;
+            if (status)
+            {
+                result =  _IUnitOfWork.BannerRepository.ChangeStatus(bannerId, false);
+            }
+            else
+            {
+               result =  _IUnitOfWork.BannerRepository.ChangeStatus(bannerId, true);
+            }
+            if (result != 0)
+            {
+                return Ok(200);
+            }
+            return StatusCode(500);
+        }
+
+        public IActionResult getEditBannerForm(int bannerId)
+        {
+           var bannerObj = _IUnitOfWork.BannerRepository.GetFirstOrDefault(b => b.BannerId == bannerId);
+            BannerViewModel bannerVm = new()
+            {
+                BannerId = bannerObj.BannerId,
+                Path = bannerObj.BannerImage,
+                SortOrder = bannerObj.SortOrder,
+                Status = bannerObj.Status,
+                TextDesc = bannerObj.TextDesc,
+                TextTitle = bannerObj.TextTitle,
+
+            };
+            return PartialView("_EditBanner", bannerVm);
+        }
+
+        public IActionResult EditBannerDetails(IFormFile image, string TextTitle, string TextDesc, int SortOrder, bool Status, int bannerId)
+        {
+           var bannerObj =  _IUnitOfWork.BannerRepository.GetFirstOrDefault(b => b.BannerId == bannerId);
+
+            
+            string wwwRootPath = _WebHostEnvironment.WebRootPath;
+            var path = $@"{wwwRootPath}\images\banner_images\";
+
+             var url = Path.Combine(path,Path.GetFileName(bannerObj.BannerImage!));
+             System.IO.File.Delete(url);
+
+              
+            string fileName = Guid.NewGuid().ToString();
+            
+            var uploads = Path.Combine(wwwRootPath, path);
+            var extension = Path.GetExtension(image?.FileName);
+            using (var fileStrems = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+            {
+                image?.CopyTo(fileStrems);
+            }
+
+            bannerObj.UpdatedAt = DateTimeOffset.Now;
+            bannerObj.TextDesc = TextDesc;
+            bannerObj.TextTitle = TextTitle;
+            bannerObj.BannerImage = @"\images\banner_images\" + fileName + extension;
+            bannerObj.Status = Status;
+            bannerObj.SortOrder = SortOrder;
+
+            _IUnitOfWork.BannerRepository.Update(bannerObj);
+            _IUnitOfWork.Save();
+
+            return Ok(200);
+        }
+
+        public IActionResult getMissionList()
+        {
+           var missionList =  _IUnitOfWork.MissionRepository.getAllMissions();
+            List<PlatformLandingViewModel> missionVmList = new();
+
+            foreach(var mission in missionList)
+            {
+                missionVmList.Add(ConvertToMissionVm(mission));
+
+            }
+            return PartialView("_Mission", missionVmList);
+        }
+
+        private PlatformLandingViewModel ConvertToMissionVm(Mission mission)
+        {
+            PlatformLandingViewModel missionVm = new()
+            {
+                MissionId= mission.MissionId,
+                Title = mission.Title,
+                EndDate= mission.EndDate,
+                StartDate = mission.StartDate,
+                MissionType = mission.MissionType
+
+            };
+            return missionVm;
+        }
+
+        public IActionResult getSearchedMission(string? searchText)
+        {
+           var missionList =  _IUnitOfWork.MissionRepository.GetSearchedMissionList(searchText);
+            if (missionList != null)
+            {
+                List<PlatformLandingViewModel> missionVmList = new();
+
+                foreach (var mission in missionList)
+                {
+                    missionVmList.Add(ConvertToMissionVm(mission));
+
+                }
+                return PartialView("_Mission", missionVmList);
+
+            }
+            else
+            {
+                var missionsList = _IUnitOfWork.MissionRepository.getAllMissions();
+                List<PlatformLandingViewModel> missionVmList = new();
+
+                foreach (var mission in missionsList)
+                {
+                    missionVmList.Add(ConvertToMissionVm(mission));
+
+                }
+                return PartialView("_Mission", missionVmList);
+            }
+            
+        }
+    } 
+}
 
     
-}
+    
+    
+
+    

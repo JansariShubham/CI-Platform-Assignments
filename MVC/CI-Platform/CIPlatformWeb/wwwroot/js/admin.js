@@ -1362,3 +1362,295 @@ function deleteStory() {
        
     })
 }
+
+
+$('#bannerBtn').click(() => {
+    
+    bannerAjax();
+})
+
+function bannerAjax() {
+    $.ajax({
+        type: "GET",
+        url: '/Admin/Dashboard/getBannerList',
+
+        success: function (data) {
+            $('#adminPartial').html(data);
+            getAddBannerForm();
+            deleteBanner();
+            getEditBannerForm();
+            
+        },
+        error: (err) => {
+            console.log("error in getting banner list");
+        }
+    });
+}
+
+function getAddBannerForm() {
+    //alert("hello");
+    $('#addBannerBtn').click(() => {
+        $.ajax({
+            type: "GET",
+            url: '/Admin/Dashboard/getBannerAddForm',
+
+            success: function (data) {
+                $('#adminPartial').html(data);
+                previewImage();
+                addBanner();
+            },
+            error: (err) => {
+                console.log("error in getting banner form");
+            }
+        });
+    })
+}
+
+function previewImage() {
+   
+    var bannerImageInput = document.getElementById("bannerImage");
+    var previewImg = document.getElementById("preview");
+    //var bannerImageInput = $('#bannerImage');
+
+    $('#bannerImage').change(() => {
+
+        var bannerImage = bannerImageInput.files[0];
+        //console.log(bannerImage);
+
+        previewImg.src = URL.createObjectURL(bannerImage);
+    })
+
+}
+
+function addBanner() {
+    $('#addBannerForm').submit((e) => {
+        e.preventDefault();
+        var bannerImageInput = document.getElementById("bannerImage");
+        if (bannerImageInput.files.length == 0) {
+            $('#imageError').text("Image is Required!");
+            return;
+        }
+        if ($('#addBannerForm').valid()) {
+           
+            var bannerImage = bannerImageInput.files[0];
+            //console.log(bannerImage);
+            var formData = new FormData($('#addBannerForm')[0]);
+            formData.append('image', bannerImage);
+            console.log(formData)
+            $.ajax({
+                type: "POST",
+                url: '/Admin/Dashboard/AddBannerDetails',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: (data) => {
+                    bannerAjax();
+                    Swal.fire(
+                        'Banner Added Successfully!',
+                        'You clicked the button!',
+                        'success'
+                    )
+
+
+                },
+                error: (err) => {
+                    console.log("error in adding ");
+                }
+            })
+        }
+        else {
+            return;
+        }
+    })
+}
+
+function deleteBanner() {
+    var deleteBanner = document.querySelectorAll(".delete-banner");
+    deleteBanner.forEach((deleteBtn) => {
+        var bannerId = deleteBtn.getAttribute("data-bannerid");
+        var status = deleteBtn.getAttribute("data-status");
+       
+        deleteBtn.addEventListener('click', () => {
+            if (status == "True") {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You want to decline",
+                    icon: "warning",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "Cancle",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                })
+                    .then((response) => {
+                        if (response.isConfirmed) {
+                            $.ajax({
+                                type: "POST",
+                                url: '/Admin/Dashboard/ChangeBannerStatus',
+                                data: { bannerId: bannerId, status: status },
+                                success: function (data) {
+                                    bannerAjax();
+                                },
+                                error: (err) => {
+                                    console.log("error in getting banner form");
+                                }
+                            });
+                            
+                        }
+                    });
+            }
+            else {
+
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Admin/Dashboard/ChangeBannerStatus',
+                    data: { bannerId: bannerId, status: status },
+                    success: function (data) {
+                        bannerAjax();
+                    },
+                    error: (err) => {
+                        console.log("error in getting banner form");
+                    }
+                });
+            }
+        })
+    })
+}
+
+function getEditBannerForm() {
+    var editBanner = document.querySelectorAll(".edit-banner");
+    editBanner.forEach((editBtn) => {
+        var bannerId = editBtn.getAttribute("data-bannerid");
+        editBtn.addEventListener('click', () => {
+            $.ajax({
+                type: "POST",
+                url: '/Admin/Dashboard/getEditBannerForm',
+                data: { bannerId: bannerId },
+                success: function (data) {
+                   
+                    $("#adminPartial").html(data);
+                    getBannerImage();
+                    previewImage();
+                    editBannerDetails(bannerId);
+                },
+                error: (err) => {
+                    console.log("error in getting banner form");
+                }
+            });
+        })
+    })
+}
+
+function getBannerImage() {
+    var existingImg = $('#bannerImg');
+    var fileName = existingImg.data("name");
+    var type = existingImg.data("type");
+
+    fetch(existingImg.val())
+        .then(response => response.arrayBuffer())
+        .then(buffer => {
+            const myFile = new File([buffer], fileName, { type: `image/${type}` });
+
+            let myFileList = new DataTransfer();
+            myFileList.items.add(myFile);
+            document.querySelector('#bannerImage').files = myFileList.files;
+
+        });
+       
+}
+
+
+function editBannerDetails(bannerId) {
+
+    $('#bannerForm').submit((e) => {
+        e.preventDefault();
+        var bannerImageInput = document.getElementById("bannerImage");
+        if (bannerImageInput.files.length == 0) {
+            $('#imageError').text("Image is Required!");
+            return;
+        }
+        if ($('#bannerForm').valid()) {
+
+            var bannerImage = bannerImageInput.files[0];
+            console.log( bannerImage);
+            
+            var formData = new FormData($('#bannerForm')[0]);
+            formData.append('image', bannerImage);
+            formData.append('bannerId', bannerId);
+            //console.log(formData)
+            $.ajax({
+                type: "POST",
+                url: '/Admin/Dashboard/EditBannerDetails',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: (data) => {
+                    bannerAjax();
+                    Swal.fire(
+                        'Banner Updated Successfully!',
+                        'You clicked the button!',
+                        'success'
+                    )
+
+
+                },
+                error: (err) => {
+                    console.log("error in updating ");
+                }
+            })
+        }
+        else {
+            return;
+        }
+    })
+
+}
+
+
+$('#missionBtn').click(() => {
+    missionAjax();
+})
+
+function missionAjax() {
+    $.ajax({
+        type: "GET",
+        url: '/Admin/Dashboard/getMissionList',
+
+        success: function (data) {
+            $('#adminPartial').html(data);
+            
+            searchMissions();
+        },
+        error: (err) => {
+            console.log("error in getting mission list");
+        }
+    });
+}
+
+function searchMissions() {
+    var search = document.getElementById("searchInput");
+    search.addEventListener('input', () => {
+        searchText = search.value;
+        $.ajax({
+            type: "GET",
+            url: '/Admin/Dashboard/getSearchedMission',
+            data: { searchText: searchText },
+            success: function (data) {
+
+                $("#adminPartial").html(data);
+                
+                search = document.getElementById("searchInput");
+                search.focus();
+                search.value = searchText;
+                searchMissions();
+            },
+            error: (err) => {
+                console.log("error in  getting users modal");
+            }
+        });
+
+    })
+}

@@ -141,6 +141,15 @@ namespace CIPlatform.repository.Repository
             
         }
 
-       
+        public List<Mission> GetSearchedMissionList(string? searchText)
+        {
+            if (searchText != null && searchText != "")
+            {
+                var mission = getAllMissions();
+
+                return mission.Where(m => m.Title.ToLower().Contains(searchText.ToLower())).ToList();
+            }
+            return null!;
+        }
     }
 }

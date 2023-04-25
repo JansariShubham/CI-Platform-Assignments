@@ -24,6 +24,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXFN0b3J5RGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_AddBanner.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9BZGRCYW5uZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_AddCms.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9BZGRDbXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -40,8 +44,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9BZGRVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_Banner.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9CYW5uZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_CMS.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9DTVMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_EditBanner.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9FZGl0QmFubmVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_EditCms.cshtml]
@@ -58,6 +70,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_EditUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9FZGl0VXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_Mission.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXF9NaXNzaW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/CI-Platform Assignments/MVC/CI-Platform/CIPlatformWeb/Areas/Admin/Views/Dashboard/_MissionApplication.cshtml]

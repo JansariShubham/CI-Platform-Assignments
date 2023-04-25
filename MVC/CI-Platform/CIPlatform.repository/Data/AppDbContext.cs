@@ -110,10 +110,14 @@ public partial class AppDbContext : DbContext
             entity.ToTable("banner");
 
             entity.Property(e => e.BannerId).HasColumnName("banner_id");
-            entity.Property(e => e.BannerImage).HasColumnName("banner_image");
+            entity.Property(e => e.BannerImage)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("banner_image");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
             entity.Property(e => e.SortOrder).HasColumnName("sort_order");
+            entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.TextDesc)
                 .HasColumnType("text")
                 .HasColumnName("text_desc");
@@ -308,6 +312,7 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.EndDate)
                 .HasColumnType("datetime")
                 .HasColumnName("end_date");
+            entity.Property(e => e.IsActive).HasColumnName("isActive");
             entity.Property(e => e.MissionType).HasColumnName("mission_type");
             entity.Property(e => e.OrgDetails)
                 .HasColumnType("text")

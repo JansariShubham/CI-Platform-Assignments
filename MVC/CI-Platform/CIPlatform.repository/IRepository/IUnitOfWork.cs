@@ -40,6 +40,8 @@ namespace CIPlatform.repository.IRepository
         IUserSkillRepository UserSkillRepository { get; }
 
         ICmsRepository CmsRepository { get; }
+
+        IBannerRepository BannerRepository { get; }
         void Save();
     }
 }

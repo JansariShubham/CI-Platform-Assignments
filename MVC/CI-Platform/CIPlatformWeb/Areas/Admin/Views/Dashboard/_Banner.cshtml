@@ -1,0 +1,81 @@
+﻿@model List<CIPlatform.entities.ViewModels.BannerViewModel>
+
+
+<div>
+    <div class="border-bottom">
+        <div class="head-border pb-3 fs-4">Banner</div>
+    </div>
+    <div class="">
+        <div class="mt-3">
+            <a class="btn border rounded-pill px-sm-3 py-sm-2 px-1 orange-btn" id="addBannerBtn"
+               style="border-color: #F88634 !important">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F88634"
+                     class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                </svg> Add
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive mt-3">
+        <table class="table">
+            <thead>
+                <tr class="cms-table">
+                    <th>Sr.No</th>
+                    <th>Banner Image</th>
+                    <th>Title</th>
+                    <th>Sort Order</th>
+                    <th>Action</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody class="">
+                @{
+                    var cnt = 1;
+                }
+                @foreach (var banner in Model)
+                {
+
+                    <tr class="text-secondary fw-bold">
+
+                        <td>
+                            @cnt
+                        </td>
+                        
+                        <td class="col-3">
+                            <img src="@banner.Path" class="h-50 w-50">
+
+                        </td>
+
+                        <td>@banner.TextTitle</td>
+                        <td>@banner.SortOrder</td>
+                        <td class="">
+                            <div class="d-flex gap-3">
+                                <img src="~/images/editing.png" alt="" class="edit-banner" data-bannerid ="@banner.BannerId">
+                                @if (banner.Status)
+                                {
+                                    <img src="~/images/bin.png" alt="" data-bannerid="@banner.BannerId" data-status="@banner.Status" class="delete-banner">
+                                }
+                                else
+                                {
+                                    <img src="~/images/restore.svg" id="restoreImg"  data-bannerid="@banner.BannerId" data-status="@banner.Status" class="delete-banner">
+                                }
+
+                            </div>
+
+                        </td>
+                    </tr>
+
+                    {
+                        cnt++;
+                    }
+                }
+
+
+            </tbody>
+        </table>
+
+    </div>
+</div>

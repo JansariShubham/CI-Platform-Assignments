@@ -7,7 +7,7 @@ public partial class Banner
 {
     public long BannerId { get; set; }
 
-    public byte[]? BannerImage { get; set; }
+    public string? BannerImage { get; set; }
 
     public string? TextDesc { get; set; }
 
@@ -20,4 +20,6 @@ public partial class Banner
     public DateTimeOffset? UpdatedAt { get; set; }
 
     public DateTimeOffset? DeletedAt { get; set; }
+
+    public bool Status { get; set; }
 }

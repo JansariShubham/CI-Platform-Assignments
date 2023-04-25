@@ -1,0 +1,51 @@
+﻿@model CIPlatform.entities.ViewModels.BannerViewModel
+<form id="addBannerForm" enctype="multipart/form-data">
+    <div class="border border-2">
+        <div class="py-2 px-4 bg-light fs-4 border-bottom border-2">Add Banner</div>
+        <div class="d-grid gap-3 p-4 color-darkgray">
+            <div>
+                <div>
+                <img class="mb-1 w-50 h-50" id="preview"/>
+                </div>
+                <label for="bannerImage" class="form-label">Banner Image</label>
+                <input type="file" class="form-control" id="bannerImage"  asp-for="BannerImage">
+                <span class="font-size text-danger" id="imageError"></span>
+            </div>
+            <div>
+                <label asp-for="TextTitle" class="form-label">Title</label>
+                <input type="text" class="form-control" asp-for="TextTitle" placeholder="Enter title">
+                <span class="font-size text-danger" asp-validation-for="TextTitle"></span>
+            </div>
+            <div>
+                <label asp-for="TextDesc" class="form-label"> Description</label>
+                <textarea asp-for="TextDesc" class="form-control" rows="4" placeholder="Enter description"></textarea>
+                <span asp-validation-for="TextDesc" class="font-size text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="SortOrder" class="form-label"> Sort Order</label>
+                <input type="text" class="form-control" asp-for="SortOrder" placeholder="Enter sort number">
+                <span class="font-size text-danger" asp-validation-for="SortOrder"></span>
+            </div>
+
+            <div>
+                <label asp-for="Status" class="form-label">Status</label>
+                <select class="form-select" asp-for="Status">
+                    <option selected disabled>Select Status</option>
+                    <option value="true">Active</option>
+                    <option value ="false">In Active</option>
+                </select>
+                <span class="font-size text-danger" asp-validation-for="Status"></span>
+            </div>
+        </div>
+    </div>
+
+        <div class="modal-footer border-0 mt-3 d-flex gap-3">
+            <a class="btn border-secondary rounded-pill px-4 py-2 text-secondary"
+               data-bs-dismiss="modal">Cancle</a>
+            <button type="submit" class="btn border rounded-pill px-4 py-2 orange-btn"
+                    style="border-color: #F88634 !important">
+                Save
+            </button>
+        </div>
+</form>
+<partial name="_ValidationScriptsPartial"></partial>
