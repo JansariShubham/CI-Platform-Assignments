@@ -46,6 +46,7 @@ namespace CIPlatform.entities.ViewModels
 
         public virtual String?  ThumbnailURL { get; set; }
 
+
         public virtual String? MissionDocURL { get; set; }
         public virtual MissionSkill MissionSkills { get; set; }
 
@@ -61,6 +62,8 @@ namespace CIPlatform.entities.ViewModels
         public int? TotalSeats { get; set; }
 
         public int? SeatsLeft { get; set; }
+
+        public bool IsActive { get; set; }
     }
 
 }

@@ -17,6 +17,8 @@ namespace CIPlatform.repository.IRepository
 
         public List<Mission> GetSearchedMissionList(string? searchText);
 
+        public int ChangeMissionStatus(int missionId, bool status);
+
 
 
     }

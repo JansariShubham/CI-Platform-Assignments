@@ -9,15 +9,26 @@
                 </div>
 
                 <div class="mt-3">
-                    <a class="btn border rounded-pill px-sm-3 py-sm-2 px-1 orange-btn"
+                    <a class="btn border rounded-pill px-sm-3 py-sm-2 px-1 orange-btn" id="addTimeBtn"
                         style="border-color: #F88634 !important" 
                         >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F88634"
                             class="bi bi-plus-lg" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                 d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-                        </svg> Add</a>
+                        </svg> Add Time Mission</a>
                 </div>
+
+        <div class="mt-3">
+            <a class="btn border rounded-pill px-sm-3 py-sm-2 px-1 orange-btn" id="addGoalBtn"
+               style="border-color: #F88634 !important">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F88634"
+                     class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                </svg> Add Goal Mission
+            </a>
+        </div>
             </div>
             <div class="table-responsive mt-3">
                 <table class="table">
@@ -51,11 +62,17 @@
                             <td>@mission.EndDate?.ToString("d")</td>
                             <td class="">
                                 <div class="d-flex gap-3">
-                                    <img src="~/images/editing.png" alt="">
+                                    <img src="~/images/editing.png" alt="" class ="edit-mission">
                                     
-                                        <img src="~/images/bin.png" alt="">
-                                    
-                                </div>
+                                    @if(mission.IsActive)
+                                    {
+                                    <img src="~/images/bin.png" alt="" class="delete-mission" data-status = "@mission.IsActive" data-missionid = "@mission.MissionId">
+                                }
+                                else
+                                {
+                                    <img src="~/images/restore.svg" alt="" id="restoreImg" class="delete-mission" data-status="@mission.IsActive" data-missionid="@mission.MissionId">
+                                }
+                            </div>
 
                             </td>
                         </tr>

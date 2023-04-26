@@ -24,6 +24,12 @@ namespace CIPlatform.repository.Repository
             _appDbContext = appDbContext;
         }
 
+        public int ChangeMissionStatus(int missionId, bool status)
+        {
+            string query = "UPDATE mission SET isActive = {0} WHERE mission_id = {1}";
+           return _appDbContext.Database.ExecuteSqlRaw(query, status, missionId);
+        }
+
         public List<Mission> getAllMissions()
         {
             var missionList = _appDbContext.Missions.Include(mission => mission.MissionApplications)

@@ -19,5 +19,7 @@ public partial class GoalMission
 
     public DateTimeOffset? DeletedAt { get; set; }
 
+    public long? GoalAchieved { get; set; }
+
     public virtual Mission? Mission { get; set; }
 }

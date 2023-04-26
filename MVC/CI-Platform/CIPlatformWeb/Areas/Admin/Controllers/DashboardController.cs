@@ -890,7 +890,7 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
 
         public IActionResult getMissionList()
         {
-           var missionList =  _IUnitOfWork.MissionRepository.getAllMissions();
+           var missionList =  _IUnitOfWork.MissionRepository.GetAll();
             List<PlatformLandingViewModel> missionVmList = new();
 
             foreach(var mission in missionList)
@@ -909,7 +909,8 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
                 Title = mission.Title,
                 EndDate= mission.EndDate,
                 StartDate = mission.StartDate,
-                MissionType = mission.MissionType
+                MissionType = mission.MissionType,
+                IsActive = mission.IsActive
 
             };
             return missionVm;
@@ -943,6 +944,236 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
                 return PartialView("_Mission", missionVmList);
             }
             
+        }
+
+
+        public IActionResult ChangeMissionStatus(int missionId, bool status)
+        {
+            var result = 0;
+            if(status)
+            {
+                result = _IUnitOfWork.MissionRepository.ChangeMissionStatus(missionId, false);
+            }
+            else
+            {
+                result = _IUnitOfWork.MissionRepository.ChangeMissionStatus(missionId, true);
+            }
+            if(result != 0)
+            {
+                return Ok(200);
+            }
+            return StatusCode(500);
+        }
+
+        public IActionResult getAddTimeMissionForm()
+        {
+           var cityList =  _IUnitOfWork.CityRepository.GetAll().ToList();
+            var countryList = _IUnitOfWork.CountryRepository.GetAll().ToList();
+
+            var themeList = _IUnitOfWork.MissionThemeRepository.GetAll().Where(t => t.Status != 0);
+            var skillList = _IUnitOfWork.SkillsRepository.GetAll().Where(s => s.Status != true);
+
+            TimeMissionViewModel timeMissionVm = new()
+            {
+                CityList = getCityListVm(cityList),
+                CountryList = getCountryList(countryList),
+                SkillList = getSkillList(skillList),
+                ThemeList = getThemeList(themeList)
+
+            };
+            return PartialView("_AddTimeMission", timeMissionVm);
+        }
+
+        private ICollection<ThemeViewModel> getThemeList(IEnumerable<MissionTheme> themeList)
+        {
+            List<ThemeViewModel> themeListVm = new();
+            foreach(var theme in themeList)
+            {
+                themeListVm.Add(ConvertToMissionThemeVm(theme));
+            }
+            return themeListVm;
+        }
+
+        private ICollection<SkillsViewModel> getSkillList(IEnumerable<Skill> skillList)
+        {
+            List<SkillsViewModel> skillListVm = new();
+            foreach(var skill in skillList)
+            {
+                skillListVm.Add(ConvertToSkillVm(skill));
+            }
+            return skillListVm;
+        }
+
+        private ICollection<CountryViewModel> getCountryList(List<Country> countryList)
+        {
+            List<CountryViewModel> countryVmList = new();
+            foreach(var country in countryList)
+            {
+                countryVmList.Add(ConvertToCountryVm(country));
+            }
+            return countryVmList;
+        }
+
+        private CountryViewModel ConvertToCountryVm(Country country)
+        {
+            CountryViewModel countryVm = new()
+            {
+                CountryId = country.CountryId,
+                Name = country.Name
+            };
+            return countryVm;
+        }
+
+        private ICollection<CityViewModel> getCityListVm(List<City> cityList)
+        {
+            List<CityViewModel> cityVmList = new();
+            foreach(var city in cityList)
+            {
+                cityVmList.Add(CovertToCityVm(city));
+            }
+            return cityVmList;
+        }
+
+        private CityViewModel CovertToCityVm(City city)
+        {
+            CityViewModel cityVm = new()
+            {
+                CityId = city.CityId,
+                Name = city.Name
+            };
+            return cityVm;
+        }
+
+        public IActionResult getAddGoalMissionForm()
+        {
+            var cityList = _IUnitOfWork.CityRepository.GetAll().ToList();
+            var countryList = _IUnitOfWork.CountryRepository.GetAll().ToList();
+
+            var themeList = _IUnitOfWork.MissionThemeRepository.GetAll().Where(t => t.Status != 0);
+            var skillList = _IUnitOfWork.SkillsRepository.GetAll().Where(s => s.Status != true);
+
+            GoalMissionViewModel goalMissionVm = new()
+            {
+                CityList = getCityListVm(cityList),
+                CountryList = getCountryList(countryList),
+                SkillList = getSkillList(skillList),
+                ThemeList = getThemeList(themeList)
+
+            };
+            return PartialView("_AddGoalMission", goalMissionVm);
+        }
+        
+
+        public IActionResult AddTimeMission(TimeMissionViewModel model,List<int> MissionSkills)
+        {
+            Mission missionObj = new()
+            {
+                Title = model.Title,
+                Description = model.Description,
+                ShortDesc = model.ShortDesc,
+                Availability = model.Availability,
+                CityId = model.CityId,
+                CountryId = model.CountryId,
+                CreatedAt = DateTimeOffset.Now,
+                EndDate = model.EndDate,
+                StartDate = model.StartDate,
+                IsActive = (bool)model.IsActive!,
+                TotalSeats = model.TotalSeats,
+                RegDeadline = model.RegDeadline,
+                ThemeId = model.ThemeId,
+                OrgDetails = model.OrgDetail,
+                OrgName = model.OrgDetail,
+                MissionType = true,
+                
+            };
+            _IUnitOfWork.MissionRepository.Add(missionObj);
+            _IUnitOfWork.Save();
+            SaveMissionSkill(MissionSkills, missionObj.MissionId);
+            SaveMissionMedia(model.Images, missionObj.MissionId);
+            SaveMissionDocuments(model.Documents, missionObj.MissionId);
+
+
+            return Ok(200);
+        }
+
+        private void SaveMissionDocuments(List<IFormFile>? documents, long missionId)
+        {
+            if (documents != null)
+            {
+                string wwwRootPath = _WebHostEnvironment.WebRootPath;
+                foreach (var f in documents)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"documents");
+                    var extension = Path.GetExtension(f?.FileName);
+
+                    using (var fileStrems = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        f?.CopyTo(fileStrems);
+                    }
+
+
+
+                    MissionDocument missionDocObj = new()
+                    {
+                        MissionId = missionId,
+                        DocumentPath = @"\images\documents\",
+                        DocumentName = fileName,
+                        DocumentType = extension!,
+                        CreatedAt = DateTimeOffset.Now,
+                    };
+
+                    _IUnitOfWork.MissionDocRepository.Add(missionDocObj);
+                    _IUnitOfWork.Save();
+                }
+            }
+        }
+
+        private void SaveMissionMedia(List<IFormFile>? images, long missionId)
+        {
+            if (images != null)
+            {
+                string wwwRootPath = _WebHostEnvironment.WebRootPath;
+                foreach (var f in images)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"images\mission_images");
+                    var extension = Path.GetExtension(f?.FileName);
+
+                    using (var fileStrems = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        f?.CopyTo(fileStrems);
+                    }
+
+
+
+                    MissionMedia missionMediaObj = new()
+                    {
+                        MissionId = missionId,
+                        MediaPath = @"\images\mission_images\",
+                        MediaName = fileName,
+                        MediaType = extension!,
+                        CreatedAt = DateTimeOffset.Now,
+                        DefaultMedia = true,
+                    };
+
+                    _IUnitOfWork.MissionMediaRepository.Add(missionMediaObj);
+                    _IUnitOfWork.Save();
+                }
+            }
+        }
+        public void SaveMissionSkill(List<int> MissionSkills, long missionId)
+        {
+            
+            foreach (var skill in MissionSkills)
+            {
+                MissionSkill skillObj = new();
+                skillObj.MissionId = missionId;
+                skillObj.SkillId = skill;
+                skillObj.CreatedAt = DateTimeOffset.Now;
+                _IUnitOfWork.MissionSkillRepository.Add(skillObj);
+                _IUnitOfWork.Save();
+            }
         }
     } 
 }

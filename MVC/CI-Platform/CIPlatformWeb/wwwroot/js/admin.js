@@ -1615,6 +1615,7 @@ $('#missionBtn').click(() => {
 })
 
 function missionAjax() {
+    tinymce.remove('#tiny');
     $.ajax({
         type: "GET",
         url: '/Admin/Dashboard/getMissionList',
@@ -1623,6 +1624,9 @@ function missionAjax() {
             $('#adminPartial').html(data);
             
             searchMissions();
+            deleteMission();
+            getAddTimeMissionForm();
+            getAddGoalMissionForm();
         },
         error: (err) => {
             console.log("error in getting mission list");
@@ -1646,11 +1650,280 @@ function searchMissions() {
                 search.focus();
                 search.value = searchText;
                 searchMissions();
+                deleteMission();
             },
             error: (err) => {
                 console.log("error in  getting users modal");
             }
         });
 
+    })
+}
+
+
+function deleteMission() {
+    
+    var deleteMission = document.querySelectorAll(".delete-mission");
+    deleteMission.forEach((deleteBtn) => {
+        var missionId = deleteBtn.getAttribute("data-missionid");
+        var status = deleteBtn.getAttribute("data-status");
+        deleteBtn.addEventListener('click', () => {
+            
+            if (status == "True") {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You want to In active this mission?",
+                    icon: "warning",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "Cancle",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                })
+                    .then((response) => {
+                        if (response.isConfirmed) {
+                            $.ajax({
+                                type: "POST",
+                                url: '/Admin/Dashboard/ChangeMissionStatus',
+                                data: { missionId: missionId, status: status },
+                                success: function (data) {
+                                    missionAjax();
+                                },
+                                error: (err) => {
+                                    console.log("error in getting banner form");
+                                }
+                            });
+                        }
+                    });
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: '/Admin/Dashboard/ChangeMissionStatus',
+                    data: { missionId: missionId, status: status },
+                    success: function (data) {
+                        missionAjax();
+                    },
+                    error: (err) => {
+                        console.log("error in getting banner form");
+                    }
+                });
+
+                
+            }
+        })
+    })
+}
+
+
+function getAddTimeMissionForm() {
+    $('#addTimeBtn').click(() => {
+        $.ajax({
+            type: "POST",
+            url: '/Admin/Dashboard/getAddTimeMissionForm',
+            
+            success: function (data) {
+                $('#adminPartial').html(data);
+                $.getScript('/js/tinymce.js');
+                console.log("succ");
+                getCitiesByCountry();
+                fileClick();
+                displayMissionImages();
+                previewDocuments();
+                addTimeMission();
+            },
+            error: (err) => {
+                console.log("error in getting banner form");
+            }
+        });
+    })
+}
+
+
+function getAddGoalMissionForm() {
+    $('#addGoalBtn').click(() => {
+        $.ajax({
+            type: "POST",
+            url: '/Admin/Dashboard/getAddGoalMissionForm',
+
+            success: function (data) {
+                $('#adminPartial').html(data);
+                $.getScript('/js/tinymce.js');
+                getCitiesByCountry();
+                console.log("succ");
+                fileClick();
+                displayMissionImages();
+                previewDocuments();
+            },
+            error: (err) => {
+                console.log("error in getting banner form");
+            }
+        });
+    })
+}
+
+
+function fileClick() {
+    var fileInput = document.getElementById("ImagesInput");
+    document.querySelector(".dragarea").addEventListener('click', () => {
+        fileInput.click();
+    })
+}
+
+
+
+//Get Cities By Country
+function getCitiesByCountry() {
+
+    $("#countryDropdown").change(function () {
+        var country = $(this).val();
+        $.ajax({
+            url: "/Users/Home/GetCitiesByCountry",
+            type: "GET",
+            dataType: "json",
+            data: { country: country },
+            success: function (result) {
+
+                var cityDropdown = $("#cityDropdown");
+                cityDropdown.empty();
+                
+                const cityFilter = document.querySelector("#cityDropdown");
+                cityFilter.innerHTML = `<option value="1" selected disabled>City</option>`;
+                result.forEach((c) => {
+                    cityFilter.innerHTML += `
+                    <option value=${c.cityId}>${c.name}</option>
+                        `
+                })
+            }
+        });
+    });
+}
+
+var images = [];
+
+
+function displayMissionImages() {
+    document.getElementById("ImagesInput").addEventListener("change", () => {
+        var files = document.getElementById("ImagesInput").files;
+
+        for (var i = 0; i < files.length; i++) {
+
+            images.push(files[i]);
+        }
+        displayImages();
+
+        //console.log(images);
+    })
+    var dragDiv = document.querySelector(".dragarea");
+
+
+    dragDiv.addEventListener("dragover", (e) => {
+        e.preventDefault();
+
+    })
+
+    dragDiv.addEventListener("drop", (e) => {
+        e.preventDefault();
+
+        var image = e.dataTransfer.files;
+
+        for (var i = 0; i < image.length; i++) {
+
+            images.push(image[i]);
+        }
+        displayImages();
+
+    })
+
+
+    dragDiv.addEventListener("dragenter", (e) => {
+        e.preventDefault();
+    })
+}
+
+function displayImages() {
+    document.querySelector(".selected-images").innerHTML = '';
+    for (var i = 0; i < images.length; i++) {
+        document.querySelector(".selected-images").innerHTML += `<div class = 'position-relative'> <img class = 'drag-img' src= ${URL.createObjectURL(images[i])} alt="">
+                    <a class = "btn delete-btn border-0" onclick = removeImg(${i})>
+                    <img class="cancle-image position-absolute" src='/images/cancel1.png'
+                        alt="">
+                    </a> </div>`;
+    }
+}
+
+function removeImg(index) {
+    images.splice(index, 1);
+    displayImages();
+}
+
+function setImageInput() {
+    var fileId = document.getElementById("ImagesInput");
+    let myFileList = new DataTransfer();
+    images.forEach(function (file) {
+        myFileList.items.add(file);
+        //console.log("hello" + file);
+    });
+    fileId.files = myFileList.files;
+}
+
+function previewDocuments() {
+    
+    var documentsInput = document.getElementById("DocumentsInput");
+    var selectedDocuments = document.querySelector('.selected-documents');
+    documentsInput.addEventListener("change", () => {
+        
+        selectedDocuments.innerHTML = '';
+        const documents = documentsInput.files;
+        for (let i = 0; i < documentsInput.files.length; i++) {
+            selectedDocuments.innerHTML += `<a target="_blank" href="${URL.createObjectURL(documents[i])}"
+                       class="btn border border-dark rounded-pill p-2 d-flex align-items-center gap-2 text-15">${documents[i].name}</a>`
+        }
+    })
+}
+
+
+function addTimeMission() {
+    $('#MissionForm').submit((e) => {
+        e.preventDefault();
+        setImageInput();
+        var descSpan = document.getElementById("descriptionError");
+        var tinyTextArea = tinymce.get("tiny").getContent();
+        if (tinyTextArea === "" || tinyTextArea === null) {
+            descSpan.innerHTML = "Please Enter Mission description!";
+            return;
+
+        }
+        var skill = $("#MissionSkills").find(':selected').length;
+        alert(skill)
+        if (skill === 0 || skill === null) {
+            $('#skillError').text("Please Enter Mission description!");
+            return;
+
+        }
+        if ($('#MissionForm').valid()) {
+            var formData = new FormData($('#MissionForm')[0]);
+            formData.set('Description', tinyTextArea);
+            console.log(formData);
+            $.ajax({
+                type: "POST",
+                url: '/Admin/Dashboard/AddTimeMission',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    missionAjax();
+                },
+                error: (err) => {
+                    console.log("error in getting banner form");
+                }
+            });
+
+        }
+        else {
+            return;
+        }
     })
 }

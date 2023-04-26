@@ -42,6 +42,12 @@ namespace CIPlatform.repository.IRepository
         ICmsRepository CmsRepository { get; }
 
         IBannerRepository BannerRepository { get; }
+
+        IMissionSkillRepository MissionSkillRepository { get; }
+
+        IMissionMediaRepository MissionMediaRepository { get; }
+
+        IMissionDocRepository MissionDocRepository { get; }
         void Save();
     }
 }

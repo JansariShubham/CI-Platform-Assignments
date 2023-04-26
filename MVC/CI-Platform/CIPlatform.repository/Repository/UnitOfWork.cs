@@ -48,6 +48,13 @@ namespace CIPlatform.repository.Repository
         public ICmsRepository CmsRepository { get; private set; }
 
         public IBannerRepository BannerRepository { get; private set; } 
+
+        public IMissionSkillRepository MissionSkillRepository { get; private set; }
+
+        public IMissionMediaRepository MissionMediaRepository { get; private set; }
+
+        public IMissionDocRepository MissionDocRepository { get; private set; }
+
         private AppDbContext _appDbContext;
 
         public UnitOfWork(AppDbContext appDbContext) 
@@ -73,6 +80,9 @@ namespace CIPlatform.repository.Repository
             UserSkillRepository = new UserSkillRepository(appDbContext);
             CmsRepository = new CmsRepository(appDbContext);
             BannerRepository = new BannerRepository(appDbContext);
+            MissionSkillRepository = new MissionSkillRepository(appDbContext);
+            MissionMediaRepository = new MissionMediaRepository(appDbContext);
+            MissionDocRepository = new MissionDocRepository(appDbContext);
         }
 
 

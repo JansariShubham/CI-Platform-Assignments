@@ -281,6 +281,7 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.GoalMissionId).HasColumnName("goal_mission_id");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
+            entity.Property(e => e.GoalAchieved).HasColumnName("goal_achieved");
             entity.Property(e => e.GoalObjectiveText)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -321,6 +322,7 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("org_name");
+            entity.Property(e => e.RegDeadline).HasColumnName("reg_deadline");
             entity.Property(e => e.ShortDesc)
                 .HasColumnType("text")
                 .HasColumnName("short_desc");
