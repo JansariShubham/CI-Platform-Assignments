@@ -1627,6 +1627,7 @@ function missionAjax() {
             deleteMission();
             getAddTimeMissionForm();
             getAddGoalMissionForm();
+            getEditMissionForm();
         },
         error: (err) => {
             console.log("error in getting mission list");
@@ -1756,6 +1757,7 @@ function getAddGoalMissionForm() {
                 fileClick();
                 displayMissionImages();
                 previewDocuments();
+                addGoalMission();
             },
             error: (err) => {
                 console.log("error in getting banner form");
@@ -1869,6 +1871,16 @@ function setImageInput() {
     fileId.files = myFileList.files;
 }
 
+
+function setDocInput() {
+    var fileId = document.getElementById("DocumentsInput");
+    let myFileList = new DataTransfer();
+    documents.forEach(function (file) {
+        myFileList.items.add(file);
+        //console.log("hello" + file);
+    });
+    fileId.files = myFileList.files;
+}
 function previewDocuments() {
     
     var documentsInput = document.getElementById("DocumentsInput");
@@ -1896,10 +1908,16 @@ function addTimeMission() {
             return;
 
         }
+
+        if (images.length == 0 || images.length < 1) {
+            var dragImgSpan = document.getElementById("mediaError");
+            dragImgSpan.innerHTML = "Minimum 1 Picture is Required!";
+            return;
+        }
         var skill = $("#MissionSkills").find(':selected').length;
-        alert(skill)
+        //alert(skill)
         if (skill === 0 || skill === null) {
-            $('#skillError').text("Please Enter Mission description!");
+            $('#skillError').text("Minimum 1 Skill is Required!");
             return;
 
         }
@@ -1915,6 +1933,11 @@ function addTimeMission() {
                 processData: false,
                 success: function (data) {
                     missionAjax();
+                    Swal.fire(
+                        'Mission Addded Successfully!',
+                        'You clicked the button!',
+                        'success'
+                    )
                 },
                 error: (err) => {
                     console.log("error in getting banner form");
@@ -1927,3 +1950,287 @@ function addTimeMission() {
         }
     })
 }
+
+function addGoalMission() {
+    $('#MissionForm').submit((e) => {
+        e.preventDefault();
+        setImageInput();
+        var descSpan = document.getElementById("descriptionError");
+        var tinyTextArea = tinymce.get("tiny").getContent();
+        if (tinyTextArea === "" || tinyTextArea === null) {
+            descSpan.innerHTML = "Please Enter Mission description!";
+            return;
+
+        }
+
+        if (images.length == 0 || images.length < 1) {
+            var dragImgSpan = document.getElementById("mediaError");
+            dragImgSpan.innerHTML = "Minimum 1 Picture is Required!";
+            return;
+        }
+        var skill = $("#MissionSkills").find(':selected').length;
+        //alert(skill)
+        if (skill === 0 || skill === null) {
+            $('#skillError').text("Minimum 1 Skill is Required!");
+            return;
+
+        }
+        if ($('#MissionForm').valid()) {
+            var formData = new FormData($('#MissionForm')[0]);
+            formData.set('Description', tinyTextArea);
+            console.log(formData);
+            $.ajax({
+                type: "POST",
+                url: '/Admin/Dashboard/AddGoalMission',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    missionAjax();
+                    Swal.fire(
+                        'Mission Added Successfully!',
+                        'You clicked the button!',
+                        'success'
+                    )
+                },
+                error: (err) => {
+                    console.log("error in getting banner form");
+                }
+            });
+
+        }
+        else {
+            return;
+        }
+    })
+}
+
+
+function getEditMissionForm() {
+    var editMission = document.querySelectorAll(".edit-mission");
+    editMission.forEach((editBtn) => {
+        var missionId = editBtn.getAttribute("data-missionid");
+        var missionType = editBtn.getAttribute("data-missiontype");
+        
+        editBtn.addEventListener('click', () => {
+            //alert(missionId + missionType);
+            if (missionType == "True") {
+                $.ajax({
+                    type: "GET",
+                    url: '/Admin/Dashboard/GetTimeMissionEditForm',
+                    data: { missionId: missionId},
+                    success: function (data) {
+
+                        $('#adminPartial').html(data);
+                        $.getScript('/js/tinymce.js');
+                        fileClick();
+                        previewMedia();
+                        displayMissionImages();
+                        previewDocuments();
+                        fetchAndCreateFiles();
+                        setDocInput();
+                        editTimemissionDetails(missionId);
+                        getCitiesByCountry();
+                       
+                    },
+                    error: (err) => {
+                        console.log("error in getting banner form");
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    type: "GET",
+                    url: '/Admin/Dashboard/GetGoalMissionEditForm',
+                    data: { missionId: missionId },
+                    success: function (data) {
+                        $('#adminPartial').html(data);
+                        $.getScript('/js/tinymce.js');
+                        fileClick();
+                        previewMedia();
+                        displayMissionImages();
+                        previewDocuments();
+                        //previewDoc();
+                        fetchAndCreateFiles();
+                        setDocInput();
+                        editGoalMissionDetails(missionId);
+                        getCitiesByCountry();
+                    },
+                    error: (err) => {
+                        console.log("error in getting banner form");
+                    }
+                });
+            }
+        })
+    })
+}
+
+
+function editTimemissionDetails(missionId) {
+    $('#MissionForm').submit((e) => {
+        e.preventDefault();
+        setImageInput();
+        var descSpan = document.getElementById("descriptionError");
+        var tinyTextArea = tinymce.get("tiny").getContent();
+        if (tinyTextArea === "" || tinyTextArea === null) {
+            descSpan.innerHTML = "Please Enter Mission description!";
+            return;
+
+        }
+
+        if (images.length == 0 || images.length < 1) {
+            var dragImgSpan = document.getElementById("mediaError");
+            dragImgSpan.innerHTML = "Minimum 1 Picture is Required!";
+            return;
+        }
+        var skill = $("#MissionSkills").find(':selected').length;
+        //alert(skill)
+        if (skill === 0 || skill === null) {
+            $('#skillError').text("Minimum 1 Skill is Required!");
+            return;
+
+        }
+        if ($('#MissionForm').valid()) {
+            var formData = new FormData($('#MissionForm')[0]);
+            formData.set('Description', tinyTextArea);
+            formData.set('MissionId', missionId);
+            console.log(formData);
+            $.ajax({
+                type: "POST",
+                url: '/Admin/Dashboard/EditTimeMissionDetails',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    missionAjax();
+                    Swal.fire(
+                        'Mission Updated Successfully!',
+                        'You clicked the button!',
+                        'success'
+                    )
+                },
+                error: (err) => {
+                    console.log("error in getting banner form");
+                }
+            });
+
+        }
+        else {
+            return;
+        }
+    })
+}
+
+
+function editGoalMissionDetails(missionId) {
+    $('#MissionForm').submit((e) => {
+        e.preventDefault();
+        setImageInput();
+        var descSpan = document.getElementById("descriptionError");
+        var tinyTextArea = tinymce.get("tiny").getContent();
+        if (tinyTextArea === "" || tinyTextArea === null) {
+            descSpan.innerHTML = "Please Enter Mission description!";
+            return;
+
+        }
+
+        if (images.length == 0 || images.length < 1) {
+            var dragImgSpan = document.getElementById("mediaError");
+            dragImgSpan.innerHTML = "Minimum 1 Picture is Required!";
+            return;
+        }
+        var skill = $("#MissionSkills").find(':selected').length;
+        //alert(skill)
+        if (skill === 0 || skill === null) {
+            $('#skillError').text("Minimum 1 Skill is Required!");
+            return;
+
+        }
+        if ($('#MissionForm').valid()) {
+            var formData = new FormData($('#MissionForm')[0]);
+            formData.set('Description', tinyTextArea);
+            formData.set('MissionId', missionId);
+            console.log(formData);
+            $.ajax({
+                type: "POST",
+                url: '/Admin/Dashboard/EditGoalMissionDetails',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    missionAjax();
+                    Swal.fire(
+                        'Mission Updated Successfully!',
+                        'You clicked the button!',
+                        'success'
+                    )
+                },
+                error: (err) => {
+                    console.log("error in getting banner form");
+                }
+            });
+
+        }
+        else {
+            return;
+        }
+    })
+}
+
+function previewMedia() {
+    images = [];
+    var missionMedia = $('#missionMedia');
+    
+
+    var mediaName = missionMedia.data('name');
+    var mediaType = missionMedia.data('type');
+    var mediaPath = missionMedia.data('path');
+
+    console.log("path===>>> " + mediaPath + mediaName + mediaType);
+
+
+    Promise.all(Array.from(document.querySelectorAll('[data-path]')).map((image, index) => {
+        const fileName = image.value;
+        const url = $(image).data("path") + $(image).data("name") + $(image).data("type");
+        const type = $(image).data("type");
+        return fetch(url)
+            .then(response => response.arrayBuffer())
+            .then(buffer => {
+                const myFile = new File([buffer], $(image).data("name") + $(image).data("type"), { type: `image/${type.slice(1)}` });
+                images.push(myFile);
+            });
+    }))
+        .then(() => {
+            displayImages();
+
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+var documents = [];
+async function fetchAndCreateFiles() {
+    documents = [];
+    const docImages = Array.from(document.querySelectorAll('#missionDoc'));
+    for (const image of docImages) {
+        const fileName = $(image).data("docname") + $(image).data("doctype");
+        const url = $(image).data("docpath") + $(image).data("docname") + $(image).data("doctype");
+        const type = $(image).data("doctype");
+        //const title = $(image).data("title");
+
+        const response = await fetch(url);
+        const buffer = await response.arrayBuffer();
+        const myFile = new File([buffer], fileName, { type: `image/${type.slice(1)}` });
+        documents.push(myFile);
+        //titles.push(title);
+    }
+    setDocInput();
+    var selectedDocuments = document.querySelector('.selected-documents');
+    selectedDocuments.innerHTML = '';
+    for (let i = 0; i < documents.length; i++) {
+        selectedDocuments.innerHTML += `<a target="_blank" href="${URL.createObjectURL(documents[i])}"
+                class="btn border border-dark rounded-pill p-2 d-flex align-items-center gap-2 text-15">${documents[i].name}</a>`
+    }
+}
+
+

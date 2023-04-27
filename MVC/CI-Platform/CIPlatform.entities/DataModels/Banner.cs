@@ -21,5 +21,5 @@ public partial class Banner
 
     public DateTimeOffset? DeletedAt { get; set; }
 
-    public bool Status { get; set; }
+    public bool? Status { get; set; }
 }

@@ -46,7 +46,7 @@ namespace CIPlatform.entities.ViewModels
         [Required(ErrorMessage = "Please Enter Short Description!")]
         public string? ShortDesc { get; set; }
 
-        public virtual MissionSkill? MissionSkills { get; set; }
+        public virtual List<MissionSkillViewModel>? MissionSkills { get; set; }
 
         
         public virtual ICollection<SkillsViewModel>? SkillList { get; set; }

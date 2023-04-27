@@ -95,7 +95,7 @@
                 <div>
                     <label asp-for="TotalSeats"></label>
                     <input type="text" class="form-control" asp-for="TotalSeats" placeholder="Enter total seats">
-                    <span class="text-danger font-size" asp-validation-for="TotalSeats"></span>
+                    
                 </div>
                 <div>
                     <label asp-for="RegDeadline"></label>
@@ -109,8 +109,8 @@
                 <div class="dragarea d-flex flex-column align-items-center justify-content-center border border-secondary border-dashed py-4 cursor-pointer">
                     <img src="~/images/drag-and-drop.png" alt="drag" />
                     <input type="file" asp-for="Images" id="ImagesInput" multiple hidden accept=".png, .jpg, .jpeg" />
-                    <span id="mediaError" class="text-danger text-14"></span>
                 </div>
+                    <span id="mediaError" class="text-danger font-size"></span>
                 <div class="selected-images d-flex gap-2 gap-md-3 flex-wrap mt-2"></div>
             </div>
             <div>

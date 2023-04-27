@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Routing.Constraints;
 namespace CIPlatformWeb.Areas.Users.Controllers
 {
     [Area("Users")]
+    [AuthenticateAdmin]
     public class StoryController : Controller
     {
         private readonly ILogger<HomeController> _logger;

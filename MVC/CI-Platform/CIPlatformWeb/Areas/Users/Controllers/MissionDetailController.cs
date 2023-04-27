@@ -10,6 +10,7 @@ using System.Security.Policy;
 namespace CIPlatformWeb.Areas.Users.Controllers
 {
     [Area("Users")]
+    [AuthenticateAdmin]
     public class MissionDetailController : Controller
     {
         private readonly ILogger<HomeController> _logger;

@@ -22,5 +22,7 @@ namespace CIPlatform.repository.IRepository
         public int ChangeUserStatus(long? userId, byte? status);
 
        public List<User> getSearchedResult(string? searchText);
+
+        public Admin GetAdminLoginCredentials(UserLoginViewModel model);
     }
 }

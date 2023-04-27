@@ -21,10 +21,11 @@ namespace CIPlatform.entities.ViewModels
         [Required(ErrorMessage = "Last name is required")]
         [StringLength(16, MinimumLength = 3, ErrorMessage = "Last Name must be minimum 3 charcters")]
         public string LastName { get; set; } = null!;
-        [Required(ErrorMessage = "Email is required")]
-        [RegularExpression(@"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
-+ "@"
-+ @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$", ErrorMessage = "Invalid Email ID")]
+       [Required(ErrorMessage = "Email is required")]
+//        [RegularExpression(@"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
+//+ "@"
+//+ @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$", ErrorMessage = "Invalid Email ID")]
+        [EmailAddress(ErrorMessage = "Invalid Email ID")]
         public string Email { get; set; } = null!;
         [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$", ErrorMessage ="Password must contain minimum 8 characters, 1 special character, number and capital letter")]
         [Required(ErrorMessage = "Password is required")]

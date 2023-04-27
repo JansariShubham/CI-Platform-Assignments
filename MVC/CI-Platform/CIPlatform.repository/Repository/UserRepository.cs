@@ -34,6 +34,16 @@ namespace CIPlatform.repository.Repository
              return _appDbContext.Users.FirstOrDefault(value);
         }
 
+        public Admin GetAdminLoginCredentials(UserLoginViewModel model)
+        {
+            Func<Admin, bool> value = (admin) =>
+            {
+                return (admin.Email == model.Email && admin.Password.Equals(model.Password));
+            };
+
+            return _appDbContext.Admins.FirstOrDefault(value);
+        }
+
         public int UpadateUserPassword(String Email, String Password)
         {
             var userEmail = new SqlParameter("@email", Email);

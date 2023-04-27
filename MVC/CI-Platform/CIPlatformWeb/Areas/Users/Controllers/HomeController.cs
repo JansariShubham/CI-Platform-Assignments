@@ -23,6 +23,7 @@ using Microsoft.CodeAnalysis.Differencing;
 namespace CIPlatformWeb.Areas.Users.Controllers
 {
     [Area("Users")]
+    [AuthenticateAdmin]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -55,16 +56,25 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         [HttpPost]
         public IActionResult Login(UserLoginViewModel model)
         {
-            
-
-            var result = _IUnitOfWork.UserRepository.GetLoginCredentials(model);
-
 
             if (ModelState.IsValid)
             {
+            var adminResult = _IUnitOfWork.UserRepository.GetAdminLoginCredentials(model);
+                if(adminResult != null)
+                {
+                    //HttpContext.Session.SetString("userAvatar", adminResult.Avatar!);
+                    HttpContext.Session.SetString("isAdmin", "true");
+
+                    HttpContext.Session.SetString("email", adminResult.Email.ToString());
+                    HttpContext.Session.SetString("firstName", adminResult.FirstName!.ToString());
+                    HttpContext.Session.SetString("lastName", adminResult.LastName!.ToString());
+                    HttpContext.Session.SetString("userId", adminResult.AdminId.ToString());
+                    return RedirectToAction("Index", "Dashboard", new {area = "Admin"});   
+                }
+                var result = _IUnitOfWork.UserRepository.GetLoginCredentials(model);
                 if (result != null)
                 {
-                    if(result.Status == 1)
+                    if(result?.Status == 1)
                     {
 
                         TempData["statuserror"] = "You are inactive for some reason!, Please contact admin for login";
@@ -76,7 +86,10 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                     HttpContext.Session.SetString("firstName", result.FirstName.ToString());
                     HttpContext.Session.SetString("lastName", result.LastName.ToString());
                     HttpContext.Session.SetString("userId", result.UserId.ToString());
+                    HttpContext.Session.SetString("userAvatar", result.Avatar!);
 
+
+                    
 
                     return RedirectToAction("PlatFormLandingPage");
                 }

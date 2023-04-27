@@ -30,6 +30,7 @@ namespace CIPlatform.repository.Repository
            return _appDbContext.Database.ExecuteSqlRaw(query, status, missionId);
         }
 
+       
         public List<Mission> getAllMissions()
         {
             var missionList = _appDbContext.Missions.Include(mission => mission.MissionApplications)
@@ -147,6 +148,21 @@ namespace CIPlatform.repository.Repository
             
         }
 
+        public Mission GetMissionById(long missionId)
+        {
+
+            var missions = _appDbContext.Missions.Include(missions => missions.GoalMissions)
+                 .Include(missions => missions.MissionMedia)
+
+                 .Include(missions => missions.MissionSkills).ThenInclude(m => m.Skill)
+                 .Include(missions => missions.Theme)
+                 .Include(missions => missions.City)
+                 .Include(missions => missions.Country)
+
+                 .Include(missions => missions.MissionDocuments).FirstOrDefault(m => m.MissionId == missionId);
+            return missions!;
+        }
+
         public List<Mission> GetSearchedMissionList(string? searchText)
         {
             if (searchText != null && searchText != "")
@@ -156,6 +172,11 @@ namespace CIPlatform.repository.Repository
                 return mission.Where(m => m.Title.ToLower().Contains(searchText.ToLower())).ToList();
             }
             return null!;
+        }
+
+        public void Update(Mission mission)
+        {
+            _appDbContext.Missions.Update(mission);
         }
     }
 }

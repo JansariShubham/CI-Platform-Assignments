@@ -4,9 +4,9 @@
         <div class="py-2 px-4 bg-light fs-4 border-bottom border-2">Add Mission</div>
         <div class="d-grid gap-3 p-4 color-darkgray">
             <div>
-                <label class="form-label"></label>
-                <input type="text" class="form-control" placeholder="Enter title" >
-                <span class="font-size text-danger" ></span>
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" placeholder="Enter title" asp-for="Title" >
+                <span class="font-size text-danger" asp-validation-for="Title" ></span>
             </div>
             <div>
                 <label asp-for="ShortDesc" class="form-label"></label>
@@ -16,7 +16,7 @@
             <div>
                 <label asp-for="Description" class="form-label"></label>
                 <textarea id="tiny" asp-for="Description"></textarea>
-                <span id="descriptionError" class="text-14 text-danger"></span>
+                <span id="descriptionError" class="font-size text-danger"></span>
             </div>
             <div>
                 <label asp-for="OrgName" class="form-label"></label>
@@ -38,7 +38,7 @@
                             <option value="@country.CountryId">@country.Name</option>
                         }
                     </select>
-                    <span class="text-danger text-14" asp-validation-for="CountryId"></span>
+                    <span class="text-danger font-size" asp-validation-for="CountryId"></span>
                 </div>
                 <div class="col">
                     <label class="form-label">Select Mission City</label>
@@ -80,8 +80,8 @@
                 <div>
                     <label asp-for="StartDate"></label>
                     <input type="date" class="form-control" asp-for="StartDate" placeholder="Select date">
-                    <span class="text-danger text-14" asp-validation-for="StartDate"></span>
-                    <span class="text-danger text-14" id="StartDateError"></span>
+                    <span class="text-danger font-size" asp-validation-for="StartDate"></span>
+                    <span class="text-danger font-size" id="StartDateError"></span>
                 </div>
                 <div>
                     <label asp-for="EndDate"></label>
@@ -117,8 +117,8 @@
                 <div class="dragarea d-flex flex-column align-items-center justify-content-center border border-secondary border-dashed py-4 cursor-pointer">
                     <img src="~/images/drag-and-drop.png" alt="drag" />
                     <input type="file" asp-for="Images" id="ImagesInput" multiple hidden accept=".png, .jpg, .jpeg" />
-                    <span id="mediaError" class="text-danger font-size"></span>
                 </div>
+                    <span id="mediaError" class="text-danger font-size"></span>
                 <div class="selected-images d-flex gap-2 gap-md-3 flex-wrap mt-2"></div>
             </div>
             <div>

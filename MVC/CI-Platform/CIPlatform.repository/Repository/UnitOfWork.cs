@@ -55,6 +55,8 @@ namespace CIPlatform.repository.Repository
 
         public IMissionDocRepository MissionDocRepository { get; private set; }
 
+        public IGoalMissionRepository GoalMissionRepository { get; private set; }
+
         private AppDbContext _appDbContext;
 
         public UnitOfWork(AppDbContext appDbContext) 
@@ -83,6 +85,7 @@ namespace CIPlatform.repository.Repository
             MissionSkillRepository = new MissionSkillRepository(appDbContext);
             MissionMediaRepository = new MissionMediaRepository(appDbContext);
             MissionDocRepository = new MissionDocRepository(appDbContext);
+            GoalMissionRepository = new GoalMissionRepository(appDbContext);    
         }
 
 

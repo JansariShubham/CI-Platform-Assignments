@@ -19,7 +19,9 @@ namespace CIPlatform.repository.IRepository
 
         public int ChangeMissionStatus(int missionId, bool status);
 
+        public Mission GetMissionById(long missionId);
 
+        public void Update(Mission mission);    
 
     }
 }

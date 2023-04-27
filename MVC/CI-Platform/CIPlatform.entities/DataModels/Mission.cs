@@ -41,7 +41,7 @@ public partial class Mission
 
     public int? TotalSeats { get; set; }
 
-    public bool IsActive { get; set; }
+    public bool? IsActive { get; set; }
 
     public DateTimeOffset? RegDeadline { get; set; }
 

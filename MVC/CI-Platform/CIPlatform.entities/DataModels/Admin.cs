@@ -20,4 +20,6 @@ public partial class Admin
     public DateTimeOffset? UpdatedAt { get; set; }
 
     public DateTimeOffset? DeletedAt { get; set; }
+
+    public string? Avatar { get; set; }
 }

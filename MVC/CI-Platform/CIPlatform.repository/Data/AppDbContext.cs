@@ -82,6 +82,9 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.AdminId)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("admin_id");
+            entity.Property(e => e.Avatar)
+                .IsUnicode(false)
+                .HasColumnName("avatar");
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             entity.Property(e => e.DeletedAt).HasColumnName("deleted_at");
             entity.Property(e => e.Email)
@@ -397,6 +400,10 @@ public partial class AppDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("document_type");
             entity.Property(e => e.MissionId).HasColumnName("mission_id");
+            entity.Property(e => e.Title)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("title");
             entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
 
             entity.HasOne(d => d.Mission).WithMany(p => p.MissionDocuments)

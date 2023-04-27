@@ -3,7 +3,7 @@
 *@
 @{
     var userId = Context.Session.GetString("userId");
-    var userName = Context.Session.GetString("userName");
+    var userName = Context.Session.GetString("firstName");
 }
 
 
@@ -75,9 +75,7 @@
                             <img class="m-1" src="~/images/drop-down.png" alt="#">
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" asp-action="UserEditProfile" asp-controller="Home" asp-route-id="@userId">My Profile</a></li>
-                            <li><a class="dropdown-item" asp-action="TimeSheet" asp-controller="Home" asp-route-id="@userId">Volunteering Timesheet</a></li>
-                            <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home">Logout</a></li>
+                            <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home" asp-area="Users">Logout</a></li>
                         </ul>
 
                     }

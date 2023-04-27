@@ -1,10 +1,10 @@
+D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\CIPlatformWeb.dll
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\appsettings.Development.json
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\appsettings.json
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\CIPlatformWeb.staticwebassets.runtime.json
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\CIPlatformWeb.exe
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\CIPlatformWeb.deps.json
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\CIPlatformWeb.runtimeconfig.json
-D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\CIPlatformWeb.dll
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\CIPlatformWeb.pdb
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\Azure.Core.dll
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatformWeb\bin\Debug\net6.0\Azure.Identity.dll

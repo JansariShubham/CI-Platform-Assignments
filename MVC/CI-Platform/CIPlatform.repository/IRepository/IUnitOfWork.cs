@@ -48,6 +48,8 @@ namespace CIPlatform.repository.IRepository
         IMissionMediaRepository MissionMediaRepository { get; }
 
         IMissionDocRepository MissionDocRepository { get; }
+
+        IGoalMissionRepository GoalMissionRepository { get; }
         void Save();
     }
 }

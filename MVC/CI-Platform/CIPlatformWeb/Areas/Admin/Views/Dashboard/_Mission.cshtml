@@ -62,7 +62,7 @@
                             <td>@mission.EndDate?.ToString("d")</td>
                             <td class="">
                                 <div class="d-flex gap-3">
-                                    <img src="~/images/editing.png" alt="" class ="edit-mission">
+                                    <img src="~/images/editing.png" alt="" class ="edit-mission" data-missionid = "@mission.MissionId" data-missiontype = "@mission.MissionType">
                                     
                                     @if(mission.IsActive)
                                     {
