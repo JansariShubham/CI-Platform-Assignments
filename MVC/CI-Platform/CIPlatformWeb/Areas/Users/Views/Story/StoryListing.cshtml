@@ -7,44 +7,48 @@
 
 
 <!-- navbar  -->
-<partial name = "_Navbar1" />
-<!-- image div  -->
-<div class="main-img d-flex justify-content-center flex-column">
-    <input type="hidden" value="@storyCnt" id="storyCount" />
-    <p class="text-white text-center img-caption d-none d-sm-block">
-        Lorem ipsum dolor sit amet, consectetur
-        adipisicing elit. Harum aliquam
-        culpa
-        asperiores quisquam id
-        corporis possimus cupiditate animi delectus consequuntur, maxime illum totam, nisi blanditiis iure
-        illo
-        veritatis beatae doloribus!
-    </p>
-    @if (userId != null)
-    {
-        <div class="d-flex justify-content-center">
-            <a asp-action="ShareStory" asp-route-id = "@userId" asp-controller="Story"  asp-area="Users" class="btn rounded-pill border text-white mt-1 px-3 font-size">
-                Share Your Story <img src="~/images/right-arrow.png" alt="#" class="arrow">
-            </a>
+<div class="d-grid min-vh-100 grid-index">
+    <partial name="_Navbar1" />
+    <!-- image div  -->
+    <section>
+
+        <div class="main-img d-flex justify-content-center flex-column">
+            <input type="hidden" value="@storyCnt" id="storyCount" />
+            <p class="text-white text-center img-caption d-none d-sm-block">
+                Lorem ipsum dolor sit amet, consectetur
+                adipisicing elit. Harum aliquam
+                culpa
+                asperiores quisquam id
+                corporis possimus cupiditate animi delectus consequuntur, maxime illum totam, nisi blanditiis iure
+                illo
+                veritatis beatae doloribus!
+            </p>
+            @if (userId != null)
+            {
+                <div class="d-flex justify-content-center">
+                    <a asp-action="ShareStory" asp-route-id="@userId" asp-controller="Story" asp-area="Users" class="btn rounded-pill border text-white mt-1 px-3 font-size">
+                        Share Your Story <img src="~/images/right-arrow.png" alt="#" class="arrow">
+                    </a>
+                </div>
+            }
         </div>
-    }
+
+
+
+        <div id="storyListingPartial"><partial name="_StoryListing"></partial> </div>
+
+
+        <!-- Pagination  -->
+
+        <ul class="pagination mt-5 d-flex justify-content-center">
+        </ul>
+
+    </section>
+    <partial name="_Footer" />
+
 </div>
-
-
-
-<div id="storyListingPartial"><partial name="_StoryListing"></partial> </div>
-
-
-<!-- Pagination  -->
-
-<ul class="pagination mt-5 d-flex justify-content-center">
-</ul>
-
-<partial name ="_Footer" />
-
-
 @section Scripts{
     @*<script src="~/js/site.js"></script>*@
-    <script src="~/js/pagination.js"></script>
-    
+<script src="~/js/pagination.js"></script>
+
 }

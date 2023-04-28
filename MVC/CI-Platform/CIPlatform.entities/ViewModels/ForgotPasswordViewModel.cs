@@ -14,5 +14,7 @@ namespace CIPlatform.entities.ViewModels
 + "@"
 + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$", ErrorMessage = "Invalid Email ID")]
         public string Email { get; set; } = null!;
+
+        public List<BannerViewModel>? banners { get; set; }
     }
 }

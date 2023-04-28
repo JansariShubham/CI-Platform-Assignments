@@ -2,7 +2,20 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-
+const drop = document.querySelector(".cms-dropdown");
+if (drop) {
+    $.ajax({
+        url: "/Users/Home/GetCmsList",
+        success: (result) => {
+            for (var cms of result) {
+                drop.innerHTML += `<li><a href="/Users/Home/CmsPage/${cms.cmsPageId}" class="dropdown-item">${cms.title}</a></li>`;
+            }
+        },
+        error: error => {
+            console.log(error);
+        }
+    });
+}
 $(document).ready(function () {
     const filterBtn = document.querySelector(".filter-btn");
     const sideBar = document.querySelector("#filter-menu");

@@ -12,12 +12,12 @@ public class AuthenticateAdmin : ActionFilterAttribute
         string actionName = filterContext.ActionDescriptor.DisplayName;
         if (!actionName.Contains("Logout"))
         {
-            string isAdmin = filterContext.HttpContext.Session.GetString("IsAdmin");
+            string isAdmin = filterContext.HttpContext.Session.GetString("isAdmin");
             if (isAdmin == "true")
             {
                 filterContext.Result = new RedirectToRouteResult(
                 new RouteValueDictionary {
-                { "Controller", "Home" },
+                { "Controller", "Dashboard" },
                 { "Action", "Index" },
                 {"Area", "Admin" }
                 });

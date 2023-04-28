@@ -1623,9 +1623,11 @@ function missionAjax() {
 
         success: function (data) {
             $('#adminPartial').html(data);
+            createPagination();
             
             searchMissions();
             deleteMission();
+            stopMission();
             getAddTimeMissionForm();
             getAddGoalMissionForm();
             getEditMissionForm();
@@ -1635,7 +1637,46 @@ function missionAjax() {
         }
     });
 }
+function stopMission() {
+    var deleteMission = document.querySelectorAll("[data-stop]");
+    deleteMission.forEach((deleteBtn) => {
+        var missionId = deleteBtn.getAttribute("data-stop");
+        
+        deleteBtn.addEventListener('click', () => {
 
+            
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You want to In active this mission?",
+                    icon: "warning",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "Cancle",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                })
+                    .then((response) => {
+                        if (response.isConfirmed) {
+                            $.ajax({
+                                type: "PUT",
+                                url: '/Admin/Dashboard/StopMission',
+                                data: { missionId: missionId},
+                                success: function (data) {
+                                    missionAjax();
+                                    
+                                },
+                                error: (err) => {
+                                    console.log("error in getting banner form");
+                                }
+                            });
+                        }
+                    });
+           
+        })
+    })
+}
 function searchMissions() {
     var search = document.getElementById("searchInput");
     search.addEventListener('input', () => {

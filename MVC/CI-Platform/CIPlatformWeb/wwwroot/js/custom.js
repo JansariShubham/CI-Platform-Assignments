@@ -1,9 +1,9 @@
 ﻿//Get Cities By Country
 $(document).ready(function () {
-    var filterMissionsCount = document.getElementById("missionCount").value;
+    var filterMissionsCount = document.getElementById("missionCountLanding").value;
     var missionCounts = document.getElementById("filterMissions");
     missionCounts.textContent = filterMissionsCount;
-
+    indexPagination();
     $("#country-filter").change(function () {
         var country = $(this).val();
         $.ajax({
@@ -128,8 +128,8 @@ function getFilterData() {
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         success: (result) => {
             $("#partial").html(result);
+            indexPagination();
             filterMissions();
-
         },
         error: (err) => {
             console.log("error...");
@@ -205,101 +205,103 @@ sortByFilter.addEventListener("change", () => {
 
 
 
-var missionCount = document.getElementById("missionCount").value;
 var ulPagination = document.querySelector(".pagination");
-//console.log("missions ===>" + missionCount);
-var totalPages = Math.ceil(missionCount / 4);
-if (missionCount < 4) {
+function indexPagination() {
+    var missionCount = document.getElementById("missionCount").value;
+    ulPagination.innerHTML = "";
+    //console.log("missions ===>" + missionCount);
 
-}
-else {
-    let li = document.createElement('li');
-    li.classList.add('page-item1');
-    let a = document.createElement('a');
-    a.classList.add('page-link');
-    a.classList.add('left-arrow');
-    // a.dataset.id = pageNumber;
-    li.classList.add('cursor-pointer');
-    li.append(a);
-    let image = document.createElement('img');
-    image.src = "./images/left.png";
-    a.append(image);
-    ulPagination.appendChild(li);
+    var totalPages = Math.ceil(missionCount / 4);
+    if (missionCount < 4) {
 
-    var i;
-    for (i = 1; i < totalPages + 1; i++) {
-
+    }
+    else {
         let li = document.createElement('li');
-        li.classList.add('page-item');
+        li.classList.add('page-item1');
         let a = document.createElement('a');
         a.classList.add('page-link');
+        a.classList.add('left-arrow');
+        // a.dataset.id = pageNumber;
         li.classList.add('cursor-pointer');
         li.append(a);
-        li.dataset.id = i;
-        a.textContent = i;
+        let image = document.createElement('img');
+        image.src = "./images/left.png";
+        a.append(image);
         ulPagination.appendChild(li);
+
+        var i;
+        for (i = 1; i < totalPages + 1; i++) {
+
+            let li = document.createElement('li');
+            li.classList.add('page-item');
+            let a = document.createElement('a');
+            a.classList.add('page-link');
+            li.classList.add('cursor-pointer');
+            li.append(a);
+            li.dataset.id = i;
+            a.textContent = i;
+            ulPagination.appendChild(li);
+        }
+
+
+        let list = document.createElement('li');
+        list.classList.add('page-item1');
+        let anchor = document.createElement('a');
+        //anchor.classList.add('page-link-side-arrows');
+        anchor.classList.add('page-link');
+        anchor.classList.add('right-arrow');
+        // anchor.dataset.id = pageNumber;
+        //console.log(i);
+        list.classList.add('cursor-pointer');
+        list.append(anchor);
+        let images = document.createElement('img');
+        images.src = "./images/right-arrow1.png";
+        anchor.append(images);
+        ulPagination.appendChild(list);
+
+
+
+        var rightArrow = document.querySelector('.right-arrow');
+        rightArrow.addEventListener('click', () => {
+            //console.log("rightarrowCalled!!!")
+            if (pageNumber >= 3) {
+                pageNumber = 1;
+            }
+            else {
+                pageNumber++;
+            }
+            //console.log("pageNumber ===>>>" + pageNumber)
+            getFilterData();
+        })
+        var leftArrow = document.querySelector('.left-arrow');
+        leftArrow.addEventListener('click', () => {
+            //console.log("rightarrowCalled!!!")
+            if (pageNumber <= 1) {
+                pageNumber = 1;
+            }
+            else {
+
+                pageNumber--;
+            }
+            //console.log("pageNumber ===>>>" + pageNumber)
+            getFilterData();
+        })
     }
 
 
-    let list = document.createElement('li');
-    list.classList.add('page-item1');
-    let anchor = document.createElement('a');
-    //anchor.classList.add('page-link-side-arrows');
-    anchor.classList.add('page-link');
-    anchor.classList.add('right-arrow');
-    // anchor.dataset.id = pageNumber;
-    //console.log(i);
-    list.classList.add('cursor-pointer');
-    list.append(anchor);
-    let images = document.createElement('img');
-    images.src = "./images/right-arrow1.png";
-    anchor.append(images);
-    ulPagination.appendChild(list);
-
-
-
-}
-
-
-var pages = document.querySelectorAll('.page-item');
-pages.forEach((page) => {
-    page.addEventListener("click", () => {
-        pageNumber = page.dataset.id;
-        getFilterData();
+    var pages = document.querySelectorAll('.page-item');
+    pages.forEach((page) => {
+        page.addEventListener("click", () => {
+            pageNumber = page.dataset.id;
+            getFilterData();
+        })
     })
-})
-
-var rightArrow = document.querySelector('.right-arrow');
-rightArrow.addEventListener('click', () => {
-    //console.log("rightarrowCalled!!!")
-    if (pageNumber >= 3) {
-        pageNumber = 1;
-    }
-    else {
-        pageNumber++;
-    }
-    //console.log("pageNumber ===>>>" + pageNumber)
-    getFilterData();
-})
-
-var leftArrow = document.querySelector('.left-arrow');
-leftArrow.addEventListener('click', () => {
-    //console.log("rightarrowCalled!!!")
-    if (pageNumber <= 1) {
-        pageNumber = 1;
-    }
-    else {
-
-    pageNumber--;
-    }
-    //console.log("pageNumber ===>>>" + pageNumber)
-    getFilterData();
-})
-
+}
 
 
 function filterMissions() {
-    var filterMissionsCount = document.getElementById("filterMissionCnt").value;
+
+    var filterMissionsCount = document.getElementById("missionCount").value;
     // console.log("filter missions: " + filterMissionsCount)
     var missionCounts = document.getElementById("filterMissions");
     missionCounts.textContent = filterMissionsCount;

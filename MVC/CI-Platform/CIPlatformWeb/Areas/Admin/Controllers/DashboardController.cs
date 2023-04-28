@@ -358,6 +358,17 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
             return PartialView("_AddMissionTheme");
         }
 
+        [HttpPut]
+        public IActionResult StopMission(long missionId)
+        {
+            int result = _IUnitOfWork.MissionRepository.CloseMission(missionId);
+            if(result != 0)
+            {
+
+            return Ok();
+            }
+            return StatusCode(500);
+        }
 
         public IActionResult AddMissionTheme(ThemeViewModel model)
         {
@@ -917,8 +928,9 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
                 EndDate = mission.EndDate,
                 StartDate = mission.StartDate,
                 MissionType = mission.MissionType,
-                IsActive = (bool)mission.IsActive
-
+                IsActive = (bool)mission.IsActive,
+                Status = mission.Status
+                
             };
             return missionVm;
         }
@@ -1065,7 +1077,6 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
                 CountryList = getCountryList(countryList),
                 SkillList = getSkillList(skillList),
                 ThemeList = getThemeList(themeList)
-
             };
             return PartialView("_AddGoalMission", goalMissionVm);
         }
@@ -1091,6 +1102,7 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
                 OrgDetails = model.OrgDetail,
                 OrgName = model.OrgDetail,
                 MissionType = true,
+                Status = true
 
             };
             _IUnitOfWork.MissionRepository.Add(missionObj);
@@ -1105,25 +1117,25 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
 
         public IActionResult AddGoalMission(GoalMissionViewModel model, List<int> MissionSkills)
         {
-            Mission missionObj = new()
-            {
-                Title = model.Title,
-                Description = model.Description,
-                ShortDesc = model.ShortDesc,
-                Availability = model.Availability,
-                CityId = model.CityId,
-                CountryId = model.CountryId,
-                CreatedAt = DateTimeOffset.Now,
-                EndDate = model.EndDate,
-                StartDate = model.StartDate,
-                IsActive = (bool)model.IsActive!,
-                TotalSeats = model.TotalSeats,
-                RegDeadline = model.RegDeadline,
-                ThemeId = model.ThemeId,
-                OrgDetails = model.OrgDetail,
-                OrgName = model.OrgDetail,
-                MissionType = false,
-
+        Mission missionObj = new()
+        {
+            Title = model.Title,
+            Description = model.Description,
+            ShortDesc = model.ShortDesc,
+            Availability = model.Availability,
+            CityId = model.CityId,
+            CountryId = model.CountryId,
+            CreatedAt = DateTimeOffset.Now,
+            EndDate = model.EndDate,
+            StartDate = model.StartDate,
+            IsActive = (bool)model.IsActive!,
+            TotalSeats = model.TotalSeats,
+            RegDeadline = model.RegDeadline,
+            ThemeId = model.ThemeId,
+            OrgDetails = model.OrgDetail,
+            OrgName = model.OrgDetail,
+            MissionType = false,
+            Status = true
             };
             _IUnitOfWork.MissionRepository.Add(missionObj);
             _IUnitOfWork.Save();

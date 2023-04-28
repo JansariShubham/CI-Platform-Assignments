@@ -1,0 +1,42 @@
+﻿@model List<CIPlatform.entities.ViewModels.BannerViewModel>
+<div id="carouselExampleCaptions" class="carousel slide d-flex hero-image justify-content-center flex-column" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        @{
+            int i = 0;
+        }
+        @foreach (var banner in Model)
+        {
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@i" 
+            class="@((i == 0) ? "active" : "")"
+            aria-current="@((i == 0) ? true : false)" 
+            aria-label="Slide @i"></button>
+            i++;            
+        }
+    </div>
+    <div class="carousel-inner h-100">
+        @{
+            i = 0;
+        }
+        @foreach (var banner in Model)
+        {
+            <div class="carousel-item h-100 @((i == 0) ? "active" : "")" data-bs-interval="3000">
+                <div class="carousel-overlay"></div>
+                <img src="@banner.Path" alt="carousel image"
+                 class="w-100 h-100 object-fit-cover">
+                <div class="carousel-caption">
+                    <h5 class="d-none d-md-block">@banner.TextTitle</h5>
+                    <p class="d-none d-lg-block">@banner.TextDesc</p>
+                </div>
+            </div>
+            i++;
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

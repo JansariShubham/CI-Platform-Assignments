@@ -31,8 +31,10 @@ namespace CIPlatform.entities.ViewModels
 
         public string? OrgName { get; set; }
 
+        public double MissionRate { get; set; }
         public string? OrgDetails { get; set; }
 
+        public DateTimeOffset? RegistrationDeadline { get; set; }
         public virtual City? City { get; set; }
 
         public virtual Country? Country { get; set; }

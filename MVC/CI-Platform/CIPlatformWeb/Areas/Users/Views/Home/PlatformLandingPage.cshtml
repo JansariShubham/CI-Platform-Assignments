@@ -6,7 +6,7 @@
 @{
     var UserName = Context.Session.GetString("firstName");
     var userId = Context.Session.GetString("userId");
-    var missionCnt = ViewBag.missionCount;
+    var missionCnt = ViewBag.missionCnt;
 }
 @*@if (TempData["EditProfileSuccess"] != null)
 {
@@ -19,7 +19,7 @@
 
 <input type="hidden" value="@TempData["EditProfileSuccess"]" id="editProfileSuccess" />
 <partial name="_Navbar" />
-<input type="hidden" value="@missionCnt" id="missionCount" />
+<input type="hidden" value="@missionCnt" id="missionCountLanding" />
 <!-- third section  -->
 <section class="d-none d-md-inline">
     <div class="third-div container d-none" id="filterOptionArea">
