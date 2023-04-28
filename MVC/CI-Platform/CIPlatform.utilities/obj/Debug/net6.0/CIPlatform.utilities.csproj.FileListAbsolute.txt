@@ -10,3 +10,15 @@ D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.utilities\obj\Debug\net6.0
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.utilities\obj\Debug\net6.0\refint\CIPlatform.utilities.dll
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.utilities\obj\Debug\net6.0\CIPlatform.utilities.pdb
 D:\CI-Platform Assignments\MVC\CI-Platform\CIPlatform.utilities\obj\Debug\net6.0\ref\CIPlatform.utilities.dll
+D:\Shubham\MVC\CI-Platform\CIPlatform.utilities\bin\Debug\net6.0\CIPlatform.utilities.deps.json
+D:\Shubham\MVC\CI-Platform\CIPlatform.utilities\bin\Debug\net6.0\CIPlatform.utilities.dll
+D:\Shubham\MVC\CI-Platform\CIPlatform.utilities\bin\Debug\net6.0\ref\CIPlatform.utilities.dll
+D:\Shubham\MVC\CI-Platform\CIPlatform.utilities\bin\Debug\net6.0\CIPlatform.utilities.pdb
+D:\Shubham\MVC\CI-Platform\CIPlatform.utilities\obj\Debug\net6.0\CIPlatform.utilities.csproj.AssemblyReference.cache
+D:\Shubham\MVC\CI-Platform\CIPlatform.utilities\obj\Debug\net6.0\CIPlatform.utilities.GeneratedMSBuildEditorConfig.editorconfig
+D:\Shubham\MVC\CI-Platform\CIPlatform.utilities\obj\Debug\net6.0\CIPlatform.utilities.AssemblyInfoInputs.cache
+D:\Shubham\MVC\CI-Platform\CIPlatform.utilities\obj\Debug\net6.0\CIPlatform.utilities.AssemblyInfo.cs
+D:\Shubham\MVC\CI-Platform\CIPlatform.utilities\obj\Debug\net6.0\CIPlatform.utilities.csproj.CoreCompileInputs.cache
+D:\Shubham\MVC\CI-Platform\CIPlatform.utilities\obj\Debug\net6.0\CIPlatform.utilities.dll
+D:\Shubham\MVC\CI-Platform\CIPlatform.utilities\obj\Debug\net6.0\ref\CIPlatform.utilities.dll
+D:\Shubham\MVC\CI-Platform\CIPlatform.utilities\obj\Debug\net6.0\CIPlatform.utilities.pdb

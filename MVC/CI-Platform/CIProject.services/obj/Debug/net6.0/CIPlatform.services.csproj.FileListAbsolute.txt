@@ -27,3 +27,32 @@ D:\CI-Platform Assignments\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\r
 D:\CI-Platform Assignments\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\CIPlatform.services.pdb
 D:\CI-Platform Assignments\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\CIPlatform.services.genruntimeconfig.cache
 D:\CI-Platform Assignments\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\ref\CIPlatform.services.dll
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\appsettings.Development.json
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\appsettings.json
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatformWeb.deps.json
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatformWeb.runtimeconfig.json
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatformWeb.staticwebassets.runtime.json
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatformWeb.exe
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatform.services.deps.json
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatform.services.runtimeconfig.json
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatform.services.dll
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\ref\CIPlatform.services.dll
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatform.services.pdb
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatform.entities.dll
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatform.repository.dll
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatform.utilities.dll
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatformWeb.dll
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatform.entities.pdb
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatform.repository.pdb
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatformWeb.pdb
+D:\Shubham\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatform.utilities.pdb
+D:\Shubham\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\CIPlatform.services.csproj.AssemblyReference.cache
+D:\Shubham\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\CIPlatform.services.GeneratedMSBuildEditorConfig.editorconfig
+D:\Shubham\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\CIPlatform.services.AssemblyInfoInputs.cache
+D:\Shubham\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\CIPlatform.services.AssemblyInfo.cs
+D:\Shubham\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\CIPlatform.services.csproj.CoreCompileInputs.cache
+D:\Shubham\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\CIPlatform.services.csproj.CopyComplete
+D:\Shubham\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\CIPlatform.services.dll
+D:\Shubham\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\ref\CIPlatform.services.dll
+D:\Shubham\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\CIPlatform.services.pdb
+D:\Shubham\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\CIPlatform.services.genruntimeconfig.cache
