@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 D:\CI-Platform Assignments\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatformWeb.deps.json
 D:\CI-Platform Assignments\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\CIPlatformWeb.runtimeconfig.json
 D:\CI-Platform Assignments\MVC\CI-Platform\CIProject.services\bin\Debug\net6.0\appsettings.Development.json
@@ -56,3 +57,5 @@ D:\Shubham\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\CIPlatform.servic
 D:\Shubham\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\ref\CIPlatform.services.dll
 D:\Shubham\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\CIPlatform.services.pdb
 D:\Shubham\MVC\CI-Platform\CIProject.services\obj\Debug\net6.0\CIPlatform.services.genruntimeconfig.cache
+=======
+>>>>>>> c71f1fcdf013e120b38ba1ca1ec5ecf3ad625424

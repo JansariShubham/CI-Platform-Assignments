@@ -34,7 +34,7 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
         {
             if(HttpContext.Session.GetString("isAdmin") != "true")
             {
-                return RedirectToAction("Index", "PlatFormLandingPage", new { area = "Users" });
+                return RedirectToAction("PlatFormLandingPage", "Home", new { area = "Users" });
             }
             return View();
         }
@@ -1263,6 +1263,7 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
                 ThemeId = missionObj.ThemeId,
                 Title = missionObj.Title,
                 RegDeadline = missionObj.RegDeadline,
+                
 
             };
 
@@ -1307,7 +1308,7 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
 
         }
 
-        public IActionResult EditTimeMissionDetails(TimeMissionViewModel model, List<int> MissionSkills)
+        public IActionResult EditTimeMissionDetails(TimeMissionViewModel model, List<int> MissionSkills, List<int> preloadedMissionSkill)
         {
             var missionObj = _IUnitOfWork.MissionRepository.GetFirstOrDefault(m => m.MissionId == model.MissionId);
             missionObj.Availability = model.Availability;
@@ -1335,24 +1336,42 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
 
             EditMissionMedia(model.Images, model.MissionId);
             EditMissionDocuments(model.Documents, model.MissionId);
-            EditMissionSkills(model.MissionId, MissionSkills);
+            EditMissionSkills(model.MissionId, MissionSkills, preloadedMissionSkill);
             return Ok();
         }
 
-        private void EditMissionSkills(long? missionId, List<int> missionSkills)
+        private void EditMissionSkills(long? missionId, List<int> missionSkills, List<int> preloaded )
         {
-           var skillObj =  _IUnitOfWork.MissionSkillRepository.GetFirstOrDefault(m => m.MissionId == missionId);
-            if (skillObj != null)
+            // var skillObj =  _IUnitOfWork.MissionSkillRepository.GetFirstOrDefault(m => m.MissionId == missionId);
+            ////var skillObjList = _IUnitOfWork.MissionSkillRepository.GetAll().Where(ms => ms.MissionId == missionId);
+            //  if (skillObj != null)
+            //  {
+            //      foreach (var skill in missionSkills)
+            //      {
+            //          skillObj.SkillId = skill;
+            //          skillObj.UpdatedAt = DateTimeOffset.Now;
+            //          _IUnitOfWork.MissionSkillRepository.Update(skillObj);
+            //      }
+            //      _IUnitOfWork.Save();
+            //  }
+            var skillObjList = _IUnitOfWork.MissionSkillRepository.GetAll().Where(ms => ms.MissionId == missionId);
+            if(skillObjList != null)
             {
+                _IUnitOfWork.MissionSkillRepository.RemoveRange(skillObjList);
 
                 foreach (var skill in missionSkills)
                 {
+                    MissionSkill skillObj = new();
+                    skillObj.MissionId = (long)missionId; 
                     skillObj.SkillId = skill;
                     skillObj.UpdatedAt = DateTimeOffset.Now;
-                    _IUnitOfWork.MissionSkillRepository.Update(skillObj);
+                    _IUnitOfWork.MissionSkillRepository.Add(skillObj);
                 }
                 _IUnitOfWork.Save();
             }
+
+
+
         }
 
         private void EditMissionDocuments(List<IFormFile>? documents, long? missionId)
@@ -1515,7 +1534,7 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
             
             }
 
-        public IActionResult EditGoalMissionDetails(GoalMissionViewModel model, List<int> MissionSkills)
+        public IActionResult EditGoalMissionDetails(GoalMissionViewModel model, List<int> MissionSkills, List<int> preloadedMissionSkill)
         {
 
             var missionObj = _IUnitOfWork.MissionRepository.GetFirstOrDefault(m => m.MissionId == model.MissionId);
@@ -1553,7 +1572,7 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
             
             EditMissionMedia(model.Images, model.MissionId);
             EditMissionDocuments(model.Documents, model.MissionId);
-            EditMissionSkills(model.MissionId, MissionSkills);
+            EditMissionSkills(model.MissionId, MissionSkills, preloadedMissionSkill);
             return Ok();
         }
 

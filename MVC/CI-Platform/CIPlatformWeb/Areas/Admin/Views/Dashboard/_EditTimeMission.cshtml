@@ -166,6 +166,10 @@
             Save
         </button>
     </div>
+    @foreach (var missionSkill in Model.MissionSkills)
+    {
+        <input type="hidden" value="@missionSkill.SkillId" name = "preloadedMissionSkill">
+    }
 </form>
 <partial name="_ValidationScriptsPartial"></partial>
 

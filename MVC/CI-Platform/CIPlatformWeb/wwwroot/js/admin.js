@@ -1080,7 +1080,7 @@ function missionAppAjax() {
             $('#adminPartial').html(data);
             approveStatus();
             declineStatus();
-            searchMissions();
+            searchMissionApp();
         },
         error: (err) => {
             console.log("error in getting missionapp list");
@@ -1099,6 +1099,7 @@ function approveStatus() {
                 data: { missionAppId: missionAppId },
                 success: function (data) {
                     missionAppAjax();
+                    searchMissionApp();
                    
 
                 },
@@ -1138,7 +1139,7 @@ function declineStatus() {
                             success: function (data) {
                                 missionAppAjax();
 
-
+                                searchMissionApp();
                             },
                             error: (err) => {
                                 console.log("error in getting missionapp list");
@@ -1154,7 +1155,7 @@ function declineStatus() {
 }
 
 
-function searchMissions() {
+function searchMissionApp() {
     var search = document.getElementById("searchInput");
     search.addEventListener('input', () => {
         searchText = search.value;
@@ -1167,7 +1168,7 @@ function searchMissions() {
                 $("#adminPartial").html(data);
                 approveStatus();
                 declineStatus();
-                searchMissions();
+                searchMissionApp();
                 search = document.getElementById("searchInput");
                 search.focus();
                 search.value = searchText;
@@ -1691,6 +1692,7 @@ function deleteMission() {
                                 data: { missionId: missionId, status: status },
                                 success: function (data) {
                                     missionAjax();
+                                    //searchMissions();
                                 },
                                 error: (err) => {
                                     console.log("error in getting banner form");
@@ -1706,6 +1708,7 @@ function deleteMission() {
                     data: { missionId: missionId, status: status },
                     success: function (data) {
                         missionAjax();
+                        //searchMissions();
                     },
                     error: (err) => {
                         console.log("error in getting banner form");
@@ -1734,6 +1737,7 @@ function getAddTimeMissionForm() {
                 displayMissionImages();
                 previewDocuments();
                 addTimeMission();
+                //searchMissions();
             },
             error: (err) => {
                 console.log("error in getting banner form");
@@ -1758,6 +1762,7 @@ function getAddGoalMissionForm() {
                 displayMissionImages();
                 previewDocuments();
                 addGoalMission();
+                //searchMissions();
             },
             error: (err) => {
                 console.log("error in getting banner form");
@@ -1938,6 +1943,7 @@ function addTimeMission() {
                         'You clicked the button!',
                         'success'
                     )
+                    searchMissions();
                 },
                 error: (err) => {
                     console.log("error in getting banner form");
@@ -1992,6 +1998,7 @@ function addGoalMission() {
                         'You clicked the button!',
                         'success'
                     )
+                    searchMissions();
                 },
                 error: (err) => {
                     console.log("error in getting banner form");
@@ -2031,6 +2038,7 @@ function getEditMissionForm() {
                         setDocInput();
                         editTimemissionDetails(missionId);
                         getCitiesByCountry();
+                        //searchMissions();
                        
                     },
                     error: (err) => {
@@ -2055,6 +2063,7 @@ function getEditMissionForm() {
                         setDocInput();
                         editGoalMissionDetails(missionId);
                         getCitiesByCountry();
+                        //searchMissions();
                     },
                     error: (err) => {
                         console.log("error in getting banner form");
@@ -2108,6 +2117,7 @@ function editTimemissionDetails(missionId) {
                         'You clicked the button!',
                         'success'
                     )
+                    searchMissions();
                 },
                 error: (err) => {
                     console.log("error in getting banner form");
@@ -2164,6 +2174,7 @@ function editGoalMissionDetails(missionId) {
                         'You clicked the button!',
                         'success'
                     )
+                    searchMissions();
                 },
                 error: (err) => {
                     console.log("error in getting banner form");
