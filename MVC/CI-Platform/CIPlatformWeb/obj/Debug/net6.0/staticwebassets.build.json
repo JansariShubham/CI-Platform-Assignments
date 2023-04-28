@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1/UeD+QwRxVicuYg+nx0wQgqABaQ4j5L7enxGfCjQzE=",
+  "Hash": "POrqzltRf7jgQdk8Ah2JW2oMGm24VU13U6shvn9z/xc=",
   "Source": "CIPlatformWeb",
   "BasePath": "_content/CIPlatformWeb",
   "Mode": "Default",
@@ -2769,6 +2769,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\storyimages\\dd59017f-abcb-4f3d-a092-b6841aeaa7fd.png"
+    },
+    {
+      "Identity": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\storyimages\\e98af30c-66da-405c-90c5-71a90ddacbb7.jpeg",
+      "SourceId": "CIPlatformWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\",
+      "BasePath": "_content/CIPlatformWeb",
+      "RelativePath": "images/storyimages/e98af30c-66da-405c-90c5-71a90ddacbb7.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\storyimages\\e98af30c-66da-405c-90c5-71a90ddacbb7.jpeg"
     },
     {
       "Identity": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\success-green-check-mark-icon.svg",
