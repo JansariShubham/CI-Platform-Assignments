@@ -8,7 +8,9 @@
 #restoreImg{
     height:1.2rem !important;
 }
-
+.grid-index{
+    grid-template-rows: auto 1fr auto;
+}
 #sidebar {
     background: #F88634;
 }
@@ -498,7 +500,10 @@ img {
 }
 
 
-
+.active-page {
+    color: white !important;
+    background-color: orange !important;
+}
 
 .page-link {
     color: #757575 !important;

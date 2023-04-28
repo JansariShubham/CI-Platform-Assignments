@@ -17,7 +17,7 @@ namespace CIPlatform.entities.ViewModels
         public string Password { get; set; } = null!;
 
         public long UserId { get; set; }
-
+        public List<BannerViewModel>? banners { get; set; }
 
     }
 }

@@ -1,0 +1,16 @@
+﻿@model CIPlatform.entities.ViewModels.CmsViewModel
+@{
+    ViewData["Title"] = "CMS Page";
+}
+<div class="grid-index d-grid min-vh-100">
+    <partial name="_Navbar1"></partial>
+    <section class="container py-4">
+        <div class="border-bottom border-2 mb-3">
+            <h4 class="border-bottom border-dark width-max-conatent m-0 pb-3 pe-2">@Model.Title</h4>
+        </div>
+        <div>
+            @Html.Raw(Model.Description)
+        </div>
+    </section>
+    <partial name="_Footer"></partial>
+</div>

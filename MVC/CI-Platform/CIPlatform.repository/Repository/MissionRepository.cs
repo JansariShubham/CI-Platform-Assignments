@@ -29,7 +29,11 @@ namespace CIPlatform.repository.Repository
             string query = "UPDATE mission SET isActive = {0} WHERE mission_id = {1}";
            return _appDbContext.Database.ExecuteSqlRaw(query, status, missionId);
         }
-
+        public int CloseMission(long missionId)
+        {
+            string query = "UPDATE mission SET status = {0} WHERE mission_id = {1}";
+            return _appDbContext.Database.ExecuteSqlRaw(query, false, missionId);
+        }
        
         public List<Mission> getAllMissions()
         {

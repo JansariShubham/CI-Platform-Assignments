@@ -355,3 +355,22 @@ function getRecentVolunteers() {
     }*/
 }
 
+$('#applyBtn').click(() => {
+
+    var userId = $('#userId').val();
+    var missionId = $('#missionId').val();
+    //alert(userId + missionId);
+    $.ajax({
+        type: "POST",
+        url: '/Users/MissionDetail/AddMissionApplication',
+        data: { missionId: missionId, userId: userId },
+        success: (data) => {
+            window.location.replace("/Users/MissionDetail/Index/5");
+        },
+        error: (err) => {
+
+        }
+
+    })
+})
+

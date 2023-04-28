@@ -332,6 +332,25 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
 
         }
+
+        public IActionResult AddMissionApplication(int missionId , long userId)
+        {
+            MissionApplication missionAppObj = new()
+            { 
+                UserId = userId,
+                MissionId = missionId,
+                AppliedAt = DateTimeOffset.Now,
+                ApprovalStatus = 2,
+                CreatedAt = DateTimeOffset.Now,
+            };
+            if(missionAppObj != null)
+            {
+                _IUnitOfWork.MissionApplicationRepository.Add(missionAppObj);
+                _IUnitOfWork.Save();
+            }
+            return Ok();
+
+        }
     }
 }
 

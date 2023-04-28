@@ -236,12 +236,12 @@
 
 
             @*<div class="d-flex justify-content-center m-3">
-            <img src="~/images/star-empty.png" alt="">
-            <img src="~/images/star-empty.png" alt="">
-            <img src="~/images/star-empty.png" alt="">
-            <img src="~/images/star-empty.png" alt="">
-            <img src="~/images/star-empty.png" alt="">
-            </div>*@
+                <img src="~/images/star-empty.png" alt="">
+                <img src="~/images/star-empty.png" alt="">
+                <img src="~/images/star-empty.png" alt="">
+                <img src="~/images/star-empty.png" alt="">
+                <img src="~/images/star-empty.png" alt="">
+                </div>*@
             <div class="row gap-3 ">
                 <div class="border col d-flex flex-column justify-content-between p-0">
                     <div class="ps-2">
@@ -280,27 +280,34 @@
                     </div>
                 </div>
             </div>
-
-
-             @foreach (var user in Model.MissionApplications)
-                    {
-                if (user.ApprovalStatus != 1)
-                {
-
-                    <div class="d-flex justify-content-center">
-                        <a href="#" class="btn apply-btn mt-3 mb-3 px-5 ">
+            @if ((!string.IsNullOrEmpty(userId) && Model?.MissionApplications?.LongCount() > 0 &&
+        @Model.MissionApplications.Any(ma => ma.UserId == long.Parse(userId) && ma.ApprovalStatus == 2)))
+        {
+            <div class="d-flex justify-content-center">
+                        <a class="btn apply-btn mt-3 mb-3 px-5 " id="cancelBtn">
+                            Cancel <img src="~/images/right-arrow.png"
+                                   alt="#">
+                        </a>
+                    </div>
+        }
+        else if ((!string.IsNullOrEmpty(userId) && Model?.MissionApplications?.LongCount() > 0 &&
+        Model.MissionApplications.Any(ma => ma.UserId == long.Parse(userId) && ma.ApprovalStatus == 1)))
+        {
+            <div class="text-center text-success mt-2">You're a volunteer.</div>
+        }
+        else if ((Model.Status == true
+        && Model?.TotalSeats == null ? true : Model.SeatsLeft > 0
+        && Model?.RegistrationDeadline == null ? true : Model.RegistrationDeadline >= DateTime.Now))
+        {
+            <div class="d-flex justify-content-center">
+                        <a class="btn apply-btn mt-3 mb-3 px-5 " id="applyBtn">
                             Apply Now <img src="~/images/right-arrow.png"
                                    alt="#">
                         </a>
                     </div>
-                }
-                    }
-                </div>
+        }
 
-
-
-
-
+        </div>
     </div>
 
     <!-- second section -->
@@ -379,17 +386,17 @@
                                     </div>
                                 </a>
                             }
-                        else if(doc.DocumentType.Equals(".docx"))
-                        {
-                        <a href="@doc.DocumentLink" class="text-decoration-none text-black">
-                        <div class="border rounded-pill d-flex gap-2 px-4 py-2 align-items-center">
-                        <img src="~/images/doc.png" />
-                        @doc.DocumentName@doc.DocumentType
+                            else if (doc.DocumentType.Equals(".docx"))
+                            {
+                                <a href="@doc.DocumentLink" class="text-decoration-none text-black">
+                                    <div class="border rounded-pill d-flex gap-2 px-4 py-2 align-items-center">
+                                        <img src="~/images/doc.png" />
+                                        @doc.DocumentName@doc.DocumentType
 
-                        </div>
-                        </a>
+                                    </div>
+                                </a>
 
-                        }
+                            }
                             else
                             {
                                 <a href="@doc.DocumentLink" class="text-decoration-none text-black">
@@ -405,15 +412,15 @@
 
                         }
                         @*
-                        <div class="border rounded-pill d-flex gap-2 px-4 py-2 align-items-center">
-                        <img src="~/images/doc.png" alt="">
-                        at_vero_eos_accusamus.doc
-                        </div>
+                            <div class="border rounded-pill d-flex gap-2 px-4 py-2 align-items-center">
+                            <img src="~/images/doc.png" alt="">
+                            at_vero_eos_accusamus.doc
+                            </div>
 
-                        <div class="border rounded-pill d-flex gap-2 px-4 py-2 align-items-center">
-                        <img src="~/images/xlsx.png" alt="">
-                        important_doc.xls
-                        </div>*@
+                            <div class="border rounded-pill d-flex gap-2 px-4 py-2 align-items-center">
+                            <img src="~/images/xlsx.png" alt="">
+                            important_doc.xls
+                            </div>*@
 
                     </div>
 
@@ -518,6 +525,6 @@
 </section>
 
 @section Scripts{
-    <script src="~/js/missionDetail.js"></script>
+<script src="~/js/missionDetail.js"></script>
 
 }

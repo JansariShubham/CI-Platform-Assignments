@@ -18,5 +18,6 @@ namespace CIPlatform.entities.ViewModels
         [Required(ErrorMessage = "Confirm Password is required")]
         [Compare("Password", ErrorMessage = "Password and confirm password should match!")]
         public String ConfirmPassword { get; set; }
+        public List<BannerViewModel>? banners { get; set; }
     }
 }

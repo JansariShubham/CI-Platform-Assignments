@@ -48,10 +48,24 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         {
             _logger = logger;
         }*/
-
+        private BannerViewModel ConvertToBannerVm(Banner banner)
+        {
+            BannerViewModel vm = new()
+            {
+                BannerId = banner.BannerId,
+                Path = banner.BannerImage,
+                SortOrder = banner.SortOrder,
+                TextDesc = banner.TextDesc,
+                TextTitle = banner.TextTitle,
+                Status = (bool)banner.Status,
+            };
+            return vm;
+        }
         public IActionResult Login()
         {
-            return View();
+            UserLoginViewModel user = new UserLoginViewModel();
+            user.banners = _IUnitOfWork.BannerRepository.GetAll().Select(ConvertToBannerVm).ToList();
+            return View(user);
         }
         [HttpPost]
         public IActionResult Login(UserLoginViewModel model)
@@ -78,7 +92,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                     {
 
                         TempData["statuserror"] = "You are inactive for some reason!, Please contact admin for login";
-                        return View();
+                        model.banners = _IUnitOfWork.BannerRepository.GetAll().Select(ConvertToBannerVm).ToList();
+                        return View(model);
 
                     }
                     
@@ -98,10 +113,12 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 {
                     ModelState.AddModelError("Email", "Please Enter Valid Email");
                     ModelState.AddModelError("Password", "Please Enter Valid Password");
-                    return View();
+                    model.banners = _IUnitOfWork.BannerRepository.GetAll().Select(ConvertToBannerVm).ToList();
+                    return View(model);
                 }
             }
-            return View();
+            model.banners = _IUnitOfWork.BannerRepository.GetAll().Select(ConvertToBannerVm).ToList();
+            return View(model);
 
 
         }
@@ -113,7 +130,9 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         }
         public IActionResult ForgotPassword()
         {
-            return View();
+            ForgotPasswordViewModel f = new ForgotPasswordViewModel();
+            f.banners = _IUnitOfWork.BannerRepository.GetAll().Select(ConvertToBannerVm).ToList();
+            return View(f);
         }
         [HttpPost]
         public IActionResult ForgotPassword(ForgotPasswordViewModel model)
@@ -150,7 +169,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
                 }
             }
-            return View();
+            model.banners = _IUnitOfWork.BannerRepository.GetAll().Select(ConvertToBannerVm).ToList();
+            return View(model);
         }
         public IActionResult ResetPassword(String _email, String _token)
         {
@@ -167,6 +187,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 return View("ForgotPassword");
 
             }
+            vm.banners = _IUnitOfWork.BannerRepository.GetAll().Select(ConvertToBannerVm).ToList();
             return View(vm);
         }
         [HttpPost]
@@ -186,8 +207,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 }
                 return View("Login");
             }
-
-            return View();
+            model.banners = _IUnitOfWork.BannerRepository.GetAll().Select(ConvertToBannerVm).ToList();
+            return View(model);
         }
         public IActionResult PlatformLandingPage()
         {
@@ -202,13 +223,14 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
 
             };
-            ViewBag.missionCount = indexViewModel.MissionList.Count();
+            ViewBag.missionCnt = indexViewModel.MissionList.Count();
+            indexViewModel.MissionList = indexViewModel.MissionList.Take(4).ToList();
             return View(indexViewModel);
         }
 
         public List<PlatformLandingViewModel> getMissionList()
         {
-            var obj = _IUnitOfWork.MissionRepository.getAllMissions().ToList();
+            var obj = _IUnitOfWork.MissionRepository.getAllMissions().Where(m => m.IsActive == true).ToList();
             List<PlatformLandingViewModel> MissionVMList = new();
 
 
@@ -239,6 +261,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             MissionVM.OrgName = item.OrgName;
             MissionVM.ShortDesc = item.ShortDesc;
             MissionVM.OrgDetails = item.OrgDetails;
+            MissionVM.RegistrationDeadline = item.RegDeadline;
             MissionVM.Theme = item.Theme;
             MissionVM.ThemeId = item.ThemeId;
             MissionVM.Title = item.Title;
@@ -248,7 +271,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             MissionVM.MissionRating = getMissionRatings(item.MissionRatings);
             MissionVM.MissionSkills = getMissionSkillList(item.MissionSkills);
             MissionVM.ThumbnailURL = getUrl(item.MissionMedia);
-
+            MissionVM.MissionRate = item.MissionRatings.Count > 0 ? Math.Ceiling(item.MissionRatings.Average(mr => mr.Rating)) : 0;
             MissionVM.SeatsLeft = item.TotalSeats - item.MissionApplications.Count();
             //MissionVM.MissionDocuments = item.MissionDocuments; 
             // Console.WriteLine("seats lef====>>>>" + MissionVM.SeatsLeft);
@@ -338,7 +361,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 obj.GoalValue = item.GoalValue;
                 obj.GoalObjectiveText = item.GoalObjectiveText;
                 obj.CreatedAt = item.CreatedAt;
-
+                obj.GoalAchieved = item.GoalAchieved;
 
 
             }
@@ -525,7 +548,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             };
 
             var filterResult = _IUnitOfWork.MissionRepository.getFilters(obj);
-            List<PlatformLandingViewModel> fr = filterResult.Select(m => CovertToMissionVM(m)).ToList();
+            List<PlatformLandingViewModel> fr = filterResult.Select(m => CovertToMissionVM(m)).Where(m => m.IsActive == true).ToList();
 
 
             //if (pageNum != 0)
@@ -536,7 +559,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             {
                 CountryList = this.getCountryList(),
                 CityList = this.getCityList(),
-                MissionList = fr.Skip((pageNum - 1) * 4).Take(4).ToList(),
+                MissionList = fr,
                 SkillsList = this.getSkillList(),
                 ThemeList = this.getThemeList()
 
@@ -544,6 +567,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             };
 
             ViewBag.missionCnt = fr.Count();
+            indexViewModel.MissionList = indexViewModel.MissionList.Skip((pageNum - 1) * 4).Take(4).ToList();
 
             return PartialView("_index", indexViewModel);
 
@@ -1074,6 +1098,35 @@ namespace CIPlatformWeb.Areas.Users.Controllers
            return  RedirectToAction("PlatFormLandingPage");
 
 
+        }
+        private CmsViewModel ConvertToCmsVm(CmsPage cms)
+        {
+            CmsViewModel cmsVm = new()
+            {
+                CmsPageId = cms.CmsPageId,
+                Description = cms.Description,
+                Slug = cms.Slug,
+                Status = cms.Status,
+                Title = cms.Title
+            };
+            return cmsVm;
+        }
+        public IActionResult CmsPage(long id)
+        {
+            try
+            {
+                CmsViewModel cms = ConvertToCmsVm(_IUnitOfWork.CmsRepository.GetFirstOrDefault(c => c.CmsPageId == id));
+                return View("Cms", cms);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Error", "Home", new { area = "Users" });
+            }
+        }
+        public IActionResult GetCmsList()
+        {
+            List<CmsViewModel> cmsPageVMs = _IUnitOfWork.CmsRepository.GetAll().Select(ConvertToCmsVm).ToList();
+            return Json(cmsPageVMs.Select(cms => new { cms.Title, cms.CmsPageId }));
         }
     }
 }

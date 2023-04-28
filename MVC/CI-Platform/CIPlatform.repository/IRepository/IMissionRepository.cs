@@ -12,7 +12,7 @@ namespace CIPlatform.repository.IRepository
     {
         
         public List<Mission> getAllMissions();
-
+        int CloseMission(long missionId);
         public List<Mission> getFilters(Filters obj);
 
         public List<Mission> GetSearchedMissionList(string? searchText);

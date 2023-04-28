@@ -40,7 +40,7 @@ namespace CIPlatform.entities.ViewModels
         [RegularExpression("^[0-9]+$")]
         public String? PhoneNumber { get; set; }
 
-
+        public List<BannerViewModel>? banners { get; set; }
         public virtual ICollection<MissionInvite>? MissionInviteToUsers { get; set; }
         public virtual ICollection<MissionInvite>? MissionInviteFromUsers { get; set; }
 
