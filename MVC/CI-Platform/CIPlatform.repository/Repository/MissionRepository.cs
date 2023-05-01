@@ -157,7 +157,7 @@ namespace CIPlatform.repository.Repository
 
             var missions = _appDbContext.Missions.Include(missions => missions.GoalMissions)
                  .Include(missions => missions.MissionMedia)
-
+                 
                  .Include(missions => missions.MissionSkills).ThenInclude(m => m.Skill)
                  .Include(missions => missions.Theme)
                  .Include(missions => missions.City)

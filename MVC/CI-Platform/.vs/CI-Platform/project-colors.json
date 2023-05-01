@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "aae95c91-4060-4c23-a3c1-09b0b729b4c5": {
+      "ProjectGuid": "aae95c91-4060-4c23-a3c1-09b0b729b4c5",
+      "DisplayName": "CIPlatformWeb",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "6393bbc0-caee-4655-b23a-6ac6df348588": {
+      "ProjectGuid": "6393bbc0-caee-4655-b23a-6ac6df348588",
+      "DisplayName": "CIPlatform.entities",
+      "ColorIndex": 1
+    },
+    "de0d4ae9-e7c2-4e16-b8b4-14fb8e65783a": {
+      "ProjectGuid": "de0d4ae9-e7c2-4e16-b8b4-14fb8e65783a",
+      "DisplayName": "CIPlatform.repository",
+      "ColorIndex": 2
+    },
+    "8ada8fa4-8f28-4553-a8d0-3ae7556a41ac": {
+      "ProjectGuid": "8ada8fa4-8f28-4553-a8d0-3ae7556a41ac",
+      "DisplayName": "CIPlatform.utilities",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}

@@ -129,6 +129,21 @@ function getFilterData() {
         success: (result) => {
             $("#partial").html(result);
             indexPagination();
+            const gridBtn = document.querySelector(".grid-btn");
+            const listBtn = document.querySelector(".list-btn");
+            const listView = document.querySelector(".list-view");
+            const gridView = document.querySelector(".grid-view");
+            gridBtn.addEventListener("click", () => {
+                listView.classList.add("d-none");
+                gridView.classList.remove("d-none")
+
+            });
+
+            listBtn.addEventListener("click", () => {
+                gridView.classList.add("d-none");
+                listView.classList.remove("d-none")
+
+            });
             filterMissions();
         },
         error: (err) => {
@@ -213,7 +228,7 @@ function indexPagination() {
 
     var totalPages = Math.ceil(missionCount / 4);
     if (missionCount < 4) {
-
+        return;
     }
     else {
         let li = document.createElement('li');

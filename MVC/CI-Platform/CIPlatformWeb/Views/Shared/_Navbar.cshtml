@@ -2,6 +2,7 @@
 @{
     var UserName = Context.Session.GetString("firstName");
     var userId = Context.Session.GetString("userId");
+    var ava = Context.Session.GetString("avatar");
 }
 
 <input type ="hidden" value="@userId" id="userId" />
@@ -25,12 +26,10 @@
     </div>
     
     <div class="dropdown right-div">
-        <button class="header-serach d-md-none border-0">
-            <img class="search-logo" id="search-btn" src="~/images/search.png" alt="#">
-        </button>
+        
         @if (UserName != null)
         {
-            <img class="rounded-circle user-img" src="~/images/user-img.png" alt="#">
+            <img class="rounded-circle user-img" src="@ava" alt="#">
             <button class="dropdown-toggle policy-btn profile-btn d-none d-sm-inline" data-bs-toggle="dropdown"
                 aria-expanded="false" type="button" id="dropdownMenuButton1">
                 <span>@UserName</span>
@@ -62,7 +61,7 @@
         <div class="d-flex row p-0">
             <div class="col-10 col-md-11 col-lg-6">
                 <div class="p-3 search-div d-flex gap-3">
-                    <img class="d-none d-md-inline d-lg-inline search-img mt-1" src="~/images/search.png"
+                    <img class="search-img mt-1" src="~/images/search.png"
                          alt="#">
                     <input type="text" id="search-bar" class="search-bar form-control border-0 p-0"
                            placeholder="Search mission...">

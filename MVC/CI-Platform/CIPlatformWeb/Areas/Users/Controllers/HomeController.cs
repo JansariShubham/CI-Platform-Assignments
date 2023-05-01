@@ -101,7 +101,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                     HttpContext.Session.SetString("firstName", result.FirstName.ToString());
                     HttpContext.Session.SetString("lastName", result.LastName.ToString());
                     HttpContext.Session.SetString("userId", result.UserId.ToString());
-                    HttpContext.Session.SetString("userAvatar", result.Avatar!);
+                    HttpContext.Session.SetString("avatar", result.Avatar!);
 
 
                     
@@ -478,7 +478,9 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         public IActionResult Registration()
         {
-            return View();
+            UserViewModel user = new();
+            user.banners = _IUnitOfWork.BannerRepository.GetAll().Select(ConvertToBannerVm).ToList();
+            return View(user);
         }
         [HttpPost]
         public IActionResult Registration(UserViewModel model)
@@ -487,6 +489,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             if (userEmail != null)
             {
                 ModelState.AddModelError("Email", "Email ID is Already Exist!");
+                model.banners = _IUnitOfWork.BannerRepository.GetAll().Select(ConvertToBannerVm).ToList();
                 return View(model);
             }
 
@@ -502,8 +505,9 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 _IUnitOfWork.Save();
                 return RedirectToAction("Login");
             }
-
-            return View();
+            
+            model.banners = _IUnitOfWork.BannerRepository.GetAll().Select(ConvertToBannerVm).ToList();
+            return View(model);
             //return RedirectToAction("ResetPassword");
 
         }
@@ -548,7 +552,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             };
 
             var filterResult = _IUnitOfWork.MissionRepository.getFilters(obj);
-            List<PlatformLandingViewModel> fr = filterResult.Select(m => CovertToMissionVM(m)).Where(m => m.IsActive == true).ToList();
+            var fr = filterResult.Where(m => m.IsActive == true);
+            var fr2 = fr.Select(m => CovertToMissionVM(m));
 
 
             //if (pageNum != 0)
@@ -559,7 +564,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             {
                 CountryList = this.getCountryList(),
                 CityList = this.getCityList(),
-                MissionList = fr,
+                MissionList = fr2.ToList(),
                 SkillsList = this.getSkillList(),
                 ThemeList = this.getThemeList()
 
@@ -663,6 +668,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
                 var isProfileUpdated = _IUnitOfWork.UserRepository.UpdateProfie(userId, url);
 
+
+                HttpContext.Session.SetString("avatar", url);
 
 
             }
@@ -1095,7 +1102,10 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             }
 
             TempData["EditProfileSuccess"] = "Profile updated successfully";
-           return  RedirectToAction("PlatFormLandingPage");
+            HttpContext.Session.SetString("firstName", FirstName.ToString());
+            HttpContext.Session.SetString("lastName", LastName.ToString());
+            
+            return  RedirectToAction("PlatFormLandingPage");
 
 
         }

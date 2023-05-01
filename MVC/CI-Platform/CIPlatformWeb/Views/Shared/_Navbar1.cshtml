@@ -2,6 +2,8 @@
 @{
     var userId = Context.Session.GetString("userId");
     var userName = Context.Session.GetString("firstName");
+    var ava = Context.Session.GetString("avatar");
+
 }
 
 <!-- navbar  -->
@@ -24,7 +26,7 @@
     <div class="dropdown right-div mb-3">
         @if (userId != null)
         {
-            <img class="rounded-circle user-img" src="~/images/user-img.png" alt="#">
+            <img class="rounded-circle user-img" src="@ava" alt="#">
             
             <button class="dropdown-toggle policy-btn profile-btn d-none d-sm-inline" data-bs-toggle="dropdown"
                 aria-expanded="false" type="button" id="dropdownMenuButton1">

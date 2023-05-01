@@ -750,11 +750,7 @@ img {
         cursor: pointer;
     }
 
-    .header-toggle {
-        background-color: white;
-        cursor: pointer;
-    }
-
+    
     .forth-div div {
         font-size: 18px;
     }
@@ -793,7 +789,10 @@ img {
         top: 6rem;
     }
 }
-
+.header-toggle {
+    background-color: white;
+    cursor: pointer;
+}
 @media(min-width:1000px) and (max-width:1025px) {
     .country-list-div {
         top: 0.5rem;

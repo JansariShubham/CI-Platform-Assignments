@@ -30,11 +30,11 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         {
 
             var missionList = _IUnitOfWork.MissionApplicationRepository.getAllMissionApplication();
-            var missions = missionList.Where(ma => ma.UserId == long.Parse(id!) && ma.ApprovalStatus == 1).Select(ma => ma.Mission);
+            var missions = missionList.Where(ma => ma.UserId == long.Parse(id!) && ma.ApprovalStatus == 1).Where(ma => ma.Mission.IsActive == true);
             List<PlatformLandingViewModel> missionVm = new();
             foreach (var mission in missions)
             {
-                missionVm.Add(ConvertToMissionVm(mission));
+                missionVm.Add(ConvertToMissionVm(mission.Mission));
             }
             var draftStory = _IUnitOfWork.StoryRepository.GetStoryWithInclude(s => s.UserId == long.Parse(id!) && s.Status == 2);
             if(draftStory != null)
@@ -88,14 +88,15 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                         Title = storyVm.StoryTitle,
                         Description = storyVm.Description,
                         UserId = storyVm.UserId,
-                        CreatedAt = DateTimeOffset.Now
+                        CreatedAt = DateTimeOffset.Now,
+                        Status = 3
                         
 
 
                     };
                   
 
-                    var isDraft = action == "draft" ? storyObj.Status = 2 : storyObj.Status = 1;
+                    var isDraft = action == "draft" ? storyObj.Status = 2 : storyObj.Status = 3;
                     var draftStory = _IUnitOfWork.StoryRepository.GetFirstOrDefault(s => s.UserId == storyVm.UserId && s.Status == 2);
                     if (draftStory != null && action == "draft")
                     {

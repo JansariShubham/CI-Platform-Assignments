@@ -143,6 +143,7 @@ function getRelatedMission() {
         url: '/Users/MissionDetail/getRelatedMission',
         data: { missionId: missionId },
         success: (data) => {
+            console.log(data)
             $("#realtedMission").html(data);
             
         },
@@ -365,7 +366,27 @@ $('#applyBtn').click(() => {
         url: '/Users/MissionDetail/AddMissionApplication',
         data: { missionId: missionId, userId: userId },
         success: (data) => {
-            window.location.replace("/Users/MissionDetail/Index/5");
+            window.location.replace(`/Users/MissionDetail/Index/${missionId}`);
+        },
+        error: (err) => {
+
+        }
+
+    })
+})
+
+
+$('#cancelBtn').click(() => {
+
+    var userId = $('#userId').val();
+    var missionId = $('#missionId').val();
+    //alert(userId + missionId);
+    $.ajax({
+        type: "POST",
+        url: '/Users/MissionDetail/CancelApplication',
+        data: { missionId: missionId, userId: userId },
+        success: (data) => {
+            window.location.replace(`/Users/MissionDetail/Index/${missionId}`);
         },
         error: (err) => {
 

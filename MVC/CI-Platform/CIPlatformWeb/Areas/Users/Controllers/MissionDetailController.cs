@@ -158,7 +158,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 }
 
                 // var missionVmThemes = HomeController.CovertToMissionVM(missionThemeVm);
-                return PartialView("_RelatedMission", missionThemeVm.Take(3).ToList());
+                return PartialView("_Index", new IndexViewModel() { MissionList = missionThemeVm.Take(3).ToList() });
 
             }
             return null;
@@ -350,6 +350,13 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             }
             return Ok();
 
+        }
+        public IActionResult CancelApplication(int missionId, long userId)
+        {
+            MissionApplication ma = _IUnitOfWork.MissionApplicationRepository.GetFirstOrDefault(ma => ma.MissionId == missionId && ma.UserId == userId);
+            _IUnitOfWork.MissionApplicationRepository.Delete(ma);
+            _IUnitOfWork.Save();
+            return Ok();
         }
     }
 }

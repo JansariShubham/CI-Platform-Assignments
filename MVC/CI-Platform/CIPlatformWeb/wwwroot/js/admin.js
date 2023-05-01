@@ -1,10 +1,10 @@
 ﻿document.getElementById("sidebarBtn").addEventListener('click', () => {
-            document.getElementById("sidebar").classList.toggle("d-none");
+    document.getElementById("sidebar").classList.toggle("d-none");
 
-        })
-        document.getElementById("closeSidebar").addEventListener('click', () => {
-            document.getElementById("sidebar").classList.add("d-none");
-        })
+})
+document.getElementById("closeSidebar").addEventListener('click', () => {
+    document.getElementById("sidebar").classList.add("d-none");
+})
 
 
 userAjaxCall();
@@ -18,6 +18,7 @@ function userAjaxCall() {
 
             console.log("success in getting users data");
             $("#adminPartial").html(data);
+            createPagination();
             showAddUserModal();
             editUserData();
             deleteUser();
@@ -29,7 +30,7 @@ function userAjaxCall() {
                 userBtn.style.backgroundColor = "red";
             })*/
 
-            
+
 
 
 
@@ -41,7 +42,7 @@ function userAjaxCall() {
 }
 
 function showAddUserModal() {
-    
+
     var addUserBtn = document.getElementById("addUser");
     addUserBtn.addEventListener('click', () => {
 
@@ -60,7 +61,7 @@ function showAddUserModal() {
                 console.log("error in  getting users modal");
             }
         });
-       
+
     })
 }
 
@@ -82,7 +83,7 @@ function addUserData() {
             $.ajax({
                 type: "POST",
                 url: '/Admin/Dashboard/AddUser',
-                data: {firstName : firstName, lastName : lastName, email : email , empId : empId, department : department, password: password},
+                data: { firstName: firstName, lastName: lastName, email: email, empId: empId, department: department, password: password },
                 success: function (data) {
                     console.log("success adding user")
                     $("#adminPartial").html(data);
@@ -104,7 +105,7 @@ function addUserData() {
             });
 
 
-       }
+        }
         else {
             return;
         }
@@ -127,7 +128,7 @@ function editUserData() {
                     $("#editUserModalPartial").html(data);
                     $('#editUserModal').modal('show');
                     editUser(userId);
-                   
+
                 },
                 error: (err) => {
                     console.log("error in  getting users modal");
@@ -149,7 +150,7 @@ function editUser(userId) {
             var empId = $("#empId").val();
             var department = $("#department").val();
             var password = $("#password").val();
-            
+
             console.log(firstName + lastName + email + empId + department);
             $('#editUserModal').modal('hide');
             $.ajax({
@@ -224,7 +225,7 @@ function deleteUser() {
                         }
                     });
             }
-                        
+
             else {
                 $.ajax({
                     type: "POST",
@@ -244,9 +245,9 @@ function deleteUser() {
                     }
                 });
             }
-            
+
         })
-      })
+    })
 }
 
 
@@ -266,7 +267,7 @@ resizeObserver.observe(rightDiv);
 function updateSidebarHeight() {
     // Get the height of the content
     const contentHeight = rightDiv.offsetHeight;
-   // console.log(vhToPixels(100), contentHeight);
+    // console.log(vhToPixels(100), contentHeight);
     let height = (vhToPixels(100) > contentHeight) ? vhToPixels(100) : contentHeight;
     sidebar.style.height = `${height}px`;
 }
@@ -279,7 +280,7 @@ var searchText;
 function searchOperation() {
     var search = document.getElementById("searchInput");
     search.addEventListener('input', () => {
-         searchText = search.value;
+        searchText = search.value;
         $.ajax({
             type: "GET",
             url: '/Admin/Dashboard/getSearchedUsers',
@@ -299,7 +300,7 @@ function searchOperation() {
                 console.log("error in  getting users modal");
             }
         });
-       
+
     })
 }
 
@@ -309,7 +310,17 @@ cmsPageBtn.addEventListener('click', () => {
 
     cmsAjax();
 })
-
+function cancelBtnClick(action) {
+    $("#cancelBtn").click(() => {
+        switch (action) {
+            case "cms": cmsAjax(); break;
+            case "mission": missionAjax(); break;
+            case "theme": missionThemeAjax(); break;
+            case "skill": getSkillList(); break;
+            case "banner": bannerAjax(); break;
+        }
+    });
+}
 function cmsAjax() {
     tinymce.remove('#tiny');
     $.ajax({
@@ -323,6 +334,7 @@ function cmsAjax() {
 
             addCms();
             deleteCms();
+            createPagination();
             editCms();
             searchCms();
 
@@ -334,7 +346,7 @@ function cmsAjax() {
 }
 var userBtn = document.getElementById("userBtn");
 userBtn.addEventListener('click', () => {
-    
+
     userAjaxCall();
 })
 
@@ -352,8 +364,9 @@ function addCms() {
 
                 console.log("success in getting adding cms");
                 $("#adminPartial").html(data);
+    cancelBtnClick("cms");
                 $.getScript('/js/tinymce.js');
-                
+
                 addCmsData();
 
             },
@@ -374,7 +387,7 @@ function addCmsData() {
         var slug = document.getElementById("slug").value;
         //var status = document.getElementById("status").value;
         let status = $("#status option:selected").val();
-        
+
         if (tinyTextArea === "" || tinyTextArea === null) {
             descSpan.innerHTML = "CMS description is required!";
             return;
@@ -385,12 +398,12 @@ function addCmsData() {
             desc: tinyTextArea,
             title: title,
             slug: slug,
-            status : status
+            status: status
         };
 
 
         if ($('#addCmsForm').valid()) {
-            
+
             //var obj = $('#addCmsForm').serialize();
             $.ajax({
                 type: "POST",
@@ -401,7 +414,7 @@ function addCmsData() {
                     console.log("success in adding cms");
                     //$("#adminPartial").html(data);
 
-                    
+
                     cmsAjax();
 
                     Swal.fire(
@@ -409,14 +422,14 @@ function addCmsData() {
                         'You clicked the button!',
                         'success'
                     )
-                    
+
 
                 },
                 error: (err) => {
                     console.log("error in  getting cms data");
                 }
             });
-            
+
         }
         else {
             return;
@@ -432,19 +445,19 @@ function deleteCms() {
         deleteBtn.addEventListener('click', () => {
             var cmsId = deleteBtn.getAttribute("data-cmsid");
             var status = deleteBtn.getAttribute("data-status");
-           
+
             if (status == "False") {
-               
+
                 status = 0;
             }
             else {
-              
+
                 status = 1;
             }
             //alert(status);
             //alert(cmsId);
             if (status == 1) {
-                
+
                 $.ajax({
                     type: "POST",
                     url: '/Admin/Dashboard/changeCmsStatus',
@@ -461,7 +474,7 @@ function deleteCms() {
                 });
             }
             else {
-                
+
                 Swal.fire({
                     title: "Are you sure?",
                     text: "",
@@ -493,7 +506,7 @@ function deleteCms() {
                         }
                     });
 
-                
+
 
             }
 
@@ -504,33 +517,33 @@ function deleteCms() {
 
 
 function editCms() {
-
     var editCms = document.querySelectorAll(".edit-cms");
     editCms.forEach((editBtn) => {
         var cmsId = editBtn.getAttribute("data-cmsid");
 
         /*var cmsStatus = editBtn.getAttribute("data-status");*/
         editBtn.addEventListener('click', () => {
-         
-        $.ajax({
-            type: "GET",
-            url: '/Admin/Dashboard/getCmsEditDetails',
-            data: { cmsId: cmsId },
-            success: function (data) {
 
-                $("#adminPartial").html(data);
-                $.getScript('/js/tinymce.js');
+            $.ajax({
+                type: "GET",
+                url: '/Admin/Dashboard/getCmsEditDetails',
+                data: { cmsId: cmsId },
+                success: function (data) {
 
-                editCmsDetails(cmsId);
+                    $("#adminPartial").html(data);
+    cancelBtnClick("cms");
+                    $.getScript('/js/tinymce.js');
 
-            },
-            error: (err) => {
-                console.log("error in  getting cms modal");
-            }
-        });
+                    editCmsDetails(cmsId);
 
-    })
+                },
+                error: (err) => {
+                    console.log("error in  getting cms modal");
+                }
+            });
+
         })
+    })
 
 }
 
@@ -550,7 +563,7 @@ function editCmsDetails(cmsId) {
 
             let status = $("#status option:selected").val();
 
-            
+
 
             const cmsPageDetails = {
                 desc: tinyTextArea,
@@ -605,7 +618,7 @@ function searchCms() {
             success: function (data) {
 
                 $("#adminPartial").html(data);
-                
+
                 search = document.getElementById("searchInput");
                 search.focus();
                 search.value = searchText;
@@ -626,7 +639,7 @@ function searchCms() {
 var missionThemeBtn = document.getElementById("missionThemeBtn");
 missionThemeBtn.addEventListener("click", () => {
     missionThemeAjax();
-   
+
 })
 
 function missionThemeAjax() {
@@ -639,6 +652,7 @@ function missionThemeAjax() {
             $("#adminPartial").html(data);
             getAddThemeDetailsForm();
             deleteTheme();
+            createPagination();
             editTheme();
             searchMissionThemes();
 
@@ -661,6 +675,7 @@ function getAddThemeDetailsForm() {
 
                 $("#adminPartial").html(data);
                 addMissionTheme();
+    cancelBtnClick("theme");
 
 
             },
@@ -707,7 +722,7 @@ function deleteTheme() {
         deleteTheme.addEventListener('click', () => {
             // alert(missionThemeStatus + " " + missionThemeId)
             if (missionThemeStatus == 1) {
-               
+
                 Swal.fire({
                     title: "Are you sure?",
                     text: "",
@@ -759,7 +774,7 @@ function deleteTheme() {
                     }
                 });
             }
-           
+
         })
 
     })
@@ -773,10 +788,11 @@ function editTheme() {
             $.ajax({
                 type: "GET",
                 url: '/Admin/Dashboard/GetThemeEditForm',
-                data: {themeId : themeId},
+                data: { themeId: themeId },
                 success: function (data) {
                     $('#adminPartial').html(data);
                     editMissionTheme(themeId);
+    cancelBtnClick("theme");
 
 
                 },
@@ -793,7 +809,7 @@ function editMissionTheme(themeId) {
     editThemeForm.addEventListener('submit', (e) => {
         e.preventDefault();
         if ($('#editMissionThemeForm').valid()) {
-           // var themeObj = $('#editMissionThemeForm').serialize();
+            // var themeObj = $('#editMissionThemeForm').serialize();
             //console.log(themeObj);
 
             var title = $('#title').val();
@@ -802,7 +818,7 @@ function editMissionTheme(themeId) {
                 type: "POST",
                 url: '/Admin/Dashboard/EditThemeData',
                 data: {
-                    title: title,status: status, themeId: themeId
+                    title: title, status: status, themeId: themeId
                 },
                 success: function (data) {
 
@@ -856,7 +872,7 @@ function searchMissionThemes() {
 var missionSkillBtn = document.getElementById("missionSkillBtn");
 missionSkillBtn.addEventListener('click', () => {
     getSkillList();
-    
+
 })
 
 function getSkillList() {
@@ -868,6 +884,7 @@ function getSkillList() {
 
             $('#adminPartial').html(data);
             getAddSkillForm();
+            createPagination();
             deleteSkill();
             getEditSkillForm();
             searchSkill();
@@ -887,6 +904,7 @@ function getAddSkillForm() {
             success: function (data) {
 
                 $('#adminPartial').html(data);
+    cancelBtnClick("skill");
                 addSkill();
 
             },
@@ -895,7 +913,7 @@ function getAddSkillForm() {
             }
         });
     })
-    
+
 }
 
 function addSkill() {
@@ -991,13 +1009,14 @@ function getEditSkillForm() {
             $.ajax({
                 type: "GET",
                 url: '/Admin/Dashboard/GetSkillEditForm',
-                data: {skillId: skillId},
+                data: { skillId: skillId },
                 success: function (data) {
                     $('#adminPartial').html(data);
                     editSkillData(skillId);
                     //getSkillList();
 
 
+    cancelBtnClick("skill");
                 },
                 error: (err) => {
                     console.log("error in skill delete");
@@ -1005,10 +1024,10 @@ function getEditSkillForm() {
             });
         })
     })
-} 
+}
 
 function editSkillData(skillId) {
-   
+
     $('#editSkillForm').submit((e) => {
         e.preventDefault();
         if ($('#editSkillForm').valid()) {
@@ -1016,10 +1035,10 @@ function editSkillData(skillId) {
             $.ajax({
                 type: "POST",
                 url: '/Admin/Dashboard/EditSkill',
-                data: { skillId: skillId , skillName: skillName},
+                data: { skillId: skillId, skillName: skillName },
                 success: function (data) {
                     //$('#adminPartial').html(data);
-                   
+
                     getSkillList();
 
                     Swal.fire(
@@ -1063,7 +1082,7 @@ function searchSkill() {
             }
         });
     });
-    }
+}
 
 
 $("#missionApplicationBtn").click(() => {
@@ -1075,11 +1094,12 @@ function missionAppAjax() {
     $.ajax({
         type: "GET",
         url: '/Admin/Dashboard/MissionApplicationList',
-       
+
         success: function (data) {
             $('#adminPartial').html(data);
             approveStatus();
             declineStatus();
+            createPagination();
             searchMissionApp();
         },
         error: (err) => {
@@ -1100,7 +1120,7 @@ function approveStatus() {
                 success: function (data) {
                     missionAppAjax();
                     searchMissionApp();
-                   
+
 
                 },
                 error: (err) => {
@@ -1144,11 +1164,11 @@ function declineStatus() {
                             error: (err) => {
                                 console.log("error in getting missionapp list");
                             }
-                        });  
+                        });
                     }
                 });
 
-           
+
 
         })
     })
@@ -1181,7 +1201,7 @@ function searchMissionApp() {
 }
 
 
-$('#storyBtn').click( () => {
+$('#storyBtn').click(() => {
     storyAjax();
 })
 
@@ -1189,9 +1209,10 @@ function storyAjax() {
     $.ajax({
         type: "GET",
         url: '/Admin/Dashboard/getStoryList',
-       
+
         success: function (data) {
             $('#adminPartial').html(data);
+            createPagination();
             searchStories();
             approveStory();
             restoreStory();
@@ -1215,7 +1236,7 @@ function searchStories() {
             success: function (data) {
 
                 $("#adminPartial").html(data);
-               
+
                 searchStories();
                 approveStory();
                 declineStory();
@@ -1240,7 +1261,7 @@ function approveStory() {
             $.ajax({
                 type: "POST",
                 url: '/Admin/Dashboard/ApproveStory',
-                data: { storyId : storyId },
+                data: { storyId: storyId },
                 success: function (data) {
                     storyAjax();
 
@@ -1257,12 +1278,12 @@ function approveStory() {
 
 
 function restoreStory() {
- 
+
     var restoreStory = document.querySelectorAll(".restore-btn");
     restoreStory.forEach((restoreBtn) => {
         //alert("hello")
         var storyId = restoreBtn.getAttribute("data-storyid");
-        
+
         restoreBtn.addEventListener('click', () => {
             $.ajax({
                 type: "POST",
@@ -1284,9 +1305,9 @@ function declineStory() {
     var declineStories = document.querySelectorAll(".decline-btn");
     declineStories.forEach((declineBtn) => {
         var storyId = declineBtn.getAttribute("data-storyid");
-        
+
         declineBtn.addEventListener('click', () => {
-    
+
             Swal.fire({
                 title: "Are you sure?",
                 text: "You want to decline",
@@ -1318,7 +1339,7 @@ function declineStory() {
                 });
 
 
-           
+
         })
     })
 }
@@ -1326,7 +1347,7 @@ function declineStory() {
 function deleteStory() {
     var deleteStory = document.querySelectorAll(".delete-story");
     deleteStory.forEach((deleteBtn) => {
-        
+
         var storyId = deleteBtn.getAttribute("data-storyid");
         deleteBtn.addEventListener('click', () => {
             Swal.fire({
@@ -1360,13 +1381,13 @@ function deleteStory() {
                     }
                 });
         });
-       
+
     })
 }
 
 
 $('#bannerBtn').click(() => {
-    
+
     bannerAjax();
 })
 
@@ -1380,7 +1401,7 @@ function bannerAjax() {
             getAddBannerForm();
             deleteBanner();
             getEditBannerForm();
-            
+            createPagination();
         },
         error: (err) => {
             console.log("error in getting banner list");
@@ -1398,6 +1419,7 @@ function getAddBannerForm() {
             success: function (data) {
                 $('#adminPartial').html(data);
                 previewImage();
+    cancelBtnClick("banner");
                 addBanner();
             },
             error: (err) => {
@@ -1408,7 +1430,7 @@ function getAddBannerForm() {
 }
 
 function previewImage() {
-   
+
     var bannerImageInput = document.getElementById("bannerImage");
     var previewImg = document.getElementById("preview");
     //var bannerImageInput = $('#bannerImage');
@@ -1432,7 +1454,7 @@ function addBanner() {
             return;
         }
         if ($('#addBannerForm').valid()) {
-           
+
             var bannerImage = bannerImageInput.files[0];
             //console.log(bannerImage);
             var formData = new FormData($('#addBannerForm')[0]);
@@ -1470,7 +1492,7 @@ function deleteBanner() {
     deleteBanner.forEach((deleteBtn) => {
         var bannerId = deleteBtn.getAttribute("data-bannerid");
         var status = deleteBtn.getAttribute("data-status");
-       
+
         deleteBtn.addEventListener('click', () => {
             if (status == "True") {
                 Swal.fire({
@@ -1498,7 +1520,7 @@ function deleteBanner() {
                                     console.log("error in getting banner form");
                                 }
                             });
-                            
+
                         }
                     });
             }
@@ -1531,10 +1553,11 @@ function getEditBannerForm() {
                 url: '/Admin/Dashboard/getEditBannerForm',
                 data: { bannerId: bannerId },
                 success: function (data) {
-                   
+
                     $("#adminPartial").html(data);
                     getBannerImage();
                     previewImage();
+    cancelBtnClick("banner");
                     editBannerDetails(bannerId);
                 },
                 error: (err) => {
@@ -1560,7 +1583,7 @@ function getBannerImage() {
             document.querySelector('#bannerImage').files = myFileList.files;
 
         });
-       
+
 }
 
 
@@ -1576,8 +1599,8 @@ function editBannerDetails(bannerId) {
         if ($('#bannerForm').valid()) {
 
             var bannerImage = bannerImageInput.files[0];
-            console.log( bannerImage);
-            
+            console.log(bannerImage);
+
             var formData = new FormData($('#bannerForm')[0]);
             formData.append('image', bannerImage);
             formData.append('bannerId', bannerId);
@@ -1624,7 +1647,7 @@ function missionAjax() {
         success: function (data) {
             $('#adminPartial').html(data);
             createPagination();
-            
+
             searchMissions();
             deleteMission();
             stopMission();
@@ -1641,39 +1664,39 @@ function stopMission() {
     var deleteMission = document.querySelectorAll("[data-stop]");
     deleteMission.forEach((deleteBtn) => {
         var missionId = deleteBtn.getAttribute("data-stop");
-        
+
         deleteBtn.addEventListener('click', () => {
 
-            
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You want to In active this mission?",
-                    icon: "warning",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Yes",
-                    cancelButtonText: "Cancle",
-                    closeOnConfirm: false,
-                    closeOnCancel: false
-                })
-                    .then((response) => {
-                        if (response.isConfirmed) {
-                            $.ajax({
-                                type: "PUT",
-                                url: '/Admin/Dashboard/StopMission',
-                                data: { missionId: missionId},
-                                success: function (data) {
-                                    missionAjax();
-                                    
-                                },
-                                error: (err) => {
-                                    console.log("error in getting banner form");
-                                }
-                            });
-                        }
-                    });
-           
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You want to In active this mission?",
+                icon: "warning",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes",
+                cancelButtonText: "Cancle",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            })
+                .then((response) => {
+                    if (response.isConfirmed) {
+                        $.ajax({
+                            type: "PUT",
+                            url: '/Admin/Dashboard/StopMission',
+                            data: { missionId: missionId },
+                            success: function (data) {
+                                missionAjax();
+
+                            },
+                            error: (err) => {
+                                console.log("error in getting banner form");
+                            }
+                        });
+                    }
+                });
+
         })
     })
 }
@@ -1688,7 +1711,7 @@ function searchMissions() {
             success: function (data) {
 
                 $("#adminPartial").html(data);
-                
+
                 search = document.getElementById("searchInput");
                 search.focus();
                 search.value = searchText;
@@ -1705,13 +1728,13 @@ function searchMissions() {
 
 
 function deleteMission() {
-    
+
     var deleteMission = document.querySelectorAll(".delete-mission");
     deleteMission.forEach((deleteBtn) => {
         var missionId = deleteBtn.getAttribute("data-missionid");
         var status = deleteBtn.getAttribute("data-status");
         deleteBtn.addEventListener('click', () => {
-            
+
             if (status == "True") {
                 Swal.fire({
                     title: "Are you sure?",
@@ -1756,7 +1779,7 @@ function deleteMission() {
                     }
                 });
 
-                
+
             }
         })
     })
@@ -1768,11 +1791,12 @@ function getAddTimeMissionForm() {
         $.ajax({
             type: "POST",
             url: '/Admin/Dashboard/getAddTimeMissionForm',
-            
+
             success: function (data) {
                 $('#adminPartial').html(data);
                 $.getScript('/js/tinymce.js');
                 console.log("succ");
+    cancelBtnClick("mission");
                 getCitiesByCountry();
                 fileClick();
                 displayMissionImages();
@@ -1798,6 +1822,7 @@ function getAddGoalMissionForm() {
                 $('#adminPartial').html(data);
                 $.getScript('/js/tinymce.js');
                 getCitiesByCountry();
+    cancelBtnClick("mission");
                 console.log("succ");
                 fileClick();
                 displayMissionImages();
@@ -1836,7 +1861,7 @@ function getCitiesByCountry() {
 
                 var cityDropdown = $("#cityDropdown");
                 cityDropdown.empty();
-                
+
                 const cityFilter = document.querySelector("#cityDropdown");
                 cityFilter.innerHTML = `<option value="1" selected disabled>City</option>`;
                 result.forEach((c) => {
@@ -1928,11 +1953,11 @@ function setDocInput() {
     fileId.files = myFileList.files;
 }
 function previewDocuments() {
-    
+
     var documentsInput = document.getElementById("DocumentsInput");
     var selectedDocuments = document.querySelector('.selected-documents');
     documentsInput.addEventListener("change", () => {
-        
+
         selectedDocuments.innerHTML = '';
         const documents = documentsInput.files;
         for (let i = 0; i < documentsInput.files.length; i++) {
@@ -2059,20 +2084,21 @@ function getEditMissionForm() {
     editMission.forEach((editBtn) => {
         var missionId = editBtn.getAttribute("data-missionid");
         var missionType = editBtn.getAttribute("data-missiontype");
-        
+
         editBtn.addEventListener('click', () => {
             //alert(missionId + missionType);
             if (missionType == "True") {
                 $.ajax({
                     type: "GET",
                     url: '/Admin/Dashboard/GetTimeMissionEditForm',
-                    data: { missionId: missionId},
+                    data: { missionId: missionId },
                     success: function (data) {
 
                         $('#adminPartial').html(data);
                         $.getScript('/js/tinymce.js');
                         fileClick();
                         previewMedia();
+    cancelBtnClick("mission");
                         displayMissionImages();
                         previewDocuments();
                         fetchAndCreateFiles();
@@ -2080,7 +2106,7 @@ function getEditMissionForm() {
                         editTimemissionDetails(missionId);
                         getCitiesByCountry();
                         //searchMissions();
-                       
+
                     },
                     error: (err) => {
                         console.log("error in getting banner form");
@@ -2232,7 +2258,7 @@ function editGoalMissionDetails(missionId) {
 function previewMedia() {
     images = [];
     var missionMedia = $('#missionMedia');
-    
+
 
     var mediaName = missionMedia.data('name');
     var mediaType = missionMedia.data('type');

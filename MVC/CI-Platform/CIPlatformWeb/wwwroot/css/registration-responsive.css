@@ -1,7 +1,7 @@
 /* for desktop */
 @media(min-width:821px) {
     .hero-image {
-        width: 70vw;
+        width: 100vw;
     }
 
     /*.right-div {

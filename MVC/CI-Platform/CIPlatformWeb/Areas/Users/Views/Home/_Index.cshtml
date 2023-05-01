@@ -3,8 +3,6 @@
     var UserName = Context.Session.GetString("firstName");
     var userId = Context.Session.GetString("userId");
     var missionCount = ViewBag.missionCnt;
-    
-
 }
 <!-- grid and list view  -->
 <input type = "hidden" value="@userId" id="userId"/>
@@ -25,7 +23,7 @@
                     }
                     @if (missions.Status == false)
                     {
-                        <span class="position-absolute mission-status py-2 px-3 rounded-end-pill mt-2">Closed</span>
+                        <span class="position-absolute py-2 px-3 rounded-end-pill mt-2 bg-danger text-white">Closed</span>
                     }
                     <input type="hidden" class="skill-id" value="@missions.MissionSkills.SkillId" />
                     @*<input type="hidden" class="country-name" value="@missions.Country.Name" />*@
@@ -149,7 +147,8 @@
                             <div class="d-flex justify-content-center">
 
 
-                                @if (UserName != null && missions.MissionApplications.Any(ma => ma.UserId == long.Parse(userId) && ma.ApprovalStatus == 1))
+                                @if ((UserName != null && missions.MissionApplications.Any(ma => ma.UserId == long.Parse(userId) && ma.ApprovalStatus == 1)) ||
+                                missions.Status == false)
                                 {
 
                                     <a class="btn apply-btn mt-3 mb-3" asp-action="Index" asp-route-id="@missions.MissionId" asp-controller="MissionDetail">
@@ -157,6 +156,16 @@
                                        alt="#">
                                     </a>
                                 }
+                                else
+                                     @if ((!string.IsNullOrEmpty(userId) && missions?.MissionApplications?.LongCount() > 0 &&
+        @missions.MissionApplications.Any(ma => ma.UserId == long.Parse(userId) && ma.ApprovalStatus == 2)))
+                                {
+                                    
+                                    <a class="btn apply-btn mt-3 mb-3" asp-action="Index" asp-route-id="@missions.MissionId" asp-controller="MissionDetail">
+                                        Cancel <img src="~/images/right-arrow.png"
+                                       alt="#">
+                                    </a>
+        }
                                 else
                                 {
                                     <a class="btn apply-btn mt-3 mb-3" asp-action="Index" asp-route-id="@missions.MissionId" asp-controller="MissionDetail">
