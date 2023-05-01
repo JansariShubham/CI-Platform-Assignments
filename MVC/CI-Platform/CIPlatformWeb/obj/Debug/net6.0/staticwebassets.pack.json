@@ -653,6 +653,10 @@
       "PackagePath": "staticwebassets\\images\\storyimages\\dd59017f-abcb-4f3d-a092-b6841aeaa7fd.png"
     },
     {
+      "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\storyimages\\e98af30c-66da-405c-90c5-71a90ddacbb7.jpeg",
+      "PackagePath": "staticwebassets\\images\\storyimages\\e98af30c-66da-405c-90c5-71a90ddacbb7.jpeg"
+    },
+    {
       "Id": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\success-green-check-mark-icon.svg",
       "PackagePath": "staticwebassets\\images\\success-green-check-mark-icon.svg"
     },
