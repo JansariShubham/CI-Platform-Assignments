@@ -26,7 +26,7 @@
                         @foreach (var mission in Model.MissionList!)
                         {
 
-                                <option value="@mission.MissionId" data-startdate="@mission.StartDate?.ToString("d")" data-enddate="@mission.EndDate?.ToString("d")">@mission.Title</option>
+                                <option value="@mission.MissionId" data-startdate="@mission.StartDate" data-enddate="@mission.EndDate">@mission.Title</option>
 
                         }
                     }

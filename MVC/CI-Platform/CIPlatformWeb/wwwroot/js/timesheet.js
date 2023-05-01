@@ -46,34 +46,40 @@ timeModalBtn.addEventListener('click', () => {
     })
 
 })
+
+
+function isDateInRange(startDate, endDate, checkDate) {
+    return moment(checkDate).isBetween(startDate, endDate, null, '[]');
+}
+
 function dateValidation() {
     const mission = document.getElementById("mission");
     mission.addEventListener('change', (e) => {
         const selectedMission = e.target.selectedOptions[0];
-        const startDate = $(selectedMission).data('startdate');
-        const endDate = $(selectedMission).data('enddate');
+        const startDate = moment(selectedMission.dataset.startdate, 'DD-MM-YYYY HH:mm:ss');
+        const endDate = moment(selectedMission.dataset.enddate, 'DD-MM-YYYY HH:mm:ss');
         console.log(startDate + " " + endDate);
+
         const checkDate = document.getElementById("dateVol");
         checkDate.addEventListener('change', (e) => {
             const selectedDate = e.target.value;
-            console.log(selectedDate)
-            if (isDateInRange( startDate, endDate, selectedDate)) {
+            console.log(selectedDate);
+            const isValidDate = moment(selectedDate, 'YYYY-MM-DD', true).isValid();
+
+            if (isValidDate && isDateInRange(startDate, endDate, selectedDate)) {
                 console.log('The date is in range!');
+                document.getElementById("dateError").textContent = ''; // Clear the error message
+                checkDate.classList.remove('invalid'); // Remove the invalid class if present
             } else {
-                document.getElementById("dateError").textContent = `Please Select date between mission ${startDate} date and mission ${endDate} `
+                document.getElementById("dateError").textContent = `Please select a date between ${startDate.format('YYYY-MM-DD')} date and ${endDate.format('YYYY-MM-DD')}.`;
+                checkDate.classList.add('invalid'); // Add the invalid class
             }
-
-        })
-        
-
-        
-    })
+        });
+    });
 }
 
-function isDateInRange(startDate, endDate, selectedDate) {
-    console.log(startDate + "" + endDate)
-    return new Date(selectedDate).getTime() >= new Date(startDate).getTime() && new Date(selectedDate).getTime() <= new Date(endDate).getTime();
-}
+// Call the function to start the validation
+
 function addHourTimeSheet() {
     var timeForm = document.getElementById("hourTimeSheetForm");
     timeForm.addEventListener("submit", (e) => {
