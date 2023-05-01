@@ -14,6 +14,7 @@ goalModalBtn.addEventListener('click', () => {
             $('#goalModalPartial').html(result);
             $('#goalMissionModal').modal('show');
             addGoalTimeSheet();
+            dateValidation();
 
             console.log('success');
         },
@@ -35,6 +36,7 @@ timeModalBtn.addEventListener('click', () => {
             $('#hourModalPartial').html(result);
             $('#timeMissionModal').modal('show');
             addHourTimeSheet()
+            dateValidation();
             console.log('success');
         },
         error: (err) => {
@@ -44,7 +46,34 @@ timeModalBtn.addEventListener('click', () => {
     })
 
 })
+function dateValidation() {
+    const mission = document.getElementById("mission");
+    mission.addEventListener('change', (e) => {
+        const selectedMission = e.target.selectedOptions[0];
+        const startDate = $(selectedMission).data('startdate');
+        const endDate = $(selectedMission).data('enddate');
+        console.log(startDate + " " + endDate);
+        const checkDate = document.getElementById("dateVol");
+        checkDate.addEventListener('change', (e) => {
+            const selectedDate = e.target.value;
+            console.log(selectedDate)
+            if (isDateInRange( startDate, endDate, selectedDate)) {
+                console.log('The date is in range!');
+            } else {
+                document.getElementById("dateError").textContent = `Please Select date between mission ${startDate} date and mission ${endDate} `
+            }
 
+        })
+        
+
+        
+    })
+}
+
+function isDateInRange(startDate, endDate, selectedDate) {
+    console.log(startDate + "" + endDate)
+    return new Date(selectedDate).getTime() >= new Date(startDate).getTime() && new Date(selectedDate).getTime() <= new Date(endDate).getTime();
+}
 function addHourTimeSheet() {
     var timeForm = document.getElementById("hourTimeSheetForm");
     timeForm.addEventListener("submit", (e) => {

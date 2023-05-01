@@ -15,14 +15,14 @@
             <div class="modal-body">
 
                 <label for="missions" class="form-label">Mission</label>
-                <select name="" id="missions" class="form-select bg-secondary-subtle  text-secondary" asp-for="Mission">
+                <select name="" id="mission" class="form-select bg-secondary-subtle  text-secondary" asp-for="Mission">
                     <option value="" selected disabled>Select Mission</option>
                     @if (Model.MissionList != null)
                     {
                         @foreach (var mission in Model.MissionList!)
                         {
 
-                            <option value="@mission.MissionId">@mission.Title</option>
+                                <option value="@mission.MissionId" data-startdate="@mission.StartDate?.ToString("d")" data-enddate="@mission.EndDate?.ToString("d")">@mission.Title</option>
 
                         }
                     }
@@ -34,7 +34,7 @@
                 <input type="date" id="dateVol" class="d-block w-100 text-secondary form-control"
                        placeholder="Select Date" asp-for="Date">
                 <span asp-validation-for="Date" class="font-size text-danger"></span>
-
+                <span class="font-size text-danger" id="dateError"></span>
                 <div class="d-flex gap-2">
                     <div class="hour-min-div">
                         <label for="hour" class="mt-3 form-label">Hours</label>

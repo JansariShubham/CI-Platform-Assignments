@@ -12,11 +12,25 @@
 
 <body>
     <!-- navbar  -->
+    <div id="showToggle" class="d-none z-1 position-absolute bg-white text-black vh-100 ps-2 pe-5">
+        <a href="#" class="text-decoration-none d-block text-black ps-1">Stories</a>
+        <button class="dropdown-toggle policy-btn d-block mt-3 " data-bs-toggle="dropdown" aria-expanded="false"
+            type="button" id="dropdownMenuButton1">Policy
+            <img class="m-1" src="images/drop-down.png" alt="#">
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+    </div>
     <nav class="d-flex justify-content-between container mt-3 first-div">
+
         <div class="dropdown left-div">
-            <button class="header-toggle d-md-none border-0">
+            <button class="header-toggle d-md-none border-0" id="toggleDrop">
                 <img class="h-50" src="./images/list.png" alt="#">
             </button>
+
             <img class="logo h-50" src="./images/logo.png" alt="#">
             <a href="#" class="text-decoration-none mx-5 d-none d-md-inline d-lg-inline">Stories</a>
             <button class="dropdown-toggle policy-btn d-none d-md-inline d-lg-inline" data-bs-toggle="dropdown"
@@ -28,8 +42,10 @@
                 <li><a class="dropdown-item" href="#">Another action</a></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
-
         </div>
+
+
+
         <div class="dropdown right-div mb-3">
             <button class="header-serach d-md-none border-0" id="search-btn">
                 <img class="search-logo" src="./images/search.png" alt="#">
@@ -482,6 +498,16 @@
             searchBar.focus();
         });
 
+
+        var list = document.getElementById("toggleDrop");
+        var dropDown = document.getElementById("showToggle");
+
+        list.addEventListener("click", () => {
+            dropDown.classList.toggle("d-none");
+
+
+
+        })
 
     </script>
 </body>

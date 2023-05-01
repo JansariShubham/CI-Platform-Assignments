@@ -767,7 +767,9 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             {
                 Title = mission!.Title,
                 MissionId = mission.MissionId,
-                MissionType = mission.MissionType
+                MissionType = mission.MissionType,
+                StartDate = mission.StartDate,
+                EndDate = mission.EndDate
 
             };
             return missionVm;

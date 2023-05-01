@@ -6,9 +6,25 @@
 }
 
 <input type ="hidden" value="@userId" id="userId" />
+<div id="showToggle" class="d-none z-1 position-absolute bg-white text-black vh-100 ps-2 pe-5 d-md-none">
+    <div class="d-flex justify-content-end" id="closeSidebar">
+        <img src="~/images/cancel1.png"  alt="" style="padding-left : 5rem !important">
+    </div>
+    <div class="d-flex flex-column">
+  <a asp-action="StoryListing" asp-controller="Story" class="text-decoration-none text-black ps-2 my-3">Stories</a>
+    <button class="dropdown-toggle policy-btn " data-bs-toggle="dropdown"
+            aria-expanded="false" type="button" id="dropdownMenuButton1">
+        Policy
+        <img class="m-1" src="~/images/drop-down.png" alt="#">
+    </button>
+    <ul class="dropdown-menu cms-dropdown" aria-labelledby="dropdownMenuButton1">
+    </ul>
+    </div>
+</div>
+
 <div class="d-flex justify-content-between container my-3 first-div">
     <div class="dropdown left-div">
-        <button class="header-toggle d-md-none border-0">
+        <button class="header-toggle d-md-none border-0" id="toggleDrop">
             <img class="h-50" src="~/images/list.png" alt="#">
         </button>
         <a asp-action="PlatformLandingPage" asp-controller="Home"><img class="logo h-50" src="~/images/logo.png" alt="#"></a>
@@ -24,15 +40,17 @@
         </ul>
 
     </div>
+
+    
     
     <div class="dropdown right-div">
         
         @if (UserName != null)
         {
             <img class="rounded-circle user-img" src="@ava" alt="#">
-            <button class="dropdown-toggle policy-btn profile-btn d-none d-sm-inline" data-bs-toggle="dropdown"
+            <button class="dropdown-toggle policy-btn profile-btn " data-bs-toggle="dropdown"
                 aria-expanded="false" type="button" id="dropdownMenuButton1">
-                <span>@UserName</span>
+                <span class="d-none d-sm-inline">@UserName</span>
 
                 
 
@@ -120,9 +138,3 @@
         </div>
 </section>
 
-
-@section Scripts{
-    <script src="~/js/custom.js">
-  
-    </script>
-}

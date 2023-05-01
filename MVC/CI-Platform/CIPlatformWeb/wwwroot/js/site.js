@@ -45,7 +45,12 @@ $(document).ready(function () {
 
     searchBtn.addEventListener("click", () => {
         searchBar.focus();
+
+
+
     });
+
+
 });
 
 
@@ -121,6 +126,19 @@ function contactForm() {
 
 })
 }
+
+
+var list = document.getElementById("toggleDrop");
+var dropDown = document.getElementById("showToggle");
+
+list.addEventListener("click", () => {
+    dropDown.classList.toggle("d-none")
+});
+
+var closeBtn = document.getElementById("closeSidebar");
+closeBtn.addEventListener("click", () => {
+    dropDown.classList.add("d-none");
+})
 
 
 

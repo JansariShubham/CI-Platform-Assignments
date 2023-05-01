@@ -1,25 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Shubham\\MVC\\CI-Platform\\CIPlatform.repository\\CIPlatform.repository.csproj": {}
+    "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.repository\\CIPlatform.repository.csproj": {}
   },
   "projects": {
-    "D:\\Shubham\\MVC\\CI-Platform\\CIPlatform.entities\\CIPlatform.entities.csproj": {
+    "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.entities\\CIPlatform.entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Shubham\\MVC\\CI-Platform\\CIPlatform.entities\\CIPlatform.entities.csproj",
+        "projectUniqueName": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.entities\\CIPlatform.entities.csproj",
         "projectName": "CIPlatform.entities",
-        "projectPath": "D:\\Shubham\\MVC\\CI-Platform\\CIPlatform.entities\\CIPlatform.entities.csproj",
-        "packagesPath": "C:\\Users\\pce40\\.nuget\\packages\\",
-        "outputPath": "D:\\Shubham\\MVC\\CI-Platform\\CIPlatform.entities\\obj\\",
+        "projectPath": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.entities\\CIPlatform.entities.csproj",
+        "packagesPath": "C:\\Users\\SHUBHAM\\.nuget\\packages\\",
+        "outputPath": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.entities\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\pce40\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\SHUBHAM\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -72,7 +67,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -81,26 +77,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Shubham\\MVC\\CI-Platform\\CIPlatform.repository\\CIPlatform.repository.csproj": {
+    "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.repository\\CIPlatform.repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Shubham\\MVC\\CI-Platform\\CIPlatform.repository\\CIPlatform.repository.csproj",
+        "projectUniqueName": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.repository\\CIPlatform.repository.csproj",
         "projectName": "CIPlatform.repository",
-        "projectPath": "D:\\Shubham\\MVC\\CI-Platform\\CIPlatform.repository\\CIPlatform.repository.csproj",
-        "packagesPath": "C:\\Users\\pce40\\.nuget\\packages\\",
-        "outputPath": "D:\\Shubham\\MVC\\CI-Platform\\CIPlatform.repository\\obj\\",
+        "projectPath": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.repository\\CIPlatform.repository.csproj",
+        "packagesPath": "C:\\Users\\SHUBHAM\\.nuget\\packages\\",
+        "outputPath": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.repository\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\pce40\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\SHUBHAM\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -114,8 +105,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Shubham\\MVC\\CI-Platform\\CIPlatform.entities\\CIPlatform.entities.csproj": {
-                "projectPath": "D:\\Shubham\\MVC\\CI-Platform\\CIPlatform.entities\\CIPlatform.entities.csproj"
+              "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.entities\\CIPlatform.entities.csproj": {
+                "projectPath": "D:\\CI-Platform Assignments\\MVC\\CI-Platform\\CIPlatform.entities\\CIPlatform.entities.csproj"
               }
             }
           }
@@ -153,7 +144,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -162,7 +154,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
