@@ -39,16 +39,16 @@ $(document).ready(function () {
         listView.classList.remove("d-none")
 
     });
-    const searchBtn = document.getElementById("search-btn");
-    const searchBar = document.getElementById("search-bar");
+    //const searchBtn = document.getElementById("search-btn");
+    //const searchBar = document.getElementById("search-bar");
 
 
-    searchBtn.addEventListener("click", () => {
-        searchBar.focus();
+    //searchBtn.addEventListener("click", () => {
+    //    searchBar.focus();
 
 
 
-    });
+    //});
 
 
 });
@@ -60,7 +60,7 @@ contactUsModal.addEventListener("click", () => {
         url: '/Users/Home/GetContactUsData',
         method: "GET",
         success: function (res) {
-            
+
             $("#contactUsPartial").html(res);
             $("#contactUsModal").modal('show');
             contactForm();
@@ -97,7 +97,7 @@ function contactForm() {
             var userId = document.getElementById("userId").value;
             var subject = document.getElementById("subject").value;
             var message = document.getElementById("message").value;
-             console.log( userId + subject + message)
+            console.log(userId + subject + message)
 
             $.ajax({
                 url: '/Users/Home/AddContactUsDetails',
@@ -106,7 +106,7 @@ function contactForm() {
                 success: (result) => {
                     console.log("success in adding data")
                     $("#contactUsModal").modal('hide');
-                    
+
 
                 },
                 error: (err) => {
@@ -121,10 +121,10 @@ function contactForm() {
 
 
 
-    
 
 
-})
+
+    })
 }
 
 
@@ -145,4 +145,53 @@ closeBtn.addEventListener("click", () => {
 
 
 
+
+var logout = $("#logout");
+logout.click(() => {
+
+    Swal.fire({
+        title: "Are you sure you want to logout?",
+        text: "",
+        icon: "warning",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes",
+        cancelButtonText: "Cancel",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    })
+        .then((response) => {
+            if (response.isConfirmed) {
+               
+                $.ajax({
+                    url: '/Users/Home/Logout',
+                    type: "GET",
+
+                    success: (result) => {
+                        
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Logged out!',
+                            showConfirmButton: false,
+                            timer: 1000
+                        }).then(() => {
+                            window.location.href = result;
+                        })
+
+
+                    },
+                    error: (err) => {
+                        console.log("error in contact us");
+                        console.log(err);
+                    }
+                })
+            }
+            
+        });
+
+
+
+});
 

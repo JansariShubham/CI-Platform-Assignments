@@ -18,6 +18,7 @@ using Microsoft.VisualStudio.Web.CodeGeneration;
 using System.Drawing.Printing;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.CodeAnalysis.Differencing;
+using Microsoft.AspNetCore.Authorization;
 //using AspNetCore;
 
 namespace CIPlatformWeb.Areas.Users.Controllers
@@ -210,6 +211,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             model.banners = _IUnitOfWork.BannerRepository.GetAll().Select(ConvertToBannerVm).ToList();
             return View(model);
         }
+
+       
         public IActionResult PlatformLandingPage()
         {
             /*List<Mission> MissionList = obj.ToList();*/
@@ -511,12 +514,13 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             //return RedirectToAction("ResetPassword");
 
         }
-        [Route("Logout")]
+      
+        [HttpGet]
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Login");
-
+            var url = Json(Url.Action("PlatformLandingPage", "Home"));
+            return url;
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -759,7 +763,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
         }
 
-
+        
 
         private PlatformLandingViewModel ConvertToMissionVm(Mission? mission)
         {

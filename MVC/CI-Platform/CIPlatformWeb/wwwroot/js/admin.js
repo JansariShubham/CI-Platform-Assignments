@@ -149,14 +149,14 @@ function editUser(userId) {
             var email = $("#email").val();
             var empId = $("#empId").val();
             var department = $("#department").val();
-            var password = $("#password").val();
+            
 
-            console.log(firstName + lastName + email + empId + department);
+            //console.log(firstName + lastName + email + empId + department);
             $('#editUserModal').modal('hide');
             $.ajax({
                 type: "POST",
                 url: '/Admin/Dashboard/editUser',
-                data: { firstName: firstName, lastName: lastName, email: email, empId: empId, department: department, password: password, userId: userId },
+                data: { firstName: firstName, lastName: lastName, email: email, empId: empId, department: department, userId: userId },
                 success: function (data) {
                     console.log("success edit user")
                     $("#adminPartial").html(data);

@@ -3,18 +3,19 @@
     var userId = Context.Session.GetString("userId");
     var userName = Context.Session.GetString("firstName");
     var ava = Context.Session.GetString("avatar");
+    //var isAdmin = Context.Session.GetString("isAdmin");
 
 }
 
 <!-- navbar  -->
 <input type ="hidden" value="@userId" id ="userId" />
-<div id="showToggle" class="d-none z-1 position-absolute bg-white text-black vh-100 ps-2 pe-5 d-md-none">
-    <div class="d-flex justify-content-end mt-3" id="closeSidebar">
+<div id="showToggle" class="d-none z-1 position-absolute bg-white text-black vh-100 ps-2 d-md-none font-size">
+    <div class="d-flex justify-content-end mt-3 pe-2" id="closeSidebar">
         <img src="~/images/cancel1.png" alt="" style="padding-left : 5rem !important">
     </div>
-    <div class="d-flex flex-column">
-        <a asp-action="StoryListing" asp-controller="Story" class="text-decoration-none text-black ps-2 my-3">Stories</a>
-        <button class="dropdown-toggle policy-btn " data-bs-toggle="dropdown"
+    <div class="d-flex flex-column pe-5">
+        <a asp-action="StoryListing" asp-controller="Story" class="text-decoration-none text-black ps-2 my-3 font-size">Stories</a>
+        <button class="dropdown-toggle policy-btn font-size" data-bs-toggle="dropdown"
                 aria-expanded="false" type="button" id="dropdownMenuButton1">
             Policy
             <img class="m-1" src="~/images/drop-down.png" alt="#">
@@ -56,7 +57,9 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" asp-action="UserEditProfile" asp-controller="Home" asp-route-id ="@userId">My Profile</a></li>
                 <li><a class="dropdown-item" asp-action="TimeSheet" asp-controller="Home" asp-route-id="@userId">Volunteering Timesheet</a></li>
-                <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home">Logout</a></li>
+              
+                    <li><a class="dropdown-item" id = "logout">Logout</a></li>    
+                
             </ul>
 
         }

@@ -72,6 +72,11 @@ if (userId != null && userId != "") {
                     favImg.src = "/images/heart1.png";
                     //addToFavourite.disabled = true;
                    // isClicked = false;
+                    Swal.fire(
+                        'Removed from favourite!',
+                        'You clicked the button!',
+                        'success'
+                    )
                     console.log("Removed from fav");
                     isFavourite = 0;
                     
@@ -94,6 +99,11 @@ if (userId != null && userId != "") {
                     favImg.src = "/images/fill-heart.png";
                     //addToFavourite.disabled = true;
                    // isClicked = true;
+                    Swal.fire(
+                        'Added to favourite!',
+                        'You clicked the button!',
+                        'success'
+                    )
                     console.log("added to fav");
                     isFavourite = 1;
                    
@@ -266,12 +276,17 @@ if (userId != null && userId != "") {
                 sendRecommendationBtn.addEventListener('click', () => {
                     getCheckedUsersId();
                     $('#recommendedModal').modal('hide');
+                    Swal.fire(
+                        'Recommendation will be sent!',
+                        'You clicked the button!',
+                        'success'
+                    )
                     $.ajax({
                         type: "POST",
                         url: '/Users/MissionDetail/AddUsersToMissionInvite',
                         data: { usersIdList: usersId, missionId: missionId, currentUserId: userId },
                         success: (data) => {
-
+                            
 
                         },
                         error: (err) => {

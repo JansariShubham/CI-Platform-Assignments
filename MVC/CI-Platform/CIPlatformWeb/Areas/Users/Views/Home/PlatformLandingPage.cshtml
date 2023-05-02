@@ -9,13 +9,13 @@
     var missionCnt = ViewBag.missionCnt;
 }
 @*@if (TempData["EditProfileSuccess"] != null)
-{
+    {
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    
+
     <script>
-        toastr.success('@TempData["EditProfileSuccess"]');
+    toastr.success('@TempData["EditProfileSuccess"]');
     </script>
-}*@
+    }*@
 
 <input type="hidden" value="@TempData["EditProfileSuccess"]" id="editProfileSuccess" />
 <partial name="_Navbar" />
@@ -69,61 +69,67 @@
 
 <ul class="pagination mt-5 d-flex justify-content-center">
     @*    <li class="page-item">
-    <a class="page-link" href="#" aria-label="Previous">
-    <span aria-hidden="true">&laquo;</span>
-    </a>
-    </li>*@
+        <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        </a>
+        </li>*@
     @*<li class="page-item">
-    <a class="page-link" href="#" aria-label="Next">
-    <img src="~/images/left.png" alt="">
-    </a>
-    </li>*@
+        <a class="page-link" href="#" aria-label="Next">
+        <img src="~/images/left.png" alt="">
+        </a>
+        </li>*@
 
     @* <li class="page-item"><a class="page-link" id ="pageNumber" href="#"></a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">4</a></li>
-    <li class="page-item"><a class="page-link" href="#">5</a></li>*@
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">5</a></li>*@
     @*<li class="page-item">
-    <a class="page-link" href="#" aria-label="Next">
-    <img src="~/images/right-arrow1.png" alt="">
-    </a>
-    </li>@**@
+        <a class="page-link" href="#" aria-label="Next">
+        <img src="~/images/right-arrow1.png" alt="">
+        </a>
+        </li>@**@
     @*<li class="page-item">
-    <a class="page-link" href="#" aria-label="Next">
-    <span aria-hidden="true">&raquo;</span>
-    </a>
-    </li>*@
+        <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        </a>
+        </li>*@
 </ul>
 
 
 
 <partial name="_Footer" />
 @section scripts{
-    <script>
-       var tempData =  document.getElementById("editProfileSuccess").value;
-       console.log(tempData);
-       if(tempData != "")
-       {
-           Swal.fire(
-                        'Profile Updated Successfully!',
-                        'You clicked the button!',
-                        'success'
-                    )
-       }
+<script>
+           var tempData =  document.getElementById("editProfileSuccess").value;
+           console.log(tempData);
+           if(tempData != "")
+           {
+               Swal.fire(
+                            'Profile Updated Successfully!',
+                            'You clicked the button!',
+                            'success'
+                        )
+           }
+           sideBar();
+           function sideBar(){
+             
+              
+            var list = document.getElementById("toggleDrop");
+            var dropDown = document.getElementById("showToggle");
 
-        var list = document.getElementById("toggleDrop");
-        var dropDown = document.getElementById("showToggle");
+            list.addEventListener("click", () => {
+                
+                dropDown.classList.toggle("d-none")
+            });
 
-        list.addEventListener("click", () => {
-            dropDown.classList.toggle("d-none")
-        });
+            var closeBtn = document.getElementById("closeSidebar");
+            closeBtn.addEventListener("click", () => {
 
-        var closeBtn = document.getElementById("closeSidebar");
-        closeBtn.addEventListener("click", () =>{
                 dropDown.classList.add("d-none");
-        })
-    </script>
+            })
+           }
+</script>
 
 
 }

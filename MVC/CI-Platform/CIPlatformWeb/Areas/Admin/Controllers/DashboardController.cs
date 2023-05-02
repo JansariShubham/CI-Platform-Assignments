@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.VisualBasic;
 using System.Reflection.Metadata.Ecma335;
+using HtmlAgilityPack;
 
 namespace CIPlatformWeb.Areas.Admin.Controllers
 {
@@ -28,6 +29,12 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
             _IUnitOfWork = iUnitOfWork;
             _EmailSender = emailSender;
             _WebHostEnvironment = webHostEnvironment;
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Home", new {area="Users"});
         }
 
         public IActionResult Index()
@@ -118,7 +125,7 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
         }
 
 
-        public IActionResult editUser(string? firstName, string? lastName, string? email, string? empId, string? department, string? password, long? userId)
+        public IActionResult editUser(string? firstName, string? lastName, string? email, string? empId, string? department, long? userId)
         {
 
             var userObj = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == userId);
@@ -128,7 +135,7 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
             userObj.Email = email;
             userObj.EmployeeId = empId;
             userObj.Departmemt = department;
-            userObj.Password = password;
+           
             userObj.UpdatedAt = DateTimeOffset.Now;
 
             if (userObj != null)
@@ -711,7 +718,7 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
             StoryListingViewModel storyVm = new()
             {
                 StoryId = storyObj.StoryId,
-                Description = storyObj.Description,
+                Description = HtmlToPlainText(storyObj.Description!),
                 Title = storyObj.Title,
                 StoryViews = storyObj.StoryViews,
                 User = storyObj.User,
@@ -719,6 +726,12 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
 
             };
             return View(storyVm);
+        }
+        public static string HtmlToPlainText(string html)
+        {
+            var doc = new HtmlDocument();
+            doc.LoadHtml(html);
+            return doc.DocumentNode.InnerText;
         }
 
         private string getUrl(ICollection<StoryMedia> storyMedia, int storyId)
@@ -1551,12 +1564,12 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
 
             var missionObj = _IUnitOfWork.MissionRepository.GetFirstOrDefault(m => m.MissionId == model.MissionId);
             missionObj.Availability = model.Availability;
-            missionObj.Title = model.Title;
+            missionObj.Title = model.Title!;
             missionObj.Description = model.Description;
             missionObj.CountryId = model.CountryId;
             missionObj.CityId = model.CityId;
-            missionObj.ShortDesc = model.ShortDesc;
-            missionObj.IsActive = (bool)model.IsActive;
+            missionObj.ShortDesc = model.ShortDesc!;
+            missionObj.IsActive = (bool)model.IsActive!;
             missionObj.OrgDetails = model.OrgDetail;
             missionObj.OrgName = model.OrgName;
             missionObj.ThemeId = model.ThemeId;
