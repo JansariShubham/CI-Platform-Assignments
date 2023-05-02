@@ -1,20 +1,17 @@
 ﻿
 var userId = document.getElementById("userId").value;
-
-
-
-var goalModalBtn = document.getElementById("goalModal");
-goalModalBtn.addEventListener('click', () => {
+function goalTimeSheetAjax() {
+    var userId = document.getElementById("userId").value;
     $.ajax({
         url: "/Users/Home/GetGoalMission",
         type: "GET",
 
-        data: { userId:userId },
+        data: { userId: userId },
         success: (result) => {
             $('#goalModalPartial').html(result);
             $('#goalMissionModal').modal('show');
             addGoalTimeSheet();
-            dateValidation();
+            //dateValidation();
 
             console.log('success');
         },
@@ -23,10 +20,10 @@ goalModalBtn.addEventListener('click', () => {
         }
     })
 
-})
+}
 
-var timeModalBtn = document.getElementById("timeModal");
-timeModalBtn.addEventListener('click', () => {
+function hourTimeSheetAjax() {
+    var userId = document.getElementById("userId").value;
     $.ajax({
         url: "/Users/Home/GetTimeMission",
         type: "GET",
@@ -36,7 +33,7 @@ timeModalBtn.addEventListener('click', () => {
             $('#hourModalPartial').html(result);
             $('#timeMissionModal').modal('show');
             addHourTimeSheet()
-            dateValidation();
+            //dateValidation();
             console.log('success');
         },
         error: (err) => {
@@ -44,9 +41,30 @@ timeModalBtn.addEventListener('click', () => {
 
         }
     })
-
+}
+$(document).ready(() => {
+    goalModal();
+    timeModal();
+    deleteTimeSheetData();
+    getEditGoalModal();
+    getEditHourModal();
+    
+    
 })
+function goalModal() {
+    var goalModalBtn = document.getElementById("goalModal");
+    goalModalBtn.addEventListener('click', () => {
+        goalTimeSheetAjax();
+    })
+}
 
+function timeModal() {
+    var timeModalBtn = document.getElementById("timeModal");
+    timeModalBtn.addEventListener('click', () => {
+        hourTimeSheetAjax();
+
+    })
+}
 
 function isDateInRange(startDate, endDate, checkDate) {
     return moment(checkDate).isBetween(startDate, endDate, null, '[]');
@@ -69,10 +87,10 @@ function dateValidation() {
             if (isValidDate && isDateInRange(startDate, endDate, selectedDate)) {
                 console.log('The date is in range!');
                 document.getElementById("dateError").textContent = ''; // Clear the error message
-                checkDate.classList.remove('invalid'); // Remove the invalid class if present
+                 
             } else {
-                document.getElementById("dateError").textContent = `Please select a date between ${startDate.format('YYYY-MM-DD')} date and ${endDate.format('YYYY-MM-DD')}.`;
-                checkDate.classList.add('invalid'); // Add the invalid class
+                document.getElementById("dateError").textContent = `Please select a date between ${startDate.format('DD-MM-YYYY')} date and ${endDate.format('DD-MM-YYYY')}.`;
+                return;
             }
         });
     });
@@ -84,6 +102,7 @@ function addHourTimeSheet() {
     var timeForm = document.getElementById("hourTimeSheetForm");
     timeForm.addEventListener("submit", (e) => {
         e.preventDefault();
+        dateValidation();
         if ($("#hourTimeSheetForm").valid()) {
 
 
@@ -94,9 +113,8 @@ function addHourTimeSheet() {
             var message = document.getElementById("notes").value;
             var date = document.getElementById("dateVol").value;
 
-            var mission = $('#missions :selected').val();
-
-            //alert("hour" + userId + hours + minutes + message + date + mission);
+            var mission = $('#mission :selected').val();
+            
 
             $.ajax({
                 url: '/Users/Home/AddHourTimeSheet',
@@ -111,6 +129,12 @@ function addHourTimeSheet() {
                         'You clicked the button!',
                         'success'
                     )
+                    goalModal();
+                    timeModal();
+                    deleteTimeSheetData();
+                    getEditGoalModal();
+                    getEditHourModal();
+
 
                 },
                 error: (err) => {
@@ -158,6 +182,12 @@ function addGoalTimeSheet() {
                         'You clicked the button!',
                         'success'
                     )
+                    goalModal();
+                    timeModal();
+                    deleteTimeSheetData();
+                    getEditGoalModal();
+                    getEditHourModal();
+
 
                 },
                 error: (err) => {
@@ -173,12 +203,12 @@ function addGoalTimeSheet() {
 
     })
 }
-
-var deleteTimeSheet = document.querySelectorAll(".delete-img");
+function deleteTimeSheetData() {
+    var deleteTimeSheet = document.querySelectorAll(".delete-img");
     deleteTimeSheet.forEach((timeSheet) => {
         timeSheet.addEventListener("click", () => {
             var timeSheetId = timeSheet.getAttribute('data-timesheetid');
-            
+
             Swal.fire({
                 title: "Are you sure?",
                 text: "Once deleted, you will not be able to recover this data",
@@ -207,6 +237,13 @@ var deleteTimeSheet = document.querySelectorAll(".delete-img");
                                     'success'
                                 )
 
+                                goalModal();
+                                timeModal();
+                                deleteTimeSheetData();
+                                getEditGoalModal();
+                                getEditHourModal();
+
+
 
                             },
                             error: (err) => {
@@ -214,7 +251,7 @@ var deleteTimeSheet = document.querySelectorAll(".delete-img");
                                 console.log(err);
                             }
                         })
-                        
+
                     }
                 });
 
@@ -223,59 +260,64 @@ var deleteTimeSheet = document.querySelectorAll(".delete-img");
 
         })
     })
+}
+
+function getEditGoalModal() {
+
+    var editGoalTimeSheetBtn = document.querySelectorAll(".edit-img");
+    editGoalTimeSheetBtn.forEach((editTimeSheet) => {
+        editTimeSheet.addEventListener("click", () => {
+            var timeSheetId = editTimeSheet.getAttribute("data-timesheetid");
+
+            $.ajax({
+                url: '/Users/Home/getGoalTimeSheetData',
+                type: "GET",
+                data: { userId: userId, timeSheetId: timeSheetId },
+                success: (result) => {
+
+                    $('#editGoalModal').html(result);
+                    $('#goalEditModal').modal('show');
+                    updateGoalTimeSheet(timeSheetId);
 
 
-var editGoalTimeSheetBtn = document.querySelectorAll(".edit-img");
-editGoalTimeSheetBtn.forEach((editTimeSheet) => {
-    editTimeSheet.addEventListener("click", () => {
-        var timeSheetId = editTimeSheet.getAttribute("data-timesheetid");
 
-        $.ajax({
-            url: '/Users/Home/getGoalTimeSheetData',
-            type: "GET",
-            data: { userId: userId, timeSheetId: timeSheetId },
-            success: (result) => {
-                
-                $('#editGoalModal').html(result);
-                $('#goalEditModal').modal('show');
-                updateGoalTimeSheet(timeSheetId);
-                
+                },
+                error: (err) => {
 
-
-            },
-            error: (err) => {
-
-                console.log(err);
-            }
+                    console.log(err);
+                }
+            })
         })
     })
-})
 
+}
 
+function getEditHourModal() {
 
-var editHourTimeSheetBtn = document.querySelectorAll(".edit1-img");
-editHourTimeSheetBtn.forEach((editTimeSheet) => {
-    editTimeSheet.addEventListener("click", () => {
-        var timeSheetId = editTimeSheet.getAttribute("data-timesheetid");
+    var editHourTimeSheetBtn = document.querySelectorAll(".edit1-img");
+    editHourTimeSheetBtn.forEach((editTimeSheet) => {
+        editTimeSheet.addEventListener("click", () => {
+            var timeSheetId = editTimeSheet.getAttribute("data-timesheetid");
 
-        $.ajax({
-            url: '/Users/Home/getHourTimeSheetData',
-            type: "GET",
-            data: { userId: userId, timeSheetId: timeSheetId },
-            success: (result) => {
+            $.ajax({
+                url: '/Users/Home/getHourTimeSheetData',
+                type: "GET",
+                data: { userId: userId, timeSheetId: timeSheetId },
+                success: (result) => {
 
-                $('#editTimeModal').html(result);
-                $('#timeEditModal').modal('show');
-                updateHourTimeSheet(timeSheetId);
+                    $('#editTimeModal').html(result);
+                    $('#timeEditModal').modal('show');
+                    updateHourTimeSheet(timeSheetId);
 
-            },
-            error: (err) => {
+                },
+                error: (err) => {
 
-                console.log(err);
-            }
+                    console.log(err);
+                }
+            })
         })
     })
-})
+}
 
 function updateHourTimeSheet(timeSheetId) {
     var timeForm = document.getElementById("hourTimeSheetEditForm");
@@ -306,7 +348,11 @@ function updateHourTimeSheet(timeSheetId) {
                         'You clicked the button!',
                         'success'
                     )
-
+                    goalModal();
+                    timeModal();
+                    deleteTimeSheetData();
+                    getEditGoalModal();
+                    getEditHourModal();
                 },
                 error: (err) => {
                     console.log("error in hour timesheet");
@@ -350,6 +396,11 @@ function updateGoalTimeSheet(timeSheetId) {
                         'You clicked the button!',
                         'success'
                     )
+                    goalModal();
+                    timeModal();
+                    deleteTimeSheetData();
+                    getEditGoalModal();
+                    getEditHourModal();
 
                 },
                 error: (err) => {
