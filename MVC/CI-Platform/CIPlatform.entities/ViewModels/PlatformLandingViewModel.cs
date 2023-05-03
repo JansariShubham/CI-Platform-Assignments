@@ -27,6 +27,8 @@ namespace CIPlatform.entities.ViewModels
 
         public bool MissionType { get; set; }
 
+        public string? Desc { get; set; }
+
         public bool Status { get; set; }
 
         public string? OrgName { get; set; }

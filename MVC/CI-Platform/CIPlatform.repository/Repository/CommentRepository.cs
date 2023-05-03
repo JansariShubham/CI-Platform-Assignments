@@ -19,9 +19,9 @@ namespace CIPlatform.repository.Repository
 
         public List<Comment> getAllComments()
         {
-            var commentList = _appDbContext.Comments.Include(c => c.User).Include(c => c.Mission).ToList();
+            var commentList = _appDbContext.Comments.Include(c => c.User).Include(c => c.Mission).OrderByDescending(c => c.CreatedAt);
 
-            return commentList;
+            return commentList.ToList();
         }
 
     }

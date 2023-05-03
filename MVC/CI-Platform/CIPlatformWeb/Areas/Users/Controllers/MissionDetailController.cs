@@ -150,9 +150,10 @@ namespace CIPlatformWeb.Areas.Users.Controllers
 
 
                 var missionThemes = _IUnitOfWork.MissionRepository.getAllMissions().Where(m => missionObj.Theme.Title == m.Theme.Title && m.MissionId != missionObj.MissionId);
+                var missions = missionThemes.Where(m => m.Status == true);
                 List<PlatformLandingViewModel> missionThemeVm = new();
 
-                foreach (var item in missionThemes)
+                foreach (var item in missions)
                 {
                     missionThemeVm.Add(HomeController.CovertToMissionVM(item));
                 }

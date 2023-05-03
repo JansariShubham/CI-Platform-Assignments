@@ -102,7 +102,10 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                     HttpContext.Session.SetString("firstName", result.FirstName.ToString());
                     HttpContext.Session.SetString("lastName", result.LastName.ToString());
                     HttpContext.Session.SetString("userId", result.UserId.ToString());
-                    HttpContext.Session.SetString("avatar", result.Avatar!);
+                    if (result.Avatar != null)
+                    {
+                        HttpContext.Session.SetString("avatar", result.Avatar);
+                    }
 
 
                     
@@ -263,6 +266,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             MissionVM.MissionType = item.MissionType;
             MissionVM.OrgName = item.OrgName;
             MissionVM.ShortDesc = item.ShortDesc;
+            MissionVM.Desc = item.Description;
             MissionVM.OrgDetails = item.OrgDetails;
             MissionVM.RegistrationDeadline = item.RegDeadline;
             MissionVM.Theme = item.Theme;
@@ -653,9 +657,14 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         {
             if (profile != null && userId != null)
             {
-                deleteFileInFolder(userId);
-                //var userObj = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == userId);
 
+                var userObj = _IUnitOfWork.UserRepository.GetFirstOrDefault(u => u.UserId == userId);
+                if (userObj.Avatar != null)
+                {
+
+                    deleteFileInFolder(userId);
+
+                }
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
 
                 string fileName = Guid.NewGuid().ToString();
@@ -1141,7 +1150,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         }
         public IActionResult GetCmsList()
         {
-            List<CmsViewModel> cmsPageVMs = _IUnitOfWork.CmsRepository.GetAll().Select(ConvertToCmsVm).ToList();
+            List<CmsViewModel> cmsPageVMs = _IUnitOfWork.CmsRepository.GetAll().Where(c => c.Status == false).Select(ConvertToCmsVm).ToList();
             return Json(cmsPageVMs.Select(cms => new { cms.Title, cms.CmsPageId }));
         }
     }

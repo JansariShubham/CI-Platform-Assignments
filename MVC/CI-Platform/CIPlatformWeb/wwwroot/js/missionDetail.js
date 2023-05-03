@@ -228,7 +228,7 @@ if (userId != null && userId != "") {
             data: { userId: userId, missionId: missionId, commentText: commentMsg },
             success: (data) => {
                 // console.log("Comments Addded");
-                alert("Comment Added Successfully");
+                //alert("Comment Added Successfully");
                 $("#partialComment").html(data)
                 document.getElementById("commentMsg").value = '';
             },
@@ -381,7 +381,14 @@ $('#applyBtn').click(() => {
         url: '/Users/MissionDetail/AddMissionApplication',
         data: { missionId: missionId, userId: userId },
         success: (data) => {
-            window.location.replace(`/Users/MissionDetail/Index/${missionId}`);
+            Swal.fire(
+                'Applied for mission!',
+                'You clicked the button!',
+                'success'
+            ).then(() => {
+                window.location.replace(`/Users/MissionDetail/Index/${missionId}`);
+            })
+            
         },
         error: (err) => {
 
@@ -396,17 +403,36 @@ $('#cancelBtn').click(() => {
     var userId = $('#userId').val();
     var missionId = $('#missionId').val();
     //alert(userId + missionId);
-    $.ajax({
-        type: "POST",
-        url: '/Users/MissionDetail/CancelApplication',
-        data: { missionId: missionId, userId: userId },
-        success: (data) => {
-            window.location.replace(`/Users/MissionDetail/Index/${missionId}`);
-        },
-        error: (err) => {
-
-        }
-
+    Swal.fire({
+        title: "Are you sure?",
+        text: "",
+        icon: "warning",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes",
+        cancelButtonText: "Cancle",
+        closeOnConfirm: false,
+        closeOnCancel: false
     })
-})
+        .then((response) => {
+            if (response.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: '/Users/MissionDetail/CancelApplication',
+                    data: { missionId: missionId, userId: userId },
+                    success: (data) => {
+                        window.location.replace(`/Users/MissionDetail/Index/${missionId}`);
+
+                    },
+                    error: (err) => {
+
+                    }
+
+                })
+            }
+        });
+
+});
+   
 

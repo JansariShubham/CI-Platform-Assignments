@@ -13,7 +13,7 @@
     }
 }
 
-
+@*
 <nav class="d-flex justify-content-between container my-3 first-div">
     <div class="dropdown left-div">
         <button class="header-toggle d-md-none border-0">
@@ -66,11 +66,13 @@
 
     </div>
 </nav>
+*@
 
+<partial name = "_Navbar1" />
 
 <section class="container mt-3 border-top p-5">
     <div class="d-flex flex-column flex-sm-column flex-lg-row justify-content-around">
-        <div class="div-left w-50">
+        <div class="div-left  detail-img">
             <img class="poster-img mb-1 w-100" src="@Model.ThumbnailURL"
                  alt="">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -324,28 +326,7 @@
             <div class="mission-div overflow-scroll">
                 <div class="pt-3 ">
                     <h3 class="intro fs-3">Introduction</h3>
-                    <p class="text-secondary">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam quos
-                        delectus voluptatum
-                        aperiam
-                        eligendi eos officiis reiciendis deleniti, labore aspernatur odio? Amet distinctio quae
-                        eligendi, explicabo cupiditate impedit architecto labore?
-                    </p>
-                    <p class="text-secondary">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro,
-                        voluptate
-                        enim. Consequatur
-                        temporibus excepturi sapiente rem consectetur incidunt culpa eos voluptatibus exercitationem
-                        nihil! Magnam dolorum sit itaque officia veniam eius!
-                    </p>
-                    <p class="text-secondary">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam nisi
-                        voluptatem quas
-                        dolorum
-                        maiores alias numquam atque, at earum hic aliquid, voluptates minus sint nihil nostrum quo
-                        dolor
-                        officiis iure.
-                    </p>
+                    @Html.Raw(Model.Desc)
 
                 </div>
                 <div>
@@ -492,7 +473,7 @@
                         {
 
                             <div class="text-center" data-recent="@i">
-                                <img class="rounded-pill" src="~/images/volunteer1.png" alt="">
+                                <img class="rounded-pill" src="@user.User.Avatar" alt="">
                                 <p class="volunteer-name">@user.User.FirstName</p>
                             </div>
                             {
@@ -526,5 +507,54 @@
 
 @section Scripts{
 <script src="~/js/missionDetail.js"></script>
+<script>
+var logout = $("#logout");
+logout.click(() => {
+
+    Swal.fire({
+        title: "Are you sure you want to logout?",
+        text: "",
+        icon: "warning",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes",
+        cancelButtonText: "Cancel",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    })
+        .then((response) => {
+            if (response.isConfirmed) {
+               
+                $.ajax({
+                    url: '/Users/Home/Logout',
+                    type: "GET",
+
+                    success: (result) => {
+                        
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Logged out!',
+                            showConfirmButton: false,
+                            timer: 1000
+                        }).then(() => {
+                            window.location.href = result;
+                        })
+
+
+                    },
+                    error: (err) => {
+                        console.log("error in contact us");
+                        console.log(err);
+                    }
+                })
+            }
+            
+        });
+
+
+
+});</script>
 
 }

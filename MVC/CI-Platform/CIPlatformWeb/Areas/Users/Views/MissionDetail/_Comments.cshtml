@@ -8,9 +8,9 @@
             <img class="rounded-pill" src="~/images/volunteer3.png" alt="">
         </div>
         <div>
-            <h3>@comment.User.FirstName</h3>
+            <h3>@comment.CommentMsg</h3>
             <span>@comment.CreatedAt.ToString("d")</span>
-            <p>@comment.CommentMsg</p>
+            <p>@comment.User.FirstName</p>
         </div>
     </div>
 }
