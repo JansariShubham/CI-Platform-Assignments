@@ -34,6 +34,7 @@ img {
 
 .login-span {
     font-size: 14px;
+    
 }
 
 .text-light-custom {
@@ -63,6 +64,7 @@ span > a {
 
 .privacy-text {
     bottom: 50px;
+    cursor:pointer;
 }
 
 

@@ -562,6 +562,14 @@ img {
 .info-div p {
     font-size: 15px
 }
+#searchInput {
+    width: 100%;
+    background-image: url('../images/search.png');
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    padding-left: 40px !important;
+}
+
 
 
 .active-tab {

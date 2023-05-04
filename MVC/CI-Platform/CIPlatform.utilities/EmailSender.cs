@@ -21,7 +21,7 @@ namespace CIPlatform.utilities
             using (var emailClient = new SmtpClient())
             {
                 emailClient.Connect("smtp.gmail.com",587,MailKit.Security.SecureSocketOptions.StartTls);
-                emailClient.Authenticate("tatvatestmail@gmail.com", "vbuliyikyooddjeq");
+                emailClient.Authenticate("tatvatestmail@gmail.com", "");
                 emailClient.Send(emailToSend);
                 emailClient.Disconnect(true);
 

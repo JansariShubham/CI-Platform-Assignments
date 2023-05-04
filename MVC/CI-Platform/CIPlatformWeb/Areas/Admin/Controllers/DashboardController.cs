@@ -1600,9 +1600,18 @@ namespace CIPlatformWeb.Areas.Admin.Controllers
             EditMissionSkills(model.MissionId, MissionSkills, preloadedMissionSkill);
             return Ok();
         }
+        [HttpGet]
+        public JsonResult GetCitiesByCountry(int country)
+        {
+            var CountryObj = _IUnitOfWork.CountryRepository.GetFirstOrDefault(countryName => countryName.CountryId == country);
+            var cityList = _IUnitOfWork.CityRepository.GetAll().Where(m => m.CountryId == CountryObj.CountryId).ToList();
 
+            return Json(cityList);
         }
+
+
     }
+}
 
 
 

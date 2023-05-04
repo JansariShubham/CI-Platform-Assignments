@@ -533,7 +533,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
         [HttpGet]
-        /*[Route("/Users/Home/GetCitiesByCountry")]*/
+        //[Route("/Users/Home/GetCitiesByCountry")]
         public JsonResult GetCitiesByCountry(int country)
         {
             var CountryObj = _IUnitOfWork.CountryRepository.GetFirstOrDefault(countryName => countryName.CountryId == country);

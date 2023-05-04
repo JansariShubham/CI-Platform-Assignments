@@ -1794,9 +1794,11 @@ function getAddTimeMissionForm() {
 
             success: function (data) {
                 $('#adminPartial').html(data);
+               
                 $.getScript('/js/tinymce.js');
                 console.log("succ");
-    cancelBtnClick("mission");
+                cancelBtnClick("mission");
+               
                 getCitiesByCountry();
                 fileClick();
                 displayMissionImages();
@@ -1810,6 +1812,8 @@ function getAddTimeMissionForm() {
         });
     })
 }
+
+
 
 
 function getAddGoalMissionForm() {
@@ -1852,8 +1856,9 @@ function getCitiesByCountry() {
 
     $("#countryDropdown").change(function () {
         var country = $(this).val();
+        
         $.ajax({
-            url: "/Users/Home/GetCitiesByCountry",
+            url: "/Admin/Dashboard/GetCitiesByCountry",
             type: "GET",
             dataType: "json",
             data: { country: country },
@@ -1979,6 +1984,7 @@ function addTimeMission() {
             return;
 
         }
+      
 
         if (images.length == 0 || images.length < 1) {
             var dragImgSpan = document.getElementById("mediaError");

@@ -127,19 +127,22 @@ function contactForm() {
     })
 }
 
+sideBarToggle();
 
-var list = document.getElementById("toggleDrop");
-var dropDown = document.getElementById("showToggle");
+function sideBarToggle() {
 
-list.addEventListener("click", () => {
-    dropDown.classList.toggle("d-none")
-});
+    var list = document.getElementById("toggleDrop");
+    var dropDown = document.getElementById("showToggle");
 
-var closeBtn = document.getElementById("closeSidebar");
-closeBtn.addEventListener("click", () => {
-    dropDown.classList.add("d-none");
-})
+    list.addEventListener("click", () => {
+        dropDown.classList.toggle("d-none")
+    });
 
+    var closeBtn = document.getElementById("closeSidebar");
+    closeBtn.addEventListener("click", () => {
+        dropDown.classList.add("d-none");
+    })
+}
 
 
 

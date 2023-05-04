@@ -31,24 +31,28 @@
         </form>
 
         <div class="d-flex flex-column mt-3 align-items-center bottom-div ">
-            <a asp-action="ForgotPassword" asp-controller="Home">
+            <a asp-action="ForgotPassword" asp-controller="Home" class="text-decoration-none">
                 <span class="login-span text-light-custom">
                     Lost
                     your
                     password?
                 </span>
             </a>
-
-            <span class="mt-3 login-span text-light-custom">
-                Don't have an account? <a asp-action="Registration" asp-controller="Home">
-                    Create an
+            <div class="d-flex mt-3">
+             <span class=" login-span text-light-custom">
+                    Don't have an account?
+                    
+            </span>
+                 <a asp-action="Registration" asp-controller="Home" class="text-decoration-none ms-1 login-span">
+           
+            Create an
                     account
                 </a>
-            </span>
-            <span class="login-span text-light-custom privacy-text position-lg-fixed">
+                </div>
+            <a class="login-span text-light-custom privacy-text position-lg-fixed text-decoration-none text-black" asp-action = "Privacy" asp-controller = "Home" target="_blank">
                 Priavcy
                 Policy
-            </span>
+            </a>
         </div>
     </div>
 
