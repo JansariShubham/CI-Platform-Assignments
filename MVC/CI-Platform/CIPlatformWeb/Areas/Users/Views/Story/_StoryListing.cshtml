@@ -26,23 +26,15 @@
                     </span>
                     <div class="card-body p-0">
                         <h5 class="card-title mission-title px-3">
-                            @story.Description
+                              @story.Description
                         </h5>
                         <p class="card-text mission-desc px-3">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit.
-                            Iusto,
-                            ipsa.
-                            Sint
-                            similique repellendus laboriosam omnis incidunt, sapiente, facilis alias consequatur hic
-                            iste
-                            nobis
-                            voluptatibus! Ipsa molestiae in maxime similique id!
+                          
                         </p>
 
                     </div>
                     <div class="p-3">
-                        <img class="rounded-pill vol-img" src="~/images/volunteer1.png" alt="">
+                        <img class="rounded-pill vol-img" src="@story.User!.Avatar" alt="">
                         <span class="font-size">@story.User!.FirstName @story.User!.LastName</span>
                     </div>
                 </div>

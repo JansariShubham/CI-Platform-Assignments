@@ -6,7 +6,7 @@
         <div class="head-border pb-3 fs-4">Banner</div>
     </div>
     <div class="">
-        <div class="mt-3">
+        <div class="mt-3 d-flex justify-content-end">
             <a class="btn border rounded-pill px-sm-3 py-sm-2 px-1 orange-btn" id="addBannerBtn"
                style="border-color: #F88634 !important">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F88634"
@@ -25,6 +25,7 @@
                     <th>Banner Image</th>
                     <th>Title</th>
                     <th>Sort Order</th>
+                    <th>Status</th>
                     <th>Action</th>
 
 
@@ -51,6 +52,14 @@
 
                         <td>@banner.TextTitle</td>
                         <td>@banner.SortOrder</td>
+                        @if(banner.Status)
+                        {
+                            <td class="text-success">Active</td>
+                        }
+                        else
+                        {
+                            <td class="text-danger">InActive</td>
+                        }
                         <td class="">
                             <div class="d-flex gap-3">
                                 <img src="~/images/editing.png" alt="" class="edit-banner" data-bannerid ="@banner.BannerId">

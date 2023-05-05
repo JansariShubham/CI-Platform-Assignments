@@ -48,6 +48,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 storyShareVm.StoryMedia = draftStory.StoryMedia;
                 storyShareVm.StoryId = draftStory.StoryId;  
                 storyShareVm.Status = draftStory.Status;
+          
                 
                 ViewBag.missions = missionVm;
 
@@ -105,6 +106,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                         draftStory.Description = storyVm.Description;
                         draftStory.UserId = storyVm.UserId;
                         draftStory.MissionId = storyVm.MissionId;
+                       
                         draftStory.UpdatedAt = DateTimeOffset.Now;
 
                         _IUnitOfWork.StoryRepository.Update(draftStory);

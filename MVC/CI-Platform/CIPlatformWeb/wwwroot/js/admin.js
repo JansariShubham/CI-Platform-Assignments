@@ -212,6 +212,11 @@ function deleteUser() {
                                 success: function (data) {
 
                                     $("#adminpartial").html(data);
+                                    Swal.fire(
+                                        'User Inactivated!',
+                                        'You clicked the button!',
+                                        'success'
+                                    )
                                     deleteUser();
                                     editUserData();
                                     showAddUserModal();
@@ -234,6 +239,12 @@ function deleteUser() {
                     success: function (data) {
 
                         $("#adminPartial").html(data);
+                        Swal.fire(
+                            'User Activated!',
+                            'You clicked the button!',
+                            'success'
+                        )
+
                         deleteUser();
                         editUserData();
                         showAddUserModal();
@@ -291,6 +302,7 @@ function searchOperation() {
                 deleteUser();
                 editUserData();
                 searchOperation();
+                
                 showAddUserModal();
                 search = document.getElementById("searchInput");
                 search.focus();
@@ -362,9 +374,9 @@ function addCms() {
 
             success: function (data) {
 
-                console.log("success in getting adding cms");
                 $("#adminPartial").html(data);
-    cancelBtnClick("cms");
+                cancelBtnClick("cms");
+
                 $.getScript('/js/tinymce.js');
 
                 addCmsData();
@@ -465,6 +477,11 @@ function deleteCms() {
                     success: function (data) {
 
                         $("#adminPartial").html(data);
+                        Swal.fire(
+                            'CMS Page Activated!',
+                            'You clicked the button!',
+                            'success'
+                        )
                         cmsAjax();
 
                     },
@@ -494,7 +511,11 @@ function deleteCms() {
                                 url: '/Admin/Dashboard/changeCmsStatus',
                                 data: { cmsId: cmsId, status: status },
                                 success: function (data) {
-
+                                    Swal.fire(
+                                        'CMS Page InActivated!',
+                                        'You clicked the button!',
+                                        'success'
+                                    )
                                     $("#adminPartial").html(data);
                                     cmsAjax();
 
@@ -697,6 +718,11 @@ function addMissionTheme() {
                 url: '/Admin/Dashboard/AddMissionTheme',
                 data: themeObj,
                 success: function (data) {
+                    Swal.fire(
+                        'Mission Theme Added!',
+                        'You clicked the button!',
+                        'success'
+                    )
                     missionThemeAjax();
 
 
@@ -745,6 +771,11 @@ function deleteTheme() {
                                     missionThemeStatus: missionThemeStatus
                                 },
                                 success: function (data) {
+                                    Swal.fire(
+                                        'Mission Theme Inactivated!',
+                                        'You clicked the button!',
+                                        'success'
+                                    )
                                     missionThemeAjax();
 
 
@@ -765,6 +796,11 @@ function deleteTheme() {
                         missionThemeStatus: missionThemeStatus
                     },
                     success: function (data) {
+                        Swal.fire(
+                            'Mission Theme Activated!',
+                            'You clicked the button!',
+                            'success'
+                        )
                         missionThemeAjax();
 
 
@@ -821,7 +857,11 @@ function editMissionTheme(themeId) {
                     title: title, status: status, themeId: themeId
                 },
                 success: function (data) {
-
+                    Swal.fire(
+                        'Mission Theme Updated!',
+                        'You clicked the button!',
+                        'success'
+                    )
                     missionThemeAjax();
 
 
@@ -926,6 +966,11 @@ function addSkill() {
                 url: '/Admin/Dashboard/AddSkill',
                 data: skillName,
                 success: function (data) {
+                    Swal.fire(
+                        'Skill Added Successfully!',
+                        'You clicked the button!',
+                        'success'
+                    )
                     getSkillList();
 
                 },
@@ -965,6 +1010,11 @@ function deleteSkill() {
                                 url: '/Admin/Dashboard/ChangeSkillStatus',
                                 data: { status: status, skillId: skillId },
                                 success: function (data) {
+                                    Swal.fire(
+                                        'Skill Inactivated!',
+                                        'You clicked the button!',
+                                        'success'
+                                    )
                                     $('#adminPartial').html(data);
 
                                     getSkillList();
@@ -986,7 +1036,11 @@ function deleteSkill() {
                     data: { status: status, skillId: skillId },
                     success: function (data) {
                         $('#adminPartial').html(data);
-
+                        Swal.fire(
+                            'Skill Activated!',
+                            'You clicked the button!',
+                            'success'
+                        )
                         getSkillList();
 
 
@@ -1042,7 +1096,7 @@ function editSkillData(skillId) {
                     getSkillList();
 
                     Swal.fire(
-                        'CMS Page Added Successfully!',
+                        'Skill Updated Successfully!',
                         'You clicked the button!',
                         'success'
                     )
@@ -1118,6 +1172,11 @@ function approveStatus() {
                 url: '/Admin/Dashboard/ApproveStatus',
                 data: { missionAppId: missionAppId },
                 success: function (data) {
+                    Swal.fire(
+                        'Mission Approved!',
+                        'You clicked the button!',
+                        'success'
+                    )
                     missionAppAjax();
                     searchMissionApp();
 
@@ -1157,6 +1216,11 @@ function declineStatus() {
                             url: '/Admin/Dashboard/DeclineStatus',
                             data: { missionAppId: missionAppId },
                             success: function (data) {
+                                Swal.fire(
+                                    'Mission Declined!',
+                                    'You clicked the button!',
+                                    'success'
+                                )
                                 missionAppAjax();
 
                                 searchMissionApp();
@@ -1263,6 +1327,11 @@ function approveStory() {
                 url: '/Admin/Dashboard/ApproveStory',
                 data: { storyId: storyId },
                 success: function (data) {
+                    Swal.fire(
+                        'Story Approved!',
+                        'You clicked the button!',
+                        'success'
+                    )
                     storyAjax();
 
 
@@ -1290,6 +1359,11 @@ function restoreStory() {
                 url: '/Admin/Dashboard/ApproveStory',
                 data: { storyId: storyId },
                 success: function (data) {
+                    Swal.fire(
+                        'Story Restored!',
+                        'You clicked the button!',
+                        'success'
+                    )
                     storyAjax();
 
 
@@ -1327,6 +1401,11 @@ function declineStory() {
                             url: '/Admin/Dashboard/DeclineStory',
                             data: { storyId: storyId },
                             success: function (data) {
+                                Swal.fire(
+                                    'Story Declined!',
+                                    'You clicked the button!',
+                                    'success'
+                                )
                                 storyAjax();
 
 
@@ -1352,7 +1431,7 @@ function deleteStory() {
         deleteBtn.addEventListener('click', () => {
             Swal.fire({
                 title: "Are you sure?",
-                text: "You want to decline",
+                text: "You want to delete this story",
                 icon: "warning",
                 type: "warning",
                 showCancelButton: true,
@@ -1370,6 +1449,11 @@ function deleteStory() {
                             url: '/Admin/Dashboard/DeleteStory',
                             data: { storyId: storyId },
                             success: function (data) {
+                                Swal.fire(
+                                    'Story Deleted!',
+                                    'You clicked the button!',
+                                    'success'
+                                )
                                 storyAjax();
 
 
@@ -1514,6 +1598,11 @@ function deleteBanner() {
                                 url: '/Admin/Dashboard/ChangeBannerStatus',
                                 data: { bannerId: bannerId, status: status },
                                 success: function (data) {
+                                    Swal.fire(
+                                        'Banner Inactivated!',
+                                        'You clicked the button!',
+                                        'success'
+                                    )
                                     bannerAjax();
                                 },
                                 error: (err) => {
@@ -1532,6 +1621,11 @@ function deleteBanner() {
                     url: '/Admin/Dashboard/ChangeBannerStatus',
                     data: { bannerId: bannerId, status: status },
                     success: function (data) {
+                        Swal.fire(
+                            'Banner Activated!',
+                            'You clicked the button!',
+                            'success'
+                        )
                         bannerAjax();
                     },
                     error: (err) => {
@@ -1687,6 +1781,11 @@ function stopMission() {
                             url: '/Admin/Dashboard/StopMission',
                             data: { missionId: missionId },
                             success: function (data) {
+                                Swal.fire(
+                                    'Mission Stop Succssfully!',
+                                    'You clicked the button!',
+                                    'success'
+                                )
                                 missionAjax();
 
                             },
@@ -1755,6 +1854,11 @@ function deleteMission() {
                                 url: '/Admin/Dashboard/ChangeMissionStatus',
                                 data: { missionId: missionId, status: status },
                                 success: function (data) {
+                                    Swal.fire(
+                                        'Mission Inactivated!',
+                                        'You clicked the button!',
+                                        'success'
+                                    )
                                     missionAjax();
                                     //searchMissions();
                                 },
@@ -1771,6 +1875,11 @@ function deleteMission() {
                     url: '/Admin/Dashboard/ChangeMissionStatus',
                     data: { missionId: missionId, status: status },
                     success: function (data) {
+                        Swal.fire(
+                            'Mission Activated!',
+                            'You clicked the button!',
+                            'success'
+                        )
                         missionAjax();
                         //searchMissions();
                     },

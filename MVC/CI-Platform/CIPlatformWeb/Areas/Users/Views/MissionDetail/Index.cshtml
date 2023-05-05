@@ -251,7 +251,7 @@
                     </div>
                     <div class="px-2 info-div">
                         <span> City </span>
-                        <p class="fw-bold">@Model.City.Name</p>
+                        <p class="fw-bold">@Model?.City?.Name</p>
                     </div>
                 </div>
                 <div class="border col d-flex flex-column justify-content-between p-0">
@@ -260,7 +260,7 @@
                     </div>
                     <div class="px-2 info-div">
                         <span>Theme</span>
-                        <p class="fw-bold">@Model.Theme.Title</p>
+                        <p class="fw-bold">@Model?.Theme?.Title</p>
                     </div>
                 </div>
                 <div class="border col d-flex flex-column justify-content-between p-0">
@@ -297,9 +297,9 @@
         {
             <div class="text-center text-success mt-2">You're a volunteer.</div>
         }
-        else if ((Model.Status == true
-        && Model?.TotalSeats == null ? true : Model.SeatsLeft > 0
-        && Model?.RegistrationDeadline == null ? true : Model.RegistrationDeadline >= DateTime.Now))
+        else if ((Model?.Status == true
+        && Model?.TotalSeats == null ? true : Model?.SeatsLeft > 0
+        && Model?.RegistrationDeadline == null ? true : Model?.RegistrationDeadline >= DateTime.Now))
         {
             <div class="d-flex justify-content-center">
                         <a class="btn apply-btn mt-3 mb-3 px-5 " id="applyBtn">
@@ -326,7 +326,7 @@
             <div class="mission-div overflow-scroll">
                 <div class="pt-3 ">
                     <h3 class="intro fs-3">Introduction</h3>
-                    @Html.Raw(Model.Desc)
+                    @Html.Raw(Model?.Desc)
 
                 </div>
                 <div>

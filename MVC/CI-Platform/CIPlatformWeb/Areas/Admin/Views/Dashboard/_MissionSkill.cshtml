@@ -26,9 +26,10 @@
         <table class="table">
             <thead>
                 <tr class="cms-table">
-                    <th class="col-10">Title</th>
+                    <th class="col-7">Title</th>
+                    <th class="col-3">Status</th>
                     
-                    <th class= "col-2">Action</th>
+                    <th class= "col-1">Action</th>
 
 
 
@@ -36,7 +37,7 @@
             </thead>
             <tbody class="">
 
-                @foreach (var skill in Model)
+                @foreach (var skill in Model!)
                 {
 
                     <tr class="text-secondary font-size">
@@ -44,7 +45,18 @@
                         <td>
                             @skill.SkillName
                         </td>
-                       
+                        @if(skill.Status)
+                        {
+                           <td class="text-success">
+                            Active
+                        </td >
+                        }
+                        else{
+                            <td class="text-danger">
+                            In active
+                        </td>
+                        }
+                        
                         <td class="">
                             <div class="d-flex gap-3">
                                 <img src="~/images/editing.png" alt="" data-skillid= "@skill.SkillId" class="edit-skill">
