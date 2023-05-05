@@ -19,6 +19,69 @@
 
 <input type="hidden" value="@TempData["EditProfileSuccess"]" id="editProfileSuccess" />
 <partial name="_Navbar" />
+<section class="d-flex second-div mt-4">
+    <div class="container">
+        <div class="d-flex row p-0">
+            <div class="col-10 col-md-11 col-lg-6">
+                <div class="p-3 search-div d-flex gap-3">
+                    <img class="search-img mt-1" src="~/images/search.png"
+                         alt="#">
+                    <input type="text" id="search-bar" class="search-bar form-control border-0 p-0"
+                           placeholder="Search mission...">
+                </div>
+            </div>
+            <!-- filter button -->
+            <button class="col d-lg-none filter-btn border-0">
+                <img src="~/images/filter.png" alt="#">
+            </button>
+            <!-- filter menu -->
+            <div class="col-6 m-0  filter-div" >
+                <div class="row d-lg-flex " id="filter-menu">
+                    <div class="col-lg-3 p-3">
+                        <select id="country-filter" class="form-select select-group">
+                            <option value="1" selected disabled>Country</option>
+                             @foreach(var country in Model.CountryList)
+                            {
+                                <option value="@country.CountryId">@country.Name</option>
+                               
+                            }
+
+
+                        </select>
+                    </div>
+                    <div class="col-lg-3 p-3 city-div">
+                        <select id="city-filter" class="form-select select-group" >
+                           
+                            <option value="1" selected disabled>City</option>
+                           @foreach (var cities in Model.CityList)
+                            {
+                             @*<option value="CityName">@cities.Name</option>*@
+                            }
+                        </select>
+                    </div>
+                    <div class=" col-lg-3 p-3">
+                        <select id="theme-filter" class="form-select select-group" >
+                            <option value="1" selected disabled>Theme</option>
+                            @foreach (var themes in Model.ThemeList)
+                            {
+                                <option value="@themes.MissionThemeId">@themes.Title</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-lg-3 p-3">
+                        <select class="form-select select-group" id="skill-filter">
+                            <option value="1" selected disabled>Skills</option>
+                            @foreach (var skills in Model.SkillsList)
+                            {
+                                <option value="@skills.SkillId">@skills.SkillName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</section>
 <input type="hidden" value="@missionCnt" id="missionCountLanding" />
 <!-- third section  -->
 <section class="d-none d-md-inline">
@@ -75,6 +138,7 @@
 
 <partial name="_Footer" />
 @section scripts{
+    <script src="~/js/custom.js"/>
 <script>
            var tempData =  document.getElementById("editProfileSuccess").value;
            console.log(tempData);

@@ -104,6 +104,17 @@ skillValue.addEventListener('change', () => {
 
 
 
+var exploreDiv = document.getElementById("exploreDiv");
+exploreDiv.classList.remove("d-none");
+
+$("#exploreDropdown li").click((e) => {
+    
+    var id = e.currentTarget.dataset.id;
+  
+})
+
+
+
 
 
 

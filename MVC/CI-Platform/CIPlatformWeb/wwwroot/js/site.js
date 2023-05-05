@@ -12,7 +12,7 @@ if (drop) {
             }
         },
         error: error => {
-            console.log(error);
+            console.log("cms error");
         }
     });
 }

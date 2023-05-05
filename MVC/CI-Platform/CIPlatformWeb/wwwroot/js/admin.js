@@ -1913,6 +1913,7 @@ function getAddTimeMissionForm() {
                 displayMissionImages();
                 previewDocuments();
                 addTimeMission();
+            
                 //searchMissions();
             },
             error: (err) => {
@@ -2192,6 +2193,7 @@ function addGoalMission() {
         }
     })
 }
+
 
 
 function getEditMissionForm() {
