@@ -36,8 +36,8 @@ namespace CIPlatform.entities.ViewModels
         public string ConfirmPasword { get; set; } = null!; 
 
         [Required(ErrorMessage = "Phone Number is required")]
-        [StringLength(10, MinimumLength =10, ErrorMessage="Phone Number Must Contain atleast 10 Characters")]
-        [RegularExpression("^[0-9]+$")]
+        [StringLength(10, MinimumLength = 10, ErrorMessage="Phone Number Must Contain atleast 10 Characters")]
+        [RegularExpression("^[0-9]+$", ErrorMessage =" Please Enter Valid Phone Number")]
         public String? PhoneNumber { get; set; }
 
         public List<BannerViewModel>? banners { get; set; }

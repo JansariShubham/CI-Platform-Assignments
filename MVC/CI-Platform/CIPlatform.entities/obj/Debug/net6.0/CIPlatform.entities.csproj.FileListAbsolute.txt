@@ -31,7 +31,6 @@ D:\Shubham\CI_Platform\MVC\CI-Platform\CIPlatform.entities\bin\Debug\net6.0\CIPl
 D:\Shubham\CI_Platform\MVC\CI-Platform\CIPlatform.entities\bin\Debug\net6.0\CIPlatform.entities.dll
 D:\Shubham\CI_Platform\MVC\CI-Platform\CIPlatform.entities\bin\Debug\net6.0\ref\CIPlatform.entities.dll
 D:\Shubham\CI_Platform\MVC\CI-Platform\CIPlatform.entities\bin\Debug\net6.0\CIPlatform.entities.pdb
-D:\Shubham\CI_Platform\MVC\CI-Platform\CIPlatform.entities\obj\Debug\net6.0\CIPlatform.entities.csproj.AssemblyReference.cache
 D:\Shubham\CI_Platform\MVC\CI-Platform\CIPlatform.entities\obj\Debug\net6.0\CIPlatform.entities.GeneratedMSBuildEditorConfig.editorconfig
 D:\Shubham\CI_Platform\MVC\CI-Platform\CIPlatform.entities\obj\Debug\net6.0\CIPlatform.entities.AssemblyInfoInputs.cache
 D:\Shubham\CI_Platform\MVC\CI-Platform\CIPlatform.entities\obj\Debug\net6.0\CIPlatform.entities.AssemblyInfo.cs
@@ -40,3 +39,4 @@ D:\Shubham\CI_Platform\MVC\CI-Platform\CIPlatform.entities\obj\Debug\net6.0\CIPl
 D:\Shubham\CI_Platform\MVC\CI-Platform\CIPlatform.entities\obj\Debug\net6.0\ref\CIPlatform.entities.dll
 D:\Shubham\CI_Platform\MVC\CI-Platform\CIPlatform.entities\obj\Debug\net6.0\CIPlatform.entities.pdb
 D:\Shubham\CI_Platform\MVC\CI-Platform\CIPlatform.entities\obj\Debug\net6.0\CIPlatform.entities.genruntimeconfig.cache
+D:\Shubham\CI_Platform\MVC\CI-Platform\CIPlatform.entities\obj\Debug\net6.0\CIPlatform.entities.csproj.AssemblyReference.cache

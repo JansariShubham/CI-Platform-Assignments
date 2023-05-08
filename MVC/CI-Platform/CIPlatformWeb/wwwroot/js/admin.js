@@ -1240,6 +1240,7 @@ function declineStatus() {
 
 
 function searchMissionApp() {
+  
     var search = document.getElementById("searchInput");
     search.addEventListener('input', () => {
         searchText = search.value;

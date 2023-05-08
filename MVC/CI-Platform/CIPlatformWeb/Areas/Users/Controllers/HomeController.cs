@@ -278,7 +278,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             MissionVM.MissionRating = getMissionRatings(item.MissionRatings);
             MissionVM.MissionSkills = getMissionSkillList(item.MissionSkills);
             MissionVM.ThumbnailURL = getUrl(item.MissionMedia);
-            MissionVM.MissionRate = item.MissionRatings.Count > 0 ? Math.Ceiling(item.MissionRatings.Average(mr => mr.Rating)) : 0;
+            MissionVM.MissionRate = item.MissionRatings.Count > 0 ? Math.Floor(item.MissionRatings.Average(mr => mr.Rating)) : 0;
             MissionVM.SeatsLeft = item.TotalSeats - item.MissionApplications.Count();
             //MissionVM.MissionDocuments = item.MissionDocuments; 
             // Console.WriteLine("seats lef====>>>>" + MissionVM.SeatsLeft);
@@ -543,7 +543,7 @@ namespace CIPlatformWeb.Areas.Users.Controllers
         }
 
         [HttpPost]
-        public IActionResult GetFilterData(string? searchText, int[]? cityList, int[]? countryList, int[]? themeList, int[]? skillList, int sortingList, int pageNum, int userId)
+        public IActionResult GetFilterData(string? searchText, int[]? cityList, int[]? countryList, int[]? themeList, int[]? skillList, int sortingList, int pageNum, int userId, int explore)
         {
             Filters obj = new()
             {
@@ -554,7 +554,9 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 Skills = skillList,
                 sortingList = sortingList,
                 PageNumber = pageNum,
-                userId = userId
+                userId = userId,
+                Explore = explore,
+
 
 
             };

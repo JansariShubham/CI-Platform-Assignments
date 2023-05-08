@@ -49,7 +49,8 @@ namespace CIPlatformWeb.Areas.Users.Controllers
                 FavouriteMission obj = new()
                 {
                     MissionId = missionid,
-                    UserId = userId
+                    UserId = userId,
+                    CreatedAt = DateTimeOffset.Now,
 
                 };
 

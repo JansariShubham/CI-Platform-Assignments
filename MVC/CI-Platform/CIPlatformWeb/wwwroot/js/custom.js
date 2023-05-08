@@ -106,10 +106,12 @@ skillValue.addEventListener('change', () => {
 
 var exploreDiv = document.getElementById("exploreDiv");
 exploreDiv.classList.remove("d-none");
-
+var id;
 $("#exploreDropdown li").click((e) => {
     
-    var id = e.currentTarget.dataset.id;
+    id = e.currentTarget.dataset.id;
+    
+    getFilterData();
   
 })
 
@@ -128,7 +130,8 @@ function getFilterData() {
         skillList: skill,
         sortingList: sortByValue,
         pageNum: pageNumber,
-        userId: userId
+        userId: userId,
+        explore : id
 
     };
     console.log(obj);

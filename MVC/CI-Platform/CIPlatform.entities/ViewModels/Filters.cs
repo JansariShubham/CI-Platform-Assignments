@@ -18,5 +18,7 @@ namespace CIPlatform.entities.ViewModels
         public int PageNumber { get; set; }
 
         public int? userId { get; set; }
+
+        public int? Explore { get; set; }
     }
 }
