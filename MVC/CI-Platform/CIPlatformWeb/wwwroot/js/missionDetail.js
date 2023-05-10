@@ -187,17 +187,42 @@ function displayRatings() {
         console.log(starInput);
         $("#rating .rating-stars").on("click", function (event) {
             var starRating = Math.ceil(+starInput.val());
-            console.log("Hiiii==>>>>" +starRating);
+          
+            console.log("Hiiii==>>>>" + starRating);
             $.ajax({
                 type: "POST",
-                url: '/Users/MissionDetail/AddRatings',
-                data: { userId: userId, missionId: missionId, rating: starRating },
-                success: function (data) {
-                    ratingsBtnClicked == false;
-                    console.log("rating sufccess");
-                    $("#ratingPartial").html(data);
+                url: '/Users/MissionDetail/IsVolunteered',
+                data: { userId: userId, missionId: missionId },
+                success: (data) => {
+                    if (data) {
+                        $.ajax({
+                            type: "POST",
+                            url: '/Users/MissionDetail/AddRatings',
+                            data: { userId: userId, missionId: missionId, rating: starRating },
+                            success: function (data) {
+                                ratingsBtnClicked == false;
+                                console.log("rating sufccess");
+                                $("#ratingPartial").html(data);
+                            }
+                        });
+                    }
+                    else {
+                        Swal.fire(
+                            'To rate this mission you have to volunteer first!',
+                            'You clicked the button!',
+                            'error'
+                        )
+                    
+                       
+                    }
+
+                },
+                error: (err) => {
+                    console.log("Error in adding comment");
                 }
-            });
+
+            })
+           
         });
     }
 
@@ -220,23 +245,50 @@ if (userId != null && userId != "") {
         }
 
     }
+
     commentsBtn.addEventListener("click", () => {
         var commentMsg = document.getElementById("commentMsg").value;
+       
         $.ajax({
             type: "POST",
-            url: '/Users/MissionDetail/AddComments',
-            data: { userId: userId, missionId: missionId, commentText: commentMsg },
+            url: '/Users/MissionDetail/IsVolunteered',
+            data: { userId: userId, missionId: missionId},
             success: (data) => {
-                // console.log("Comments Addded");
-                //alert("Comment Added Successfully");
-                $("#partialComment").html(data)
-                document.getElementById("commentMsg").value = '';
+                if (data) {
+                    $.ajax({
+                        type: "POST",
+                        url: '/Users/MissionDetail/AddComments',
+                        data: { userId: userId, missionId: missionId, commentText: commentMsg },
+                        success: (data) => {
+                            // console.log("Comments Addded");
+                            //alert("Comment Added Successfully");
+                            $("#partialComment").html(data)
+                            document.getElementById("commentMsg").value = '';
+                        },
+                        error: (err) => {
+                            console.log("Error in adding comment");
+                        }
+
+                    })
+                }
+                else {
+                    Swal.fire(
+                        'You have to volunteer this mission before commenting!',
+                        'You clicked the button!',
+                        'error'
+                    )
+                    document.getElementById("commentMsg").value = '';
+
+                }
+        
             },
             error: (err) => {
                 console.log("Error in adding comment");
             }
 
         })
+  
+
     })
 
 }

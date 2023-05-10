@@ -360,6 +360,18 @@ namespace CIPlatformWeb.Areas.Users.Controllers
             _IUnitOfWork.Save();
             return Ok();
         }
+        [HttpPost]
+        public bool IsVolunteered(int missionId, long userId)
+        {
+            var missionAppObj  = _IUnitOfWork.MissionApplicationRepository.GetAll();
+            if (missionAppObj.Any(ma => ma.ApprovalStatus == 1 && ma.UserId == userId && ma.MissionId == missionId))
+            {
+
+                return true;
+            }
+            return false;
+           
+        }
     }
 }
 
