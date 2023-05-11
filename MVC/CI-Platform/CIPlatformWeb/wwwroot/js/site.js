@@ -198,3 +198,14 @@ logout.click(() => {
 
 });
 
+
+var notificationBell = document.querySelector(".notification-bell");
+var notificationDiv = document.getElementById("notificationDiv");
+var overlay = document.getElementById("notification-overlay");
+notificationBell.addEventListener("click", () => {
+    notificationDiv.classList.toggle("d-none");
+    overlay.classList.toggle("d-none");
+})
+overlay.addEventListener("click", () => {
+    notificationBell.click();
+})

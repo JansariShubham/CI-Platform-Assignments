@@ -1,36 +1,36 @@
-﻿
-@{
+﻿@{
     var UserName = Context.Session.GetString("firstName");
     var userId = Context.Session.GetString("userId");
     var ava = Context.Session.GetString("avatar");
-   // var isAdmin = Context.Session.GetString("isAdmin");
+    // var isAdmin = Context.Session.GetString("isAdmin");
 }
 
-<input type ="hidden" value="@userId" id="userId" />
+<input type="hidden" value="@userId" id="userId" />
 <div id="showToggle" class="d-none z-1 position-absolute bg-white text-black vh-100 ps-2  d-md-none font-size">
     <div class="d-flex justify-content-end pe-2" id="closeSidebar">
-        <img src="~/images/cancel1.png"  alt="" style="padding-left : 5rem !important">
+        <img src="~/images/cancel1.png" alt="" style="padding-left : 5rem !important">
     </div>
     <div class="d-flex flex-column pe-5">
-  <a asp-action="StoryListing" asp-controller="Story" class="text-decoration-none text-black ps-2 my-3 font-size">Stories</a>
-    <button class="dropdown-toggle policy-btn font-size " data-bs-toggle="dropdown"
-            aria-expanded="false" type="button" id="dropdownMenuButton1">
-        Policy
-        <img class="m-1" src="~/images/drop-down.png" alt="#">
-    </button>
-    <ul class="dropdown-menu cms-dropdown" aria-labelledby="dropdownMenuButton1">
-    </ul>
-
-    <button class="dropdown-toggle policy-btn mt-3 " data-bs-toggle="dropdown"
-            aria-expanded="false" type="button" id="dropdownMenuButton2">Explore
+        <a asp-action="StoryListing" asp-controller="Story" class="text-decoration-none text-black ps-2 my-3 font-size">Stories</a>
+        <button class="dropdown-toggle policy-btn font-size " data-bs-toggle="dropdown"
+                aria-expanded="false" type="button" id="dropdownMenuButton1">
+            Policy
             <img class="m-1" src="~/images/drop-down.png" alt="#">
         </button>
-     <ul class="dropdown-menu" id="exploreDropdown">
-                        <li class="dropdown-item" data-id="7">Top Themes</li>
-                        <li class="dropdown-item" data-id="8">Most Ranked</li>
-                        <li class="dropdown-item" data-id="9">Top Favourites</li>
-                        <li class="dropdown-item" data-id="10">Random</li>
-                    </ul>
+        <ul class="dropdown-menu cms-dropdown" aria-labelledby="dropdownMenuButton1">
+        </ul>
+
+        <button class="dropdown-toggle policy-btn mt-3 " data-bs-toggle="dropdown"
+                aria-expanded="false" type="button" id="dropdownMenuButton2">
+            Explore
+            <img class="m-1" src="~/images/drop-down.png" alt="#">
+        </button>
+        <ul class="dropdown-menu" id="exploreDropdown">
+            <li class="dropdown-item" data-id="7">Top Themes</li>
+            <li class="dropdown-item" data-id="8">Most Ranked</li>
+            <li class="dropdown-item" data-id="9">Top Favourites</li>
+            <li class="dropdown-item" data-id="10">Random</li>
+        </ul>
     </div>
 </div>
 
@@ -42,17 +42,18 @@
         <a asp-action="PlatformLandingPage" asp-controller="Home"><img class="logo h-50" src="~/images/logo.png" alt="#"></a>
 
         <div class="d-md-inline mt-3 ms-3" id="exploreDiv">
-         <button class="dropdown-toggle policy-btn  " data-bs-toggle="dropdown"
-            aria-expanded="false" type="button" id="dropdownMenuButton2">Explore
-            <img class="m-1" src="~/images/drop-down.png" alt="#">
-        </button>
-     <ul class="dropdown-menu" id="exploreDropdown">
-                        <li class="dropdown-item" data-id="7">Top Themes</li>
-                        <li class="dropdown-item" data-id="8">Most Ranked</li>
-                        <li class="dropdown-item" data-id="9">Top Favourites</li>
-                        <li class="dropdown-item" data-id="10">Random</li>
-                    </ul>
-                   </div>
+            <button class="dropdown-toggle policy-btn  " data-bs-toggle="dropdown"
+                    aria-expanded="false" type="button" id="dropdownMenuButton2">
+                Explore
+                <img class="m-1" src="~/images/drop-down.png" alt="#">
+            </button>
+            <ul class="dropdown-menu" id="exploreDropdown">
+                <li class="dropdown-item" data-id="7">Top Themes</li>
+                <li class="dropdown-item" data-id="8">Most Ranked</li>
+                <li class="dropdown-item" data-id="9">Top Favourites</li>
+                <li class="dropdown-item" data-id="10">Random</li>
+            </ul>
+        </div>
 
         <a asp-action="StoryListing" asp-controller="Story" class="text-decoration-none ms-3 me-5 d-none d-md-inline d-lg-inline">Stories</a>
         <button class="dropdown-toggle policy-btn d-none d-md-inline d-lg-inline" data-bs-toggle="dropdown"
@@ -61,40 +62,45 @@
             <img class="m-1" src="~/images/drop-down.png" alt="#">
         </button>
         <ul class="dropdown-menu cms-dropdown" aria-labelledby="dropdownMenuButton1">
-           
         </ul>
-         
-        
+
+
 
     </div>
 
-    
-    
-    <div class="dropdown right-div">
-        
+
+
+    <div class="dropdown right-div d-flex align-items-center">
+
         @if (UserName != null)
         {
-            
-            <img src= "~/images/bell.png" class="notification-bell me-2" />
+            <div class=" me-2 position-relative ">
+                <div class="position-relative notification-bell">
+                    <img src="~/images/bell.png" class="" />
+                    <div class="position-absolute notification-count d-flex align-items-center justify-content-center">100</div>
+                </div>
+                <div class="border position-absolute d-none" id="notificationDiv"></div>
+            </div>
+
             <img class="rounded-circle user-img" src="@ava" alt="#">
             <button class="dropdown-toggle policy-btn profile-btn " data-bs-toggle="dropdown"
                 aria-expanded="false" type="button" id="dropdownMenuButton1">
                 <span class="d-none d-sm-inline">@UserName</span>
 
-                
+
 
                 <img class="m-1" src="~/images/drop-down.png" alt="#">
             </button>
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              
+
                 <li><a class="dropdown-item" asp-action="UserEditProfile" asp-controller="Home" asp-route-id="@userId">My Profile</a></li>
                 <li><a class="dropdown-item" asp-action="TimeSheet" asp-controller="Home" asp-route-id="@userId">Volunteering Timesheet</a></li>
-               
-               
-                    <li><a class="dropdown-item" id = "logout">Logout</a></li>    
-                
-                
+
+
+                <li><a class="dropdown-item" id="logout">Logout</a></li>
+
+
             </ul>
         }
         @if (UserName == null)
@@ -106,6 +112,7 @@
     </div>
 
 </div>
+
 
 
 

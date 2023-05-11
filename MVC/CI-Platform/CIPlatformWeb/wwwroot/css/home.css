@@ -8,14 +8,48 @@
     }
 
 }
+/*body{
+    position: relative;
+}*/
+/*
+#notification-overlay{
+    height:100%;
+    width:100%;
+    background-color:black;
+    position:absolute;
+    z-index: 1;
+
+}*/
+.notification-count {
+    background-color: #f88634;
+    color: white;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    top: -7px;
+    right: -5px;
+    font-size: 10px;
+}
 
 .timesheet-footer {
     position: absolute;
     width: 100%;
     bottom: 0;
 }
-#restoreImg{
-    height:1.2rem !important;
+
+#notificationDiv{
+    height: 80vh;
+    width:50vw;
+    background-color:white;
+    z-index: 2;
+    right:0;
+}
+
+.notification-bell{
+    z-index:2;
+}
+#restoreImg {
+    height: 1.2rem !important;
 }
 .grid-index{
     grid-template-rows: auto 1fr auto;
@@ -706,6 +740,10 @@ img {
         left: 0;
         position: absolute;
         background-color: white;
+    }
+
+    #exploreDiv {
+        display: none;
     }
 
 }
