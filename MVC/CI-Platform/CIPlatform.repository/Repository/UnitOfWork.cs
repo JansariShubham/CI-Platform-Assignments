@@ -57,6 +57,14 @@ namespace CIPlatform.repository.Repository
 
         public IGoalMissionRepository GoalMissionRepository { get; private set; }
 
+        public INotificationRepository NotificationRepository { get; private set; } 
+
+        public INotificationSettingRepository NotificationSettingRepository { get; private set; }
+
+        public IUserNotificationRepository UserNotificationRepository { get; private set; }
+
+        public ILastCheckedRepository LastCheckedRepository { get; private set;}
+
         private AppDbContext _appDbContext;
 
         public UnitOfWork(AppDbContext appDbContext) 
@@ -85,7 +93,11 @@ namespace CIPlatform.repository.Repository
             MissionSkillRepository = new MissionSkillRepository(appDbContext);
             MissionMediaRepository = new MissionMediaRepository(appDbContext);
             MissionDocRepository = new MissionDocRepository(appDbContext);
-            GoalMissionRepository = new GoalMissionRepository(appDbContext);    
+            GoalMissionRepository = new GoalMissionRepository(appDbContext);
+            NotificationRepository = new NotificationRepository(appDbContext);
+            NotificationSettingRepository = new NotificationSettingRepository(appDbContext);
+            UserNotificationRepository = new UserNotificationRepository(appDbContext);
+            LastCheckedRepository = new LastCheckedRepository(appDbContext);
         }
 
 

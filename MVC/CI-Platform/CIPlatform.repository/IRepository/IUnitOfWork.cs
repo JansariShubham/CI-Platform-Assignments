@@ -50,6 +50,14 @@ namespace CIPlatform.repository.IRepository
         IMissionDocRepository MissionDocRepository { get; }
 
         IGoalMissionRepository GoalMissionRepository { get; }
+
+        INotificationRepository NotificationRepository { get; }
+
+        INotificationSettingRepository NotificationSettingRepository { get; }
+
+        IUserNotificationRepository UserNotificationRepository { get; }
+
+        ILastCheckedRepository LastCheckedRepository { get; }   
         void Save();
     }
 }
