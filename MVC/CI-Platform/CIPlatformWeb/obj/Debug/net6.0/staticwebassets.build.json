@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/BBhUL+AhOnoqIqkNoV0voPlOFiWHtnxDnfCEEMaJ10=",
+  "Hash": "47CWoPKCGj+qP6hIjLWcBVGXv4jLbR5Wvl/yUEqeJU4=",
   "Source": "CIPlatformWeb",
   "BasePath": "_content/CIPlatformWeb",
   "Mode": "Default",
@@ -508,6 +508,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Animal-welfare-&-save-birds-campaign-1.png"
+    },
+    {
+      "Identity": "D:\\Shubham\\CI_Platform\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\approve.svg",
+      "SourceId": "CIPlatformWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Shubham\\CI_Platform\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\",
+      "BasePath": "_content/CIPlatformWeb",
+      "RelativePath": "images/approve.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\approve.svg"
     },
     {
       "Identity": "D:\\Shubham\\CI_Platform\\MVC\\CI-Platform\\CIPlatformWeb\\wwwroot\\images\\arrow.png",

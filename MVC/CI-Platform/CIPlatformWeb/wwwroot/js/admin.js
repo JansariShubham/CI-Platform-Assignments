@@ -1145,6 +1145,7 @@ $("#missionApplicationBtn").click(() => {
 })
 
 function missionAppAjax() {
+    
     $.ajax({
         type: "GET",
         url: '/Admin/Dashboard/MissionApplicationList',
@@ -1153,8 +1154,9 @@ function missionAppAjax() {
             $('#adminPartial').html(data);
             approveStatus();
             declineStatus();
-            createPagination();
             searchMissionApp();
+            createPagination();
+            
         },
         error: (err) => {
             console.log("error in getting missionapp list");
@@ -1240,9 +1242,9 @@ function declineStatus() {
 
 
 function searchMissionApp() {
-  
     var search = document.getElementById("searchInput");
     search.addEventListener('input', () => {
+     
         searchText = search.value;
         $.ajax({
             type: "GET",

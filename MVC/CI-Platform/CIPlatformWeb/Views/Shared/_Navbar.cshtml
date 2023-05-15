@@ -74,12 +74,15 @@
 
         @if (UserName != null)
         {
-            <div class=" me-2 position-relative ">
+            <div class="me-3 position-relative ">
                 <div class="position-relative notification-bell">
                     <img src="~/images/bell.png" class="" />
                     <div class="position-absolute notification-count d-flex align-items-center justify-content-center">100</div>
                 </div>
-                <div class="border position-absolute d-none" id="notificationDiv"></div>
+                <div class="border position-absolute d-none text-secondary" id="notificationDiv">
+                    @* <partial name="_Notification"></partial>*@
+                   @*<partial name="_NotificationSettings"></partial>*@
+                </div>
             </div>
 
             <img class="rounded-circle user-img" src="@ava" alt="#">
@@ -98,7 +101,7 @@
                 <li><a class="dropdown-item" asp-action="TimeSheet" asp-controller="Home" asp-route-id="@userId">Volunteering Timesheet</a></li>
 
 
-                <li><a class="dropdown-item" id="logout">Logout</a></li>
+                <li><a class="dropdown-item cursor-pointer" id="logout">Logout</a></li>
 
 
             </ul>

@@ -162,27 +162,7 @@ namespace CIPlatform.repository.Repository
                                 ORDER BY mr.avg_rating DESC";
 
                     filterMission = _appDbContext.Missions.FromSqlRaw(query).ToList();
-                    //filterMission =  filterMission.OrderByDescending(m => m?.MissionRatings?.Average(mr => mr.Rating)).ToList();
-                    //var query = from m in _appDbContext.Missions
-                    //            join mr in _appDbContext.MissionRatings on m.MissionId equals mr.MissionId
-                    //            group mr by mr.MissionId into g
-                    //            orderby g.Average(x => x.Rating) descending
-                    //            select new
-                    //            {
-                    //                missionid = g.Key,
-                    //                avgrating = g.Average(x => x.Rating)
-                    //            };
-
-                    //var missionids = query.Select(x => x.missionid).ToList();
-                    //List<Mission> topratedmission = new();
-
-                    ////filtermission = null;
-                    //missionids.ForEach((mid) =>
-                    // {
-
-                    //     topratedmission.Add(GetAll().FirstOrDefault(m => m.MissionId == mid));
-                    // }) ;
-                    //filterMission = topratedmission;
+                
                 }
                 //top favourites
                 if (obj.Explore == 9)
