@@ -201,11 +201,52 @@ logout.click(() => {
 
 var notificationBell = document.querySelector(".notification-bell");
 var notificationDiv = document.getElementById("notificationDiv");
-var overlay = document.getElementById("notification-overlay");
+//var overlay = document.getElementById("notification-overlay");
 notificationBell.addEventListener("click", () => {
-    notificationDiv.classList.toggle("d-none");
-    overlay.classList.toggle("d-none");
+   notificationDiv.classList.toggle("d-none");
+
+    $.ajax({
+        url: '/Users/Notification/GetNotification',
+        type: "GET",
+        success: (result) => {
+
+            $("#notificationDiv").html(result);
+            getNotificationSettings();
+            console.log("gettting not")
+        },
+        error: (err) => {
+            console.log("error in contact us");
+            console.log(err);
+        }
+    })
+
 })
-overlay.addEventListener("click", () => {
+/*overlay.addEventListener("click", () => {
     notificationBell.click();
-})
+})*/
+
+function getNotificationSettings() {
+    var settingBtn = document.querySelector(".setting-img");
+    settingBtn.addEventListener("click", () => {
+        $.ajax({
+            url: '/Users/Notification/GetNotificationSetting',
+            type: "GET",
+            success: (result) => {
+
+                $("#notificationDiv").html(result);
+                cancleBtn();
+                console.log("gettting not")
+            },
+            error: (err) => {
+                console.log("error in contact us");
+                console.log(err);
+            }
+        })
+    })
+}
+
+function cancleBtn() {
+    $("#cancleSettingBtn").click(() => {
+        notificationDiv.classList.add("d-none");
+    })
+}
