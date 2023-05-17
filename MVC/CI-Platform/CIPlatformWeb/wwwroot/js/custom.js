@@ -105,7 +105,8 @@ skillValue.addEventListener('change', () => {
 
 
 var exploreDiv = document.getElementById("exploreDiv");
-exploreDiv.classList.remove("d-none");
+
+exploreDiv.classList.add("d-md-inline");
 var id;
 $("#exploreDropdown li").click((e) => {
     
@@ -115,6 +116,9 @@ $("#exploreDropdown li").click((e) => {
   
 })
 
+var exploreDiv = document.getElementById("exploreDiv1");
+
+exploreDiv.classList.remove("d-none");
 
 
 

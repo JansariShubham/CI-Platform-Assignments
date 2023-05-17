@@ -6,31 +6,35 @@
 }
 
 <input type="hidden" value="@userId" id="userId" />
-<div id="showToggle" class="d-none z-1 position-absolute bg-white text-black vh-100 ps-2  d-md-none font-size">
+<div id="showToggle" class="d-none z-1 position-absolute bg-white text-black vh-100 ps-2 d-md-none font-size">
     <div class="d-flex justify-content-end pe-2" id="closeSidebar">
-        <img src="~/images/cancel1.png" alt="" style="padding-left : 5rem !important">
+        <img src="~/images/cancel1.png" alt="" style="padding-left : 5rem !important; margin-top:0.5rem !important ">
     </div>
     <div class="d-flex flex-column pe-5">
         <a asp-action="StoryListing" asp-controller="Story" class="text-decoration-none text-black ps-2 my-3 font-size">Stories</a>
-        <button class="dropdown-toggle policy-btn font-size " data-bs-toggle="dropdown"
+        <button class="dropdown-toggle policy-btn font-size d-flex  justify-content-between" data-bs-toggle="dropdown"
                 aria-expanded="false" type="button" id="dropdownMenuButton1">
             Policy
             <img class="m-1" src="~/images/drop-down.png" alt="#">
         </button>
-        <ul class="dropdown-menu cms-dropdown" aria-labelledby="dropdownMenuButton1">
+        <ul class="dropdown-menu cms-dropdown font-size" aria-labelledby="dropdownMenuButton1">
         </ul>
-
-        <button class="dropdown-toggle policy-btn mt-3 " data-bs-toggle="dropdown"
-                aria-expanded="false" type="button" id="dropdownMenuButton2">
-            Explore
-            <img class="m-1" src="~/images/drop-down.png" alt="#">
-        </button>
-        <ul class="dropdown-menu" id="exploreDropdown">
-            <li class="dropdown-item" data-id="7">Top Themes</li>
-            <li class="dropdown-item" data-id="8">Most Ranked</li>
-            <li class="dropdown-item" data-id="9">Top Favourites</li>
-            <li class="dropdown-item" data-id="10">Random</li>
-        </ul>
+        <div class="d-none" id="exploreDiv1">
+            <button class="dropdown-toggle policy-btn mt-3 " data-bs-toggle="dropdown"
+                    aria-expanded="false" type="button" id="dropdownMenuButton2">
+                Explore
+                <img class="m-1" src="~/images/drop-down.png" alt="#">
+            </button>
+            <ul class="dropdown-menu font-size" id="exploreDropdown">
+                <li class="dropdown-item" data-id="7">Top Themes</li>
+                <li class="dropdown-item" data-id="8">Most Ranked</li>
+                @if (userId != null)
+                {
+                    <li class="dropdown-item" data-id="9">Top Favourites</li>
+                }
+                <li class="dropdown-item" data-id="10">Random</li>
+            </ul>
+        </div>
     </div>
 </div>
 
@@ -39,10 +43,10 @@
         <button class="header-toggle d-md-none border-0" id="toggleDrop">
             <img class="h-50" src="~/images/list.png" alt="#">
         </button>
-        <a asp-action="PlatformLandingPage" asp-controller="Home"><img class="logo h-50" src="~/images/logo.png" alt="#"></a>
+        <a asp-action="PlatformLandingPage" asp-controller="Home"><img class="logo" src="~/images/logo.png" alt="#"></a>
 
-        <div class="d-md-inline mt-3 ms-3" id="exploreDiv">
-            <button class="dropdown-toggle policy-btn  " data-bs-toggle="dropdown"
+        <div class="d-none mt-3 ms-3" id="exploreDiv">
+            <button class="dropdown-toggle policy-btn" data-bs-toggle="dropdown"
                     aria-expanded="false" type="button" id="dropdownMenuButton2">
                 Explore
                 <img class="m-1" src="~/images/drop-down.png" alt="#">
@@ -50,7 +54,10 @@
             <ul class="dropdown-menu" id="exploreDropdown">
                 <li class="dropdown-item" data-id="7">Top Themes</li>
                 <li class="dropdown-item" data-id="8">Most Ranked</li>
-                <li class="dropdown-item" data-id="9">Top Favourites</li>
+                @if (userId != null)
+                {
+                    <li class="dropdown-item" data-id="9">Top Favourites</li>
+                }
                 <li class="dropdown-item" data-id="10">Random</li>
             </ul>
         </div>
@@ -80,7 +87,6 @@
                     <div class="position-absolute notification-count d-flex align-items-center justify-content-center">100</div>
                 </div>
                 <div class="border position-absolute d-none text-secondary" id="notificationDiv">
-                    
                 </div>
             </div>
 
